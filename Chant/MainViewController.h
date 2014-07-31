@@ -12,5 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView* tView;
 @property (strong, nonatomic) IBOutlet UITextView* commentBox;
+@property (strong, nonatomic) NSArray *tableData;
+
 
 @end
