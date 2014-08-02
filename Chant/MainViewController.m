@@ -23,9 +23,18 @@
         // Custom initialization
         [super viewDidLoad];
         
+        self.commentBox = [[UITextField alloc] init];
+        self.commentBox.delegate = self;
         self.commentBox.text = @"whattup bitch";
+        self.scrollView = [[UIScrollView alloc] init];
+        self.scrollView.delegate = self;
 
-        self.tableData = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
+
+      //  [self.view addSubview:self.scrollView];
+        
+        //[self.scrollView addSubview:self.tView];
+
+        self.tableData = [NSMutableArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
         
     }
     return self;
@@ -40,9 +49,34 @@
     self.tView.delegate = self;
     self.tView.dataSource = self;
 
+    [self registerForKeyboardNotifications];
+    
     [self.tView setBackgroundColor:[UIColor brownColor]];
     // Do any additional setup after loading the view from its nib.
     [self.tView reloadData];
+}
+
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.scrollView.contentSize = CGSizeMake(320, 1000);
+    self.scrollView.scrollEnabled = NO;
+    self.scrollView.showsVerticalScrollIndicator = YES;
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self keyboardWillBeHidden];
+    [textField resignFirstResponder];
+    
+    if([self.commentBox.text isEqualToString: @""])
+    {
+        [self.tableData addObject:self.commentBox.text];
+        [self.tView reloadData];
+    }
+    
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,6 +103,50 @@
     
     cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
     return cell;
+}
+
+
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your app might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    CGPoint origin = self.commentBox.frame.origin;
+    origin.y -= self.scrollView.contentOffset.y;
+    if (!CGRectContainsPoint(aRect, origin) ) {
+        CGPoint scrollPoint = CGPointMake(0.0, self.commentBox.frame.origin.y-(aRect.size.height));
+        [self.scrollView setContentOffset:scrollPoint animated:YES];
+    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
 @end
