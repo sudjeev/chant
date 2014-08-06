@@ -24,6 +24,8 @@
 		B7268C601989C46400F7714E /* ChantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7268C5F1989C46400F7714E /* ChantTests.m */; };
 		B7268C711989C76F00F7714E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7268C6F1989C76F00F7714E /* MainViewController.m */; };
 		B7268C721989C76F00F7714E /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7268C701989C76F00F7714E /* MainViewController.xib */; };
+		B73EF5B41991F7C300934A61 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73EF5B21991F7C300934A61 /* LoginViewController.m */; };
+		B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5B31991F7C300934A61 /* LoginViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,9 @@
 		B7268C6E1989C76F00F7714E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		B7268C6F1989C76F00F7714E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		B7268C701989C76F00F7714E /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		B73EF5B11991F7C300934A61 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		B73EF5B21991F7C300934A61 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B73EF5B31991F7C300934A61 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,9 +130,8 @@
 				B7268C4B1989C46400F7714E /* Images.xcassets */,
 				B7268C481989C46400F7714E /* Chant.xcdatamodeld */,
 				B7268C3D1989C46400F7714E /* Supporting Files */,
-				B7268C6E1989C76F00F7714E /* MainViewController.h */,
-				B7268C6F1989C76F00F7714E /* MainViewController.m */,
-				B7268C701989C76F00F7714E /* MainViewController.xib */,
+				B73EF5B71991F7DC00934A61 /* Comment */,
+				B73EF5B61991F7D100934A61 /* Login */,
 			);
 			path = Chant;
 			sourceTree = "<group>";
@@ -159,6 +163,26 @@
 				B7268C5C1989C46400F7714E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B73EF5B61991F7D100934A61 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B73EF5B11991F7C300934A61 /* LoginViewController.h */,
+				B73EF5B21991F7C300934A61 /* LoginViewController.m */,
+				B73EF5B31991F7C300934A61 /* LoginViewController.xib */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		B73EF5B71991F7DC00934A61 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				B7268C6E1989C76F00F7714E /* MainViewController.h */,
+				B7268C6F1989C76F00F7714E /* MainViewController.m */,
+				B7268C701989C76F00F7714E /* MainViewController.xib */,
+			);
+			name = Comment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */,
 				B7268C411989C46400F7714E /* InfoPlist.strings in Resources */,
 				B7268C4C1989C46400F7714E /* Images.xcassets in Resources */,
 				B7268C721989C76F00F7714E /* MainViewController.xib in Resources */,
@@ -261,6 +286,7 @@
 				B7268C431989C46400F7714E /* main.m in Sources */,
 				B7268C4A1989C46400F7714E /* Chant.xcdatamodeld in Sources */,
 				B7268C711989C76F00F7714E /* MainViewController.m in Sources */,
+				B73EF5B41991F7C300934A61 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
