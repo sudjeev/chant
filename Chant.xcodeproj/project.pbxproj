@@ -24,6 +24,16 @@
 		B7268C601989C46400F7714E /* ChantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7268C5F1989C46400F7714E /* ChantTests.m */; };
 		B7268C711989C76F00F7714E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7268C6F1989C76F00F7714E /* MainViewController.m */; };
 		B7268C721989C76F00F7714E /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7268C701989C76F00F7714E /* MainViewController.xib */; };
+		B73EF59E1991EE0000934A61 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF59D1991EE0000934A61 /* Parse.framework */; };
+		B73EF5A01991F19D00934A61 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF59F1991F19D00934A61 /* AudioToolbox.framework */; };
+		B73EF5A21991F1A600934A61 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5A11991F1A600934A61 /* CFNetwork.framework */; };
+		B73EF5A41991F1B500934A61 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5A31991F1B500934A61 /* CoreLocation.framework */; };
+		B73EF5A61991F1E200934A61 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5A51991F1E200934A61 /* libz.dylib */; };
+		B73EF5A81991F1EF00934A61 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5A71991F1EF00934A61 /* MobileCoreServices.framework */; };
+		B73EF5AA1991F1F800934A61 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5A91991F1F800934A61 /* QuartzCore.framework */; };
+		B73EF5AC1991F20B00934A61 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5AB1991F20A00934A61 /* Security.framework */; };
+		B73EF5AE1991F21100934A61 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5AD1991F21100934A61 /* StoreKit.framework */; };
+		B73EF5B01991F21B00934A61 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5AF1991F21B00934A61 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +68,16 @@
 		B7268C6E1989C76F00F7714E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		B7268C6F1989C76F00F7714E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		B7268C701989C76F00F7714E /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		B73EF59D1991EE0000934A61 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		B73EF59F1991F19D00934A61 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B73EF5A11991F1A600934A61 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B73EF5A31991F1B500934A61 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B73EF5A51991F1E200934A61 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		B73EF5A71991F1EF00934A61 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		B73EF5A91991F1F800934A61 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B73EF5AB1991F20A00934A61 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B73EF5AD1991F21100934A61 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B73EF5AF1991F21B00934A61 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +85,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B73EF5B01991F21B00934A61 /* SystemConfiguration.framework in Frameworks */,
+				B73EF5AE1991F21100934A61 /* StoreKit.framework in Frameworks */,
+				B73EF5AC1991F20B00934A61 /* Security.framework in Frameworks */,
+				B73EF5AA1991F1F800934A61 /* QuartzCore.framework in Frameworks */,
+				B73EF5A81991F1EF00934A61 /* MobileCoreServices.framework in Frameworks */,
+				B73EF5A61991F1E200934A61 /* libz.dylib in Frameworks */,
+				B73EF5A41991F1B500934A61 /* CoreLocation.framework in Frameworks */,
+				B73EF5A21991F1A600934A61 /* CFNetwork.framework in Frameworks */,
+				B73EF5A01991F19D00934A61 /* AudioToolbox.framework in Frameworks */,
 				B7268C371989C46400F7714E /* CoreGraphics.framework in Frameworks */,
 				B7268C3B1989C46400F7714E /* CoreData.framework in Frameworks */,
 				B7268C391989C46400F7714E /* UIKit.framework in Frameworks */,
 				B7268C351989C46400F7714E /* Foundation.framework in Frameworks */,
+				B73EF59E1991EE0000934A61 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +138,16 @@
 		B7268C331989C46400F7714E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B73EF5AF1991F21B00934A61 /* SystemConfiguration.framework */,
+				B73EF5AD1991F21100934A61 /* StoreKit.framework */,
+				B73EF5AB1991F20A00934A61 /* Security.framework */,
+				B73EF5A91991F1F800934A61 /* QuartzCore.framework */,
+				B73EF5A71991F1EF00934A61 /* MobileCoreServices.framework */,
+				B73EF5A51991F1E200934A61 /* libz.dylib */,
+				B73EF5A31991F1B500934A61 /* CoreLocation.framework */,
+				B73EF5A11991F1A600934A61 /* CFNetwork.framework */,
+				B73EF59F1991F19D00934A61 /* AudioToolbox.framework */,
+				B73EF59D1991EE0000934A61 /* Parse.framework */,
 				B7268C341989C46400F7714E /* Foundation.framework */,
 				B7268C361989C46400F7714E /* CoreGraphics.framework */,
 				B7268C381989C46400F7714E /* UIKit.framework */,
@@ -377,6 +417,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chant/Chant-Prefix.pch";
 				INFOPLIST_FILE = "Chant/Chant-Info.plist";
@@ -390,6 +434,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chant/Chant-Prefix.pch";
 				INFOPLIST_FILE = "Chant/Chant-Info.plist";

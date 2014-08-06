@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-
+#import <Parse/Parse.h>
 
 @interface MainViewController ()
 
@@ -43,6 +43,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    testObject[@"foo"] = @"bar";
+    [testObject saveInBackground];
     
     self.commentBox.text = @"whattup bitch";
     self.tView = [[UITableView alloc] initWithFrame:self.tView.bounds];
