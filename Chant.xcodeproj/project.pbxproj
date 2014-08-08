@@ -24,10 +24,6 @@
 		B7268C601989C46400F7714E /* ChantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7268C5F1989C46400F7714E /* ChantTests.m */; };
 		B7268C711989C76F00F7714E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7268C6F1989C76F00F7714E /* MainViewController.m */; };
 		B7268C721989C76F00F7714E /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7268C701989C76F00F7714E /* MainViewController.xib */; };
-<<<<<<< HEAD
-		B73EF5B41991F7C300934A61 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73EF5B21991F7C300934A61 /* LoginViewController.m */; };
-		B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5B31991F7C300934A61 /* LoginViewController.xib */; };
-=======
 		B73EF59E1991EE0000934A61 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF59D1991EE0000934A61 /* Parse.framework */; };
 		B73EF5A01991F19D00934A61 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF59F1991F19D00934A61 /* AudioToolbox.framework */; };
 		B73EF5A21991F1A600934A61 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5A11991F1A600934A61 /* CFNetwork.framework */; };
@@ -38,7 +34,10 @@
 		B73EF5AC1991F20B00934A61 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5AB1991F20A00934A61 /* Security.framework */; };
 		B73EF5AE1991F21100934A61 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5AD1991F21100934A61 /* StoreKit.framework */; };
 		B73EF5B01991F21B00934A61 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73EF5AF1991F21B00934A61 /* SystemConfiguration.framework */; };
->>>>>>> origin/CommentScreen1
+		B73EF5B41991F7C300934A61 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73EF5B21991F7C300934A61 /* LoginViewController.m */; };
+		B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5B31991F7C300934A61 /* LoginViewController.xib */; };
+		B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73EF5C119947BE000934A61 /* SignUpViewController.m */; };
+		B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5C219947BE000934A61 /* SignUpViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,11 +72,6 @@
 		B7268C6E1989C76F00F7714E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		B7268C6F1989C76F00F7714E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		B7268C701989C76F00F7714E /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		B73EF5B11991F7C300934A61 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		B73EF5B21991F7C300934A61 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		B73EF5B31991F7C300934A61 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-=======
 		B73EF59D1991EE0000934A61 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		B73EF59F1991F19D00934A61 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B73EF5A11991F1A600934A61 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -88,7 +82,12 @@
 		B73EF5AB1991F20A00934A61 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B73EF5AD1991F21100934A61 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B73EF5AF1991F21B00934A61 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
->>>>>>> origin/CommentScreen1
+		B73EF5B11991F7C300934A61 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		B73EF5B21991F7C300934A61 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B73EF5B31991F7C300934A61 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		B73EF5C019947BE000934A61 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		B73EF5C119947BE000934A61 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		B73EF5C219947BE000934A61 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +177,7 @@
 				B7268C3D1989C46400F7714E /* Supporting Files */,
 				B73EF5B71991F7DC00934A61 /* Comment */,
 				B73EF5B61991F7D100934A61 /* Login */,
+				B73EF5BF19947B8500934A61 /* SignUp */,
 			);
 			path = Chant;
 			sourceTree = "<group>";
@@ -229,6 +229,16 @@
 				B7268C701989C76F00F7714E /* MainViewController.xib */,
 			);
 			name = Comment;
+			sourceTree = "<group>";
+		};
+		B73EF5BF19947B8500934A61 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				B73EF5C019947BE000934A61 /* SignUpViewController.h */,
+				B73EF5C119947BE000934A61 /* SignUpViewController.m */,
+				B73EF5C219947BE000934A61 /* SignUpViewController.xib */,
+			);
+			name = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */,
 				B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */,
 				B7268C411989C46400F7714E /* InfoPlist.strings in Resources */,
 				B7268C4C1989C46400F7714E /* Images.xcassets in Resources */,
@@ -330,6 +341,7 @@
 			files = (
 				B7268C471989C46400F7714E /* AppDelegate.m in Sources */,
 				B7268C431989C46400F7714E /* main.m in Sources */,
+				B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */,
 				B7268C4A1989C46400F7714E /* Chant.xcdatamodeld in Sources */,
 				B7268C711989C76F00F7714E /* MainViewController.m in Sources */,
 				B73EF5B41991F7C300934A61 /* LoginViewController.m in Sources */,
