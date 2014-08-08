@@ -22,7 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.navigationItem.title = @"Log in";
-
+        self.password.secureTextEntry = YES;
         self.view.backgroundColor = [UIColor colorWithRed:41.0/255 green:128.0/255.0 blue:185.0/255.0 alpha:1];
         // Custom initialization
     }
@@ -53,7 +53,7 @@
         return;
     }
     
-    //save to parse
+    //Do a parse query to see 
     PFObject *user = [PFObject objectWithClassName:@"Users"];
     user[@"UserName"] = self.username.text;
     user[@"Key"] =  self.password.text;
