@@ -60,13 +60,16 @@
     [user saveInBackground];
     
     //push the mainviewcontroller on
-    [self presentViewController:[[MainViewController alloc] init] animated:YES completion:nil];
+    [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
+    //call a method to push this onto a main controller
+    
 }
 
 - (IBAction)toSignUp:(id)sender
 {
     //pass the signup screen
     [self.navigationController pushViewController:[[SignUpViewController alloc] init] animated:YES];
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

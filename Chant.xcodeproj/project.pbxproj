@@ -38,6 +38,8 @@
 		B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5B31991F7C300934A61 /* LoginViewController.xib */; };
 		B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73EF5C119947BE000934A61 /* SignUpViewController.m */; };
 		B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5C219947BE000934A61 /* SignUpViewController.xib */; };
+		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
+		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,9 @@
 		B73EF5C019947BE000934A61 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		B73EF5C119947BE000934A61 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		B73EF5C219947BE000934A61 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
+		B798D1E619A5C38300550D56 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
+		B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +232,9 @@
 				B7268C6E1989C76F00F7714E /* MainViewController.h */,
 				B7268C6F1989C76F00F7714E /* MainViewController.m */,
 				B7268C701989C76F00F7714E /* MainViewController.xib */,
+				B798D1E519A5C38300550D56 /* CommentTableViewCell.h */,
+				B798D1E619A5C38300550D56 /* CommentTableViewCell.m */,
+				B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */,
 			);
 			name = Comment;
 			sourceTree = "<group>";
@@ -317,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */,
+				B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */,
 				B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */,
 				B7268C411989C46400F7714E /* InfoPlist.strings in Resources */,
 				B7268C4C1989C46400F7714E /* Images.xcassets in Resources */,
@@ -342,6 +351,7 @@
 				B7268C471989C46400F7714E /* AppDelegate.m in Sources */,
 				B7268C431989C46400F7714E /* main.m in Sources */,
 				B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */,
+				B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */,
 				B7268C4A1989C46400F7714E /* Chant.xcdatamodeld in Sources */,
 				B7268C711989C76F00F7714E /* MainViewController.m in Sources */,
 				B73EF5B41991F7C300934A61 /* LoginViewController.m in Sources */,
