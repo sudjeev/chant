@@ -22,7 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.navigationItem.title = @"Log in";
-
+        self.password.secureTextEntry = YES;
         self.view.backgroundColor = [UIColor colorWithRed:41.0/255 green:128.0/255.0 blue:185.0/255.0 alpha:1];
         // Custom initialization
     }
@@ -53,20 +53,23 @@
         return;
     }
     
-    //save to parse
+    //Do a parse query to see 
     PFObject *user = [PFObject objectWithClassName:@"Users"];
     user[@"UserName"] = self.username.text;
     user[@"Key"] =  self.password.text;
     [user saveInBackground];
     
     //push the mainviewcontroller on
-    [self presentViewController:[[MainViewController alloc] init] animated:YES completion:nil];
+    [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
+    //call a method to push this onto a main controller
+    
 }
 
 - (IBAction)toSignUp:(id)sender
 {
     //pass the signup screen
     [self.navigationController pushViewController:[[SignUpViewController alloc] init] animated:YES];
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIScrollViewDelegate>
+@interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
-@property (strong, nonatomic) IBOutlet UITableView* tView;
 @property (strong, nonatomic) IBOutlet UITextField* commentBox;
-@property (strong, nonatomic) IBOutlet UIScrollView* scrollView;
+@property (strong, nonatomic) IBOutlet UIButton* comment;
 @property (strong, nonatomic) NSMutableArray *tableData;
 
-
+- (IBAction)onComment:(id)sender;
 @end
