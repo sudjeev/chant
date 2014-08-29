@@ -19,6 +19,7 @@
 {
     if([comment isEqual:nil])
     {
+        NSLog(@"dis bitch is empty");
         return;
     }
     self.comment.text = comment;

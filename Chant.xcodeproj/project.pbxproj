@@ -40,6 +40,8 @@
 		B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5C219947BE000934A61 /* SignUpViewController.xib */; };
 		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
+		B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */; };
+		B7C06EFA19AF028000A4D9C5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C06EF919AF028000A4D9C5 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,9 @@
 		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		B798D1E619A5C38300550D56 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		B7C06EF819AF028000A4D9C5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		B7C06EF919AF028000A4D9C5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,14 +180,12 @@
 		B7268C3C1989C46400F7714E /* Chant */ = {
 			isa = PBXGroup;
 			children = (
-				B7268C451989C46400F7714E /* AppDelegate.h */,
-				B7268C461989C46400F7714E /* AppDelegate.m */,
 				B7268C4B1989C46400F7714E /* Images.xcassets */,
 				B7268C481989C46400F7714E /* Chant.xcdatamodeld */,
 				B7268C3D1989C46400F7714E /* Supporting Files */,
-				B73EF5B71991F7DC00934A61 /* Comment */,
-				B73EF5B61991F7D100934A61 /* Login */,
-				B73EF5BF19947B8500934A61 /* SignUp */,
+				B7C06EF819AF028000A4D9C5 /* User.h */,
+				B7C06EF919AF028000A4D9C5 /* User.m */,
+				B7C06EFB19AF028A00A4D9C5 /* Views */,
 			);
 			path = Chant;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				B798D1E519A5C38300550D56 /* CommentTableViewCell.h */,
 				B798D1E619A5C38300550D56 /* CommentTableViewCell.m */,
 				B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */,
+				B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */,
 			);
 			name = Comment;
 			sourceTree = "<group>";
@@ -247,6 +251,18 @@
 				B73EF5C219947BE000934A61 /* SignUpViewController.xib */,
 			);
 			name = SignUp;
+			sourceTree = "<group>";
+		};
+		B7C06EFB19AF028A00A4D9C5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B7268C451989C46400F7714E /* AppDelegate.h */,
+				B7268C461989C46400F7714E /* AppDelegate.m */,
+				B73EF5B71991F7DC00934A61 /* Comment */,
+				B73EF5B61991F7D100934A61 /* Login */,
+				B73EF5BF19947B8500934A61 /* SignUp */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */,
 				B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */,
 				B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */,
 				B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */,
@@ -348,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7C06EFA19AF028000A4D9C5 /* User.m in Sources */,
 				B7268C471989C46400F7714E /* AppDelegate.m in Sources */,
 				B7268C431989C46400F7714E /* main.m in Sources */,
 				B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */,

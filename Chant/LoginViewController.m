@@ -12,10 +12,13 @@
 #import "SignUpViewController.h"
 
 @interface LoginViewController ()
+@property (nonatomic) NSInteger valid;
+@property (nonatomic) NSInteger complete;
 
 @end
 
 @implementation LoginViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,6 +27,9 @@
         self.navigationItem.title = @"Log in";
         self.password.secureTextEntry = YES;
         self.view.backgroundColor = [UIColor colorWithRed:41.0/255 green:128.0/255.0 blue:185.0/255.0 alpha:1];
+        self.thisUser = [[User alloc] init];
+        self.valid = 0;
+        self.complete = 0;
         // Custom initialization
     }
     return self;
@@ -53,11 +59,33 @@
         return;
     }
     
-    //Do a parse query to see 
-    PFObject *user = [PFObject objectWithClassName:@"Users"];
-    user[@"UserName"] = self.username.text;
-    user[@"Key"] =  self.password.text;
-    [user saveInBackground];
+    //Do a parse query to see
+    
+    PFQuery *getComments = [PFQuery queryWithClassName:@"Users"];
+    [getComments whereKey:@"Username" equalTo:self.username.text];
+    [getComments findObjectsInBackgroundWithTarget:self selector:@selector(checkIfValid:error:)];
+
+    
+    //need to put in some sort of delay so this thread in the background dont screw us
+    
+    if(self.valid ==1 )
+    {
+        [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
+    }
+    else
+    {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Username and Password did not match" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
+    //still need to check if you are a user through parse
+    
+   //self.thisUser.name =
+   //save the team
+    self.thisUser.username = self.username.text;
+    
     
     //push the mainviewcontroller on
     [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
@@ -77,6 +105,22 @@
     [textField resignFirstResponder];
 
     return YES;
+}
+
+-(void)checkIfValid: (NSArray*)results error: (NSError*)error
+{
+ if(!error)
+ {
+   for(PFObject* object in results)
+   {
+       if ([self.password.text isEqualToString:object[@"Password"]] )
+       {
+           self.valid = 1;
+       }
+   }
+ }
+    
+    self.complete = 1;
 }
 
 - (void)didReceiveMemoryWarning
