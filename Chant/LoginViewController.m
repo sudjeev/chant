@@ -61,14 +61,15 @@
     
     //Do a parse query to see
     
-    PFQuery *getComments = [PFQuery queryWithClassName:@"Users"];
-    [getComments whereKey:@"Username" equalTo:self.username.text];
-    [getComments findObjectsInBackgroundWithTarget:self selector:@selector(checkIfValid:error:)];
+    PFQuery *getUsers = [PFQuery queryWithClassName:@"User"];
+    [getUsers whereKey:@"Username" equalTo:self.username.text];
+    [getUsers findObjectsInBackgroundWithTarget:self selector:@selector(checkIfValid:error:)];
 
+    [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
+    
     
     //need to put in some sort of delay so this thread in the background dont screw us
-    
-    if(self.valid ==1 )
+    /*if(self.valid ==1 )
     {
         [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
     }
@@ -78,7 +79,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Username and Password did not match" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return;
-    }
+    }*/
     
     //still need to check if you are a user through parse
     
