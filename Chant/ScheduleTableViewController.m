@@ -7,6 +7,7 @@
 //
 
 #import "ScheduleTableViewController.h"
+#import "ScheduleCell.h"
 
 @interface ScheduleTableViewController ()
 
@@ -20,7 +21,7 @@
     self.first = [[NSArray alloc] initWithObjects:@"Bitch", @"Nigga", nil];
     self.second = [[NSArray alloc] initWithObjects:@"Pimp", @"Daddy", @"Cane", nil];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"ScheduleCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ScheduleCell" bundle:nil] forCellReuseIdentifier:@"ScheduleCell"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -57,19 +58,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell = [[UITableViewCell alloc] init];
+    ScheduleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ScheduleCell" forIndexPath:indexPath];
     
     NSLog(@" indexpath row %ld", (long)indexPath.row);
     
-    if(indexPath.section == 0)
+   /* if(indexPath.section == 0)
     {
         cell.textLabel.text = [self.first objectAtIndex:indexPath.row];
     }
     else
     {
         cell.textLabel.text = [self.second objectAtIndex:indexPath.row];
-    }
+    }*/
         
     // Configure the cell...
     

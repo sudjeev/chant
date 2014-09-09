@@ -41,6 +41,7 @@
 		B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5B31991F7C300934A61 /* LoginViewController.xib */; };
 		B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73EF5C119947BE000934A61 /* SignUpViewController.m */; };
 		B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5C219947BE000934A61 /* SignUpViewController.xib */; };
+		B77EC57B19BAACA500E06EB4 /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B77EC57A19BAACA500E06EB4 /* ScheduleCell.m */; };
 		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
 		B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */; };
@@ -99,6 +100,8 @@
 		B73EF5C019947BE000934A61 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		B73EF5C119947BE000934A61 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		B73EF5C219947BE000934A61 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		B77EC57919BAACA500E06EB4 /* ScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCell.h; sourceTree = "<group>"; };
+		B77EC57A19BAACA500E06EB4 /* ScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleCell.m; sourceTree = "<group>"; };
 		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		B798D1E619A5C38300550D56 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 				B73BC2D619B7FFB8008C2911 /* ScheduleTableViewController.m */,
 				B73BC2D719B7FFB8008C2911 /* ScheduleTableViewController.xib */,
 				B73BC2DA19B8079B008C2911 /* ScheduleCell.xib */,
+				B77EC57919BAACA500E06EB4 /* ScheduleCell.h */,
+				B77EC57A19BAACA500E06EB4 /* ScheduleCell.m */,
 			);
 			name = Schedule;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 				B7268C4A1989C46400F7714E /* Chant.xcdatamodeld in Sources */,
 				B7268C711989C76F00F7714E /* MainViewController.m in Sources */,
 				B73EF5B41991F7C300934A61 /* LoginViewController.m in Sources */,
+				B77EC57B19BAACA500E06EB4 /* ScheduleCell.m in Sources */,
 				B73BC2D819B7FFB8008C2911 /* ScheduleTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
