@@ -8,6 +8,7 @@
 
 #import "ScheduleTableViewController.h"
 #import "ScheduleCell.h"
+#import <Parse/Parse.h>
 
 @interface ScheduleTableViewController ()
 
@@ -18,10 +19,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.first = [[NSArray alloc] initWithObjects:@"Bitch", @"Nigga", nil];
-    self.second = [[NSArray alloc] initWithObjects:@"Pimp", @"Daddy", @"Cane", nil];
+
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ScheduleCell" bundle:nil] forCellReuseIdentifier:@"ScheduleCell"];
+    
+    PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
+    //need to add selector to get todays games
+    [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -34,6 +39,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)gameDataCallback:(NSArray*) response error: (NSError*) error
+{
+    if(!error)
+    {
+     //need to first add all the ones that are going on and then add the ones that havnt started
+    }
 }
 
 #pragma mark - Table view data source
@@ -60,16 +73,20 @@
     
     ScheduleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ScheduleCell" forIndexPath:indexPath];
     
+    //need to make an array thats gonna take all the data from the game table
+    //start out by taking all the games that have started and then take the rest
+    
+    
     NSLog(@" indexpath row %ld", (long)indexPath.row);
     
-   /* if(indexPath.section == 0)
+    if(indexPath.section == 0)
     {
         cell.textLabel.text = [self.first objectAtIndex:indexPath.row];
     }
     else
     {
         cell.textLabel.text = [self.second objectAtIndex:indexPath.row];
-    }*/
+    }
         
     // Configure the cell...
     

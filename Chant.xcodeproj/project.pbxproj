@@ -46,6 +46,7 @@
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
 		B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */; };
 		B7C06EFA19AF028000A4D9C5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C06EF919AF028000A4D9C5 /* User.m */; };
+		B7F70B2719C00EA500960FB7 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F70B2619C00EA500960FB7 /* GameData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 		B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		B7C06EF819AF028000A4D9C5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B7C06EF919AF028000A4D9C5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		B7F70B2519C00EA500960FB7 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
+		B7F70B2619C00EA500960FB7 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,11 +193,10 @@
 		B7268C3C1989C46400F7714E /* Chant */ = {
 			isa = PBXGroup;
 			children = (
+				B7F70B2819C00FDD00960FB7 /* Data */,
 				B7268C4B1989C46400F7714E /* Images.xcassets */,
 				B7268C481989C46400F7714E /* Chant.xcdatamodeld */,
 				B7268C3D1989C46400F7714E /* Supporting Files */,
-				B7C06EF819AF028000A4D9C5 /* User.h */,
-				B7C06EF919AF028000A4D9C5 /* User.m */,
 				B7C06EFB19AF028A00A4D9C5 /* Views */,
 			);
 			path = Chant;
@@ -287,6 +289,17 @@
 				B73EF5BF19947B8500934A61 /* SignUp */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		B7F70B2819C00FDD00960FB7 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B7C06EF819AF028000A4D9C5 /* User.h */,
+				B7C06EF919AF028000A4D9C5 /* User.m */,
+				B7F70B2519C00EA500960FB7 /* GameData.h */,
+				B7F70B2619C00EA500960FB7 /* GameData.m */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,6 +410,7 @@
 				B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */,
 				B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */,
 				B7268C4A1989C46400F7714E /* Chant.xcdatamodeld in Sources */,
+				B7F70B2719C00EA500960FB7 /* GameData.m in Sources */,
 				B7268C711989C76F00F7714E /* MainViewController.m in Sources */,
 				B73EF5B41991F7C300934A61 /* LoginViewController.m in Sources */,
 				B77EC57B19BAACA500E06EB4 /* ScheduleCell.m in Sources */,

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameData.h"
 
 @interface ScheduleCell : UITableViewCell
-
+@property (nonatomic, strong) GameData* data;
+-(void)updateCellWithGameData: (GameData*) data;
 @end

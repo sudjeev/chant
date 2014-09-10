@@ -19,6 +19,10 @@
     return self;
 }
 
+- (void) updateCellWithGameData:(GameData *)data
+{
+    self.data = data;
+}
 - (void)awakeFromNib
 {
     // Initialization code
