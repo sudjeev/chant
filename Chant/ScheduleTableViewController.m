@@ -8,13 +8,20 @@
 
 #import "ScheduleTableViewController.h"
 #import "ScheduleCell.h"
+#import "UpcomingGameCell.h"
 #import <Parse/Parse.h>
+#import "GameData.h"
 
 @interface ScheduleTableViewController ()
-
+@property (nonatomic, strong) NSMutableArray* schedule;
+@property (nonatomic, assign) int liveGames;
+@property (nonatomic, assign) int isLoading;
 @end
 
 @implementation ScheduleTableViewController
+
+
+
 
 - (void)viewDidLoad
 {
@@ -22,9 +29,17 @@
 
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ScheduleCell" bundle:nil] forCellReuseIdentifier:@"ScheduleCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"EmptyScheduleCell" bundle:nil] forCellReuseIdentifier:@"EmptyScheduleCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UpcomingGameCell" bundle:nil] forCellReuseIdentifier:@"UpcomingGameCell"];
     
+
+    self.schedule = [[NSMutableArray alloc] init];
+    self.liveGames = 0;
+    
+    
+    self.isLoading = 1;
     PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
-    //need to add selector to get todays games
     [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
 
     
@@ -43,10 +58,50 @@
 
 - (void)gameDataCallback:(NSArray*) response error: (NSError*) error
 {
+    NSLog(@"gamedatacallback");
     if(!error)
     {
-     //need to first add all the ones that are going on and then add the ones that havnt started
+     //add all the games that are currently going on
+     for(PFObject* object in response)
+     {
+         if([[object objectForKey:@"started"] isEqualToString:@"True"])
+         {
+             GameData* nextGame = [[GameData alloc] init];
+             nextGame.started = [object objectForKey:@"started"];
+             nextGame.home = [object objectForKey:@"home"];
+             nextGame.away = [object objectForKey:@"away"];
+             nextGame.homeScore = [object objectForKey:@"homeScore"];
+             nextGame.awayScore = [object objectForKey:@"awayScore"];
+             nextGame.quarter = [object objectForKey:@"quarter"];
+             [self.schedule addObject:nextGame];
+             self.liveGames++;
+         }
+     }
+     //add all the games that are scheduled
+     for(PFObject* object in response)
+     {
+        if([[object objectForKey:@"started"] isEqualToString:@"False"])
+        {
+            GameData* nextGame = [[GameData alloc] init];
+            nextGame.started = [object objectForKey:@"started"];
+            nextGame.home = [object objectForKey:@"home"];
+            nextGame.away = [object objectForKey:@"away"];
+            nextGame.homeScore = [object objectForKey:@"homeScore"];
+            nextGame.awayScore = [object objectForKey:@"awayScore"];
+            nextGame.quarter = [object objectForKey:@"quarter"];
+            [self.schedule addObject:nextGame];
+        }
+     }
     }
+    
+    else
+    {
+     NSLog(@"Game data callback problem %@", error);
+    }
+    
+    self.isLoading = 0;
+    [self.tableView reloadData];
+    return;
 }
 
 #pragma mark - Table view data source
@@ -59,41 +114,91 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"in number of rows for section %i", section);
+    if([self.schedule count] == 0)
+    {
+        //we are returning 1 so that we can show a loading cell instead or a no games cell
+        NSLog(@"returning one");
+        return 1;
+    }
+    
+    
     // Return the number of rows in the section.
     if(section == 0)
     {
-        return 2;
+        NSLog(@"returningg %i", self.liveGames);
+        return self.liveGames;
     }
-    return 3;
+    NSLog(@"returning %i ", [self.schedule count] - self.liveGames);
+    return ([self.schedule count] - self.liveGames);
 }
 
+- (NSString*)tableview:(UITableView *)tableView titleForHeaderInSection: (NSInteger) section
+{
+    if (section == 0) {
+        return @"Live";
+    }
+    return @"Scheduled";
+}
 
+//need to find an effective way to call tableview reload data on a loop cycle
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%i", indexPath.section);
+
+    //need to check isLoading
+    if([self.schedule count] == 0)
+    {
+        if(self.isLoading == 1)
+        {
+            //return a loading cell
+            UITableViewCell* cell = [[UITableViewCell alloc] init];
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
+            return cell;
+        }
+        else
+        {
+            //return a cell saying no games are being played this day
+            UITableViewCell* cell = [[UITableViewCell alloc] init];
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"EmptyScheduleCell"];
+            return cell;
+        }
+    }
     
-    ScheduleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ScheduleCell" forIndexPath:indexPath];
     
-    //need to make an array thats gonna take all the data from the game table
-    //start out by taking all the games that have started and then take the rest
-    
-    
-    NSLog(@" indexpath row %ld", (long)indexPath.row);
-    
+    //cell for a live game
     if(indexPath.section == 0)
     {
-        cell.textLabel.text = [self.first objectAtIndex:indexPath.row];
+        //pass on the gameData object in the schedule array
+        ScheduleCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"ScheduleCell"];
+        [cell updateCellWithGameData:[self.schedule objectAtIndex:indexPath.row]];
+        return cell;
     }
+    //cell for a scheduled game
     else
     {
-        cell.textLabel.text = [self.second objectAtIndex:indexPath.row];
+        UpcomingGameCell* cell =  [self.tableView dequeueReusableCellWithIdentifier:@"UpcomingGameCell"];
+        [cell updateCellWithGameData:[self.schedule objectAtIndex:indexPath.row + self.liveGames]];
+        return cell;
     }
-        
-    // Configure the cell...
     
-    return cell;
+    return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0)
+    {
+     return 130;
+    }
+    
+    return 50;
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 100;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

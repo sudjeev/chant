@@ -66,7 +66,7 @@
     [getUsers whereKey:@"Username" equalTo:self.username.text];
     [getUsers findObjectsInBackgroundWithTarget:self selector:@selector(checkIfValid:error:)];
 
-    [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
+   // [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
     
     
     //need to put in some sort of delay so this thread in the background dont screw us

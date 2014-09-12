@@ -17,4 +17,5 @@
 @property (strong, nonatomic) NSNumber* homeScore;
 @property (strong, nonatomic) NSNumber* awayScore;
 @property (strong, nonatomic) NSString* gameId;
+@property (strong, nonatomic) NSString* started;
 @end

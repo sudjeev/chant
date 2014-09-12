@@ -46,6 +46,9 @@
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
 		B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */; };
 		B7C06EFA19AF028000A4D9C5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C06EF919AF028000A4D9C5 /* User.m */; };
+		B7E2580119C25760009064C3 /* EmptyScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2580019C25760009064C3 /* EmptyScheduleCell.xib */; };
+		B7E2580519C259D8009064C3 /* UpcomingGameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E2580319C259D8009064C3 /* UpcomingGameCell.m */; };
+		B7E2580619C259D8009064C3 /* UpcomingGameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2580419C259D8009064C3 /* UpcomingGameCell.xib */; };
 		B7F70B2719C00EA500960FB7 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F70B2619C00EA500960FB7 /* GameData.m */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +112,10 @@
 		B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		B7C06EF819AF028000A4D9C5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B7C06EF919AF028000A4D9C5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		B7E2580019C25760009064C3 /* EmptyScheduleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyScheduleCell.xib; sourceTree = "<group>"; };
+		B7E2580219C259D8009064C3 /* UpcomingGameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingGameCell.h; sourceTree = "<group>"; };
+		B7E2580319C259D8009064C3 /* UpcomingGameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingGameCell.m; sourceTree = "<group>"; };
+		B7E2580419C259D8009064C3 /* UpcomingGameCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpcomingGameCell.xib; sourceTree = "<group>"; };
 		B7F70B2519C00EA500960FB7 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
 		B7F70B2619C00EA500960FB7 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,11 +200,11 @@
 		B7268C3C1989C46400F7714E /* Chant */ = {
 			isa = PBXGroup;
 			children = (
-				B7F70B2819C00FDD00960FB7 /* Data */,
+				B7F70B2819C00FDD00960FB7 /* Model */,
 				B7268C4B1989C46400F7714E /* Images.xcassets */,
 				B7268C481989C46400F7714E /* Chant.xcdatamodeld */,
 				B7268C3D1989C46400F7714E /* Supporting Files */,
-				B7C06EFB19AF028A00A4D9C5 /* Views */,
+				B7C06EFB19AF028A00A4D9C5 /* View */,
 			);
 			path = Chant;
 			sourceTree = "<group>";
@@ -240,6 +247,10 @@
 				B73BC2DA19B8079B008C2911 /* ScheduleCell.xib */,
 				B77EC57919BAACA500E06EB4 /* ScheduleCell.h */,
 				B77EC57A19BAACA500E06EB4 /* ScheduleCell.m */,
+				B7E2580019C25760009064C3 /* EmptyScheduleCell.xib */,
+				B7E2580219C259D8009064C3 /* UpcomingGameCell.h */,
+				B7E2580319C259D8009064C3 /* UpcomingGameCell.m */,
+				B7E2580419C259D8009064C3 /* UpcomingGameCell.xib */,
 			);
 			name = Schedule;
 			sourceTree = "<group>";
@@ -263,7 +274,6 @@
 				B798D1E519A5C38300550D56 /* CommentTableViewCell.h */,
 				B798D1E619A5C38300550D56 /* CommentTableViewCell.m */,
 				B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */,
-				B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */,
 			);
 			name = Comment;
 			sourceTree = "<group>";
@@ -278,20 +288,21 @@
 			name = SignUp;
 			sourceTree = "<group>";
 		};
-		B7C06EFB19AF028A00A4D9C5 /* Views */ = {
+		B7C06EFB19AF028A00A4D9C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B73BC2CF19B7FF3F008C2911 /* Schedule */,
 				B7268C451989C46400F7714E /* AppDelegate.h */,
 				B7268C461989C46400F7714E /* AppDelegate.m */,
+				B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */,
+				B73BC2CF19B7FF3F008C2911 /* Schedule */,
 				B73EF5B71991F7DC00934A61 /* Comment */,
 				B73EF5B61991F7D100934A61 /* Login */,
 				B73EF5BF19947B8500934A61 /* SignUp */,
 			);
-			name = Views;
+			name = View;
 			sourceTree = "<group>";
 		};
-		B7F70B2819C00FDD00960FB7 /* Data */ = {
+		B7F70B2819C00FDD00960FB7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				B7C06EF819AF028000A4D9C5 /* User.h */,
@@ -299,7 +310,7 @@
 				B7F70B2519C00EA500960FB7 /* GameData.h */,
 				B7F70B2619C00EA500960FB7 /* GameData.m */,
 			);
-			name = Data;
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,10 +390,12 @@
 			files = (
 				B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */,
 				B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */,
+				B7E2580619C259D8009064C3 /* UpcomingGameCell.xib in Resources */,
 				B73BC2DB19B8079B008C2911 /* ScheduleCell.xib in Resources */,
 				B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */,
 				B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */,
 				B73BC2D919B7FFB8008C2911 /* ScheduleTableViewController.xib in Resources */,
+				B7E2580119C25760009064C3 /* EmptyScheduleCell.xib in Resources */,
 				B7268C411989C46400F7714E /* InfoPlist.strings in Resources */,
 				B7268C4C1989C46400F7714E /* Images.xcassets in Resources */,
 				B7268C721989C76F00F7714E /* MainViewController.xib in Resources */,
@@ -413,6 +426,7 @@
 				B7F70B2719C00EA500960FB7 /* GameData.m in Sources */,
 				B7268C711989C76F00F7714E /* MainViewController.m in Sources */,
 				B73EF5B41991F7C300934A61 /* LoginViewController.m in Sources */,
+				B7E2580519C259D8009064C3 /* UpcomingGameCell.m in Sources */,
 				B77EC57B19BAACA500E06EB4 /* ScheduleCell.m in Sources */,
 				B73BC2D819B7FFB8008C2911 /* ScheduleTableViewController.m in Sources */,
 			);
