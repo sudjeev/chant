@@ -11,6 +11,8 @@
 #import "UpcomingGameCell.h"
 #import <Parse/Parse.h>
 #import "GameData.h"
+#import "CommentViewFeedCell.h"
+#import "CommentViewController.h"
 
 @interface ScheduleTableViewController ()
 @property (nonatomic, strong) NSMutableArray* schedule;
@@ -133,12 +135,14 @@
     return ([self.schedule count] - self.liveGames);
 }
 
-- (NSString*)tableview:(UITableView *)tableView titleForHeaderInSection: (NSInteger) section
-{
-    if (section == 0) {
-        return @"Live";
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    if(section == 0)
+    {
+        return @"Live Games:";
     }
-    return @"Scheduled";
+    return @"Scheduled Games";
 }
 
 //need to find an effective way to call tableview reload data on a loop cycle
@@ -195,10 +199,11 @@
     return 50;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 100;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40; //play around with this value
 }
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -237,7 +242,7 @@
 }
 */
 
-/*
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
@@ -245,13 +250,14 @@
 {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+    CommentViewController *detailViewController = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil];
     
+    [detailViewController updateControllerWithGameData:[self.schedule objectAtIndex:indexPath.row]];
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
-*/
+
 
 @end

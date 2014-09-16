@@ -49,6 +49,12 @@
 		B7E2580119C25760009064C3 /* EmptyScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2580019C25760009064C3 /* EmptyScheduleCell.xib */; };
 		B7E2580519C259D8009064C3 /* UpcomingGameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E2580319C259D8009064C3 /* UpcomingGameCell.m */; };
 		B7E2580619C259D8009064C3 /* UpcomingGameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2580419C259D8009064C3 /* UpcomingGameCell.xib */; };
+		B7E2580E19C63E60009064C3 /* CommentViewScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E2580D19C63E60009064C3 /* CommentViewScoreCell.m */; };
+		B7E2581019C63E71009064C3 /* CommentViewScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2580F19C63E71009064C3 /* CommentViewScoreCell.xib */; };
+		B7E2581E19C7514A009064C3 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E2581C19C7514A009064C3 /* CommentViewController.m */; };
+		B7E2581F19C7514A009064C3 /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2581D19C7514A009064C3 /* CommentViewController.xib */; };
+		B7E2582219C753F8009064C3 /* CommentViewFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E2582119C753F8009064C3 /* CommentViewFeedCell.m */; };
+		B7E2582419C75412009064C3 /* CommentViewFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2582319C75412009064C3 /* CommentViewFeedCell.xib */; };
 		B7F70B2719C00EA500960FB7 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F70B2619C00EA500960FB7 /* GameData.m */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +122,15 @@
 		B7E2580219C259D8009064C3 /* UpcomingGameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingGameCell.h; sourceTree = "<group>"; };
 		B7E2580319C259D8009064C3 /* UpcomingGameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingGameCell.m; sourceTree = "<group>"; };
 		B7E2580419C259D8009064C3 /* UpcomingGameCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpcomingGameCell.xib; sourceTree = "<group>"; };
+		B7E2580C19C63E60009064C3 /* CommentViewScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewScoreCell.h; sourceTree = "<group>"; };
+		B7E2580D19C63E60009064C3 /* CommentViewScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewScoreCell.m; sourceTree = "<group>"; };
+		B7E2580F19C63E71009064C3 /* CommentViewScoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentViewScoreCell.xib; sourceTree = "<group>"; };
+		B7E2581B19C7514A009064C3 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		B7E2581C19C7514A009064C3 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		B7E2581D19C7514A009064C3 /* CommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentViewController.xib; sourceTree = "<group>"; };
+		B7E2582019C753F8009064C3 /* CommentViewFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewFeedCell.h; sourceTree = "<group>"; };
+		B7E2582119C753F8009064C3 /* CommentViewFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewFeedCell.m; sourceTree = "<group>"; };
+		B7E2582319C75412009064C3 /* CommentViewFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentViewFeedCell.xib; sourceTree = "<group>"; };
 		B7F70B2519C00EA500960FB7 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
 		B7F70B2619C00EA500960FB7 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -271,6 +286,15 @@
 				B7268C6E1989C76F00F7714E /* MainViewController.h */,
 				B7268C6F1989C76F00F7714E /* MainViewController.m */,
 				B7268C701989C76F00F7714E /* MainViewController.xib */,
+				B7E2581B19C7514A009064C3 /* CommentViewController.h */,
+				B7E2581C19C7514A009064C3 /* CommentViewController.m */,
+				B7E2581D19C7514A009064C3 /* CommentViewController.xib */,
+				B7E2580C19C63E60009064C3 /* CommentViewScoreCell.h */,
+				B7E2580D19C63E60009064C3 /* CommentViewScoreCell.m */,
+				B7E2580F19C63E71009064C3 /* CommentViewScoreCell.xib */,
+				B7E2582019C753F8009064C3 /* CommentViewFeedCell.h */,
+				B7E2582119C753F8009064C3 /* CommentViewFeedCell.m */,
+				B7E2582319C75412009064C3 /* CommentViewFeedCell.xib */,
 				B798D1E519A5C38300550D56 /* CommentTableViewCell.h */,
 				B798D1E619A5C38300550D56 /* CommentTableViewCell.m */,
 				B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */,
@@ -388,6 +412,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E2581F19C7514A009064C3 /* CommentViewController.xib in Resources */,
 				B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */,
 				B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */,
 				B7E2580619C259D8009064C3 /* UpcomingGameCell.xib in Resources */,
@@ -395,7 +420,9 @@
 				B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */,
 				B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */,
 				B73BC2D919B7FFB8008C2911 /* ScheduleTableViewController.xib in Resources */,
+				B7E2582419C75412009064C3 /* CommentViewFeedCell.xib in Resources */,
 				B7E2580119C25760009064C3 /* EmptyScheduleCell.xib in Resources */,
+				B7E2581019C63E71009064C3 /* CommentViewScoreCell.xib in Resources */,
 				B7268C411989C46400F7714E /* InfoPlist.strings in Resources */,
 				B7268C4C1989C46400F7714E /* Images.xcassets in Resources */,
 				B7268C721989C76F00F7714E /* MainViewController.xib in Resources */,
@@ -419,8 +446,11 @@
 			files = (
 				B7C06EFA19AF028000A4D9C5 /* User.m in Sources */,
 				B7268C471989C46400F7714E /* AppDelegate.m in Sources */,
+				B7E2581E19C7514A009064C3 /* CommentViewController.m in Sources */,
 				B7268C431989C46400F7714E /* main.m in Sources */,
 				B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */,
+				B7E2582219C753F8009064C3 /* CommentViewFeedCell.m in Sources */,
+				B7E2580E19C63E60009064C3 /* CommentViewScoreCell.m in Sources */,
 				B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */,
 				B7268C4A1989C46400F7714E /* Chant.xcdatamodeld in Sources */,
 				B7F70B2719C00EA500960FB7 /* GameData.m in Sources */,
