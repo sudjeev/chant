@@ -36,7 +36,7 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil]];
     navController.navigationBar.translucent = NO;
     self.window.rootViewController = navController;
-    self.window.rootViewController = [[ScheduleTableViewController alloc] init];
+    //self.window.rootViewController = [[ScheduleTableViewController alloc] init];
     return YES;
 }
 

@@ -10,6 +10,4 @@
 
 @interface ScheduleTableViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
-@property (nonatomic, strong) NSArray* first;
-@property (nonatomic, strong) NSArray* second;
 @end

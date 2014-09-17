@@ -141,7 +141,8 @@ static bool isLoading;
     if(self.tableData.count == 0 && isLoading)
     {
         //need to return a loading cell
-        return [self.tView dequeueReusableCellWithIdentifier:@"LoadingCell"];
+        UITableViewCell* cell = [self.tView dequeueReusableCellWithIdentifier:@"LoadingCell"];
+        return cell;
     }
     else
     {

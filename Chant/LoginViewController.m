@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import "SignUpViewController.h"
+#import "ScheduleTableViewController.h"
 
 @interface LoginViewController ()
 @property (nonatomic) NSInteger valid;
@@ -65,7 +66,7 @@
     [getUsers whereKey:@"Username" equalTo:self.username.text];
     [getUsers findObjectsInBackgroundWithTarget:self selector:@selector(checkIfValid:error:)];
 
-    [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
+   // [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
     
     
     //need to put in some sort of delay so this thread in the background dont screw us
@@ -89,7 +90,7 @@
     
     
     //push the mainviewcontroller on
-    [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[ScheduleTableViewController alloc] init] animated:NO];
     //call a method to push this onto a main controller
     
 }

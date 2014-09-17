@@ -8,20 +8,47 @@
 
 #import "ScheduleTableViewController.h"
 #import "ScheduleCell.h"
+#import "UpcomingGameCell.h"
+#import <Parse/Parse.h>
+#import "GameData.h"
+#import "CommentViewFeedCell.h"
+#import "CommentViewController.h"
 
 @interface ScheduleTableViewController ()
-
+@property (nonatomic, strong) NSMutableArray* schedule;
+@property (nonatomic, assign) int liveGames;
+@property (nonatomic, assign) int isLoading;
 @end
 
 @implementation ScheduleTableViewController
 
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.first = [[NSArray alloc] initWithObjects:@"Bitch", @"Nigga", nil];
-    self.second = [[NSArray alloc] initWithObjects:@"Pimp", @"Daddy", @"Cane", nil];
+
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ScheduleCell" bundle:nil] forCellReuseIdentifier:@"ScheduleCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"EmptyScheduleCell" bundle:nil] forCellReuseIdentifier:@"EmptyScheduleCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UpcomingGameCell" bundle:nil] forCellReuseIdentifier:@"UpcomingGameCell"];
+    
+
+    self.schedule = [[NSMutableArray alloc] init];
+    self.liveGames = 0;
+    
+    
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
+                                                          dateStyle:NSDateFormatterMediumStyle
+                                                          timeStyle:NSDateFormatterShortStyle];
+    self.navigationItem.title = dateString;
+    
+    self.isLoading = 1;
+    PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
+    [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -36,6 +63,56 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)gameDataCallback:(NSArray*) response error: (NSError*) error
+{
+    NSLog(@"gamedatacallback");
+    if(!error)
+    {
+     //add all the games that are currently going on
+     for(PFObject* object in response)
+     {
+         if([[object objectForKey:@"started"] isEqualToString:@"True"])
+         {
+             GameData* nextGame = [[GameData alloc] init];
+             nextGame.started = [object objectForKey:@"started"];
+             nextGame.home = [object objectForKey:@"home"];
+             nextGame.away = [object objectForKey:@"away"];
+             nextGame.homeScore = [object objectForKey:@"homeScore"];
+             nextGame.awayScore = [object objectForKey:@"awayScore"];
+             nextGame.quarter = [object objectForKey:@"quarter"];
+             nextGame.gameId = [object objectForKey:@"gameId"];
+             [self.schedule addObject:nextGame];
+             self.liveGames++;
+         }
+     }
+     //add all the games that are scheduled
+     for(PFObject* object in response)
+     {
+        if([[object objectForKey:@"started"] isEqualToString:@"False"])
+        {
+            GameData* nextGame = [[GameData alloc] init];
+            nextGame.started = [object objectForKey:@"started"];
+            nextGame.home = [object objectForKey:@"home"];
+            nextGame.away = [object objectForKey:@"away"];
+            nextGame.homeScore = [object objectForKey:@"homeScore"];
+            nextGame.awayScore = [object objectForKey:@"awayScore"];
+            nextGame.quarter = [object objectForKey:@"quarter"];
+            nextGame.gameId = [object objectForKey:@"gameId"];
+            [self.schedule addObject:nextGame];
+        }
+     }
+    }
+    
+    else
+    {
+     NSLog(@"Game data callback problem %@", error);
+    }
+    
+    self.isLoading = 0;
+    [self.tableView reloadData];
+    return;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -46,34 +123,91 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"in number of rows for section %i", section);
+    if([self.schedule count] == 0)
+    {
+        //we are returning 1 so that we can show a loading cell instead or a no games cell
+        NSLog(@"returning one");
+        return 1;
+    }
+    
+    
     // Return the number of rows in the section.
     if(section == 0)
     {
-        return 2;
+        NSLog(@"returningg %i", self.liveGames);
+        return self.liveGames;
     }
-    return 3;
+    NSLog(@"returning %i ", [self.schedule count] - self.liveGames);
+    return ([self.schedule count] - self.liveGames);
 }
 
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    if(section == 0)
+    {
+        return @"Live Games:";
+    }
+    return @"Scheduled Games";
+}
+
+//need to find an effective way to call tableview reload data on a loop cycle
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    ScheduleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ScheduleCell" forIndexPath:indexPath];
-    
-    NSLog(@" indexpath row %ld", (long)indexPath.row);
-    
-   /* if(indexPath.section == 0)
+    NSLog(@"%i", indexPath.section);
+
+    //need to check isLoading
+    if([self.schedule count] == 0)
     {
-        cell.textLabel.text = [self.first objectAtIndex:indexPath.row];
+        if(self.isLoading == 1)
+        {
+            //return a loading cell
+            UITableViewCell* cell = [[UITableViewCell alloc] init];
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
+            return cell;
+        }
+        else
+        {
+            //return a cell saying no games are being played this day
+            UITableViewCell* cell = [[UITableViewCell alloc] init];
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"EmptyScheduleCell"];
+            return cell;
+        }
     }
+    
+    
+    //cell for a live game
+    if(indexPath.section == 0)
+    {
+        //pass on the gameData object in the schedule array
+        ScheduleCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"ScheduleCell"];
+        [cell updateCellWithGameData:[self.schedule objectAtIndex:indexPath.row]];
+        return cell;
+    }
+    //cell for a scheduled game
     else
     {
-        cell.textLabel.text = [self.second objectAtIndex:indexPath.row];
-    }*/
-        
-    // Configure the cell...
+        UpcomingGameCell* cell =  [self.tableView dequeueReusableCellWithIdentifier:@"UpcomingGameCell"];
+        [cell updateCellWithGameData:[self.schedule objectAtIndex:indexPath.row + self.liveGames]];
+        return cell;
+    }
     
-    return cell;
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0)
+    {
+     return 100;
+    }
+    
+    return 50;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40; //play around with this value
 }
 
 
@@ -115,7 +249,7 @@
 }
 */
 
-/*
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
@@ -123,13 +257,14 @@
 {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+    CommentViewController *detailViewController = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil];
     
+    [detailViewController updateControllerWithGameData:[self.schedule objectAtIndex:indexPath.row]];
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
-*/
+
 
 @end
