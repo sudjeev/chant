@@ -34,7 +34,11 @@ static int isLoading;
     self.data = data;
     self.feed.dataSource = self;
     self.feed.delegate = self;
+    self.tableData = [[NSMutableArray alloc] init];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"gameId = %@", self.data.gameId]];
     PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
+    [getComments whereKey:@"GameID" equalTo:self.data.gameId];
     //need to add the filter for gameid
     getComments.limit = 10;
     isLoading = 1;
@@ -59,14 +63,12 @@ static int isLoading;
         isLoading = 0;
         offset = [self.tableData count];
         [self.feed reloadData];
-        return;
         
     }
     else
     {
         NSLog(@"There was a problem %@", error);
         isLoading = 0;
-        return;
     }
 }
 
@@ -101,6 +103,7 @@ static int isLoading;
     {
         PFObject *newComment = [PFObject objectWithClassName:@"Comments"];
         newComment[@"Content"] = self.commentBox.text;
+        newComment[@"GameID"] = self.data.gameId;
         [newComment saveInBackground];
         
         [self.tableData addObject:self.commentBox.text];
@@ -115,7 +118,7 @@ static int isLoading;
     //need to check if loading is true then we can show the loading cell
     
     //do i need to use a semaphore??
-    if(isLoading == 0)
+    if([self.tableData count] == 0 && isLoading == 1)
     {
         UITableViewCell* cell = [self.feed dequeueReusableCellWithIdentifier:@"LoadingCell"];
         return cell;
@@ -125,13 +128,15 @@ static int isLoading;
         //if indexPath has reached the point right before the end of tableData
         if(indexPath.row + 1  >= [self.tableData count])
         {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"gameId = %@", self.data.gameId]];
             PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
+            [getComments whereKey:@"GameID" equalTo:self.data.gameId];
             getComments.limit = 10;
             getComments.skip = offset;
             [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback:error:)];
         }
         
-        if(indexPath.row < self.tableData.count)
+        if(indexPath.row < [self.tableData count])
         {
             CommentTableViewCell* cell = [self.feed dequeueReusableCellWithIdentifier:@"CommentTableViewCell"];
             [cell updateViewWithItem: [self.tableData objectAtIndex: indexPath.row]];
@@ -147,9 +152,23 @@ static int isLoading;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.tableData count] +1;
+    if([self.tableData count] == 0)
+    {
+        return 1;
+    }
+    return [self.tableData count];
 }
 
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [NSString stringWithFormat:@"%@ quarter" , self.data.quarter];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return 80;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

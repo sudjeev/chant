@@ -42,6 +42,7 @@
     }
     
     self.data = data;
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ at %@", self.data.away, self.data.home];
     return YES;
 }
 
@@ -77,9 +78,9 @@
 {
     if(indexPath.row == 0)
     {
-        return CGSizeMake(320, 140);
+        return CGSizeMake(310, 95);
     }
-    return CGSizeMake(320, 500);
+    return CGSizeMake(310, 410);
 }
 
 @end

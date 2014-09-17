@@ -40,6 +40,11 @@
     self.liveGames = 0;
     
     
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
+                                                          dateStyle:NSDateFormatterMediumStyle
+                                                          timeStyle:NSDateFormatterShortStyle];
+    self.navigationItem.title = dateString;
+    
     self.isLoading = 1;
     PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
     [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
@@ -75,6 +80,7 @@
              nextGame.homeScore = [object objectForKey:@"homeScore"];
              nextGame.awayScore = [object objectForKey:@"awayScore"];
              nextGame.quarter = [object objectForKey:@"quarter"];
+             nextGame.gameId = [object objectForKey:@"gameId"];
              [self.schedule addObject:nextGame];
              self.liveGames++;
          }
@@ -91,6 +97,7 @@
             nextGame.homeScore = [object objectForKey:@"homeScore"];
             nextGame.awayScore = [object objectForKey:@"awayScore"];
             nextGame.quarter = [object objectForKey:@"quarter"];
+            nextGame.gameId = [object objectForKey:@"gameId"];
             [self.schedule addObject:nextGame];
         }
      }
@@ -193,7 +200,7 @@
 {
     if(indexPath.section == 0)
     {
-     return 130;
+     return 100;
     }
     
     return 50;
