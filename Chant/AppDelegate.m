@@ -33,10 +33,24 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil]];
-    navController.navigationBar.translucent = NO;
-    self.window.rootViewController = navController;
-    //self.window.rootViewController = [[ScheduleTableViewController alloc] init];
+
+    
+    //NEED an if statement to check if user is already logged in here
+    if ([PFUser currentUser] == nil)
+    {
+     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil]];
+     navController.navigationBar.translucent = NO;
+     self.window.rootViewController = navController;
+    }
+    else
+    {
+        //user is already logged in
+        //go straight to schedule
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] initWithNibName:@"SchduleTableViewController" bundle:nil]];
+        navController.navigationBar.translucent = NO;
+        self.window.rootViewController = navController;
+    }
+
     return YES;
 }
 

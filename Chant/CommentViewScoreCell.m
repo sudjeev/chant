@@ -7,6 +7,7 @@
 //
 
 #import "CommentViewScoreCell.h"
+#import <QuartzCore/QuartzCore.h>
 #import "GameData.h"
 
 @implementation CommentViewScoreCell
@@ -22,6 +23,8 @@
 
 - (void)updateCellWithGameData: (GameData*) data
 {
+    self.view.layer.cornerRadius = 5;
+    self.view.layer.masksToBounds = YES;
     self.data = data;
     self.home.text = self.data.home;
     self.homeScore.text = [self.data.homeScore stringValue];

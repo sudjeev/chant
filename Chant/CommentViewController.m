@@ -80,7 +80,7 @@
     {
         return CGSizeMake(310, 95);
     }
-    return CGSizeMake(310, 410);
+    return CGSizeMake(310, 370);
 }
 
 @end

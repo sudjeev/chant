@@ -15,6 +15,7 @@
 @property (nonatomic, strong) IBOutlet UILabel* homeScore;
 @property (nonatomic, strong) IBOutlet UILabel* awayScore;
 @property (nonatomic, strong) IBOutlet UILabel* quarter;
+@property (nonatomic, strong) IBOutlet UIView* view;
 @property (nonatomic, strong) GameData* data;
 
 - (void)updateCellWithGameData: (GameData*) data;

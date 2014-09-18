@@ -17,6 +17,7 @@
 @property (nonatomic, strong) IBOutlet UITextField* commentBox;
 @property (nonatomic, strong) GameData* data;
 @property (nonatomic, strong) NSMutableArray* tableData;
+@property (nonatomic, strong) IBOutlet  UIView* view;
 
 - (void)setupWithGameData:(GameData*) data;
 

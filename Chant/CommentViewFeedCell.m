@@ -30,13 +30,15 @@ static int isLoading;
 
 - (void)setupWithGameData:(GameData*) data
 {
+    self.view.layer.cornerRadius = 5;
+    self.view.layer.masksToBounds = YES;
+    
     offset = 10;
     self.data = data;
     self.feed.dataSource = self;
     self.feed.delegate = self;
     self.tableData = [[NSMutableArray alloc] init];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"gameId = %@", self.data.gameId]];
     PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
     [getComments whereKey:@"GameID" equalTo:self.data.gameId];
     //need to add the filter for gameid
@@ -128,7 +130,6 @@ static int isLoading;
         //if indexPath has reached the point right before the end of tableData
         if(indexPath.row + 1  >= [self.tableData count])
         {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"gameId = %@", self.data.gameId]];
             PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
             [getComments whereKey:@"GameID" equalTo:self.data.gameId];
             getComments.limit = 10;
