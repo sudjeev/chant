@@ -46,14 +46,13 @@
     {
         //user is already logged in
         //go straight to schedule
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] initWithNibName:@"SchduleTableViewController" bundle:nil]];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc] initWithNibName:@"ScheduleTableViewController" bundle:nil]];
         navController.navigationBar.translucent = NO;
         self.window.rootViewController = navController;
     }
 
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

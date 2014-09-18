@@ -46,7 +46,7 @@
 {
     [self textFieldShouldReturn:self.username];
 
-    if(self.password.text.length == 0)
+    if(self.username.text.length == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Username" message:@"You forgot to enter a username" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
@@ -60,37 +60,28 @@
         return;
     }
     
-    //Do a parse query to see
     
-    PFQuery *getUsers = [PFQuery queryWithClassName:@"User"];
-    [getUsers whereKey:@"Username" equalTo:self.username.text];
-    [getUsers findObjectsInBackgroundWithTarget:self selector:@selector(checkIfValid:error:)];
+    [PFUser logInWithUsernameInBackground:self.username.text password:self.password.text block: ^(PFUser* user, NSError* error){
+        if(user)
+        {
+            [self.navigationController pushViewController:[[ScheduleTableViewController alloc] init] animated:NO];
+        }
+        else
+        {
+            NSString *errorString = [error userInfo][@"error"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+            return;
 
-   // [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
+        }
     
     
-    //need to put in some sort of delay so this thread in the background dont screw us
-    /*if(self.valid ==1 )
-    {
-        [self.navigationController pushViewController:[[MainViewController alloc] init] animated:YES];
-    }
-    else
-    {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Username and Password did not match" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return;
-    }*/
+    }];
     
-    //still need to check if you are a user through parse
-    
-   //self.thisUser.name =
-   //save the team
-    self.thisUser.username = self.username.text;
+
     
     
     //push the mainviewcontroller on
-    [self.navigationController pushViewController:[[ScheduleTableViewController alloc] init] animated:NO];
     //call a method to push this onto a main controller
     
 }
