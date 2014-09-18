@@ -11,6 +11,7 @@
 #import "UpcomingGameCell.h"
 #import <Parse/Parse.h>
 #import "GameData.h"
+#import "ProfileViewController.h"
 #import "CommentViewFeedCell.h"
 #import "CommentViewController.h"
 
@@ -36,18 +37,16 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"UpcomingGameCell" bundle:nil] forCellReuseIdentifier:@"UpcomingGameCell"];
     
     
-    UIBarButtonItem *newBackButton =
-    [[UIBarButtonItem alloc] initWithTitle:@"afsdasdfasdf"
-                                     style:UIBarButtonItemStyleBordered
-                                    target:nil
-                                    action:nil];
-    [self.navigationController.navigationItem setBackBarButtonItem:newBackButton];
+    
+    UIBarButtonItem* profile = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Final_userProfile" ] style:UIBarButtonItemStylePlain target:self action:@selector(toProfile)];
+    self.navigationItem.rightBarButtonItem = profile;
+    
     self.schedule = [[NSMutableArray alloc] init];
     self.liveGames = 0;
     
     NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                           dateStyle:NSDateFormatterMediumStyle
-                                                          timeStyle:NSDateFormatterShortStyle];
+                                                          timeStyle:nil];
     self.navigationItem.title = dateString;
     
     self.isLoading = 1;
@@ -66,6 +65,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) toProfile
+{
+    ProfileViewController* profile = [[ProfileViewController alloc]initWithNibName:@"ProfileViewController" bundle:nil];
+    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:profile];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)gameDataCallback:(NSArray*) response error: (NSError*) error
