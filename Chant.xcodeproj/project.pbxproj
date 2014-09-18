@@ -58,6 +58,7 @@
 		B7F70B2719C00EA500960FB7 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F70B2619C00EA500960FB7 /* GameData.m */; };
 		B7FEC4BF19CB57B100E41799 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FEC4BD19CB57B100E41799 /* ProfileViewController.m */; };
 		B7FEC4C019CB57B100E41799 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7FEC4BE19CB57B100E41799 /* ProfileViewController.xib */; };
+		B7FEC4C319CB5B8800E41799 /* Final_userProfile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7FEC4C219CB5B8800E41799 /* Final_userProfile@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 		B7FEC4BC19CB57B100E41799 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		B7FEC4BD19CB57B100E41799 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		B7FEC4BE19CB57B100E41799 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		B7FEC4C219CB5B8800E41799 /* Final_userProfile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Final_userProfile@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 		B7268C3C1989C46400F7714E /* Chant */ = {
 			isa = PBXGroup;
 			children = (
+				B7FEC4C119CB5B7000E41799 /* Images */,
 				B7F70B2819C00FDD00960FB7 /* Model */,
 				B7268C4B1989C46400F7714E /* Images.xcassets */,
 				B7268C481989C46400F7714E /* Chant.xcdatamodeld */,
@@ -353,6 +356,14 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
+		B7FEC4C119CB5B7000E41799 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B7FEC4C219CB5B8800E41799 /* Final_userProfile@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -442,6 +453,7 @@
 				B7E2581019C63E71009064C3 /* CommentViewScoreCell.xib in Resources */,
 				B7268C411989C46400F7714E /* InfoPlist.strings in Resources */,
 				B7268C4C1989C46400F7714E /* Images.xcassets in Resources */,
+				B7FEC4C319CB5B8800E41799 /* Final_userProfile@2x.png in Resources */,
 				B7268C721989C76F00F7714E /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
