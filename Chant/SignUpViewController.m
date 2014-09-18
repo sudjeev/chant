@@ -7,6 +7,7 @@
 //
 
 #import "SignUpViewController.h"
+#import "ScheduleTableViewController.h"
 #import "MainViewController.h"
 #import <Parse/Parse.h>
 
@@ -27,7 +28,10 @@
         //this line aint working, supposed to remove text on back buttons
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         
+        self.password.enabled = NO;
         self.password.secureTextEntry = YES;
+        self.password.enabled = YES;
+        
         self.repeatPassword.secureTextEntry = YES;
         self.view.backgroundColor = [UIColor colorWithRed:41.0/255 green:128.0/255.0 blue:185.0/255.0 alpha:1];
     }
@@ -57,14 +61,27 @@
     
     //add functionality to check if the username has already been taken
     
-    PFObject *user = [PFObject objectWithClassName:@"User"];
-    user[@"username"] = self.username.text;
-    //need to use SSkeychain
-    user[@"password"] =  self.password.text;
-    user[@"email"] = self.email.text;
-    [user saveInBackground];
+    PFUser *newUser = [PFUser user];
+    newUser.username = self.username.text;
+    newUser.password = self.password.text;
+    newUser.email = self.email.text;
     
-    [self presentViewController:[[MainViewController alloc] init] animated:YES completion:nil];
+    [newUser signUpInBackgroundWithBlock:^(BOOL complete, NSError* error){
+        if(!error)
+        {
+          //go to the schdeule controller
+          UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc]init]];
+          [self presentViewController:navController animated:YES completion:nil];
+        }
+        else
+        {
+            NSString* errorString = [error userInfo][@"error"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            return;
+        }
+        
+    }];
     
 }
 
