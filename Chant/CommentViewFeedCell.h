@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "CommentTableViewCell.h"
 #import "GameData.h"
+#import "CommentData.h"
 
 @interface CommentViewFeedCell : UICollectionViewCell<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 

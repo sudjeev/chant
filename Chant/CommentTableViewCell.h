@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import "CommentData.h"
 
 @interface CommentTableViewCell : UITableViewCell
-@property (nonatomic, strong) IBOutlet UILabel* comment;
+@property (nonatomic, strong) CommentData* commentData;
+@property (nonatomic, strong) IBOutlet UILabel* text;
+@property (nonatomic, strong) IBOutlet UILabel* username;
+@property (nonatomic, strong) IBOutlet UILabel* upvotes;
 -(void) updateViewWithItem: (NSString*) comment;
+- (IBAction)onUpvote:(id)sender;
+
 @end
