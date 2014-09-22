@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface ProfileViewController : UIViewController
-
+- (IBAction)onLogOut:(id)sender;
 @end

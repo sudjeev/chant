@@ -7,6 +7,7 @@
 //
 
 #import "ProfileViewController.h"
+#import "LoginViewController.h"
 
 @interface ProfileViewController ()
 
@@ -34,6 +35,14 @@
 - (void) onDone
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)onLogOut:(id)sender
+{
+    [PFUser logOut];
+    PFUser *currentUser = [PFUser currentUser];
+    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc]init]];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

@@ -60,7 +60,14 @@ static int isLoading;
         for(PFObject* comment in array)
         {
             //for every element in the array put it in the table data
-            [self.tableData addObject:comment[@"Content"]];
+            //make a comment data type and populate it here
+            CommentData* data = [[CommentData alloc] init];
+            data.text = comment[@"Content"];
+            data.upvotes =  comment[@"Upvotes"];
+            data.username = comment[@"User"];
+            data.gameId = comment[@"GameID"];
+            data.objectId = comment.objectId;
+            [self.tableData addObject:data];
         }
         isLoading = 0;
         offset = [self.tableData count];
@@ -83,9 +90,19 @@ static int isLoading;
     {
         PFObject *newComment = [PFObject objectWithClassName:@"Comments"];
         newComment[@"Content"] = self.commentBox.text;
+        newComment[@"GameID"] = self.data.gameId;
+        newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
+        newComment[@"User"] = [PFUser currentUser].username;
         [newComment saveInBackground];
         
-        [self.tableData addObject:self.commentBox.text];
+        CommentData* data = [[CommentData alloc] init];
+        data.text = self.commentBox.text;
+        data.gameId = self.data.gameId;
+        data.upvotes = [[NSNumber alloc ] initWithInt: 1];
+        data.username = [PFUser currentUser].username;
+        
+        
+        [self.tableData addObject:data];
         self.commentBox.text = @"";
         [self.feed reloadData];
     }
@@ -106,9 +123,18 @@ static int isLoading;
         PFObject *newComment = [PFObject objectWithClassName:@"Comments"];
         newComment[@"Content"] = self.commentBox.text;
         newComment[@"GameID"] = self.data.gameId;
+        newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
+        newComment[@"User"] = [PFUser currentUser].username;
         [newComment saveInBackground];
         
-        [self.tableData addObject:self.commentBox.text];
+        CommentData* data = [[CommentData alloc] init];
+        data.text = self.commentBox.text;
+        data.gameId = self.data.gameId;
+        data.upvotes = [[NSNumber alloc ] initWithInt: 1];
+        data.username = [PFUser currentUser].username;
+        
+        
+        
         [self.feed reloadData];
         self.commentBox.text = @"";
         [self.commentBox resignFirstResponder];
