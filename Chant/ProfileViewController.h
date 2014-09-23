@@ -17,8 +17,11 @@
 @property (nonatomic, strong) IBOutlet UILabel* team;
 @property (nonatomic, strong) IBOutlet UIPickerView *picker;
 @property (nonatomic, strong) IBOutlet UIImageView *logo;
+@property (nonatomic, strong) IBOutlet UIButton* change;
+@property (nonatomic, strong) IBOutlet UIButton* save;
 
 - (IBAction)onPasswordReset:(id)sender;
-
+- (IBAction)onChangeTeam:(id)sender;
+- (IBAction)onSaveTeam:(id)sender;
 
 @end

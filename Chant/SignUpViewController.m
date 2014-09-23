@@ -70,6 +70,11 @@
         if(!error)
         {
           //go to the schdeule controller
+            
+          //add the user to the other table too
+          PFObject *user = [PFObject objectWithClassName:@"userData"];
+          user[@"username"] = self.username.text;
+            [user saveInBackground];
           UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc]init]];
           [self presentViewController:navController animated:YES completion:nil];
         }
@@ -82,6 +87,7 @@
         }
         
     }];
+    
     
 }
 

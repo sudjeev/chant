@@ -546,6 +546,7 @@
 		B7B2D3BF19D1F431007EC9A7 /* TrailBlazers.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3A119D1F431007EC9A7 /* TrailBlazers.png */; };
 		B7B2D3C019D1F431007EC9A7 /* Warriors.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3A219D1F431007EC9A7 /* Warriors.png */; };
 		B7B2D3C119D1F431007EC9A7 /* Wizards.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3A319D1F431007EC9A7 /* Wizards.png */; };
+		B7B2D3C319D22116007EC9A7 /* jordan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3C219D22116007EC9A7 /* jordan.jpg */; };
 		B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */; };
 		B7C06EFA19AF028000A4D9C5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C06EF919AF028000A4D9C5 /* User.m */; };
 		B7E2580119C25760009064C3 /* EmptyScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2580019C25760009064C3 /* EmptyScheduleCell.xib */; };
@@ -1124,6 +1125,7 @@
 		B7B2D3A119D1F431007EC9A7 /* TrailBlazers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrailBlazers.png; sourceTree = "<group>"; };
 		B7B2D3A219D1F431007EC9A7 /* Warriors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Warriors.png; sourceTree = "<group>"; };
 		B7B2D3A319D1F431007EC9A7 /* Wizards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wizards.png; sourceTree = "<group>"; };
+		B7B2D3C219D22116007EC9A7 /* jordan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jordan.jpg; sourceTree = "<group>"; };
 		B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		B7C06EF819AF028000A4D9C5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B7C06EF919AF028000A4D9C5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -1806,6 +1808,7 @@
 		B7B2D38519D1F431007EC9A7 /* NBA_Logos */ = {
 			isa = PBXGroup;
 			children = (
+				B7B2D3C219D22116007EC9A7 /* jordan.jpg */,
 				B7B2D38619D1F431007EC9A7 /* 76ers.png */,
 				B7B2D38719D1F431007EC9A7 /* Bucks.png */,
 				B7B2D38819D1F431007EC9A7 /* Bulls.png */,
@@ -2348,6 +2351,7 @@
 				B7B0DC2019CB95B9007FD5F4 /* glyphicons_231_sun.png in Resources */,
 				B7B0DB8119CB95B9007FD5F4 /* glyphicons_072_bookmark.png in Resources */,
 				B7B0DCE319CB95B9007FD5F4 /* glyphicons_426_git_merge.png in Resources */,
+				B7B2D3C319D22116007EC9A7 /* jordan.jpg in Resources */,
 				B7B0DB7419CB95B9007FD5F4 /* glyphicons_059_cargo.png in Resources */,
 				B7B0DC5019CB95B9007FD5F4 /* glyphicons_279_tablet.png in Resources */,
 				B7B2D3B119D1F431007EC9A7 /* Lakers.png in Resources */,
