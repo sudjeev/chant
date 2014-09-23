@@ -9,6 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface ProfileViewController : UIViewController
+@interface ProfileViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+
 - (IBAction)onLogOut:(id)sender;
+@property (nonatomic, strong) IBOutlet UILabel* username;
+@property (nonatomic, strong) IBOutlet UILabel* email;
+@property (nonatomic, strong) IBOutlet UILabel* team;
+@property (nonatomic, strong) IBOutlet UIPickerView *picker;
+@property (nonatomic, strong) IBOutlet UIImageView *logo;
+
+- (IBAction)onPasswordReset:(id)sender;
+
+
 @end

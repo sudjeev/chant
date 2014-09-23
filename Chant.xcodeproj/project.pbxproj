@@ -516,6 +516,36 @@
 		B7B0DD0D19CB95B9007FD5F4 /* glyphicons_468_server_lock.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B0DB3719CB95B9007FD5F4 /* glyphicons_468_server_lock.png */; };
 		B7B0DD0E19CB95B9007FD5F4 /* glyphicons_469_server_new.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B0DB3819CB95B9007FD5F4 /* glyphicons_469_server_new.png */; };
 		B7B0DD1119CB9EFC007FD5F4 /* CommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B0DD1019CB9EFC007FD5F4 /* CommentData.m */; };
+		B7B2D3A419D1F431007EC9A7 /* 76ers.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D38619D1F431007EC9A7 /* 76ers.png */; };
+		B7B2D3A519D1F431007EC9A7 /* Bucks.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D38719D1F431007EC9A7 /* Bucks.png */; };
+		B7B2D3A619D1F431007EC9A7 /* Bulls.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D38819D1F431007EC9A7 /* Bulls.png */; };
+		B7B2D3A719D1F431007EC9A7 /* Cavaliers.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D38919D1F431007EC9A7 /* Cavaliers.png */; };
+		B7B2D3A819D1F431007EC9A7 /* Celtics.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D38A19D1F431007EC9A7 /* Celtics.png */; };
+		B7B2D3A919D1F431007EC9A7 /* Clippers.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D38B19D1F431007EC9A7 /* Clippers.png */; };
+		B7B2D3AA19D1F431007EC9A7 /* Grizzlies.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D38C19D1F431007EC9A7 /* Grizzlies.png */; };
+		B7B2D3AB19D1F431007EC9A7 /* Hawks.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D38D19D1F431007EC9A7 /* Hawks.png */; };
+		B7B2D3AC19D1F431007EC9A7 /* Heat.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D38E19D1F431007EC9A7 /* Heat.png */; };
+		B7B2D3AD19D1F431007EC9A7 /* Hornets.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D38F19D1F431007EC9A7 /* Hornets.png */; };
+		B7B2D3AE19D1F431007EC9A7 /* Jazz.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39019D1F431007EC9A7 /* Jazz.png */; };
+		B7B2D3AF19D1F431007EC9A7 /* Kings.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39119D1F431007EC9A7 /* Kings.png */; };
+		B7B2D3B019D1F431007EC9A7 /* Knicks.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39219D1F431007EC9A7 /* Knicks.png */; };
+		B7B2D3B119D1F431007EC9A7 /* Lakers.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39319D1F431007EC9A7 /* Lakers.png */; };
+		B7B2D3B219D1F431007EC9A7 /* Magic.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39419D1F431007EC9A7 /* Magic.png */; };
+		B7B2D3B319D1F431007EC9A7 /* Mavericks.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39519D1F431007EC9A7 /* Mavericks.png */; };
+		B7B2D3B419D1F431007EC9A7 /* Nets.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39619D1F431007EC9A7 /* Nets.png */; };
+		B7B2D3B519D1F431007EC9A7 /* Nuggets.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39719D1F431007EC9A7 /* Nuggets.png */; };
+		B7B2D3B619D1F431007EC9A7 /* Pacers.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39819D1F431007EC9A7 /* Pacers.png */; };
+		B7B2D3B719D1F431007EC9A7 /* Pelicans.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39919D1F431007EC9A7 /* Pelicans.png */; };
+		B7B2D3B819D1F431007EC9A7 /* Pistons.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39A19D1F431007EC9A7 /* Pistons.png */; };
+		B7B2D3B919D1F431007EC9A7 /* Raptors.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39B19D1F431007EC9A7 /* Raptors.png */; };
+		B7B2D3BA19D1F431007EC9A7 /* Rockets.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39C19D1F431007EC9A7 /* Rockets.png */; };
+		B7B2D3BB19D1F431007EC9A7 /* Spurs.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39D19D1F431007EC9A7 /* Spurs.png */; };
+		B7B2D3BC19D1F431007EC9A7 /* Suns.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39E19D1F431007EC9A7 /* Suns.png */; };
+		B7B2D3BD19D1F431007EC9A7 /* Thunder.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D39F19D1F431007EC9A7 /* Thunder.png */; };
+		B7B2D3BE19D1F431007EC9A7 /* Timberwolves.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3A019D1F431007EC9A7 /* Timberwolves.png */; };
+		B7B2D3BF19D1F431007EC9A7 /* TrailBlazers.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3A119D1F431007EC9A7 /* TrailBlazers.png */; };
+		B7B2D3C019D1F431007EC9A7 /* Warriors.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3A219D1F431007EC9A7 /* Warriors.png */; };
+		B7B2D3C119D1F431007EC9A7 /* Wizards.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3A319D1F431007EC9A7 /* Wizards.png */; };
 		B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */; };
 		B7C06EFA19AF028000A4D9C5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C06EF919AF028000A4D9C5 /* User.m */; };
 		B7E2580119C25760009064C3 /* EmptyScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2580019C25760009064C3 /* EmptyScheduleCell.xib */; };
@@ -1064,6 +1094,36 @@
 		B7B0DB3819CB95B9007FD5F4 /* glyphicons_469_server_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_469_server_new.png; sourceTree = "<group>"; };
 		B7B0DD0F19CB9EFC007FD5F4 /* CommentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentData.h; sourceTree = "<group>"; };
 		B7B0DD1019CB9EFC007FD5F4 /* CommentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentData.m; sourceTree = "<group>"; };
+		B7B2D38619D1F431007EC9A7 /* 76ers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 76ers.png; sourceTree = "<group>"; };
+		B7B2D38719D1F431007EC9A7 /* Bucks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bucks.png; sourceTree = "<group>"; };
+		B7B2D38819D1F431007EC9A7 /* Bulls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bulls.png; sourceTree = "<group>"; };
+		B7B2D38919D1F431007EC9A7 /* Cavaliers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cavaliers.png; sourceTree = "<group>"; };
+		B7B2D38A19D1F431007EC9A7 /* Celtics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Celtics.png; sourceTree = "<group>"; };
+		B7B2D38B19D1F431007EC9A7 /* Clippers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clippers.png; sourceTree = "<group>"; };
+		B7B2D38C19D1F431007EC9A7 /* Grizzlies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grizzlies.png; sourceTree = "<group>"; };
+		B7B2D38D19D1F431007EC9A7 /* Hawks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hawks.png; sourceTree = "<group>"; };
+		B7B2D38E19D1F431007EC9A7 /* Heat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Heat.png; sourceTree = "<group>"; };
+		B7B2D38F19D1F431007EC9A7 /* Hornets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hornets.png; sourceTree = "<group>"; };
+		B7B2D39019D1F431007EC9A7 /* Jazz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jazz.png; sourceTree = "<group>"; };
+		B7B2D39119D1F431007EC9A7 /* Kings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Kings.png; sourceTree = "<group>"; };
+		B7B2D39219D1F431007EC9A7 /* Knicks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Knicks.png; sourceTree = "<group>"; };
+		B7B2D39319D1F431007EC9A7 /* Lakers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lakers.png; sourceTree = "<group>"; };
+		B7B2D39419D1F431007EC9A7 /* Magic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Magic.png; sourceTree = "<group>"; };
+		B7B2D39519D1F431007EC9A7 /* Mavericks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mavericks.png; sourceTree = "<group>"; };
+		B7B2D39619D1F431007EC9A7 /* Nets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nets.png; sourceTree = "<group>"; };
+		B7B2D39719D1F431007EC9A7 /* Nuggets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nuggets.png; sourceTree = "<group>"; };
+		B7B2D39819D1F431007EC9A7 /* Pacers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pacers.png; sourceTree = "<group>"; };
+		B7B2D39919D1F431007EC9A7 /* Pelicans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pelicans.png; sourceTree = "<group>"; };
+		B7B2D39A19D1F431007EC9A7 /* Pistons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pistons.png; sourceTree = "<group>"; };
+		B7B2D39B19D1F431007EC9A7 /* Raptors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Raptors.png; sourceTree = "<group>"; };
+		B7B2D39C19D1F431007EC9A7 /* Rockets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rockets.png; sourceTree = "<group>"; };
+		B7B2D39D19D1F431007EC9A7 /* Spurs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spurs.png; sourceTree = "<group>"; };
+		B7B2D39E19D1F431007EC9A7 /* Suns.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Suns.png; sourceTree = "<group>"; };
+		B7B2D39F19D1F431007EC9A7 /* Thunder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Thunder.png; sourceTree = "<group>"; };
+		B7B2D3A019D1F431007EC9A7 /* Timberwolves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Timberwolves.png; sourceTree = "<group>"; };
+		B7B2D3A119D1F431007EC9A7 /* TrailBlazers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrailBlazers.png; sourceTree = "<group>"; };
+		B7B2D3A219D1F431007EC9A7 /* Warriors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Warriors.png; sourceTree = "<group>"; };
+		B7B2D3A319D1F431007EC9A7 /* Wizards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wizards.png; sourceTree = "<group>"; };
 		B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		B7C06EF819AF028000A4D9C5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B7C06EF919AF028000A4D9C5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -1743,6 +1803,43 @@
 			path = png;
 			sourceTree = "<group>";
 		};
+		B7B2D38519D1F431007EC9A7 /* NBA_Logos */ = {
+			isa = PBXGroup;
+			children = (
+				B7B2D38619D1F431007EC9A7 /* 76ers.png */,
+				B7B2D38719D1F431007EC9A7 /* Bucks.png */,
+				B7B2D38819D1F431007EC9A7 /* Bulls.png */,
+				B7B2D38919D1F431007EC9A7 /* Cavaliers.png */,
+				B7B2D38A19D1F431007EC9A7 /* Celtics.png */,
+				B7B2D38B19D1F431007EC9A7 /* Clippers.png */,
+				B7B2D38C19D1F431007EC9A7 /* Grizzlies.png */,
+				B7B2D38D19D1F431007EC9A7 /* Hawks.png */,
+				B7B2D38E19D1F431007EC9A7 /* Heat.png */,
+				B7B2D38F19D1F431007EC9A7 /* Hornets.png */,
+				B7B2D39019D1F431007EC9A7 /* Jazz.png */,
+				B7B2D39119D1F431007EC9A7 /* Kings.png */,
+				B7B2D39219D1F431007EC9A7 /* Knicks.png */,
+				B7B2D39319D1F431007EC9A7 /* Lakers.png */,
+				B7B2D39419D1F431007EC9A7 /* Magic.png */,
+				B7B2D39519D1F431007EC9A7 /* Mavericks.png */,
+				B7B2D39619D1F431007EC9A7 /* Nets.png */,
+				B7B2D39719D1F431007EC9A7 /* Nuggets.png */,
+				B7B2D39819D1F431007EC9A7 /* Pacers.png */,
+				B7B2D39919D1F431007EC9A7 /* Pelicans.png */,
+				B7B2D39A19D1F431007EC9A7 /* Pistons.png */,
+				B7B2D39B19D1F431007EC9A7 /* Raptors.png */,
+				B7B2D39C19D1F431007EC9A7 /* Rockets.png */,
+				B7B2D39D19D1F431007EC9A7 /* Spurs.png */,
+				B7B2D39E19D1F431007EC9A7 /* Suns.png */,
+				B7B2D39F19D1F431007EC9A7 /* Thunder.png */,
+				B7B2D3A019D1F431007EC9A7 /* Timberwolves.png */,
+				B7B2D3A119D1F431007EC9A7 /* TrailBlazers.png */,
+				B7B2D3A219D1F431007EC9A7 /* Warriors.png */,
+				B7B2D3A319D1F431007EC9A7 /* Wizards.png */,
+			);
+			path = NBA_Logos;
+			sourceTree = "<group>";
+		};
 		B7C06EFB19AF028A00A4D9C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1786,6 +1883,7 @@
 		B7FEC4C119CB5B7000E41799 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B7B2D38519D1F431007EC9A7 /* NBA_Logos */,
 				B7B0D96219CB95B5007FD5F4 /* png */,
 				B7FEC4C219CB5B8800E41799 /* Final_userProfile@2x.png */,
 			);
@@ -1877,6 +1975,7 @@
 				B7B0DBE619CB95B9007FD5F4 /* glyphicons_173_play.png in Resources */,
 				B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */,
 				B7B0DC4519CB95B9007FD5F4 /* glyphicons_268_keyboard_wireless.png in Resources */,
+				B7B2D3AA19D1F431007EC9A7 /* Grizzlies.png in Resources */,
 				B7B0DC8B19CB95B9007FD5F4 /* glyphicons_338_turtle.png in Resources */,
 				B7B0DCD519CB95B9007FD5F4 /* glyphicons_412_cloud_plus.png in Resources */,
 				B7B0DCFB19CB95B9007FD5F4 /* glyphicons_450_factory.png in Resources */,
@@ -1887,6 +1986,7 @@
 				B7B0DCB919CB95B9007FD5F4 /* glyphicons_384_shirt.png in Resources */,
 				B7B0DC9E19CB95B9007FD5F4 /* glyphicons_357_suitcase.png in Resources */,
 				B7B0DBA619CB95B9007FD5F4 /* glyphicons_109_right_indent.png in Resources */,
+				B7B2D3A519D1F431007EC9A7 /* Bucks.png in Resources */,
 				B7B0DCC619CB95B9007FD5F4 /* glyphicons_397_sound_7_1.png in Resources */,
 				B7B0DBED19CB95B9007FD5F4 /* glyphicons_180_facetime_video.png in Resources */,
 				B7B0DC4B19CB95B9007FD5F4 /* glyphicons_274_beer.png in Resources */,
@@ -1899,6 +1999,7 @@
 				B7B0DB6B19CB95B9007FD5F4 /* glyphicons_050_link.png in Resources */,
 				B7B0DC2919CB95B9007FD5F4 /* glyphicons_240_rotation_lock.png in Resources */,
 				B7B0DD0A19CB95B9007FD5F4 /* glyphicons_465_server_minus.png in Resources */,
+				B7B2D3BF19D1F431007EC9A7 /* TrailBlazers.png in Resources */,
 				B7B0DC6419CB95B9007FD5F4 /* glyphicons_299_hospital_h.png in Resources */,
 				B7B0DBA119CB95B9007FD5F4 /* glyphicons_104_text_strike.png in Resources */,
 				B7B0DC7019CB95B9007FD5F4 /* glyphicons_311_baseball.png in Resources */,
@@ -1906,6 +2007,7 @@
 				B7B0DB4919CB95B9007FD5F4 /* glyphicons_016_bin.png in Resources */,
 				B7B0DC7A19CB95B9007FD5F4 /* glyphicons_321_gamepad.png in Resources */,
 				B7B0DB3A19CB95B9007FD5F4 /* glyphicons_001_leaf.png in Resources */,
+				B7B2D3BB19D1F431007EC9A7 /* Spurs.png in Resources */,
 				B7B0DCDF19CB95B9007FD5F4 /* glyphicons_422_git_branch.png in Resources */,
 				B7B0DB7219CB95B9007FD5F4 /* glyphicons_057_history.png in Resources */,
 				B7B0DBF919CB95B9007FD5F4 /* glyphicons_192_circle_remove.png in Resources */,
@@ -1937,6 +2039,7 @@
 				B7B0DBFE19CB95B9007FD5F4 /* glyphicons_197_remove.png in Resources */,
 				B7B0DC0819CB95B9007FD5F4 /* glyphicons_207_remove_2.png in Resources */,
 				B7B0DC1D19CB95B9007FD5F4 /* glyphicons_228_gbp.png in Resources */,
+				B7B2D3AC19D1F431007EC9A7 /* Heat.png in Resources */,
 				B7B0DB5F19CB95B9007FD5F4 /* glyphicons_038_airplane.png in Resources */,
 				B7B0DBEC19CB95B9007FD5F4 /* glyphicons_179_eject.png in Resources */,
 				B7B0DB9A19CB95B9007FD5F4 /* glyphicons_097_vector_path_line.png in Resources */,
@@ -1951,6 +2054,7 @@
 				B7B0DCE619CB95B9007FD5F4 /* glyphicons_429_git_commit.png in Resources */,
 				B7B0DCC319CB95B9007FD5F4 /* glyphicons_394_sound_dolby.png in Resources */,
 				B7B0DB6819CB95B9007FD5F4 /* glyphicons_047_camera_small.png in Resources */,
+				B7B2D3BD19D1F431007EC9A7 /* Thunder.png in Resources */,
 				B7B0DCBA19CB95B9007FD5F4 /* glyphicons_385_underwear.png in Resources */,
 				B7B0DC7119CB95B9007FD5F4 /* glyphicons_312_rugby.png in Resources */,
 				B7B0DBA919CB95B9007FD5F4 /* glyphicons_112_align_right.png in Resources */,
@@ -1977,11 +2081,13 @@
 				B7B0DCA119CB95B9007FD5F4 /* glyphicons_360_bug.png in Resources */,
 				B7B0DC8D19CB95B9007FD5F4 /* glyphicons_340_globe.png in Resources */,
 				B7B0DBAD19CB95B9007FD5F4 /* glyphicons_116_text_bigger.png in Resources */,
+				B7B2D3A619D1F431007EC9A7 /* Bulls.png in Resources */,
 				B7B0DB3B19CB95B9007FD5F4 /* glyphicons_002_dog.png in Resources */,
 				B7B0DCF519CB95B9007FD5F4 /* glyphicons_444_floppy_saved.png in Resources */,
 				B7B0DC9719CB95B9007FD5F4 /* glyphicons_350_shopping_bag.png in Resources */,
 				B7B0DBE119CB95B9007FD5F4 /* glyphicons_168_ear_plugs.png in Resources */,
 				B7B0DBC519CB95B9007FD5F4 /* glyphicons_140_database_lock.png in Resources */,
+				B7B2D3B019D1F431007EC9A7 /* Knicks.png in Resources */,
 				B7B0DBB519CB95B9007FD5F4 /* glyphicons_124_message_plus.png in Resources */,
 				B7B0DB4519CB95B9007FD5F4 /* glyphicons_012_heart.png in Resources */,
 				B7B0DC2E19CB95B9007FD5F4 /* glyphicons_245_chat.png in Resources */,
@@ -1997,6 +2103,7 @@
 				B7B0DBC819CB95B9007FD5F4 /* glyphicons_143_database_ban.png in Resources */,
 				B7B0DB3F19CB95B9007FD5F4 /* glyphicons_006_user_add.png in Resources */,
 				B7B0DBFA19CB95B9007FD5F4 /* glyphicons_193_circle_ok.png in Resources */,
+				B7B2D3A719D1F431007EC9A7 /* Cavaliers.png in Resources */,
 				B7B0DC4419CB95B9007FD5F4 /* glyphicons_267_credit_card.png in Resources */,
 				B7B0DBDD19CB95B9007FD5F4 /* glyphicons_164_iphone_transfer.png in Resources */,
 				B7B0DCA519CB95B9007FD5F4 /* glyphicons_364_cloud_download.png in Resources */,
@@ -2028,15 +2135,20 @@
 				B7B0DCAA19CB95B9007FD5F4 /* glyphicons_369_collapse_top.png in Resources */,
 				B7B0DC1E19CB95B9007FD5F4 /* glyphicons_229_retweet_2.png in Resources */,
 				B7B0DB6319CB95B9007FD5F4 /* glyphicons_042_pie_chart.png in Resources */,
+				B7B2D3C119D1F431007EC9A7 /* Wizards.png in Resources */,
 				B7B0DCC819CB95B9007FD5F4 /* glyphicons_399_registration_mark.png in Resources */,
 				B7B0DCB119CB95B9007FD5F4 /* glyphicons_376_hand_saw.png in Resources */,
 				B7B0DC5A19CB95B9007FD5F4 /* glyphicons_289_bomb.png in Resources */,
 				B7B0DB8919CB95B9007FD5F4 /* glyphicons_080_retweet.png in Resources */,
+				B7B2D3BE19D1F431007EC9A7 /* Timberwolves.png in Resources */,
 				B7B0DBFC19CB95B9007FD5F4 /* glyphicons_195_circle_info.png in Resources */,
 				B7B0DC4919CB95B9007FD5F4 /* glyphicons_272_cake.png in Resources */,
 				B7B0DCCA19CB95B9007FD5F4 /* glyphicons_401_skateboard.png in Resources */,
 				B7B0DB5E19CB95B9007FD5F4 /* glyphicons_037_coins.png in Resources */,
+				B7B2D3AE19D1F431007EC9A7 /* Jazz.png in Resources */,
 				B7B0DBCE19CB95B9007FD5F4 /* glyphicons_149_folder_new.png in Resources */,
+				B7B2D3C019D1F431007EC9A7 /* Warriors.png in Resources */,
+				B7B2D3AF19D1F431007EC9A7 /* Kings.png in Resources */,
 				B7B0DBD819CB95B9007FD5F4 /* glyphicons_159_playlist.png in Resources */,
 				B7B0DBF519CB95B9007FD5F4 /* glyphicons_188_brightness_reduce.png in Resources */,
 				B7B0DC0319CB95B9007FD5F4 /* glyphicons_202_shopping_cart.png in Resources */,
@@ -2055,6 +2167,7 @@
 				B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */,
 				B7B0DCE519CB95B9007FD5F4 /* glyphicons_428_git_compare.png in Resources */,
 				B7B0DC1519CB95B9007FD5F4 /* glyphicons_220_play_button.png in Resources */,
+				B7B2D3AD19D1F431007EC9A7 /* Hornets.png in Resources */,
 				B7B0DBCD19CB95B9007FD5F4 /* glyphicons_148_folder_flag.png in Resources */,
 				B7B0DB5A19CB95B9007FD5F4 /* glyphicons_033_luggage.png in Resources */,
 				B7B0DC6C19CB95B9007FD5F4 /* glyphicons_307_life_preserver.png in Resources */,
@@ -2112,6 +2225,7 @@
 				B7B0DC4E19CB95B9007FD5F4 /* glyphicons_277_pizza.png in Resources */,
 				B7B0DC7F19CB95B9007FD5F4 /* glyphicons_326_piano.png in Resources */,
 				B7B0DCC119CB95B9007FD5F4 /* glyphicons_392_subtitles.png in Resources */,
+				B7B2D3B419D1F431007EC9A7 /* Nets.png in Resources */,
 				B7B0DCE819CB95B9007FD5F4 /* glyphicons_431_shoe_steps.png in Resources */,
 				B7B0DC3E19CB95B9007FD5F4 /* glyphicons_261_buoy.png in Resources */,
 				B7E2582419C75412009064C3 /* CommentViewFeedCell.xib in Resources */,
@@ -2125,6 +2239,7 @@
 				B7B0DCB019CB95B9007FD5F4 /* glyphicons_375_classic_hammer.png in Resources */,
 				B7B0DC3C19CB95B9007FD5F4 /* glyphicons_259_barcode.png in Resources */,
 				B7B0DC9F19CB95B9007FD5F4 /* glyphicons_358_file_import.png in Resources */,
+				B7B2D3A919D1F431007EC9A7 /* Clippers.png in Resources */,
 				B7B0DC7719CB95B9007FD5F4 /* glyphicons_318_more_items.png in Resources */,
 				B7B0DBB119CB95B9007FD5F4 /* glyphicons_120_message_full.png in Resources */,
 				B7B0DCA619CB95B9007FD5F4 /* glyphicons_365_restart.png in Resources */,
@@ -2133,6 +2248,7 @@
 				B7B0DCB719CB95B9007FD5F4 /* glyphicons_382_dress.png in Resources */,
 				B7B0DC8219CB95B9007FD5F4 /* glyphicons_329_soccer_ball.png in Resources */,
 				B7B0DB5D19CB95B9007FD5F4 /* glyphicons_036_file.png in Resources */,
+				B7B2D3B919D1F431007EC9A7 /* Raptors.png in Resources */,
 				B7B0DB9019CB95B9007FD5F4 /* glyphicons_087_log_book.png in Resources */,
 				B7B0DD0E19CB95B9007FD5F4 /* glyphicons_469_server_new.png in Resources */,
 				B7B0DC3319CB95B9007FD5F4 /* glyphicons_250_snorkel_diving.png in Resources */,
@@ -2148,8 +2264,10 @@
 				B7B0DC2619CB95B9007FD5F4 /* glyphicons_237_zoom_out.png in Resources */,
 				B7B0DCA319CB95B9007FD5F4 /* glyphicons_362_smoking.png in Resources */,
 				B7B0DB8D19CB95B9007FD5F4 /* glyphicons_084_heat.png in Resources */,
+				B7B2D3B719D1F431007EC9A7 /* Pelicans.png in Resources */,
 				B7B0DBA719CB95B9007FD5F4 /* glyphicons_110_align_left.png in Resources */,
 				B7B0DB6C19CB95B9007FD5F4 /* glyphicons_051_eye_open.png in Resources */,
+				B7B2D3AB19D1F431007EC9A7 /* Hawks.png in Resources */,
 				B7B0DB6A19CB95B9007FD5F4 /* glyphicons_049_star.png in Resources */,
 				B7E2581019C63E71009064C3 /* CommentViewScoreCell.xib in Resources */,
 				B7B0DC0E19CB95B9007FD5F4 /* glyphicons_213_up_arrow.png in Resources */,
@@ -2197,6 +2315,7 @@
 				B7B0DB7619CB95B9007FD5F4 /* glyphicons_061_keynote.png in Resources */,
 				B7B0DC7619CB95B9007FD5F4 /* glyphicons_317_tree_deciduous.png in Resources */,
 				B7B0DB9D19CB95B9007FD5F4 /* glyphicons_100_font.png in Resources */,
+				B7B2D3B319D1F431007EC9A7 /* Mavericks.png in Resources */,
 				B7B0DB8F19CB95B9007FD5F4 /* glyphicons_086_display.png in Resources */,
 				B7B0DB5119CB95B9007FD5F4 /* glyphicons_024_parents.png in Resources */,
 				B7B0DC0619CB95B9007FD5F4 /* glyphicons_205_electricity.png in Resources */,
@@ -2212,6 +2331,7 @@
 				B7B0DC0919CB95B9007FD5F4 /* glyphicons_208_cart_out.png in Resources */,
 				B7B0DB7E19CB95B9007FD5F4 /* glyphicons_069_gift.png in Resources */,
 				B7B0DCF619CB95B9007FD5F4 /* glyphicons_445_floppy_remove.png in Resources */,
+				B7B2D3A419D1F431007EC9A7 /* 76ers.png in Resources */,
 				B7B0DC8619CB95B9007FD5F4 /* glyphicons_333_bell.png in Resources */,
 				B7B0DC8519CB95B9007FD5F4 /* glyphicons_332_certificate.png in Resources */,
 				B7B0DB8519CB95B9007FD5F4 /* glyphicons_076_headphones.png in Resources */,
@@ -2230,9 +2350,11 @@
 				B7B0DCE319CB95B9007FD5F4 /* glyphicons_426_git_merge.png in Resources */,
 				B7B0DB7419CB95B9007FD5F4 /* glyphicons_059_cargo.png in Resources */,
 				B7B0DC5019CB95B9007FD5F4 /* glyphicons_279_tablet.png in Resources */,
+				B7B2D3B119D1F431007EC9A7 /* Lakers.png in Resources */,
 				B7B0DC8419CB95B9007FD5F4 /* glyphicons_331_dashboard.png in Resources */,
 				B7B0DC4719CB95B9007FD5F4 /* glyphicons_270_shield.png in Resources */,
 				B7B0DCC719CB95B9007FD5F4 /* glyphicons_398_copyright_mark.png in Resources */,
+				B7B2D3B219D1F431007EC9A7 /* Magic.png in Resources */,
 				B7B0DCD819CB95B9007FD5F4 /* glyphicons_415_disk_open.png in Resources */,
 				B7B0DCD719CB95B9007FD5F4 /* glyphicons_414_disk_save.png in Resources */,
 				B7B0DC8819CB95B9007FD5F4 /* glyphicons_335_pushpin.png in Resources */,
@@ -2246,6 +2368,7 @@
 				B7B0DC1019CB95B9007FD5F4 /* glyphicons_215_resize_full.png in Resources */,
 				B7B0DB7819CB95B9007FD5F4 /* glyphicons_063_power.png in Resources */,
 				B7B0DC4D19CB95B9007FD5F4 /* glyphicons_276_cutlery.png in Resources */,
+				B7B2D3B519D1F431007EC9A7 /* Nuggets.png in Resources */,
 				B7B0DD0719CB95B9007FD5F4 /* glyphicons_462_basketball.png in Resources */,
 				B7B0DCA819CB95B9007FD5F4 /* glyphicons_367_expand.png in Resources */,
 				B7B0DCA919CB95B9007FD5F4 /* glyphicons_368_collapse.png in Resources */,
@@ -2275,6 +2398,7 @@
 				B7B0DBC919CB95B9007FD5F4 /* glyphicons_144_folder_open.png in Resources */,
 				B7B0DC9819CB95B9007FD5F4 /* glyphicons_351_book_open.png in Resources */,
 				B7B0DBA319CB95B9007FD5F4 /* glyphicons_106_text_width.png in Resources */,
+				B7B2D3BC19D1F431007EC9A7 /* Suns.png in Resources */,
 				B7B0DC4219CB95B9007FD5F4 /* glyphicons_265_electrical_plug.png in Resources */,
 				B7B0DBDC19CB95B9007FD5F4 /* glyphicons_163_iphone.png in Resources */,
 				B7B0DBF419CB95B9007FD5F4 /* glyphicons_187_more.png in Resources */,
@@ -2290,6 +2414,7 @@
 				B7B0DB5319CB95B9007FD5F4 /* glyphicons_026_road.png in Resources */,
 				B7B0DB8A19CB95B9007FD5F4 /* glyphicons_081_refresh.png in Resources */,
 				B7B0DB6619CB95B9007FD5F4 /* glyphicons_045_calendar.png in Resources */,
+				B7B2D3A819D1F431007EC9A7 /* Celtics.png in Resources */,
 				B7B0DCC519CB95B9007FD5F4 /* glyphicons_396_sound_6_1.png in Resources */,
 				B7B0DCF719CB95B9007FD5F4 /* glyphicons_446_floppy_save.png in Resources */,
 				B7B0DBDF19CB95B9007FD5F4 /* glyphicons_166_ipod.png in Resources */,
@@ -2326,6 +2451,7 @@
 				B7B0DCC419CB95B9007FD5F4 /* glyphicons_395_sound_5_1.png in Resources */,
 				B7FEC4C319CB5B8800E41799 /* Final_userProfile@2x.png in Resources */,
 				B7B0DCE019CB95B9007FD5F4 /* glyphicons_423_git_create.png in Resources */,
+				B7B2D3B819D1F431007EC9A7 /* Pistons.png in Resources */,
 				B7B0DBBB19CB95B9007FD5F4 /* glyphicons_130_inbox.png in Resources */,
 				B7B0DB5519CB95B9007FD5F4 /* glyphicons_028_cars.png in Resources */,
 				B7B0DD0B19CB95B9007FD5F4 /* glyphicons_466_server_ban.png in Resources */,
@@ -2344,6 +2470,7 @@
 				B7B0DB9219CB95B9007FD5F4 /* glyphicons_089_building.png in Resources */,
 				B7B0DBC719CB95B9007FD5F4 /* glyphicons_142_database_minus.png in Resources */,
 				B7B0DC2319CB95B9007FD5F4 /* glyphicons_234_brush.png in Resources */,
+				B7B2D3BA19D1F431007EC9A7 /* Rockets.png in Resources */,
 				B7B0DB8319CB95B9007FD5F4 /* glyphicons_074_cup.png in Resources */,
 				B7B0DB3C19CB95B9007FD5F4 /* glyphicons_003_user.png in Resources */,
 				B7B0DBBA19CB95B9007FD5F4 /* glyphicons_129_message_new.png in Resources */,
@@ -2353,6 +2480,7 @@
 				B7B0DCD219CB95B9007FD5F4 /* glyphicons_409_sort-by-attributes-alt.png in Resources */,
 				B7B0DBF119CB95B9007FD5F4 /* glyphicons_184_volume_up.png in Resources */,
 				B7B0DB8619CB95B9007FD5F4 /* glyphicons_077_headset.png in Resources */,
+				B7B2D3B619D1F431007EC9A7 /* Pacers.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
