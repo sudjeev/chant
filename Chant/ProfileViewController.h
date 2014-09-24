@@ -19,6 +19,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView *logo;
 @property (nonatomic, strong) IBOutlet UIButton* change;
 @property (nonatomic, strong) IBOutlet UIButton* save;
+@property (nonatomic, strong) IBOutlet UILabel* upvotes;
 
 - (IBAction)onPasswordReset:(id)sender;
 - (IBAction)onChangeTeam:(id)sender;

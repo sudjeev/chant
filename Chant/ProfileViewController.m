@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSArray* pickerData;
 @property (strong, nonatomic) NSString* selection;
 @property (strong, nonatomic) NSDictionary* dictionary;
+@property (strong, nonatomic) NSNumber* totalUpvotes;
 
 @end
 
@@ -33,6 +34,8 @@
 {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDone)];
+    
+    self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.title = [PFUser currentUser].username;
     
     self.email.text = [PFUser currentUser].email;
@@ -58,11 +61,15 @@
             {
                 if (object[@"Team"] != nil) {
                     self.logo.image = [self.dictionary objectForKey:object[@"Team"]];
+                    self.selection = object[@"Team"];
                 }
                 else
                 {
                     self.logo.image = [UIImage imageNamed:@"jordan.jpg"];
                 }
+                
+                self.totalUpvotes = object[@"totalUpvotes"];
+                self.upvotes.text = [self.totalUpvotes stringValue];
             }
         }
         else
@@ -108,11 +115,22 @@
 - (IBAction)onSaveTeam:(id)sender
 {
     self.picker.hidden = YES;
+    
+    if(self.selection == nil)
+    {
+        self.selection = [self.pickerData objectAtIndex:0];
+    }
+    
     self.logo.image = [self.dictionary objectForKey:self.selection];
     self.change.hidden = NO;
     self.save.hidden = YES;
     
     //update in parse
+    
+    if([self.picker selectedRowInComponent:0] == -1)
+    {
+        NSLog(@"Yea this is the problem");
+    }
     
     PFQuery* query = [PFQuery queryWithClassName:@"userData"];
     [query whereKey:@"username" equalTo:[PFUser currentUser].username];

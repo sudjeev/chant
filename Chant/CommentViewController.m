@@ -32,6 +32,7 @@
     //need to register the collectionview cell
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewScoreCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewScoreCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewFeedCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewFeedCell"];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (BOOL)updateControllerWithGameData: (GameData* ) data

@@ -29,7 +29,7 @@
                         </state>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cHB-8Q-baQ">
-                        <rect key="frame" x="6" y="4" width="20" height="20"/>
+                        <rect key="frame" x="6" y="4" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJe-Cx-SIZ">
@@ -58,6 +58,7 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="logo" destination="cHB-8Q-baQ" id="BZE-8N-ptS"/>
                 <outlet property="text" destination="TRa-tH-FMW" id="NgN-rN-HD2"/>
                 <outlet property="upvotes" destination="ugb-oi-7ZR" id="SsS-P7-ZhH"/>
                 <outlet property="username" destination="FJe-Cx-SIZ" id="HWg-qL-0wY"/>

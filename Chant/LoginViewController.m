@@ -64,7 +64,8 @@
     [PFUser logInWithUsernameInBackground:self.username.text password:self.password.text block: ^(PFUser* user, NSError* error){
         if(user)
         {
-            [self.navigationController pushViewController:[[ScheduleTableViewController alloc] init] animated:NO];
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc] init]];
+            [self presentViewController:navController animated:YES completion:nil];
         }
         else
         {

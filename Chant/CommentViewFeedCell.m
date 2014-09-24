@@ -84,7 +84,6 @@ static int isLoading;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
     
     if([self.commentBox.text isEqualToString: @""] == NO)
     {
@@ -95,17 +94,33 @@ static int isLoading;
         newComment[@"User"] = [PFUser currentUser].username;
         [newComment saveInBackground];
         
+        /*
         CommentData* data = [[CommentData alloc] init];
         data.text = self.commentBox.text;
         data.gameId = self.data.gameId;
         data.upvotes = [[NSNumber alloc ] initWithInt: 1];
         data.username = [PFUser currentUser].username;
+        */
         
+        PFQuery* query = [PFQuery queryWithClassName:@"userData"];
+        [query whereKey:@"username" equalTo:[PFUser currentUser].username];
+        [query findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
+         {
+             if(!error)
+             {
+                 for(PFObject* object in objects)
+                 {
+                     [object incrementKey:@"totalUpvotes"];
+                     [object saveInBackground];
+                 }
+             }
+         }];
         
-        [self.tableData addObject:data];
         self.commentBox.text = @"";
         [self.feed reloadData];
     }
+    
+    [textField resignFirstResponder];
     
     return YES;
 }
@@ -127,17 +142,32 @@ static int isLoading;
         newComment[@"User"] = [PFUser currentUser].username;
         [newComment saveInBackground];
         
+        //this is causing a double comment entry
+        /*
         CommentData* data = [[CommentData alloc] init];
         data.text = self.commentBox.text;
         data.gameId = self.data.gameId;
         data.upvotes = [[NSNumber alloc ] initWithInt: 1];
         data.username = [PFUser currentUser].username;
+        */
         
+        PFQuery* query = [PFQuery queryWithClassName:@"userData"];
+        [query whereKey:@"username" equalTo:[PFUser currentUser].username];
+        [query findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
+         {
+             if(!error)
+             {
+                 for(PFObject* object in objects)
+                 {
+                     [object incrementKey:@"totalUpvotes"];
+                     [object saveInBackground];
+                 }
+             }
+         }];
         
-        
-        [self.feed reloadData];
         self.commentBox.text = @"";
         [self.commentBox resignFirstResponder];
+        [self.feed reloadData];
     }
 }
 
