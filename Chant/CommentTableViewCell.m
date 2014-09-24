@@ -88,6 +88,23 @@
         }
     }];
     
+    PFQuery* upvoteUser = [PFQuery queryWithClassName:@"userData"];
+    [upvoteUser whereKey:@"username" equalTo:self.commentData.username];
+    [upvoteUser findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
+    {
+        if(!error)
+        {
+            for (PFObject* object in objects)
+            {
+                [object incrementKey:@"totalUpvotes"];
+                [object saveInBackground];
+            }
+        }
+        else
+        {
+            NSLog(@"%@",[error userInfo][@"error"]);
+        }
+    }];
     
 }
 
