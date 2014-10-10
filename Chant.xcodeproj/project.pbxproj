@@ -42,6 +42,7 @@
 		B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73EF5C119947BE000934A61 /* SignUpViewController.m */; };
 		B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5C219947BE000934A61 /* SignUpViewController.xib */; };
 		B751BF6719CB6AD700C81F38 /* TeamData.m in Sources */ = {isa = PBXBuildFile; fileRef = B751BF6619CB6AD700C81F38 /* TeamData.m */; };
+		B77E3C0719D48D0B00522B7B /* Chant_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B77E3C0619D48D0B00522B7B /* Chant_Logo.png */; };
 		B77EC57B19BAACA500E06EB4 /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B77EC57A19BAACA500E06EB4 /* ScheduleCell.m */; };
 		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
@@ -618,6 +619,7 @@
 		B73EF5C219947BE000934A61 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		B751BF6519CB6AD700C81F38 /* TeamData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamData.h; sourceTree = "<group>"; };
 		B751BF6619CB6AD700C81F38 /* TeamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamData.m; sourceTree = "<group>"; };
+		B77E3C0619D48D0B00522B7B /* Chant_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chant_Logo.png; sourceTree = "<group>"; };
 		B77EC57919BAACA500E06EB4 /* ScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCell.h; sourceTree = "<group>"; };
 		B77EC57A19BAACA500E06EB4 /* ScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleCell.m; sourceTree = "<group>"; };
 		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
@@ -1886,6 +1888,7 @@
 		B7FEC4C119CB5B7000E41799 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B77E3C0619D48D0B00522B7B /* Chant_Logo.png */,
 				B7B2D38519D1F431007EC9A7 /* NBA_Logos */,
 				B7B0D96219CB95B5007FD5F4 /* png */,
 				B7FEC4C219CB5B8800E41799 /* Final_userProfile@2x.png */,
@@ -2319,6 +2322,7 @@
 				B7B0DC7619CB95B9007FD5F4 /* glyphicons_317_tree_deciduous.png in Resources */,
 				B7B0DB9D19CB95B9007FD5F4 /* glyphicons_100_font.png in Resources */,
 				B7B2D3B319D1F431007EC9A7 /* Mavericks.png in Resources */,
+				B77E3C0719D48D0B00522B7B /* Chant_Logo.png in Resources */,
 				B7B0DB8F19CB95B9007FD5F4 /* glyphicons_086_display.png in Resources */,
 				B7B0DB5119CB95B9007FD5F4 /* glyphicons_024_parents.png in Resources */,
 				B7B0DC0619CB95B9007FD5F4 /* glyphicons_205_electricity.png in Resources */,
