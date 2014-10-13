@@ -14,6 +14,7 @@
 #import "ProfileViewController.h"
 #import "CommentViewFeedCell.h"
 #import "CommentViewController.h"
+#import "NewChatCell.h"
 
 @interface ScheduleTableViewController ()
 @property (nonatomic, strong) NSMutableArray* schedule;
@@ -33,6 +34,7 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ScheduleCell" bundle:nil] forCellReuseIdentifier:@"ScheduleCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"NewChatCell" bundle:nil] forCellReuseIdentifier:@"NewChatCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"EmptyScheduleCell" bundle:nil] forCellReuseIdentifier:@"EmptyScheduleCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"UpcomingGameCell" bundle:nil] forCellReuseIdentifier:@"UpcomingGameCell"];
     
@@ -129,7 +131,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -143,12 +145,8 @@
     }
     
     
-    // Return the number of rows in the section.
-    if (section == 0) {
-        return 0;
-    }
     
-    if(section == 1)
+    if(section == 0)
     {
         NSLog(@"returningg %i", self.liveGames);
         return self.liveGames;
@@ -160,19 +158,19 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    if (section == 0)
+    /*if (section == 0)
     {
      NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                               dateStyle:NSDateFormatterMediumStyle
                                                               timeStyle:nil];
      return dateString;
-    }
+    }*/
     
-    if(section == 1)
+    if(section == 0)
     {
-        return @"Live Games:";
+        return @"";
     }
-    return @"Scheduled Games";
+    return @"Live Chat Threads";
 }
 
 //need to find an effective way to call tableview reload data on a loop cycle
@@ -201,7 +199,7 @@
     
     
     //cell for a live game
-    if(indexPath.section == 1)
+    if(indexPath.section == 0)
     {
         //pass on the gameData object in the schedule array
         ScheduleCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"ScheduleCell"];
@@ -209,7 +207,7 @@
         return cell;
     }
     //cell for a scheduled game
-    else if (indexPath.section == 2)
+    else if (indexPath.section == 1)
     {
         UpcomingGameCell* cell =  [self.tableView dequeueReusableCellWithIdentifier:@"UpcomingGameCell"];
         [cell updateCellWithGameData:[self.schedule objectAtIndex:indexPath.row + self.liveGames]];
@@ -221,7 +219,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 1)
+    if(indexPath.section == 0)
     {
      return 100;
     }
