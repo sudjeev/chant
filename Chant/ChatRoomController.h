@@ -10,7 +10,7 @@
 #import "ChatRoom.h"
 
 
-@interface ChatRoomController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ChatRoomController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 @property (nonatomic, strong) IBOutlet UITextField* textField;
 @property (nonatomic, strong) IBOutlet ChatRoom* data;

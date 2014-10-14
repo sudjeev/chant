@@ -67,8 +67,10 @@
 - (void) onRefresh
 {
     self.liveThreads = [[NSMutableArray alloc] init];
+    self.isLoading = 1;
     PFQuery *getSchedule = [PFQuery queryWithClassName:@"chatRoom"];
     [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(queryCallBack: error:)];
+    [self.tableView reloadData];
 }
 
 - (void) queryCallBack:(NSArray*) response error: (NSError*) error
