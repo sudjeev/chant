@@ -41,6 +41,7 @@
                                       style:UIBarButtonItemStyleBordered
                                      target:nil
                                      action:nil] ;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStyleBordered target:self action:@selector(onRefresh)];
     self.liveThreads = [[NSMutableArray alloc] init];
     self.isLoading = 0;
     
@@ -56,8 +57,6 @@
     
     
     
-    
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -65,6 +64,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) onRefresh
+{
+    self.liveThreads = [[NSMutableArray alloc] init];
+    PFQuery *getSchedule = [PFQuery queryWithClassName:@"chatRoom"];
+    [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(queryCallBack: error:)];
+}
 
 - (void) queryCallBack:(NSArray*) response error: (NSError*) error
 {
