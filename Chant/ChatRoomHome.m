@@ -36,6 +36,11 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"LiveChatCell" bundle:nil] forCellReuseIdentifier:@"LiveChatCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
 
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@""
+                                      style:UIBarButtonItemStyleBordered
+                                     target:nil
+                                     action:nil] ;
     self.liveThreads = [[NSMutableArray alloc] init];
     self.isLoading = 0;
     
@@ -214,6 +219,13 @@
      StartChatController *detailViewController = [[StartChatController alloc] initWithNibName:@"StartChatController" bundle:nil];
         UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
         [self presentViewController:navController animated:YES completion:nil];
+    }
+    
+    else
+    {
+        ChatRoomController *chatRoom = [[ChatRoomController alloc] init];
+        [chatRoom updateViewWithChatRoom:[self.liveThreads objectAtIndex:indexPath.row]];
+        [self.navigationController pushViewController:chatRoom animated:YES];
     }
     
     // Pass the selected object to the new view controller.

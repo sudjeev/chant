@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StartChatController">
             <connections>
                 <outlet property="create" destination="T4a-YL-xV8" id="C0K-WG-Klk"/>
+                <outlet property="textField" destination="UNa-Ll-6BM" id="Y4W-zf-wa7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

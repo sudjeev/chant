@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StartChatCell.h"
+#import "ChatRoomController.h"
 
 @interface ChatRoomHome : UITableViewController
 

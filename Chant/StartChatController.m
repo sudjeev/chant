@@ -7,6 +7,7 @@
 //
 
 #import "StartChatController.h"
+#import <Parse/Parse.h>
 
 @interface StartChatController ()
 
@@ -34,6 +35,20 @@
 
 - (IBAction)onCreate:(id)sender
 {
+    if([self.textField.text isEqualToString:@""])
+    {
+     //show an alert telling the user to enter a title
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Enter a title for the chat room" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+    else
+    {
+        PFObject* newChat = [PFObject objectWithClassName:@"chatRoom"];
+        newChat[@"creator"] = [PFUser currentUser].username;
+        newChat[@"title"] = self.textField.text;
+        [newChat saveInBackground];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
     //establish connection with parse and register a new row in the chat room class
 }
 

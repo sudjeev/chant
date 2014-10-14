@@ -55,6 +55,8 @@
 		B790A3E919EBA30900856412 /* ChatRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = B790A3E819EBA30900856412 /* ChatRoom.m */; };
 		B790A3F219EBA7AE00856412 /* LiveChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B790A3F019EBA7AE00856412 /* LiveChatCell.m */; };
 		B790A3F319EBA7AE00856412 /* LiveChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B790A3F119EBA7AE00856412 /* LiveChatCell.xib */; };
+		B790A3F919EC976C00856412 /* ChatRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = B790A3F719EC976C00856412 /* ChatRoomController.m */; };
+		B790A3FA19EC976C00856412 /* ChatRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B790A3F819EC976C00856412 /* ChatRoomController.xib */; };
 		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
 		B7B0DB3919CB95B9007FD5F4 /* glyphicons_000_glass.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B0D96319CB95B5007FD5F4 /* glyphicons_000_glass.png */; };
@@ -650,6 +652,9 @@
 		B790A3EF19EBA7AE00856412 /* LiveChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveChatCell.h; sourceTree = "<group>"; };
 		B790A3F019EBA7AE00856412 /* LiveChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveChatCell.m; sourceTree = "<group>"; };
 		B790A3F119EBA7AE00856412 /* LiveChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveChatCell.xib; sourceTree = "<group>"; };
+		B790A3F619EC976C00856412 /* ChatRoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomController.h; sourceTree = "<group>"; };
+		B790A3F719EC976C00856412 /* ChatRoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomController.m; sourceTree = "<group>"; };
+		B790A3F819EC976C00856412 /* ChatRoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomController.xib; sourceTree = "<group>"; };
 		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		B798D1E619A5C38300550D56 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -1387,6 +1392,16 @@
 			name = StartChat;
 			sourceTree = "<group>";
 		};
+		B790A3F519EC96BE00856412 /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				B790A3F619EC976C00856412 /* ChatRoomController.h */,
+				B790A3F719EC976C00856412 /* ChatRoomController.m */,
+				B790A3F819EC976C00856412 /* ChatRoomController.xib */,
+			);
+			name = ChatRoom;
+			sourceTree = "<group>";
+		};
 		B7B0D96219CB95B5007FD5F4 /* png */ = {
 			isa = PBXGroup;
 			children = (
@@ -1905,6 +1920,7 @@
 		B7C06EFB19AF028A00A4D9C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B790A3F519EC96BE00856412 /* ChatRoom */,
 				B790A3F419EBAE7800856412 /* StartChat */,
 				B790A3D719EB803A00856412 /* ChatRoomHome */,
 				B7FEC4BB19CB577F00E41799 /* Profile */,
@@ -2268,6 +2284,7 @@
 				B7B0DC3519CB95B9007FD5F4 /* glyphicons_252_oxygen_bottle.png in Resources */,
 				B7B0DC9419CB95B9007FD5F4 /* glyphicons_347_hand_up.png in Resources */,
 				B7B0DC6D19CB95B9007FD5F4 /* glyphicons_308_share_alt.png in Resources */,
+				B790A3FA19EC976C00856412 /* ChatRoomController.xib in Resources */,
 				B73EF5B51991F7C300934A61 /* LoginViewController.xib in Resources */,
 				B7B0DC3F19CB95B9007FD5F4 /* glyphicons_262_spade.png in Resources */,
 				B7B0DCEE19CB95B9007FD5F4 /* glyphicons_437_hockey.png in Resources */,
@@ -2574,6 +2591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7C06EFA19AF028000A4D9C5 /* User.m in Sources */,
+				B790A3F919EC976C00856412 /* ChatRoomController.m in Sources */,
 				B7268C471989C46400F7714E /* AppDelegate.m in Sources */,
 				B7FEC4BF19CB57B100E41799 /* ProfileViewController.m in Sources */,
 				B790A3DB19EB805F00856412 /* ChatRoomHome.m in Sources */,

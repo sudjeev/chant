@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StartChatController : UIViewController
+@interface StartChatController : UIViewController<UIAlertViewDelegate>
 @property (nonatomic, strong) IBOutlet UIButton* create;
+@property (nonatomic, strong) IBOutlet UITextField* textField;
 - (IBAction)onCreate:(id)sender;
 @end
