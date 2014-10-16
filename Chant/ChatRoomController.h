@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ChatRoom.h"
+#import "CommentData.h"
+#import <Parse/Parse.h>
 
 
 @interface ChatRoomController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
