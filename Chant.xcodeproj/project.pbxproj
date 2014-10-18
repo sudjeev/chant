@@ -57,6 +57,8 @@
 		B790A3F319EBA7AE00856412 /* LiveChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B790A3F119EBA7AE00856412 /* LiveChatCell.xib */; };
 		B790A3F919EC976C00856412 /* ChatRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = B790A3F719EC976C00856412 /* ChatRoomController.m */; };
 		B790A3FA19EC976C00856412 /* ChatRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B790A3F819EC976C00856412 /* ChatRoomController.xib */; };
+		B795BFDE19F31BB700C8FC86 /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B795BFDC19F31BB700C8FC86 /* ReplyViewController.m */; };
+		B795BFDF19F31BB700C8FC86 /* ReplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B795BFDD19F31BB700C8FC86 /* ReplyViewController.xib */; };
 		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
 		B7B0DB3919CB95B9007FD5F4 /* glyphicons_000_glass.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B0D96319CB95B5007FD5F4 /* glyphicons_000_glass.png */; };
@@ -655,6 +657,9 @@
 		B790A3F619EC976C00856412 /* ChatRoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomController.h; sourceTree = "<group>"; };
 		B790A3F719EC976C00856412 /* ChatRoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomController.m; sourceTree = "<group>"; };
 		B790A3F819EC976C00856412 /* ChatRoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomController.xib; sourceTree = "<group>"; };
+		B795BFDB19F31BB700C8FC86 /* ReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyViewController.h; sourceTree = "<group>"; };
+		B795BFDC19F31BB700C8FC86 /* ReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
+		B795BFDD19F31BB700C8FC86 /* ReplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyViewController.xib; sourceTree = "<group>"; };
 		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		B798D1E619A5C38300550D56 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -1402,6 +1407,16 @@
 			name = ChatRoom;
 			sourceTree = "<group>";
 		};
+		B795BFDA19F31B7500C8FC86 /* Reply */ = {
+			isa = PBXGroup;
+			children = (
+				B795BFDB19F31BB700C8FC86 /* ReplyViewController.h */,
+				B795BFDC19F31BB700C8FC86 /* ReplyViewController.m */,
+				B795BFDD19F31BB700C8FC86 /* ReplyViewController.xib */,
+			);
+			name = Reply;
+			sourceTree = "<group>";
+		};
 		B7B0D96219CB95B5007FD5F4 /* png */ = {
 			isa = PBXGroup;
 			children = (
@@ -1920,6 +1935,7 @@
 		B7C06EFB19AF028A00A4D9C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B795BFDA19F31B7500C8FC86 /* Reply */,
 				B790A3F519EC96BE00856412 /* ChatRoom */,
 				B790A3F419EBAE7800856412 /* StartChat */,
 				B790A3D719EB803A00856412 /* ChatRoomHome */,
@@ -2428,6 +2444,7 @@
 				B7B0DCCC19CB95B9007FD5F4 /* glyphicons_403_sorting.png in Resources */,
 				B7B0DBBE19CB95B9007FD5F4 /* glyphicons_133_inbox_lock.png in Resources */,
 				B7B0DC3619CB95B9007FD5F4 /* glyphicons_253_fins.png in Resources */,
+				B795BFDF19F31BB700C8FC86 /* ReplyViewController.xib in Resources */,
 				B7B0DD0819CB95B9007FD5F4 /* glyphicons_463_server.png in Resources */,
 				B7B0DC2B19CB95B9007FD5F4 /* glyphicons_242_google_maps.png in Resources */,
 				B7B0DC9D19CB95B9007FD5F4 /* glyphicons_356_dumbbell.png in Resources */,
@@ -2591,6 +2608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7C06EFA19AF028000A4D9C5 /* User.m in Sources */,
+				B795BFDE19F31BB700C8FC86 /* ReplyViewController.m in Sources */,
 				B790A3F919EC976C00856412 /* ChatRoomController.m in Sources */,
 				B7268C471989C46400F7714E /* AppDelegate.m in Sources */,
 				B7FEC4BF19CB57B100E41799 /* ProfileViewController.m in Sources */,

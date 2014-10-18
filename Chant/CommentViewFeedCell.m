@@ -33,6 +33,7 @@ static int isLoading;
     self.view.layer.cornerRadius = 5;
     self.view.layer.masksToBounds = YES;
     
+    
     offset = 10;
     self.data = data;
     self.feed.dataSource = self;
@@ -44,9 +45,9 @@ static int isLoading;
     //need to add the filter for gameid
     getComments.limit = 10;
     isLoading = 1;
+    [getComments orderByDescending:@"createdAt"];
     [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
 
-    
     [self.feed registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"CommentTableViewCell"];
     [self.feed registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
 }
@@ -173,6 +174,21 @@ static int isLoading;
     }
 }
 
+
+- (IBAction)onRefresh:(id)sender
+{
+    [self.feed reloadData];
+    //call the query again
+    PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
+    [getComments whereKey:@"GameID" equalTo:self.data.gameId];
+    //need to add the filter for gameid
+    getComments.limit = 10;
+    isLoading = 1;
+    [getComments orderByDescending:@"createdAt"];
+    [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
+    
+}
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //need to check if loading is true then we can show the loading cell
@@ -192,6 +208,7 @@ static int isLoading;
             [getComments whereKey:@"GameID" equalTo:self.data.gameId];
             getComments.limit = 10;
             getComments.skip = offset;
+            [getComments orderByDescending:@"createdAt"];
             [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback:error:)];
         }
         
@@ -218,15 +235,11 @@ static int isLoading;
     return [self.tableData count];
 }
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [NSString stringWithFormat:@"%@ quarter" , self.data.quarter];
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 80;
+    return 120;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

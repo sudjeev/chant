@@ -30,6 +30,8 @@
 {
     [super viewDidLoad];
     //need to register the collectionview cell
+    
+    
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewScoreCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewScoreCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewFeedCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewFeedCell"];
     self.navigationController.navigationBar.translucent = NO;
@@ -47,6 +49,11 @@
     return YES;
 }
 
+- (void) onRefresh
+{
+    //call a refresh method on the feed cell?
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -55,7 +62,6 @@
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
         CommentViewFeedCell* cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"CommentViewFeedCell" forIndexPath:indexPath];
         [cell setupWithGameData:self.data];
         return cell;
@@ -69,7 +75,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    return CGSizeMake(310, 450);
+    return CGSizeMake(310, 500);
 }
 
 @end

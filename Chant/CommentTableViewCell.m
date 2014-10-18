@@ -17,6 +17,9 @@
 
 -(void) updateViewWithItem: (CommentData*) comment
 {
+    self.view.layer.cornerRadius = 5;
+    self.view.layer.masksToBounds = YES;
+    
     if([comment isEqual:nil])
     {
         NSLog(@"dis bitch is empty");

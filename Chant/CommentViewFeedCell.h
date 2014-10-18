@@ -23,5 +23,5 @@
 - (void)setupWithGameData:(GameData*) data;
 
 -(IBAction)onComment:(id)sender;
-
+- (IBAction)onRefresh:(id)sender;
 @end
