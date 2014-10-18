@@ -128,6 +128,38 @@ static int isLoading;
     return YES;
 }
 
+- (IBAction)valueChanged:(id)sender
+{
+    //
+    switch (self.segmentedControl.selectedSegmentIndex) {
+        case 0:
+            {
+                self.tableData = [[NSMutableArray alloc] init];
+                PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
+                [getComments whereKey:@"GameID" equalTo:self.data.gameId];
+                //need to add the filter for gameid
+                getComments.limit = 10;
+                isLoading = 1;
+                [getComments orderByDescending:@"createdAt"];
+                [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
+            }
+            break;
+        case 1:
+            {
+                self.tableData = [[NSMutableArray alloc] init];
+                PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
+                [getComments whereKey:@"GameID" equalTo:self.data.gameId];
+                //need to add the filter for gameid
+                getComments.limit = 10;
+                isLoading = 1;
+                [getComments orderByDescending:@"Upvotes"];
+                [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
+            }
+        default:
+            break;
+    }
+}
+
 - (IBAction)onComment:(id)sender
 {
     if([self.commentBox.text isEqualToString: @""])
@@ -177,6 +209,7 @@ static int isLoading;
 
 - (IBAction)onRefresh:(id)sender
 {
+    self.tableData = [[NSMutableArray alloc] init];
     [self.feed reloadData];
     //call the query again
     PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];

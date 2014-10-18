@@ -19,9 +19,11 @@
 @property (nonatomic, strong) GameData* data;
 @property (nonatomic, strong) NSMutableArray* tableData;
 @property (nonatomic, strong) IBOutlet  UIView* view;
+@property (nonatomic, strong) IBOutlet UISegmentedControl* segmentedControl;
 
 - (void)setupWithGameData:(GameData*) data;
 
 -(IBAction)onComment:(id)sender;
 - (IBAction)onRefresh:(id)sender;
+- (IBAction)valueChanged:(id)sender;
 @end
