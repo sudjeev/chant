@@ -47,8 +47,8 @@
     {
         //user is already logged in
         //go straight to schedule
-        //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc] initWithNibName:@"ScheduleTableViewController" bundle:nil]];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ChatRoomHome alloc] initWithNibName:@"ChatRoomHome" bundle:nil]];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc] initWithNibName:@"ScheduleTableViewController" bundle:nil]];
+        //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ChatRoomHome alloc] initWithNibName:@"ChatRoomHome" bundle:nil]];
         navController.navigationBar.translucent = NO;
         self.window.rootViewController = navController;
     }

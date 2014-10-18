@@ -55,33 +55,21 @@
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 0)
-    {
-        CommentViewScoreCell* cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"CommentViewScoreCell" forIndexPath:indexPath];
-        [cell updateCellWithGameData:self.data];
-        return cell;
-    }
-    
-    else
-    {
+
         CommentViewFeedCell* cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"CommentViewFeedCell" forIndexPath:indexPath];
         [cell setupWithGameData:self.data];
         return cell;
-    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 2;
+    return 1;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 0)
-    {
-        return CGSizeMake(310, 95);
-    }
-    return CGSizeMake(310, 370);
+
+    return CGSizeMake(310, 450);
 }
 
 @end

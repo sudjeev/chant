@@ -87,6 +87,8 @@ static int isLoading;
     
     if([self.commentBox.text isEqualToString: @""] == NO)
     {
+        [textField resignFirstResponder];
+        
         PFObject *newComment = [PFObject objectWithClassName:@"Comments"];
         newComment[@"Content"] = self.commentBox.text;
         newComment[@"GameID"] = self.data.gameId;
