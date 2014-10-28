@@ -8,6 +8,7 @@
 
 #import "CommentViewFeedCell.h"
 #import "GameData.h"
+#import "ReplyViewController.h"
 
 
 @implementation CommentViewFeedCell
@@ -272,8 +273,17 @@ static int isLoading;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 120;
+    return 110;
 }
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ReplyViewController* newController = [[ReplyViewController alloc] init];
+    [newController updateViewWithItem:[self.tableData objectAtIndex:indexPath.row]];
+    UINavigationController* newNavigation = [[UINavigationController alloc] initWithRootViewController:newController];
+    //how do i launch a new view from within a cell of a table view
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -33,7 +33,7 @@
         self.password.enabled = YES;
         
         self.repeatPassword.secureTextEntry = YES;
-        self.view.backgroundColor = [UIColor colorWithRed:41.0/255 green:128.0/255.0 blue:185.0/255.0 alpha:1];
+        self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
     }
     return self;
 }

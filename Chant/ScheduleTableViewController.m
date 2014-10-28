@@ -39,6 +39,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"UpcomingGameCell" bundle:nil] forCellReuseIdentifier:@"UpcomingGameCell"];
     
     
+    self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
     
     UIBarButtonItem* profile = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Final_userProfile" ] style:UIBarButtonItemStylePlain target:self action:@selector(toProfile)];
     self.navigationItem.rightBarButtonItem = profile;
@@ -168,9 +169,9 @@
     
     if(section == 0)
     {
-        return @"";
+        return @"Live Games";
     }
-    return @"Live Chat Threads";
+    return @"Scheduled Games";
 }
 
 //need to find an effective way to call tableview reload data on a loop cycle
@@ -231,6 +232,29 @@
     return 40; //play around with this value
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *tempView=[[UIView alloc]initWithFrame:CGRectMake(0,200,300,244)];
+    tempView.backgroundColor=[UIColor clearColor];
+    
+    UILabel *tempLabel=[[UILabel alloc]initWithFrame:CGRectMake(15,0,300,44)];
+    tempLabel.backgroundColor=[UIColor clearColor];
+    tempLabel.shadowColor = [UIColor clearColor];
+    tempLabel.shadowOffset = CGSizeMake(0,2);
+    tempLabel.textColor = [UIColor whiteColor]; //here you can change the text color of header.
+    if(section == 0)
+    {
+        tempLabel.text=@"Live Games";
+    }
+    else
+    {
+        tempLabel.text=@"Scheduled Games";
+    }
+    
+    [tempView addSubview:tempLabel];
+    
+    return tempView;
+}
 
 /*
 // Override to support conditional editing of the table view.

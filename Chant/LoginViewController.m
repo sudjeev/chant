@@ -25,9 +25,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.navigationItem.title = @"Log in";
+        self.navigationItem.title = @"Chant!";
         self.password.secureTextEntry = YES;
-        self.view.backgroundColor = [UIColor colorWithRed:41.0/255 green:128.0/255.0 blue:185.0/255.0 alpha:1];
+        self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
         self.thisUser = [[User alloc] init];
         self.valid = 0;
         self.complete = 0;
@@ -40,6 +40,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@""
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil] ;
 }
 
 - (IBAction)onSave:(id)sender
@@ -65,6 +70,7 @@
         if(user)
         {
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc] init]];
+            navController.navigationBar.tintColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];;
             [self presentViewController:navController animated:YES completion:nil];
         }
         else

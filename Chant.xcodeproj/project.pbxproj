@@ -57,8 +57,6 @@
 		B790A3F319EBA7AE00856412 /* LiveChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B790A3F119EBA7AE00856412 /* LiveChatCell.xib */; };
 		B790A3F919EC976C00856412 /* ChatRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = B790A3F719EC976C00856412 /* ChatRoomController.m */; };
 		B790A3FA19EC976C00856412 /* ChatRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B790A3F819EC976C00856412 /* ChatRoomController.xib */; };
-		B795BFDE19F31BB700C8FC86 /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B795BFDC19F31BB700C8FC86 /* ReplyViewController.m */; };
-		B795BFDF19F31BB700C8FC86 /* ReplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B795BFDD19F31BB700C8FC86 /* ReplyViewController.xib */; };
 		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
 		B7B0DB3919CB95B9007FD5F4 /* glyphicons_000_glass.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B0D96319CB95B5007FD5F4 /* glyphicons_000_glass.png */; };
@@ -563,6 +561,10 @@
 		B7B2D3C019D1F431007EC9A7 /* Warriors.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3A219D1F431007EC9A7 /* Warriors.png */; };
 		B7B2D3C119D1F431007EC9A7 /* Wizards.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3A319D1F431007EC9A7 /* Wizards.png */; };
 		B7B2D3C319D22116007EC9A7 /* jordan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3C219D22116007EC9A7 /* jordan.jpg */; };
+		B7B5B07119FB0BF2006E9683 /* ReplyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7B5B07019FB0BF2006E9683 /* ReplyCommentCell.xib */; };
+		B7B5B07519FB1003006E9683 /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B5B07319FB1003006E9683 /* ReplyViewController.m */; };
+		B7B5B07619FB1003006E9683 /* ReplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7B5B07419FB1003006E9683 /* ReplyViewController.xib */; };
+		B7B5B07919FB1232006E9683 /* ReplyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B5B07819FB1232006E9683 /* ReplyCommentCell.m */; };
 		B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */; };
 		B7C06EFA19AF028000A4D9C5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C06EF919AF028000A4D9C5 /* User.m */; };
 		B7E2580119C25760009064C3 /* EmptyScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2580019C25760009064C3 /* EmptyScheduleCell.xib */; };
@@ -657,9 +659,6 @@
 		B790A3F619EC976C00856412 /* ChatRoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomController.h; sourceTree = "<group>"; };
 		B790A3F719EC976C00856412 /* ChatRoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomController.m; sourceTree = "<group>"; };
 		B790A3F819EC976C00856412 /* ChatRoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomController.xib; sourceTree = "<group>"; };
-		B795BFDB19F31BB700C8FC86 /* ReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyViewController.h; sourceTree = "<group>"; };
-		B795BFDC19F31BB700C8FC86 /* ReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
-		B795BFDD19F31BB700C8FC86 /* ReplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyViewController.xib; sourceTree = "<group>"; };
 		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		B798D1E619A5C38300550D56 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -1166,6 +1165,12 @@
 		B7B2D3A219D1F431007EC9A7 /* Warriors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Warriors.png; sourceTree = "<group>"; };
 		B7B2D3A319D1F431007EC9A7 /* Wizards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wizards.png; sourceTree = "<group>"; };
 		B7B2D3C219D22116007EC9A7 /* jordan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jordan.jpg; sourceTree = "<group>"; };
+		B7B5B07019FB0BF2006E9683 /* ReplyCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyCommentCell.xib; sourceTree = "<group>"; };
+		B7B5B07219FB1003006E9683 /* ReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyViewController.h; sourceTree = "<group>"; };
+		B7B5B07319FB1003006E9683 /* ReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
+		B7B5B07419FB1003006E9683 /* ReplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyViewController.xib; sourceTree = "<group>"; };
+		B7B5B07719FB1232006E9683 /* ReplyCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyCommentCell.h; sourceTree = "<group>"; };
+		B7B5B07819FB1232006E9683 /* ReplyCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyCommentCell.m; sourceTree = "<group>"; };
 		B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		B7C06EF819AF028000A4D9C5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B7C06EF919AF028000A4D9C5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -1410,9 +1415,12 @@
 		B795BFDA19F31B7500C8FC86 /* Reply */ = {
 			isa = PBXGroup;
 			children = (
-				B795BFDB19F31BB700C8FC86 /* ReplyViewController.h */,
-				B795BFDC19F31BB700C8FC86 /* ReplyViewController.m */,
-				B795BFDD19F31BB700C8FC86 /* ReplyViewController.xib */,
+				B7B5B07719FB1232006E9683 /* ReplyCommentCell.h */,
+				B7B5B07819FB1232006E9683 /* ReplyCommentCell.m */,
+				B7B5B07019FB0BF2006E9683 /* ReplyCommentCell.xib */,
+				B7B5B07219FB1003006E9683 /* ReplyViewController.h */,
+				B7B5B07319FB1003006E9683 /* ReplyViewController.m */,
+				B7B5B07419FB1003006E9683 /* ReplyViewController.xib */,
 			);
 			name = Reply;
 			sourceTree = "<group>";
@@ -2198,6 +2206,7 @@
 				B7B0DC0F19CB95B9007FD5F4 /* glyphicons_214_resize_small.png in Resources */,
 				B7B0DC3119CB95B9007FD5F4 /* glyphicons_248_asterisk.png in Resources */,
 				B7B0DC3219CB95B9007FD5F4 /* glyphicons_249_divide.png in Resources */,
+				B7B5B07119FB0BF2006E9683 /* ReplyCommentCell.xib in Resources */,
 				B7B0DB9719CB95B9007FD5F4 /* glyphicons_094_vector_path_square.png in Resources */,
 				B7B0DCC019CB95B9007FD5F4 /* glyphicons_391_video_hd.png in Resources */,
 				B7B0DBC819CB95B9007FD5F4 /* glyphicons_143_database_ban.png in Resources */,
@@ -2274,6 +2283,7 @@
 				B7B0DB6E19CB95B9007FD5F4 /* glyphicons_053_alarm.png in Resources */,
 				B7B0DC8319CB95B9007FD5F4 /* glyphicons_330_blog.png in Resources */,
 				B7B0DB5819CB95B9007FD5F4 /* glyphicons_031_bus.png in Resources */,
+				B7B5B07619FB1003006E9683 /* ReplyViewController.xib in Resources */,
 				B7B0DCCD19CB95B9007FD5F4 /* glyphicons_404_sort-by-alphabet.png in Resources */,
 				B7B0DB9919CB95B9007FD5F4 /* glyphicons_096_vector_path_polygon.png in Resources */,
 				B7B0DC5719CB95B9007FD5F4 /* glyphicons_286_fabric.png in Resources */,
@@ -2444,7 +2454,6 @@
 				B7B0DCCC19CB95B9007FD5F4 /* glyphicons_403_sorting.png in Resources */,
 				B7B0DBBE19CB95B9007FD5F4 /* glyphicons_133_inbox_lock.png in Resources */,
 				B7B0DC3619CB95B9007FD5F4 /* glyphicons_253_fins.png in Resources */,
-				B795BFDF19F31BB700C8FC86 /* ReplyViewController.xib in Resources */,
 				B7B0DD0819CB95B9007FD5F4 /* glyphicons_463_server.png in Resources */,
 				B7B0DC2B19CB95B9007FD5F4 /* glyphicons_242_google_maps.png in Resources */,
 				B7B0DC9D19CB95B9007FD5F4 /* glyphicons_356_dumbbell.png in Resources */,
@@ -2608,7 +2617,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7C06EFA19AF028000A4D9C5 /* User.m in Sources */,
-				B795BFDE19F31BB700C8FC86 /* ReplyViewController.m in Sources */,
 				B790A3F919EC976C00856412 /* ChatRoomController.m in Sources */,
 				B7268C471989C46400F7714E /* AppDelegate.m in Sources */,
 				B7FEC4BF19CB57B100E41799 /* ProfileViewController.m in Sources */,
@@ -2626,6 +2634,8 @@
 				B790A3D519EB7E9400856412 /* NewChatCell.m in Sources */,
 				B7268C4A1989C46400F7714E /* Chant.xcdatamodeld in Sources */,
 				B7F70B2719C00EA500960FB7 /* GameData.m in Sources */,
+				B7B5B07519FB1003006E9683 /* ReplyViewController.m in Sources */,
+				B7B5B07919FB1232006E9683 /* ReplyCommentCell.m in Sources */,
 				B7268C711989C76F00F7714E /* MainViewController.m in Sources */,
 				B7B0DD1119CB9EFC007FD5F4 /* CommentData.m in Sources */,
 				B73EF5B41991F7C300934A61 /* LoginViewController.m in Sources */,
