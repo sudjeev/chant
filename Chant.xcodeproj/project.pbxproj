@@ -42,6 +42,8 @@
 		B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73EF5C119947BE000934A61 /* SignUpViewController.m */; };
 		B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5C219947BE000934A61 /* SignUpViewController.xib */; };
 		B751BF6719CB6AD700C81F38 /* TeamData.m in Sources */ = {isa = PBXBuildFile; fileRef = B751BF6619CB6AD700C81F38 /* TeamData.m */; };
+		B76B73D61A12ECB000C557E4 /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B76B73D41A12ECB000C557E4 /* ReplyViewController.m */; };
+		B76B73D71A12ECB000C557E4 /* ReplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B76B73D51A12ECB000C557E4 /* ReplyViewController.xib */; };
 		B77E3C0719D48D0B00522B7B /* Chant_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B77E3C0619D48D0B00522B7B /* Chant_Logo.png */; };
 		B77EC57B19BAACA500E06EB4 /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B77EC57A19BAACA500E06EB4 /* ScheduleCell.m */; };
 		B790A3D519EB7E9400856412 /* NewChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B790A3D319EB7E9400856412 /* NewChatCell.m */; };
@@ -562,8 +564,6 @@
 		B7B2D3C119D1F431007EC9A7 /* Wizards.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3A319D1F431007EC9A7 /* Wizards.png */; };
 		B7B2D3C319D22116007EC9A7 /* jordan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B7B2D3C219D22116007EC9A7 /* jordan.jpg */; };
 		B7B5B07119FB0BF2006E9683 /* ReplyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7B5B07019FB0BF2006E9683 /* ReplyCommentCell.xib */; };
-		B7B5B07519FB1003006E9683 /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B5B07319FB1003006E9683 /* ReplyViewController.m */; };
-		B7B5B07619FB1003006E9683 /* ReplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7B5B07419FB1003006E9683 /* ReplyViewController.xib */; };
 		B7B5B07919FB1232006E9683 /* ReplyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B5B07819FB1232006E9683 /* ReplyCommentCell.m */; };
 		B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */; };
 		B7C06EFA19AF028000A4D9C5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C06EF919AF028000A4D9C5 /* User.m */; };
@@ -636,6 +636,9 @@
 		B73EF5C219947BE000934A61 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		B751BF6519CB6AD700C81F38 /* TeamData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamData.h; sourceTree = "<group>"; };
 		B751BF6619CB6AD700C81F38 /* TeamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamData.m; sourceTree = "<group>"; };
+		B76B73D31A12ECB000C557E4 /* ReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyViewController.h; sourceTree = "<group>"; };
+		B76B73D41A12ECB000C557E4 /* ReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
+		B76B73D51A12ECB000C557E4 /* ReplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyViewController.xib; sourceTree = "<group>"; };
 		B77E3C0619D48D0B00522B7B /* Chant_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chant_Logo.png; sourceTree = "<group>"; };
 		B77EC57919BAACA500E06EB4 /* ScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCell.h; sourceTree = "<group>"; };
 		B77EC57A19BAACA500E06EB4 /* ScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleCell.m; sourceTree = "<group>"; };
@@ -1166,9 +1169,6 @@
 		B7B2D3A319D1F431007EC9A7 /* Wizards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wizards.png; sourceTree = "<group>"; };
 		B7B2D3C219D22116007EC9A7 /* jordan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jordan.jpg; sourceTree = "<group>"; };
 		B7B5B07019FB0BF2006E9683 /* ReplyCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyCommentCell.xib; sourceTree = "<group>"; };
-		B7B5B07219FB1003006E9683 /* ReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyViewController.h; sourceTree = "<group>"; };
-		B7B5B07319FB1003006E9683 /* ReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
-		B7B5B07419FB1003006E9683 /* ReplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyViewController.xib; sourceTree = "<group>"; };
 		B7B5B07719FB1232006E9683 /* ReplyCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyCommentCell.h; sourceTree = "<group>"; };
 		B7B5B07819FB1232006E9683 /* ReplyCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyCommentCell.m; sourceTree = "<group>"; };
 		B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
@@ -1418,9 +1418,9 @@
 				B7B5B07719FB1232006E9683 /* ReplyCommentCell.h */,
 				B7B5B07819FB1232006E9683 /* ReplyCommentCell.m */,
 				B7B5B07019FB0BF2006E9683 /* ReplyCommentCell.xib */,
-				B7B5B07219FB1003006E9683 /* ReplyViewController.h */,
-				B7B5B07319FB1003006E9683 /* ReplyViewController.m */,
-				B7B5B07419FB1003006E9683 /* ReplyViewController.xib */,
+				B76B73D31A12ECB000C557E4 /* ReplyViewController.h */,
+				B76B73D41A12ECB000C557E4 /* ReplyViewController.m */,
+				B76B73D51A12ECB000C557E4 /* ReplyViewController.xib */,
 			);
 			name = Reply;
 			sourceTree = "<group>";
@@ -2283,7 +2283,7 @@
 				B7B0DB6E19CB95B9007FD5F4 /* glyphicons_053_alarm.png in Resources */,
 				B7B0DC8319CB95B9007FD5F4 /* glyphicons_330_blog.png in Resources */,
 				B7B0DB5819CB95B9007FD5F4 /* glyphicons_031_bus.png in Resources */,
-				B7B5B07619FB1003006E9683 /* ReplyViewController.xib in Resources */,
+				B76B73D71A12ECB000C557E4 /* ReplyViewController.xib in Resources */,
 				B7B0DCCD19CB95B9007FD5F4 /* glyphicons_404_sort-by-alphabet.png in Resources */,
 				B7B0DB9919CB95B9007FD5F4 /* glyphicons_096_vector_path_polygon.png in Resources */,
 				B7B0DC5719CB95B9007FD5F4 /* glyphicons_286_fabric.png in Resources */,
@@ -2634,7 +2634,7 @@
 				B790A3D519EB7E9400856412 /* NewChatCell.m in Sources */,
 				B7268C4A1989C46400F7714E /* Chant.xcdatamodeld in Sources */,
 				B7F70B2719C00EA500960FB7 /* GameData.m in Sources */,
-				B7B5B07519FB1003006E9683 /* ReplyViewController.m in Sources */,
+				B76B73D61A12ECB000C557E4 /* ReplyViewController.m in Sources */,
 				B7B5B07919FB1232006E9683 /* ReplyCommentCell.m in Sources */,
 				B7268C711989C76F00F7714E /* MainViewController.m in Sources */,
 				B7B0DD1119CB9EFC007FD5F4 /* CommentData.m in Sources */,

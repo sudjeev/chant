@@ -10,6 +10,7 @@
 #import "CommentTableViewCell.h"
 #import "CommentViewFeedCell.h"
 #import "GameData.h"
+#import "ReplyViewController.h"
 
 @interface CommentViewController ()
 @property(nonatomic, strong) GameData* data;
@@ -54,6 +55,10 @@
         //display
         NSDictionary* information = [notification userInfo];
         CommentData* replyToComment = [information objectForKey:key];
+        ReplyViewController* replyController = [[ReplyViewController alloc] init];
+        [replyController updateViewWithCommentData:replyToComment];
+        [self.navigationController pushViewController:replyController animated:YES];
+        
     }
 }
 
