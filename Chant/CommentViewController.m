@@ -35,6 +35,26 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewScoreCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewScoreCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewFeedCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewFeedCell"];
     self.navigationController.navigationBar.translucent = NO;
+    
+    
+    
+    //register for the notifcation that specifies a reply
+    NSString *notificationName = @"ReplyNotification";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName object:nil];
+    
+}
+
+- (void) useNotification: (NSNotification*) notification
+{
+    NSString *key = @"CommentValue";
+    if([[notification name] isEqualToString:@"ReplyNotification"])
+    {
+        //need to access the comment data object that gets sent as userInfo
+        //use this game data object to push a new view controller that will
+        //display
+        NSDictionary* information = [notification userInfo];
+        CommentData* replyToComment = [information objectForKey:key];
+    }
 }
 
 - (BOOL)updateControllerWithGameData: (GameData* ) data

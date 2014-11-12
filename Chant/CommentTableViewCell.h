@@ -18,7 +18,8 @@
 @property (nonatomic, strong) IBOutlet UIImageView* logo;
 @property (nonatomic, strong) IBOutlet UIView* view;
 @property (strong, nonatomic) NSDictionary* dictionary;
--(void) updateViewWithItem: (NSString*) comment;
+- (void) updateViewWithItem: (NSString*) comment;
 - (IBAction)onUpvote:(id)sender;
+- (IBAction)onReply:(id)sender;
 
 @end

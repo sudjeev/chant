@@ -111,6 +111,14 @@
     
 }
 
+- (IBAction)onReply:(id)sender
+{
+    NSString *notification = @"ReplyNotification";
+    NSString *key = @"CommentValue";
+    NSDictionary *info = [NSDictionary dictionaryWithObject:self.commentData forKey:key];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notification object:nil userInfo:info];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
