@@ -8,7 +8,6 @@
 
 #import "CommentViewFeedCell.h"
 #import "GameData.h"
-#import "ReplyViewController.h"
 
 
 @implementation CommentViewFeedCell
@@ -278,10 +277,7 @@ static int isLoading;
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ReplyViewController* newController = [[ReplyViewController alloc] init];
-    [newController updateViewWithItem:[self.tableData objectAtIndex:indexPath.row]];
-    UINavigationController* newNavigation = [[UINavigationController alloc] initWithRootViewController:newController];
-    //how do i launch a new view from within a cell of a table view
+
 }
 
 /*

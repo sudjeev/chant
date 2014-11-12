@@ -13,4 +13,5 @@
 @interface CommentViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) IBOutlet UICollectionView* collectionView;
 - (BOOL)updateControllerWithGameData: (GameData* ) data;
+- (void) useNotification: (NSNotification*) notification;
 @end
