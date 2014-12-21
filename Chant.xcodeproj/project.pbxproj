@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71C9B621A1F2B7300135E13 /* ReplyData.m in Sources */ = {isa = PBXBuildFile; fileRef = B71C9B611A1F2B7300135E13 /* ReplyData.m */; };
+		B71C9B641A27F56100135E13 /* EmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B71C9B631A27F56100135E13 /* EmptyCell.xib */; };
 		B7268C351989C46400F7714E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7268C341989C46400F7714E /* Foundation.framework */; };
 		B7268C371989C46400F7714E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7268C361989C46400F7714E /* CoreGraphics.framework */; };
 		B7268C391989C46400F7714E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7268C381989C46400F7714E /* UIKit.framework */; };
@@ -595,6 +597,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B71C9B601A1F2B7300135E13 /* ReplyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyData.h; sourceTree = "<group>"; };
+		B71C9B611A1F2B7300135E13 /* ReplyData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyData.m; sourceTree = "<group>"; };
+		B71C9B631A27F56100135E13 /* EmptyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCell.xib; sourceTree = "<group>"; };
 		B7268C311989C46400F7714E /* Chant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7268C341989C46400F7714E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7268C361989C46400F7714E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1963,6 +1968,7 @@
 				B73EF5B71991F7DC00934A61 /* Comment */,
 				B73EF5B61991F7D100934A61 /* Login */,
 				B73EF5BF19947B8500934A61 /* SignUp */,
+				B71C9B631A27F56100135E13 /* EmptyCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1980,6 +1986,8 @@
 				B7B0DD1019CB9EFC007FD5F4 /* CommentData.m */,
 				B790A3E719EBA30900856412 /* ChatRoom.h */,
 				B790A3E819EBA30900856412 /* ChatRoom.m */,
+				B71C9B601A1F2B7300135E13 /* ReplyData.h */,
+				B71C9B611A1F2B7300135E13 /* ReplyData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2541,6 +2549,7 @@
 				B7B2D3A819D1F431007EC9A7 /* Celtics.png in Resources */,
 				B7B0DCC519CB95B9007FD5F4 /* glyphicons_396_sound_6_1.png in Resources */,
 				B7B0DCF719CB95B9007FD5F4 /* glyphicons_446_floppy_save.png in Resources */,
+				B71C9B641A27F56100135E13 /* EmptyCell.xib in Resources */,
 				B7B0DBDF19CB95B9007FD5F4 /* glyphicons_166_ipod.png in Resources */,
 				B7B0DC7B19CB95B9007FD5F4 /* glyphicons_322_playing_dices.png in Resources */,
 				B7B0DCAB19CB95B9007FD5F4 /* glyphicons_370_globe_af.png in Resources */,
@@ -2639,6 +2648,7 @@
 				B790A3F219EBA7AE00856412 /* LiveChatCell.m in Sources */,
 				B751BF6719CB6AD700C81F38 /* TeamData.m in Sources */,
 				B7E2582219C753F8009064C3 /* CommentViewFeedCell.m in Sources */,
+				B71C9B621A1F2B7300135E13 /* ReplyData.m in Sources */,
 				B7E2580E19C63E60009064C3 /* CommentViewScoreCell.m in Sources */,
 				B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */,
 				B790A3D519EB7E9400856412 /* NewChatCell.m in Sources */,

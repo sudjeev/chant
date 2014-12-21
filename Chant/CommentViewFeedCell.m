@@ -58,6 +58,12 @@ static int isLoading;
     if(!error)
     {
         //no error was reported
+        if([array count] == 0)
+        {
+            NSLog(@"The query didnt return shit !!!!!!!!!!!!!!!!");
+            return;
+        }
+        
         for(PFObject* comment in array)
         {
             //for every element in the array put it in the table data
@@ -71,7 +77,11 @@ static int isLoading;
             [self.tableData addObject:data];
         }
         isLoading = 0;
+        int oldoffset = offset;
         offset = [self.tableData count];
+        
+        //should check if anything is even returned, otherwise there is no need to reload again cus no new data has been added
+
         [self.feed reloadData];
         
     }
