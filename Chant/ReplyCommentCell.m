@@ -20,15 +20,15 @@
     return self;
 }
 
-- (void) updateViewWithItem: (CommentData*) data
+- (void) updateViewWithItem: (ReplyData*) data
 {
     self.view.layer.cornerRadius = 5;
     self.view.layer.masksToBounds = YES;
     
     self.data = data;
+    self.username.text = data.username;
+    self.comment.text = data.reply;
     
-    
-    self.comment.text = data.text;
     
 }
 

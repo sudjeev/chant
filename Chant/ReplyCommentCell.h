@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CommentData.h"
+#import "ReplyData.h"
 
 @interface ReplyCommentCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIView* view;
-@property (strong, nonatomic) CommentData* data;
+@property (strong, nonatomic) ReplyData* data;
 @property (strong, nonatomic) IBOutlet UITextView* comment;
 @property (strong, nonatomic) IBOutlet UILabel* username;
--(void) updateViewWithItem:(CommentData*) data;
+@property (strong, nonatomic) IBOutlet UILabel* upvotes;
+-(void) updateViewWithItem:(ReplyData*) data;
 @end

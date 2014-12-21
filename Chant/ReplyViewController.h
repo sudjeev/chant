@@ -7,10 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 #import "CommentData.h"
+#import "ReplyData.h"
+#import "ReplyCommentCell.h"
 
-@interface ReplyViewController : UIViewController
+@interface ReplyViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 - (void) updateViewWithCommentData: (CommentData*) comment;
 @property (nonatomic, weak) IBOutlet UIView* replyView;
 @property (nonatomic, weak) IBOutlet UIView* commentView;
+@property (nonatomic, weak) IBOutlet UIImageView* userFlair;
+@property (nonatomic, weak) IBOutlet UILabel* username;
+@property (nonatomic, weak) IBOutlet UITextView* comment;
+@property (nonatomic, weak) IBOutlet UILabel* upvotes;
+@property (nonatomic, weak) IBOutlet UITextField* replyBox;
+@property (nonatomic, strong) IBOutlet UITableView* tableView;
+@property (nonatomic, strong) NSMutableArray* replies;
+@property (strong, nonatomic) NSDictionary* dictionary;
+@property (strong, nonatomic) CommentData* myCommentData;
+
 @end

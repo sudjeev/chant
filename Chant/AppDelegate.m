@@ -50,6 +50,7 @@
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc] initWithNibName:@"ScheduleTableViewController" bundle:nil]];
         //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ChatRoomHome alloc] initWithNibName:@"ChatRoomHome" bundle:nil]];
         navController.navigationBar.translucent = NO;
+        navController.navigationBar.tintColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];;
         self.window.rootViewController = navController;
     }
 
