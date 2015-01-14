@@ -48,11 +48,12 @@
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="18V-dN-Jaj">
-                                <rect key="frame" x="77" y="73" width="155" height="29"/>
+                                <rect key="frame" x="77" y="73" width="144" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="New"/>
                                     <segment title="Top"/>
+                                    <segment title="Mine"/>
                                 </segments>
                                 <color key="tintColor" red="1" green="0.62636514310000002" blue="0.1502822274" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>

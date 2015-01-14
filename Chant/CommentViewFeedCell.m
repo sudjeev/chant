@@ -165,6 +165,16 @@ static int isLoading;
                 [getComments orderByDescending:@"Upvotes"];
                 [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
             }
+        case 2:
+        {
+            self.tableData = [[NSMutableArray alloc] init];
+            PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
+            [getComments whereKey:@"GameID" equalTo:self.data.gameId];
+            [getComments whereKey:@"User" equalTo:[PFUser currentUser].username];
+            isLoading = 1;
+            [getComments orderByDescending:@"createdAt"];
+            [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback:error:)];
+        }
         default:
             break;
     }
