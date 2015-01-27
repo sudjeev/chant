@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "LoginViewController.h"
+#import "ScheduleTableViewController.h"
 #import <Parse/Parse.h>
 
 @interface ProfileViewController ()
@@ -99,7 +100,7 @@
 - (IBAction)onLogOut:(id)sender
 {
     [PFUser logOut];
-    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc]init]];
+    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc]init]];
     navController.navigationBar.translucent = NO;
     [self presentViewController:navController animated:YES completion:nil];
 }

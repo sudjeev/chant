@@ -12,6 +12,8 @@
 #import <Parse/Parse.h>
 #import "GameData.h"
 #import "ProfileViewController.h"
+#import "LoginViewController.h"
+#import "SignUpViewController.h"
 #import "CommentViewFeedCell.h"
 #import "CommentViewController.h"
 #import "NewChatCell.h"
@@ -41,9 +43,20 @@
     
     self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
     
-    UIBarButtonItem* profile = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Final_userProfile" ] style:UIBarButtonItemStylePlain target:self action:@selector(toProfile)];
-    self.navigationItem.rightBarButtonItem = profile;
-    
+    //rgb(52, 152, 219)
+    if([PFUser currentUser] != nil)
+    {
+        UIBarButtonItem* profile = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Final_userProfile" ] style:UIBarButtonItemStylePlain target:self action:@selector(toProfile)];
+        self.navigationItem.rightBarButtonItem = profile;
+    }
+    else
+    {
+        UIBarButtonItem* signUp = [[UIBarButtonItem alloc] initWithTitle:@"Sign Up" style:UIBarButtonItemStyleBordered target:self action:@selector(toSignUp)];
+        self.navigationItem.rightBarButtonItem = signUp;
+        
+        UIBarButtonItem* logIn = [[UIBarButtonItem alloc] initWithTitle:@"Log In" style:UIBarButtonItemStyleBordered target:self action:@selector(toLogIn)];
+        self.navigationItem.leftBarButtonItem = logIn;
+    }
     self.schedule = [[NSMutableArray alloc] init];
     self.liveGames = 0;
     
@@ -51,7 +64,16 @@
                                                           dateStyle:NSDateFormatterMediumStyle
                                                           timeStyle:nil];
     self.navigationItem.title = @"Chant";
+
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont
+                                                                           fontWithName:@"Helvetica Neue" size:21], NSFontAttributeName,
+                                [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1], NSForegroundColorAttributeName, nil];
     
+    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+    
+    [[UINavigationBar appearance]setShadowImage:[[UIImage alloc] init]];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:230/255.0 green:126/255.0 blue:34/255.0 alpha:1.0];
     self.isLoading = 1;
     PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
     [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
@@ -68,6 +90,20 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)toSignUp
+{
+    /*SignUpViewController* newView = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle:nil];
+    UINavigationController* navController = [[UINavigationController alloc]initWithRootViewController:newView];
+    [self presentViewController:navController animated:YES completion:nil];*/
+    
+    [self.navigationController pushViewController:[[SignUpViewController alloc] init] animated:YES];
+}
+
+-(void)toLogIn
+{
+    [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
 }
 
 - (void) toProfile
@@ -95,11 +131,15 @@
              nextGame.awayScore = [object objectForKey:@"awayScore"];
              nextGame.quarter = [object objectForKey:@"quarter"];
              nextGame.gameId = [object objectForKey:@"gameId"];
+             nextGame.status = [object objectForKey:@"status"];
              [self.schedule addObject:nextGame];
              self.liveGames++;
          }
      }
+        
+    //DONT NEED THIS ANYMORE
      //add all the games that are scheduled
+        /*
      for(PFObject* object in response)
      {
         if([[object objectForKey:@"started"] isEqualToString:@"False"])
@@ -114,7 +154,7 @@
             nextGame.gameId = [object objectForKey:@"gameId"];
             [self.schedule addObject:nextGame];
         }
-     }
+     }*/
     }
     
     else
@@ -132,28 +172,12 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"in number of rows for section %i", section);
-    if([self.schedule count] == 0)
-    {
-        //we are returning 1 so that we can show a loading cell instead or a no games cell
-        NSLog(@"returning one");
-        return 1;
-    }
-    
-    
-    
-    if(section == 0)
-    {
-        NSLog(@"returningg %i", self.liveGames);
-        return self.liveGames;
-    }
-    NSLog(@"returning %i ", [self.schedule count] - self.liveGames);
-    return ([self.schedule count] - self.liveGames);
+    return [self.schedule count];
 }
 
 
@@ -166,12 +190,7 @@
                                                               timeStyle:nil];
      return dateString;
     }*/
-    
-    if(section == 0)
-    {
-        return @"Live Games";
-    }
-    return @"Scheduled Games";
+    return @"";
 }
 
 //need to find an effective way to call tableview reload data on a loop cycle
@@ -187,6 +206,7 @@
             //return a loading cell
             UITableViewCell* cell = [[UITableViewCell alloc] init];
             cell = [self.tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         else
@@ -194,6 +214,7 @@
             //return a cell saying no games are being played this day
             UITableViewCell* cell = [[UITableViewCell alloc] init];
             cell = [self.tableView dequeueReusableCellWithIdentifier:@"EmptyScheduleCell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
     }
@@ -205,6 +226,7 @@
         //pass on the gameData object in the schedule array
         ScheduleCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"ScheduleCell"];
         [cell updateCellWithGameData:[self.schedule objectAtIndex:indexPath.row]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     //cell for a scheduled game
@@ -212,6 +234,7 @@
     {
         UpcomingGameCell* cell =  [self.tableView dequeueReusableCellWithIdentifier:@"UpcomingGameCell"];
         [cell updateCellWithGameData:[self.schedule objectAtIndex:indexPath.row + self.liveGames]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
@@ -222,10 +245,10 @@
 {
     if(indexPath.section == 0)
     {
-     return 100;
+     return 150;
     }
     
-    return 50;
+    return 150;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -242,9 +265,10 @@
     tempLabel.shadowColor = [UIColor clearColor];
     tempLabel.shadowOffset = CGSizeMake(0,2);
     tempLabel.textColor = [UIColor whiteColor]; //here you can change the text color of header.
+    tempLabel.textAlignment = NSTextAlignmentCenter;
     if(section == 0)
     {
-        tempLabel.text=@"Live Games";
+        tempLabel.text=@"NBA GameThreads:";
     }
     else
     {

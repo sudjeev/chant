@@ -26,6 +26,8 @@
         self.awayScoreLabel = a;
         self.quarterLabel = a;
     }
+    
+    
     return self;
 }
 
@@ -37,6 +39,35 @@
     self.quarterLabel.text = data.quarter;
     self.homeScoreLabel.text = [data.homeScore stringValue];
     self.awayScoreLabel.text = [data.awayScore stringValue];
+    
+    //update the status of the game and set text color accordingly
+    self.status.text = data.status;
+    
+    if ([data.status isEqualToString:@"pregame"]) {
+        self.status.textColor = [UIColor blueColor];
+    }
+    else if ([data.status isEqualToString:@"live"])
+    {
+        self.status.textColor = [UIColor greenColor];
+    }
+    else
+    {
+        self.status.textColor = [UIColor redColor];
+    }
+    
+    self.uView.layer.cornerRadius = 5;
+    self.uView.layer.masksToBounds = YES;
+    
+    NSArray* keys = [[NSArray alloc] initWithObjects: @"Philadelphia 76ers",@"Milwaukee Bucks",@"Chicago Bulls", @"Cleveland Cavaliers", @"Boston Celtics", @"Los Angeles Clippers", @"Memphis Grizzlies",@"Atlanta Hawks", @"Miami Heat", @"Charlotte Hornets", @"Utah Jazz", @"Sacramento Kings", @"New York Knicks", @"Los Angeles Lakers", @"Orlando Magic", @"Dallas Mavericks", @"Brooklyn Nets", @"Denver Nuggets", @"Indiana Pacers", @"New Orleans Pelicans", @"Detroit Pistons", @"Toronto Raptors", @"Houston Rockets", @"San Antonio Spurs", @"Phoenix Suns", @"Oklahoma City Thunder", @"Minnesota Timberwolves", @"Portland Trailblazers", @"Golden State Warriors", @"Washington Wizards", nil];
+    
+    NSArray* images = @[[UIImage imageNamed:@"76ers"], [UIImage imageNamed:@"Bucks"],[UIImage imageNamed:@"Bulls"],[UIImage imageNamed:@"Cavaliers"],[UIImage imageNamed:@"Celtics"],[UIImage imageNamed:@"Clippers"],[UIImage imageNamed:@"Grizzlies"],[UIImage imageNamed:@"Hawks"],[UIImage imageNamed:@"Heat"],[UIImage imageNamed:@"Hornets"],[UIImage imageNamed:@"Jazz"],[UIImage imageNamed:@"Kings"],[UIImage imageNamed:@"Knicks"],[UIImage imageNamed:@"Lakers"],[UIImage imageNamed:@"Magic"],[UIImage imageNamed:@"Mavericks"],[UIImage imageNamed:@"Nets"],[UIImage imageNamed:@"Nuggets"],[UIImage imageNamed:@"Pacers"],[UIImage imageNamed:@"Pelicans"],[UIImage imageNamed:@"Pistons"],[UIImage imageNamed:@"Raptors"],[UIImage imageNamed:@"Rockets"],[UIImage imageNamed:@"Spurs"],[UIImage imageNamed:@"Suns"],[UIImage imageNamed:@"Thunder"],[UIImage imageNamed:@"Timberwolves"],[UIImage imageNamed:@"TrailBlazers"],[UIImage imageNamed:@"Warriors"],[UIImage imageNamed:@"Wizards"]];
+    
+    self.dictionary = [NSDictionary dictionaryWithObjects:images forKeys:keys];
+    
+    self.homeLogo.image = [self.dictionary objectForKey:data.home];
+    self.awayLogo.image  =[self.dictionary objectForKey:data.away];
+    
+
 }
 
 - (void)awakeFromNib

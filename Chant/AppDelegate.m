@@ -39,8 +39,13 @@
     //NEED an if statement to check if user is already logged in here
     if ([PFUser currentUser] == nil)
     {
-     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil]];
+    
+     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc] initWithNibName:@"ScheduleTableViewController" bundle:nil]];
      navController.navigationBar.translucent = NO;
+        
+     //need to add two buttons to the navController navigation bar, one for going to the sign up screen and the
+     //other one for login
+
      self.window.rootViewController = navController;
     }
     else

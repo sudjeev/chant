@@ -12,7 +12,7 @@
 #import "GameData.h"
 #import "CommentData.h"
 
-@interface CommentViewFeedCell : UICollectionViewCell<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface CommentViewFeedCell : UICollectionViewCell<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView* feed;
 @property (nonatomic, strong) IBOutlet UITextField* commentBox;

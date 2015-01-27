@@ -165,8 +165,18 @@ static int isLoading;
                 [getComments orderByDescending:@"Upvotes"];
                 [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
             }
+            break;
         case 2:
         {
+            if([PFUser currentUser] == nil)
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Before you can post.." message:@"Log In or Sign Up for an account, it only takes 30 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                [alert show];
+                self.segmentedControl.selectedSegmentIndex = 0;
+                [self valueChanged:self.segmentedControl];
+                break;
+            }
+            
             self.tableData = [[NSMutableArray alloc] init];
             PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
             [getComments whereKey:@"GameID" equalTo:self.data.gameId];
@@ -182,6 +192,14 @@ static int isLoading;
 
 - (IBAction)onComment:(id)sender
 {
+    //if not logged in
+    if([PFUser currentUser] == nil)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Before you can post.." message:@"Log In or Sign Up for an account, it only takes 30 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
     if([self.commentBox.text isEqualToString: @""])
     {
         [self textFieldShouldReturn:self.commentBox];
@@ -229,6 +247,9 @@ static int isLoading;
 
 - (IBAction)onRefresh:(id)sender
 {
+    //Just call the segmented control method
+    [self valueChanged:self.segmentedControl];
+    /*
     self.tableData = [[NSMutableArray alloc] init];
     [self.feed reloadData];
     //call the query again
@@ -239,6 +260,7 @@ static int isLoading;
     isLoading = 1;
     [getComments orderByDescending:@"createdAt"];
     [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
+     */
     
 }
 
