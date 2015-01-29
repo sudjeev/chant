@@ -109,6 +109,9 @@ static int isLoading;
         }
         for(PFObject* object in array)
         {
+            //need to push the data to parse before doing the data reload
+            //also need to display a loading spinner
+            
             ReplyData* newReply = [[ReplyData alloc]init];
             newReply.commentID = object[@"CommentID"];
             newReply.objectID = object.objectId;
@@ -147,11 +150,61 @@ static int isLoading;
     newComment[@"Username"] = [PFUser currentUser].username;
     [newComment saveInBackground];
     
+    //reset the replies array
+    self.replies = [[NSMutableArray alloc] init];
+
+    
+    //now recall the query to get all the comments again
+    PFQuery* getReplies = [PFQuery queryWithClassName:@"Replies"];
+    [getReplies whereKey:@"CommentID" equalTo:self.myCommentData.objectId];
+    isLoading = 1;
+    getReplies.limit = 10;
+    [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
+    
     return YES;
     
 }
 
+//Method called when reply button is hit
 
+-(IBAction)onReply:(id)sender
+{
+    if([self.replyBox.text isEqualToString:@""])
+    {
+        return;
+        [self.replyBox resignFirstResponder];
+    }
+    else
+    {
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+        [self.view addSubview: activityIndicator];
+        
+        activityIndicator.color = [UIColor redColor];
+        [activityIndicator startAnimating];
+        
+        //handle all the logic for storing the comment here
+        PFObject *newComment = [PFObject objectWithClassName:@"Replies"];
+        newComment[@"Reply"] = self.replyBox.text;
+        newComment[@"CommentID"] = self.myCommentData.objectId;
+        newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
+        newComment[@"Username"] = [PFUser currentUser].username;
+        [newComment saveInBackground];
+        
+        //reset the array of replies
+        self.replies = [[NSMutableArray alloc] init];
+        
+        //now recall the query to get all the comments again
+        PFQuery* getReplies = [PFQuery queryWithClassName:@"Replies"];
+        [getReplies whereKey:@"CommentID" equalTo:self.myCommentData.objectId];
+        isLoading = 1;
+        getReplies.limit = 10;
+        [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
+        [self.replyBox resignFirstResponder];
+        
+        [activityIndicator stopAnimating];
+    }
+}
 
 //TABLEVIEW METHODS
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

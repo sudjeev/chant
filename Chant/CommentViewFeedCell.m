@@ -115,6 +115,7 @@ static int isLoading;
         data.username = [PFUser currentUser].username;
         */
         
+        //increment my total upvotes by 1 after I post a new comment
         PFQuery* query = [PFQuery queryWithClassName:@"userData"];
         [query whereKey:@"username" equalTo:[PFUser currentUser].username];
         [query findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
@@ -130,7 +131,11 @@ static int isLoading;
          }];
         
         self.commentBox.text = @"";
-        [self.feed reloadData];
+        
+        //throw up a loading spinner
+        
+        //reload the whole tableview based on segmented control value
+        [self valueChanged:self.segmentedControl];
     }
     
     [textField resignFirstResponder];
@@ -224,6 +229,7 @@ static int isLoading;
         data.username = [PFUser currentUser].username;
         */
         
+        //upvote the users totalupvotes by 1
         PFQuery* query = [PFQuery queryWithClassName:@"userData"];
         [query whereKey:@"username" equalTo:[PFUser currentUser].username];
         [query findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
@@ -240,7 +246,9 @@ static int isLoading;
         
         self.commentBox.text = @"";
         [self.commentBox resignFirstResponder];
-        [self.feed reloadData];
+
+        //reload the whole tableview based on segmented control value
+        [self valueChanged:self.segmentedControl];
     }
 }
 
