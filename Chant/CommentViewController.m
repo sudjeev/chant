@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
     //need to register the collectionview cell
     
@@ -38,12 +39,10 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    
-    
     //register for the notifcation that specifies a reply
     NSString *notificationName = @"ReplyNotification";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName object:nil];
-    
+
 }
 
 - (void) useNotification: (NSNotification*) notification
@@ -88,8 +87,10 @@
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+
         CommentViewFeedCell* cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"CommentViewFeedCell" forIndexPath:indexPath];
         [cell setupWithGameData:self.data];
+        NSLog(@"CommentViewController loaded!!!!!!!!!!!!");
         return cell;
 }
 

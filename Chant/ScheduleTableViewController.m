@@ -220,34 +220,18 @@
     }
     
     
-    //cell for a live game
-    if(indexPath.section == 0)
-    {
+    
         //pass on the gameData object in the schedule array
-        ScheduleCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"ScheduleCell"];
-        [cell updateCellWithGameData:[self.schedule objectAtIndex:indexPath.row]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }
-    //cell for a scheduled game
-    else if (indexPath.section == 1)
-    {
-        UpcomingGameCell* cell =  [self.tableView dequeueReusableCellWithIdentifier:@"UpcomingGameCell"];
-        [cell updateCellWithGameData:[self.schedule objectAtIndex:indexPath.row + self.liveGames]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }
+    ScheduleCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"ScheduleCell"];
+    [cell updateCellWithGameData:[self.schedule objectAtIndex:indexPath.row]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
     
     return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0)
-    {
-     return 150;
-    }
-    
     return 150;
 }
 

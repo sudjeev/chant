@@ -40,7 +40,9 @@ static int isLoading;
     self.feed.delegate = self;
     self.tableData = [[NSMutableArray alloc] init];
     
+
     PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
+    NSLog(@"Are you crashing here??????????");
     [getComments whereKey:@"GameID" equalTo:self.data.gameId];
     //need to add the filter for gameid
     getComments.limit = 10;
@@ -50,11 +52,13 @@ static int isLoading;
 
     [self.feed registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"CommentTableViewCell"];
     [self.feed registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
+
 }
 
 
 - (void) commentCallback: (NSArray*) array error: (NSError*) error
 {
+
     if(!error)
     {
         //no error was reported
