@@ -17,6 +17,9 @@
 #import "CommentViewFeedCell.h"
 #import "CommentViewController.h"
 #import "NewChatCell.h"
+#import "RKClient.h"
+#import "RKClient+Users.h"
+
 
 @interface ScheduleTableViewController ()
 @property (nonatomic, strong) NSMutableArray* schedule;
@@ -84,6 +87,15 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    //testing if redditKit is working
+    [[RKClient sharedClient] signInWithUsername:@"gswhoops22" password:@"waheguru" completion:^(NSError *error) {
+        if (!error)
+        {
+            NSLog(@"YAAAAAAAAAAA BOYYYYYYYYYYYYY");
+        }
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning
