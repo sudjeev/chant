@@ -37,6 +37,7 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewScoreCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewScoreCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewFeedCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewFeedCell"];
     self.navigationController.navigationBar.translucent = NO;
+    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     //register for the notifcation that specifies a reply
@@ -70,6 +71,8 @@
     }
     
     self.data = data;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
     self.navigationItem.title = [NSString stringWithFormat:@"%@ at %@", self.data.away, self.data.home];
     return YES;
 }

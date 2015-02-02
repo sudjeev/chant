@@ -34,11 +34,9 @@
 - (void) updateCellWithGameData:(GameData *)data
 {
     self.data = data;
-    self.homeLabel.text = data.home;
-    self.awayLabel.text = data.away;
-    self.quarterLabel.text = data.quarter;
-    self.homeScoreLabel.text = [data.homeScore stringValue];
-    self.awayScoreLabel.text = [data.awayScore stringValue];
+    self.homeLabel.text = data.homeFull;
+    self.awayLabel.text = data.awayFull;
+
     
     //update the status of the game and set text color accordingly
     self.status.text = data.status;
@@ -64,8 +62,8 @@
     
     self.dictionary = [NSDictionary dictionaryWithObjects:images forKeys:keys];
     
-    self.homeLogo.image = [self.dictionary objectForKey:data.home];
-    self.awayLogo.image  =[self.dictionary objectForKey:data.away];
+    self.homeLogo.image = [self.dictionary objectForKey:data.homeFull];
+    self.awayLogo.image  =[self.dictionary objectForKey:data.awayFull];
     
 
 }

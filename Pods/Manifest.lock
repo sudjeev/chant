@@ -29,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 2.3)
+  - Mantle (= 1.5.4)
   - RedditKit (~> 1.2)
 
 SPEC CHECKSUMS:

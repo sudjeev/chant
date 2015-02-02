@@ -19,6 +19,8 @@
 #import "NewChatCell.h"
 #import "RKClient.h"
 #import "RKClient+Users.h"
+#import "RKClient+Comments.h"
+#import "RKClient+Messages.h"
 
 
 @interface ScheduleTableViewController ()
@@ -51,6 +53,7 @@
     {
         UIBarButtonItem* profile = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Final_userProfile" ] style:UIBarButtonItemStylePlain target:self action:@selector(toProfile)];
         self.navigationItem.rightBarButtonItem = profile;
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     }
     else
     {
@@ -59,6 +62,8 @@
         
         UIBarButtonItem* logIn = [[UIBarButtonItem alloc] initWithTitle:@"Log In" style:UIBarButtonItemStyleBordered target:self action:@selector(toLogIn)];
         self.navigationItem.leftBarButtonItem = logIn;
+        
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     }
     self.schedule = [[NSMutableArray alloc] init];
     self.liveGames = 0;
@@ -95,7 +100,10 @@
             NSLog(@"YAAAAAAAAAAA BOYYYYYYYYYYYYY");
         }
     }];
-
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,6 +117,26 @@
     /*SignUpViewController* newView = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle:nil];
     UINavigationController* navController = [[UINavigationController alloc]initWithRootViewController:newView];
     [self presentViewController:navController animated:YES completion:nil];*/
+    
+    
+    //for testing reddit, remove later
+    [[RKClient sharedClient] sendMessage:@"Hello!" subject:@"test" recipient:@"gswhoops" completion:^(NSError *error){
+        if(!error)
+        {
+            NSLog(@"Should've sent a message");
+        }
+        else
+        {
+            NSLog(@"well fuck");
+        }
+    }];
+    
+    [[RKClient sharedClient] submitComment:@"testing" onThingWithFullName:@"t3_2ufbks" completion:^(NSError *error){
+    if(!error)
+    {
+        NSLog(@"It shouldve posted to comments");
+    }
+    }];
     
     [self.navigationController pushViewController:[[SignUpViewController alloc] init] animated:YES];
 }
@@ -133,20 +161,17 @@
      //add all the games that are currently going on
      for(PFObject* object in response)
      {
-         if([[object objectForKey:@"started"] isEqualToString:@"True"])
-         {
              GameData* nextGame = [[GameData alloc] init];
              nextGame.started = [object objectForKey:@"started"];
              nextGame.home = [object objectForKey:@"home"];
              nextGame.away = [object objectForKey:@"away"];
-             nextGame.homeScore = [object objectForKey:@"homeScore"];
-             nextGame.awayScore = [object objectForKey:@"awayScore"];
-             nextGame.quarter = [object objectForKey:@"quarter"];
+             nextGame.homeFull = [object objectForKey:@"homeFull"];
+             nextGame.awayFull = [object objectForKey:@"awayFull"];
              nextGame.gameId = [object objectForKey:@"gameId"];
              nextGame.status = [object objectForKey:@"status"];
              [self.schedule addObject:nextGame];
              self.liveGames++;
-         }
+         
      }
         
     //DONT NEED THIS ANYMORE

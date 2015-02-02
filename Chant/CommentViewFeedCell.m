@@ -99,6 +99,14 @@ static int isLoading;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    //if not logged in
+    if([PFUser currentUser] == nil)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Before you can post.." message:@"Log In or Sign Up for an account, it only takes 30 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alert show];
+        [textField resignFirstResponder];
+        return YES;
+    }
     
     if([self.commentBox.text isEqualToString: @""] == NO)
     {
