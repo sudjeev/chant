@@ -21,4 +21,5 @@
 @property (strong, nonatomic) NSString* gameId;
 @property (strong, nonatomic) NSString* started;
 @property (strong, nonatomic) NSString* status;
+@property (strong, nonatomic) NSString* redditFullName;
 @end

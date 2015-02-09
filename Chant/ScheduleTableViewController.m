@@ -94,12 +94,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //testing if redditKit is working
-    [[RKClient sharedClient] signInWithUsername:@"gswhoops22" password:@"waheguru" completion:^(NSError *error) {
+   /* [[RKClient sharedClient] signInWithUsername:@"gswhoops22" password:@"waheguru" completion:^(NSError *error) {
         if (!error)
         {
             NSLog(@"YAAAAAAAAAAA BOYYYYYYYYYYYYY");
         }
-    }];
+    }];*/
     
     
     
@@ -120,7 +120,7 @@
     
     
     //for testing reddit, remove later
-    [[RKClient sharedClient] sendMessage:@"Hello!" subject:@"test" recipient:@"gswhoops" completion:^(NSError *error){
+   /* [[RKClient sharedClient] sendMessage:@"Hello!" subject:@"test" recipient:@"gswhoops" completion:^(NSError *error){
         if(!error)
         {
             NSLog(@"Should've sent a message");
@@ -129,14 +129,8 @@
         {
             NSLog(@"well fuck");
         }
-    }];
+    }];*/
     
-    [[RKClient sharedClient] submitComment:@"testing" onThingWithFullName:@"t3_2ufbks" completion:^(NSError *error){
-    if(!error)
-    {
-        NSLog(@"It shouldve posted to comments");
-    }
-    }];
     
     [self.navigationController pushViewController:[[SignUpViewController alloc] init] animated:YES];
 }
@@ -169,6 +163,7 @@
              nextGame.awayFull = [object objectForKey:@"awayFull"];
              nextGame.gameId = [object objectForKey:@"gameId"];
              nextGame.status = [object objectForKey:@"status"];
+             nextGame.redditFullName = [object objectForKey:@"redditFullName"];
              [self.schedule addObject:nextGame];
              self.liveGames++;
          

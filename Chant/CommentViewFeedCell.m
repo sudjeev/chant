@@ -8,6 +8,10 @@
 
 #import "CommentViewFeedCell.h"
 #import "GameData.h"
+#import "RKClient.h"
+#import "RKClient+Users.h"
+#import "RKClient+Comments.h"
+#import "RKClient+Messages.h"
 
 
 @implementation CommentViewFeedCell
@@ -41,8 +45,8 @@ static int isLoading;
     self.tableData = [[NSMutableArray alloc] init];
     
 
+    //Query to get all the comments for this chatroom
     PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
-    NSLog(@"Are you crashing here??????????");
     [getComments whereKey:@"GameID" equalTo:self.data.gameId];
     //need to add the filter for gameid
     getComments.limit = 10;
@@ -50,6 +54,45 @@ static int isLoading;
     [getComments orderByDescending:@"createdAt"];
     [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
 
+    
+    //check if the user is signed into reddit, if not then check with parse to see if he has an account connected with reddit and
+    //if he does then log him in
+    
+    //is user aint signed into reddit but is signed into chant
+    if(![[RKClient sharedClient] isSignedIn] && [PFUser currentUser] != nil)
+    {
+        PFQuery* query = [PFQuery queryWithClassName:@"userData"];
+        [query whereKey:@"username" equalTo:[PFUser currentUser].username];
+        [query findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
+         {
+             if(!error)
+             {
+                 for(PFObject* object in objects)
+                 {
+                     //string to check if user connected to reddit
+                     NSString* flag = object[@"reddit"];
+                 
+                     //check if connected to reddit
+                     if([flag isEqualToString:@"true"])
+                     {
+                             //sign the user in with his username and the password stored on parse
+                             [[RKClient sharedClient] signInWithUsername:[PFUser currentUser].username  password:object[@"redditPassword"] completion:^(NSError *error) {
+                                 if (!error)
+                                 {
+                                     NSLog(@"User successfully connected to reddit in comment view");
+                                 }
+                                 else
+                                 {
+                                     NSLog(@"Error logging user into reddit from the comments screen");
+                                 }
+                             }];
+                     }
+                 }
+             }
+         }];
+    }
+
+    
     [self.feed registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"CommentTableViewCell"];
     [self.feed registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
 
@@ -99,7 +142,7 @@ static int isLoading;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    //if not logged in
+    //if the user isnt logged into his account he shouldnt be allowed to post any content
     if([PFUser currentUser] == nil)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Before you can post.." message:@"Log In or Sign Up for an account, it only takes 30 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
@@ -108,10 +151,13 @@ static int isLoading;
         return YES;
     }
     
+    //if the comment box is not empty
     if([self.commentBox.text isEqualToString: @""] == NO)
     {
+        //drop the keyboard
         [textField resignFirstResponder];
         
+        //make a PFObject for the new comment and save it in parse
         PFObject *newComment = [PFObject objectWithClassName:@"Comments"];
         newComment[@"Content"] = self.commentBox.text;
         newComment[@"GameID"] = self.data.gameId;
@@ -119,13 +165,6 @@ static int isLoading;
         newComment[@"User"] = [PFUser currentUser].username;
         [newComment saveInBackground];
         
-        /*
-        CommentData* data = [[CommentData alloc] init];
-        data.text = self.commentBox.text;
-        data.gameId = self.data.gameId;
-        data.upvotes = [[NSNumber alloc ] initWithInt: 1];
-        data.username = [PFUser currentUser].username;
-        */
         
         //increment my total upvotes by 1 after I post a new comment
         PFQuery* query = [PFQuery queryWithClassName:@"userData"];
@@ -141,6 +180,38 @@ static int isLoading;
                  }
              }
          }];
+        
+        
+        /*
+         //Code for crossposting comment to reddit
+         //have an if statement checking if the user is connected to reddit, then confirm that he is logged in, if not then
+         //log the user in using their credentials which we will have stored on parse
+         //
+         //Following this I should make a call to get the redditFullName from parse in case it wasnt there when the chat room was
+         //initially made
+         //then simply post the comment to reddit from this users account
+         
+         [[RKClient sharedClient] submitComment:@"testing" onThingWithFullName:@"t3_2ufbks" completion:^(NSError *error){
+         if(!error)
+         {NSLog(@"It shouldve posted to comments");}
+         }];
+         */
+        
+        
+        //if there is a gamethread to post to and the user is signed into reddit
+        if(self.data.redditFullName != nil && [[RKClient sharedClient]isSignedIn])
+        {
+            [[RKClient sharedClient] submitComment:self.commentBox.text onThingWithFullName:self.data.redditFullName completion:^(NSError *error){
+                if(!error)
+                    {
+                        NSLog(@"It shouldve posted to comments of %@", self.data.redditFullName);
+                    }
+                else
+                {
+                    NSLog(@"Couldnt crosspost the comment to reddit game threads");
+                }
+            }];
+        }
         
         self.commentBox.text = @"";
         
@@ -225,6 +296,7 @@ static int isLoading;
     
     else
     {
+        //enter this comment data to parse
         PFObject *newComment = [PFObject objectWithClassName:@"Comments"];
         newComment[@"Content"] = self.commentBox.text;
         newComment[@"GameID"] = self.data.gameId;
@@ -232,14 +304,6 @@ static int isLoading;
         newComment[@"User"] = [PFUser currentUser].username;
         [newComment saveInBackground];
         
-        //this is causing a double comment entry
-        /*
-        CommentData* data = [[CommentData alloc] init];
-        data.text = self.commentBox.text;
-        data.gameId = self.data.gameId;
-        data.upvotes = [[NSNumber alloc ] initWithInt: 1];
-        data.username = [PFUser currentUser].username;
-        */
         
         //upvote the users totalupvotes by 1
         PFQuery* query = [PFQuery queryWithClassName:@"userData"];
@@ -256,6 +320,21 @@ static int isLoading;
              }
          }];
         
+        
+        //if there is a gamethread for this game and if the user is signed in then crosspost this too reddit
+        if(self.data.redditFullName != nil && [[RKClient sharedClient]isSignedIn])
+        {
+            [[RKClient sharedClient] submitComment:self.commentBox.text onThingWithFullName:self.data.redditFullName completion:^(NSError *error){
+                if(!error)
+                {NSLog(@"It shouldve posted to comments of %@", self.data.redditFullName);}
+                else
+                {
+                    NSLog(@"Couldnt crosspost the comment to reddit game threads");
+                }
+            }];
+        }
+        
+        //reset the comment box and drop the keyboard
         self.commentBox.text = @"";
         [self.commentBox resignFirstResponder];
 
