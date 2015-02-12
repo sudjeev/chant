@@ -44,7 +44,6 @@
                                     <segment title="Top"/>
                                     <segment title="Mine"/>
                                 </segments>
-                                <color key="tintColor" red="1" green="0.62636514310000002" blue="0.1502822274" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="valueChanged:" destination="gql-6g-suv" eventType="valueChanged" id="hZA-tl-awc"/>
                                 </connections>
@@ -62,9 +61,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwd-KM-6pC">
                                 <rect key="frame" x="257" y="6" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.31382876290357742" green="0.45103649729356732" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Post">
-                                    <color key="titleColor" red="1" green="0.62636514310000002" blue="0.1502822274" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="onComment:" destination="gql-6g-suv" eventType="touchUpInside" id="UzT-nh-G3e"/>
@@ -80,6 +79,7 @@
             <connections>
                 <outlet property="commentBox" destination="EhW-SY-sZh" id="tcC-nk-ZMh"/>
                 <outlet property="feed" destination="zUs-ap-UUZ" id="AFc-gg-TcA"/>
+                <outlet property="post" destination="jwd-KM-6pC" id="be5-Lg-FAJ"/>
                 <outlet property="segmentedControl" destination="18V-dN-Jaj" id="P7N-KN-yhZ"/>
                 <outlet property="view" destination="Dj8-4K-4NO" id="WT5-Db-OiA"/>
             </connections>

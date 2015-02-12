@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7BABAE71ABDB8785FD8EEC66 /* libPods-Chant.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50867EBFA48831889840209F /* libPods-Chant.a */; };
+		B70484C61A7E0383003686C7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70484C51A7E0383003686C7 /* Accounts.framework */; };
+		B70484C81A7E0390003686C7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70484C71A7E0390003686C7 /* Social.framework */; };
+		B70484CA1A7E049D003686C7 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70484C91A7E049D003686C7 /* FacebookSDK.framework */; };
 		B71C9B621A1F2B7300135E13 /* ReplyData.m in Sources */ = {isa = PBXBuildFile; fileRef = B71C9B611A1F2B7300135E13 /* ReplyData.m */; };
 		B71C9B641A27F56100135E13 /* EmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B71C9B631A27F56100135E13 /* EmptyCell.xib */; };
 		B7268C351989C46400F7714E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7268C341989C46400F7714E /* Foundation.framework */; };
@@ -63,6 +67,8 @@
 		B790A3FA19EC976C00856412 /* ChatRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B790A3F819EC976C00856412 /* ChatRoomController.xib */; };
 		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
+		B7A39B8B1A8CADF500A7393D /* ChangeFlairController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A39B891A8CADF500A7393D /* ChangeFlairController.m */; };
+		B7A39B8C1A8CADF500A7393D /* ChangeFlairController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7A39B8A1A8CADF500A7393D /* ChangeFlairController.xib */; };
 		B7B0DB3919CB95B9007FD5F4 /* glyphicons_000_glass.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B0D96319CB95B5007FD5F4 /* glyphicons_000_glass.png */; };
 		B7B0DB3A19CB95B9007FD5F4 /* glyphicons_001_leaf.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B0D96419CB95B5007FD5F4 /* glyphicons_001_leaf.png */; };
 		B7B0DB3B19CB95B9007FD5F4 /* glyphicons_002_dog.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B0D96519CB95B5007FD5F4 /* glyphicons_002_dog.png */; };
@@ -597,6 +603,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		50867EBFA48831889840209F /* libPods-Chant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chant.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57EA4A8084AE5D77995E3D0C /* Pods-Chant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chant/Pods-Chant.release.xcconfig"; sourceTree = "<group>"; };
+		AF9B3B258C905B2C704E08DE /* Pods-Chant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chant/Pods-Chant.debug.xcconfig"; sourceTree = "<group>"; };
+		B70484C51A7E0383003686C7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		B70484C71A7E0390003686C7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		B70484C91A7E049D003686C7 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		B71C9B601A1F2B7300135E13 /* ReplyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyData.h; sourceTree = "<group>"; };
 		B71C9B611A1F2B7300135E13 /* ReplyData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyData.m; sourceTree = "<group>"; };
 		B71C9B631A27F56100135E13 /* EmptyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCell.xib; sourceTree = "<group>"; };
@@ -672,6 +684,9 @@
 		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		B798D1E619A5C38300550D56 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		B7A39B881A8CADF500A7393D /* ChangeFlairController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeFlairController.h; sourceTree = "<group>"; };
+		B7A39B891A8CADF500A7393D /* ChangeFlairController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeFlairController.m; sourceTree = "<group>"; };
+		B7A39B8A1A8CADF500A7393D /* ChangeFlairController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeFlairController.xib; sourceTree = "<group>"; };
 		B7B0D96319CB95B5007FD5F4 /* glyphicons_000_glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_000_glass.png; sourceTree = "<group>"; };
 		B7B0D96419CB95B5007FD5F4 /* glyphicons_001_leaf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_001_leaf.png; sourceTree = "<group>"; };
 		B7B0D96519CB95B5007FD5F4 /* glyphicons_002_dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_002_dog.png; sourceTree = "<group>"; };
@@ -1210,9 +1225,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B70484C81A7E0390003686C7 /* Social.framework in Frameworks */,
+				B70484C61A7E0383003686C7 /* Accounts.framework in Frameworks */,
 				B73EF5B01991F21B00934A61 /* SystemConfiguration.framework in Frameworks */,
 				B73EF5AE1991F21100934A61 /* StoreKit.framework in Frameworks */,
 				B73EF5AC1991F20B00934A61 /* Security.framework in Frameworks */,
+				B70484CA1A7E049D003686C7 /* FacebookSDK.framework in Frameworks */,
 				B73EF5AA1991F1F800934A61 /* QuartzCore.framework in Frameworks */,
 				B73EF5A81991F1EF00934A61 /* MobileCoreServices.framework in Frameworks */,
 				B73EF5A61991F1E200934A61 /* libz.dylib in Frameworks */,
@@ -1224,6 +1242,7 @@
 				B7268C391989C46400F7714E /* UIKit.framework in Frameworks */,
 				B7268C351989C46400F7714E /* Foundation.framework in Frameworks */,
 				B73EF59E1991EE0000934A61 /* Parse.framework in Frameworks */,
+				7BABAE71ABDB8785FD8EEC66 /* libPods-Chant.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1241,6 +1260,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00B2A75E91563DD7ABA98EC2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AF9B3B258C905B2C704E08DE /* Pods-Chant.debug.xcconfig */,
+				57EA4A8084AE5D77995E3D0C /* Pods-Chant.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B7268C281989C46400F7714E = {
 			isa = PBXGroup;
 			children = (
@@ -1248,6 +1276,7 @@
 				B7268C591989C46400F7714E /* ChantTests */,
 				B7268C331989C46400F7714E /* Frameworks */,
 				B7268C321989C46400F7714E /* Products */,
+				00B2A75E91563DD7ABA98EC2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1263,6 +1292,9 @@
 		B7268C331989C46400F7714E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B70484C91A7E049D003686C7 /* FacebookSDK.framework */,
+				B70484C71A7E0390003686C7 /* Social.framework */,
+				B70484C51A7E0383003686C7 /* Accounts.framework */,
 				B73EF5AF1991F21B00934A61 /* SystemConfiguration.framework */,
 				B73EF5AD1991F21100934A61 /* StoreKit.framework */,
 				B73EF5AB1991F20A00934A61 /* Security.framework */,
@@ -1278,6 +1310,7 @@
 				B7268C381989C46400F7714E /* UIKit.framework */,
 				B7268C3A1989C46400F7714E /* CoreData.framework */,
 				B7268C521989C46400F7714E /* XCTest.framework */,
+				50867EBFA48831889840209F /* libPods-Chant.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1998,6 +2031,9 @@
 				B7FEC4BC19CB57B100E41799 /* ProfileViewController.h */,
 				B7FEC4BD19CB57B100E41799 /* ProfileViewController.m */,
 				B7FEC4BE19CB57B100E41799 /* ProfileViewController.xib */,
+				B7A39B881A8CADF500A7393D /* ChangeFlairController.h */,
+				B7A39B891A8CADF500A7393D /* ChangeFlairController.m */,
+				B7A39B8A1A8CADF500A7393D /* ChangeFlairController.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -2020,9 +2056,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B7268C631989C46400F7714E /* Build configuration list for PBXNativeTarget "Chant" */;
 			buildPhases = (
+				D51B401ADD9A02ED756F21D3 /* Check Pods Manifest.lock */,
 				B7268C2D1989C46400F7714E /* Sources */,
 				B7268C2E1989C46400F7714E /* Frameworks */,
 				B7268C2F1989C46400F7714E /* Resources */,
+				0D04A9B5051E274268E762B5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2475,6 +2513,7 @@
 				B7B0DC9D19CB95B9007FD5F4 /* glyphicons_356_dumbbell.png in Resources */,
 				B7B0DB5B19CB95B9007FD5F4 /* glyphicons_034_old_man.png in Resources */,
 				B7B0DB9819CB95B9007FD5F4 /* glyphicons_095_vector_path_circle.png in Resources */,
+				B7A39B8C1A8CADF500A7393D /* ChangeFlairController.xib in Resources */,
 				B7B0DC2019CB95B9007FD5F4 /* glyphicons_231_sun.png in Resources */,
 				B7B0DB8119CB95B9007FD5F4 /* glyphicons_072_bookmark.png in Resources */,
 				B7B0DCE319CB95B9007FD5F4 /* glyphicons_426_git_merge.png in Resources */,
@@ -2629,6 +2668,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D04A9B5051E274268E762B5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chant/Pods-Chant-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D51B401ADD9A02ED756F21D3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B7268C2D1989C46400F7714E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -2636,6 +2708,7 @@
 			files = (
 				B7C06EFA19AF028000A4D9C5 /* User.m in Sources */,
 				B790A3F919EC976C00856412 /* ChatRoomController.m in Sources */,
+				B7A39B8B1A8CADF500A7393D /* ChangeFlairController.m in Sources */,
 				B7B9A0A01A1B394F00C494F1 /* ReplyCell.m in Sources */,
 				B7268C471989C46400F7714E /* AppDelegate.m in Sources */,
 				B7FEC4BF19CB57B100E41799 /* ProfileViewController.m in Sources */,
@@ -2776,12 +2849,15 @@
 		};
 		B7268C641989C46400F7714E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF9B3B258C905B2C704E08DE /* Pods-Chant.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/sudjeevsingh/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chant/Chant-Prefix.pch";
@@ -2793,12 +2869,15 @@
 		};
 		B7268C651989C46400F7714E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57EA4A8084AE5D77995E3D0C /* Pods-Chant.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/sudjeevsingh/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chant/Chant-Prefix.pch";

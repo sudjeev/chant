@@ -10,6 +10,8 @@
 
 @interface GameData : NSObject
 @property (strong, nonatomic) NSString* home;
+@property (strong, nonatomic) NSString* homeFull;
+@property (strong, nonatomic) NSString* awayFull;
 @property (strong, nonatomic) NSString* away;
 @property (strong, nonatomic) NSString* quarter;
 @property (strong, nonatomic) NSDate* date;
@@ -19,4 +21,5 @@
 @property (strong, nonatomic) NSString* gameId;
 @property (strong, nonatomic) NSString* started;
 @property (strong, nonatomic) NSString* status;
+@property (strong, nonatomic) NSString* redditFullName;
 @end

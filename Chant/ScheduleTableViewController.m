@@ -17,6 +17,11 @@
 #import "CommentViewFeedCell.h"
 #import "CommentViewController.h"
 #import "NewChatCell.h"
+#import "RKClient.h"
+#import "RKClient+Users.h"
+#import "RKClient+Comments.h"
+#import "RKClient+Messages.h"
+
 
 @interface ScheduleTableViewController ()
 @property (nonatomic, strong) NSMutableArray* schedule;
@@ -48,6 +53,7 @@
     {
         UIBarButtonItem* profile = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Final_userProfile" ] style:UIBarButtonItemStylePlain target:self action:@selector(toProfile)];
         self.navigationItem.rightBarButtonItem = profile;
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     }
     else
     {
@@ -56,6 +62,8 @@
         
         UIBarButtonItem* logIn = [[UIBarButtonItem alloc] initWithTitle:@"Log In" style:UIBarButtonItemStyleBordered target:self action:@selector(toLogIn)];
         self.navigationItem.leftBarButtonItem = logIn;
+        
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     }
     self.schedule = [[NSMutableArray alloc] init];
     self.liveGames = 0;
@@ -84,6 +92,18 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    //testing if redditKit is working
+   /* [[RKClient sharedClient] signInWithUsername:@"gswhoops22" password:@"waheguru" completion:^(NSError *error) {
+        if (!error)
+        {
+            NSLog(@"YAAAAAAAAAAA BOYYYYYYYYYYYYY");
+        }
+    }];*/
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,6 +117,20 @@
     /*SignUpViewController* newView = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle:nil];
     UINavigationController* navController = [[UINavigationController alloc]initWithRootViewController:newView];
     [self presentViewController:navController animated:YES completion:nil];*/
+    
+    
+    //for testing reddit, remove later
+   /* [[RKClient sharedClient] sendMessage:@"Hello!" subject:@"test" recipient:@"gswhoops" completion:^(NSError *error){
+        if(!error)
+        {
+            NSLog(@"Should've sent a message");
+        }
+        else
+        {
+            NSLog(@"well fuck");
+        }
+    }];*/
+    
     
     [self.navigationController pushViewController:[[SignUpViewController alloc] init] animated:YES];
 }
@@ -121,40 +155,20 @@
      //add all the games that are currently going on
      for(PFObject* object in response)
      {
-         if([[object objectForKey:@"started"] isEqualToString:@"True"])
-         {
              GameData* nextGame = [[GameData alloc] init];
              nextGame.started = [object objectForKey:@"started"];
              nextGame.home = [object objectForKey:@"home"];
              nextGame.away = [object objectForKey:@"away"];
-             nextGame.homeScore = [object objectForKey:@"homeScore"];
-             nextGame.awayScore = [object objectForKey:@"awayScore"];
-             nextGame.quarter = [object objectForKey:@"quarter"];
+             nextGame.homeFull = [object objectForKey:@"homeFull"];
+             nextGame.awayFull = [object objectForKey:@"awayFull"];
              nextGame.gameId = [object objectForKey:@"gameId"];
              nextGame.status = [object objectForKey:@"status"];
+             nextGame.redditFullName = [object objectForKey:@"redditFullName"];
              [self.schedule addObject:nextGame];
              self.liveGames++;
-         }
+         
      }
         
-    //DONT NEED THIS ANYMORE
-     //add all the games that are scheduled
-        /*
-     for(PFObject* object in response)
-     {
-        if([[object objectForKey:@"started"] isEqualToString:@"False"])
-        {
-            GameData* nextGame = [[GameData alloc] init];
-            nextGame.started = [object objectForKey:@"started"];
-            nextGame.home = [object objectForKey:@"home"];
-            nextGame.away = [object objectForKey:@"away"];
-            nextGame.homeScore = [object objectForKey:@"homeScore"];
-            nextGame.awayScore = [object objectForKey:@"awayScore"];
-            nextGame.quarter = [object objectForKey:@"quarter"];
-            nextGame.gameId = [object objectForKey:@"gameId"];
-            [self.schedule addObject:nextGame];
-        }
-     }*/
     }
     
     else

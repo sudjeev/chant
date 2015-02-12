@@ -10,6 +10,11 @@
 #import "ScheduleTableViewController.h"
 #import "MainViewController.h"
 #import <Parse/Parse.h>
+#import "RKClient.h"
+#import "RKClient+Users.h"
+#import "RKClient+Comments.h"
+#import "RKClient+Messages.h"
+
 
 
 @interface SignUpViewController ()
@@ -32,7 +37,6 @@
         self.password.secureTextEntry = YES;
         self.password.enabled = YES;
         
-        self.repeatPassword.secureTextEntry = YES;
         self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
     }
     return self;
@@ -44,19 +48,47 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+-(IBAction)toggleSwitch:(id)sender
+{
+    if([self.redditSwitch isOn])
+    {
+        NSLog(@"Switch is on");
+    }
+    else
+    {
+        NSLog(@"Switch is off");
+    }
+}
+
 -(IBAction)signUp:(id)sender
 {
-    if(self.username.text.length == 0 || self.password.text.length == 0 || self.repeatPassword.text.length == 0 || self.email.text.length == 0 )
+    if(self.username.text.length == 0 || self.password.text.length == 0 || self.email.text.length == 0 )
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please enter a value for all fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return;
     }
-    else if (![self.password.text isEqualToString:self.repeatPassword.text])
+    
+    //if the user is saying they are using reddit creds then log them in to check
+    if([self.redditSwitch isOn])
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your passwords do not match" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return;
+        //[[RKClient sharedClient] signInWithUsername:self.username.text password:self.password.text completion:^(NSError *error) {
+        
+        [[RKClient sharedClient] signInWithUsername:self.username.text password:self.password.text completion:^(NSError *error) {
+            if (!error)
+            {
+                NSLog(@"New user successfully connected to reddit");
+            }
+            else
+            {
+                NSLog(@"the error is: %@", error);
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not connect with reddit, please make sure you are entering your reddit username and password into the correct fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+                return;
+            }
+        }];
+   
     }
     
     //add functionality to check if the username has already been taken
@@ -74,8 +106,29 @@
           //add the user to the other table too
           PFObject *user = [PFObject objectWithClassName:@"userData"];
           user[@"username"] = self.username.text;
-            [user saveInBackground];
+            
+          if([self.redditSwitch isOn])
+          {
+              user[@"reddit"] = @"true";
+              user[@"redditPassword"] = self.password.text;
+              //need to store the value in self.password.text in a different Parse table because
+              //parse doesnt allow getters of the password field
+              //need to find a way to hash the password before storing it again
+              //I also need to check and make sure that the reddit connection is successful here and let the user know
+              
+          }
+          else
+          {
+              user[@"reddit"] = @"false";
+          }
+            
+          [user saveInBackground];
+            
+            
+            
+            
           UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc]init]];
+            navController.navigationBar.translucent = NO;
           [self presentViewController:navController animated:YES completion:nil];
         }
         else

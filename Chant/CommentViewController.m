@@ -37,11 +37,14 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewScoreCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewScoreCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewFeedCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewFeedCell"];
     self.navigationController.navigationBar.translucent = NO;
+    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     //register for the notifcation that specifies a reply
     NSString *notificationName = @"ReplyNotification";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName object:nil];
+
+    self.collectionView.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
 
 }
 
@@ -70,6 +73,8 @@
     }
     
     self.data = data;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ at %@", self.data.away, self.data.home];
     return YES;
 }

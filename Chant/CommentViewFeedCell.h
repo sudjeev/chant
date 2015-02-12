@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSMutableArray* tableData;
 @property (nonatomic, strong) IBOutlet  UIView* view;
 @property (nonatomic, strong) IBOutlet UISegmentedControl* segmentedControl;
+@property (nonatomic, strong) IBOutlet UIButton* post;
+
 
 - (void)setupWithGameData:(GameData*) data;
 
