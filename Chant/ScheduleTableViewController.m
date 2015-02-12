@@ -169,24 +169,6 @@
          
      }
         
-    //DONT NEED THIS ANYMORE
-     //add all the games that are scheduled
-        /*
-     for(PFObject* object in response)
-     {
-        if([[object objectForKey:@"started"] isEqualToString:@"False"])
-        {
-            GameData* nextGame = [[GameData alloc] init];
-            nextGame.started = [object objectForKey:@"started"];
-            nextGame.home = [object objectForKey:@"home"];
-            nextGame.away = [object objectForKey:@"away"];
-            nextGame.homeScore = [object objectForKey:@"homeScore"];
-            nextGame.awayScore = [object objectForKey:@"awayScore"];
-            nextGame.quarter = [object objectForKey:@"quarter"];
-            nextGame.gameId = [object objectForKey:@"gameId"];
-            [self.schedule addObject:nextGame];
-        }
-     }*/
     }
     
     else

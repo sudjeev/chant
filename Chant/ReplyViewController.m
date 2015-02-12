@@ -176,6 +176,8 @@ static int isLoading;
     }
     else
     {
+        //find out how to launch a loading spinner
+        
         UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
         [self.view addSubview: activityIndicator];
@@ -202,6 +204,8 @@ static int isLoading;
         [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
         [self.replyBox resignFirstResponder];
         
+        
+        [self.tableView reloadData];
         [activityIndicator stopAnimating];
     }
 }

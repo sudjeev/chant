@@ -36,7 +36,8 @@ static int isLoading;
 {
     self.view.layer.cornerRadius = 5;
     self.view.layer.masksToBounds = YES;
-    
+    self.post.tintColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
+    self.segmentedControl.tintColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
     
     offset = 10;
     self.data = data;
