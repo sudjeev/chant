@@ -67,6 +67,8 @@
 		B790A3FA19EC976C00856412 /* ChatRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B790A3F819EC976C00856412 /* ChatRoomController.xib */; };
 		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
+		B7A39B8B1A8CADF500A7393D /* ChangeFlairController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A39B891A8CADF500A7393D /* ChangeFlairController.m */; };
+		B7A39B8C1A8CADF500A7393D /* ChangeFlairController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7A39B8A1A8CADF500A7393D /* ChangeFlairController.xib */; };
 		B7B0DB3919CB95B9007FD5F4 /* glyphicons_000_glass.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B0D96319CB95B5007FD5F4 /* glyphicons_000_glass.png */; };
 		B7B0DB3A19CB95B9007FD5F4 /* glyphicons_001_leaf.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B0D96419CB95B5007FD5F4 /* glyphicons_001_leaf.png */; };
 		B7B0DB3B19CB95B9007FD5F4 /* glyphicons_002_dog.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B0D96519CB95B5007FD5F4 /* glyphicons_002_dog.png */; };
@@ -682,6 +684,9 @@
 		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		B798D1E619A5C38300550D56 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		B7A39B881A8CADF500A7393D /* ChangeFlairController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeFlairController.h; sourceTree = "<group>"; };
+		B7A39B891A8CADF500A7393D /* ChangeFlairController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeFlairController.m; sourceTree = "<group>"; };
+		B7A39B8A1A8CADF500A7393D /* ChangeFlairController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeFlairController.xib; sourceTree = "<group>"; };
 		B7B0D96319CB95B5007FD5F4 /* glyphicons_000_glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_000_glass.png; sourceTree = "<group>"; };
 		B7B0D96419CB95B5007FD5F4 /* glyphicons_001_leaf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_001_leaf.png; sourceTree = "<group>"; };
 		B7B0D96519CB95B5007FD5F4 /* glyphicons_002_dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_002_dog.png; sourceTree = "<group>"; };
@@ -2026,6 +2031,9 @@
 				B7FEC4BC19CB57B100E41799 /* ProfileViewController.h */,
 				B7FEC4BD19CB57B100E41799 /* ProfileViewController.m */,
 				B7FEC4BE19CB57B100E41799 /* ProfileViewController.xib */,
+				B7A39B881A8CADF500A7393D /* ChangeFlairController.h */,
+				B7A39B891A8CADF500A7393D /* ChangeFlairController.m */,
+				B7A39B8A1A8CADF500A7393D /* ChangeFlairController.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -2505,6 +2513,7 @@
 				B7B0DC9D19CB95B9007FD5F4 /* glyphicons_356_dumbbell.png in Resources */,
 				B7B0DB5B19CB95B9007FD5F4 /* glyphicons_034_old_man.png in Resources */,
 				B7B0DB9819CB95B9007FD5F4 /* glyphicons_095_vector_path_circle.png in Resources */,
+				B7A39B8C1A8CADF500A7393D /* ChangeFlairController.xib in Resources */,
 				B7B0DC2019CB95B9007FD5F4 /* glyphicons_231_sun.png in Resources */,
 				B7B0DB8119CB95B9007FD5F4 /* glyphicons_072_bookmark.png in Resources */,
 				B7B0DCE319CB95B9007FD5F4 /* glyphicons_426_git_merge.png in Resources */,
@@ -2699,6 +2708,7 @@
 			files = (
 				B7C06EFA19AF028000A4D9C5 /* User.m in Sources */,
 				B790A3F919EC976C00856412 /* ChatRoomController.m in Sources */,
+				B7A39B8B1A8CADF500A7393D /* ChangeFlairController.m in Sources */,
 				B7B9A0A01A1B394F00C494F1 /* ReplyCell.m in Sources */,
 				B7268C471989C46400F7714E /* AppDelegate.m in Sources */,
 				B7FEC4BF19CB57B100E41799 /* ProfileViewController.m in Sources */,
