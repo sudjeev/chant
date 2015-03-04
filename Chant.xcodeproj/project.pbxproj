@@ -48,6 +48,7 @@
 		B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73EF5C119947BE000934A61 /* SignUpViewController.m */; };
 		B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5C219947BE000934A61 /* SignUpViewController.xib */; };
 		B751BF6719CB6AD700C81F38 /* TeamData.m in Sources */ = {isa = PBXBuildFile; fileRef = B751BF6619CB6AD700C81F38 /* TeamData.m */; };
+		B755A57F1AA1614E00785D5E /* Flairs.m in Sources */ = {isa = PBXBuildFile; fileRef = B755A57E1AA1614E00785D5E /* Flairs.m */; };
 		B76B73D61A12ECB000C557E4 /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B76B73D41A12ECB000C557E4 /* ReplyViewController.m */; };
 		B76B73D71A12ECB000C557E4 /* ReplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B76B73D51A12ECB000C557E4 /* ReplyViewController.xib */; };
 		B77E3C0719D48D0B00522B7B /* Chant_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B77E3C0619D48D0B00522B7B /* Chant_Logo.png */; };
@@ -655,6 +656,8 @@
 		B73EF5C219947BE000934A61 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		B751BF6519CB6AD700C81F38 /* TeamData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamData.h; sourceTree = "<group>"; };
 		B751BF6619CB6AD700C81F38 /* TeamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamData.m; sourceTree = "<group>"; };
+		B755A57D1AA1614E00785D5E /* Flairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flairs.h; sourceTree = "<group>"; };
+		B755A57E1AA1614E00785D5E /* Flairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flairs.m; sourceTree = "<group>"; };
 		B76B73D31A12ECB000C557E4 /* ReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyViewController.h; sourceTree = "<group>"; };
 		B76B73D41A12ECB000C557E4 /* ReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
 		B76B73D51A12ECB000C557E4 /* ReplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyViewController.xib; sourceTree = "<group>"; };
@@ -2021,6 +2024,8 @@
 				B790A3E819EBA30900856412 /* ChatRoom.m */,
 				B71C9B601A1F2B7300135E13 /* ReplyData.h */,
 				B71C9B611A1F2B7300135E13 /* ReplyData.m */,
+				B755A57D1AA1614E00785D5E /* Flairs.h */,
+				B755A57E1AA1614E00785D5E /* Flairs.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2713,6 +2718,7 @@
 				B7268C471989C46400F7714E /* AppDelegate.m in Sources */,
 				B7FEC4BF19CB57B100E41799 /* ProfileViewController.m in Sources */,
 				B790A3DB19EB805F00856412 /* ChatRoomHome.m in Sources */,
+				B755A57F1AA1614E00785D5E /* Flairs.m in Sources */,
 				B790A3E919EBA30900856412 /* ChatRoom.m in Sources */,
 				B790A3E019EB808200856412 /* StartChatCell.m in Sources */,
 				B7E2581E19C7514A009064C3 /* CommentViewController.m in Sources */,

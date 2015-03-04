@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F566D982-F5CF-4EB2-BEA3-4E2A24C013E4</string>
+	<string>590E25C6-BCB1-453C-810C-4B2D082820AC</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Chant</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>D66EA470-BF2C-47CE-A5A2-A135C47E6F71</key>
+		<key>3518E50D4C878204B7531881032E3D77218FDBE4</key>
 		<string>ssh://github.com/sudjeev/chant.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Chant.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>D66EA470-BF2C-47CE-A5A2-A135C47E6F71</key>
+		<key>3518E50D4C878204B7531881032E3D77218FDBE4</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/sudjeev/chant.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>D66EA470-BF2C-47CE-A5A2-A135C47E6F71</string>
+	<string>3518E50D4C878204B7531881032E3D77218FDBE4</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>D66EA470-BF2C-47CE-A5A2-A135C47E6F71</string>
+			<string>3518E50D4C878204B7531881032E3D77218FDBE4</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Chant</string>
 		</dict>
