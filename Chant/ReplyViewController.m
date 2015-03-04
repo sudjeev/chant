@@ -6,7 +6,9 @@
 //  Copyright (c) 2014 SudjeevSingh. All rights reserved.
 //
 
+
 #import "ReplyViewController.h"
+#import "Flairs.h"
 
 @interface ReplyViewController ()
 
@@ -58,12 +60,14 @@ static int isLoading;
     [self.tableView registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"EmptyCell" bundle:nil] forCellReuseIdentifier:@"EmptyCell"];
     
+    /*
     NSArray* keys = [[NSArray alloc] initWithObjects: @"Philadelphia 76ers",@"Milwaukee Bucks",@"Chicago Bulls", @"Cleveland Cavaliers", @"Boston Celtics", @"Los Angeles Clippers", @"Memphis Grizzlies",@"Atlanta Hawks", @"Miami Heat", @"Charlotte Hornets", @"Utah Jazz", @"Sacramento Kings", @"New York Knicks", @"Los Angeles Lakers", @"Orlando Magic", @"Dallas Mavericks", @"Brooklyn Nets", @"Denver Nuggets", @"Indiana Pacers", @"New Orleans Pelicans", @"Detroit Pistons", @"Toronto Raptors", @"Houston Rockets", @"San Antonio Spurs", @"Phoenix Suns", @"Oklahoma City Thunder", @"Minnesota Timberwolves", @"Portland Trail Blazers", @"Golden State Warriors", @"Washington Wizards", nil];
     
     NSArray* images = @[[UIImage imageNamed:@"76ers"], [UIImage imageNamed:@"Bucks"],[UIImage imageNamed:@"Bulls"],[UIImage imageNamed:@"Cavaliers"],[UIImage imageNamed:@"Celtics"],[UIImage imageNamed:@"Clippers"],[UIImage imageNamed:@"Grizzlies"],[UIImage imageNamed:@"Hawks"],[UIImage imageNamed:@"Heat"],[UIImage imageNamed:@"Hornets"],[UIImage imageNamed:@"Jazz"],[UIImage imageNamed:@"Kings"],[UIImage imageNamed:@"Knicks"],[UIImage imageNamed:@"Lakers"],[UIImage imageNamed:@"Magic"],[UIImage imageNamed:@"Mavericks"],[UIImage imageNamed:@"Nets"],[UIImage imageNamed:@"Nuggets"],[UIImage imageNamed:@"Pacers"],[UIImage imageNamed:@"Pelicans"],[UIImage imageNamed:@"Pistons"],[UIImage imageNamed:@"Raptors"],[UIImage imageNamed:@"Rockets"],[UIImage imageNamed:@"Spurs"],[UIImage imageNamed:@"Suns"],[UIImage imageNamed:@"Thunder"],[UIImage imageNamed:@"Timberwolves"],[UIImage imageNamed:@"TrailBlazers"],[UIImage imageNamed:@"Warriors"],[UIImage imageNamed:@"Wizards"]];
     // Do any additional setup after loading the view from its nib.
-    self.dictionary = [NSDictionary dictionaryWithObjects:images forKeys:keys];
+    self.dictionary = [NSDictionary dictionaryWithObjects:images forKeys:keys];*/
     
+    //I should now be able to just use [[Flairs allFlairs].dict objectForKey:object[@"Team"]];
     
     //get this users favorite team
     PFQuery* query = [PFQuery queryWithClassName:@"userData"];
@@ -75,7 +79,7 @@ static int isLoading;
              for (PFObject* object in objects)
              {
                  if (object[@"Team"] != nil) {
-                     self.userFlair.image = [self.dictionary objectForKey:object[@"Team"]];
+                     self.userFlair.image = [[Flairs allFlairs].dict objectForKey:object[@"Team"]];
                  }
                  else
                  {
@@ -161,6 +165,9 @@ static int isLoading;
     getReplies.limit = 10;
     [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
     
+    //reload the data so the comment shows up
+    [self.tableView reloadData];
+    
     return YES;
     
 }
@@ -176,6 +183,9 @@ static int isLoading;
     }
     else
     {
+        
+        //check to see if the user is logged in or not
+        
         //find out how to launch a loading spinner
         
         UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];

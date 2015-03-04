@@ -8,6 +8,8 @@
 
 #import "ReplyCommentCell.h"
 #import "CommentData.h"
+#import "Flairs.h"
+
 
 @implementation ReplyCommentCell
 
@@ -29,7 +31,30 @@
     self.username.text = data.username;
     self.comment.text = data.reply;
     
-    
+    PFQuery* query = [PFQuery queryWithClassName:@"userData"];
+    [query whereKey:@"username" equalTo:data.username];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError* error)
+     {
+         if(!error)
+         {
+             for (PFObject* object in objects)
+             {
+                 if (object[@"Team"] != nil) {
+                     //self.logo.image = [self.dictionary objectForKey:object[@"Team"]];
+                     self.flair.image = [[Flairs allFlairs].dict objectForKey:object[@"Team"]];
+                 }
+                 else
+                 {
+                     self.flair.image = [UIImage imageNamed:@"jordan.jpg"];
+                 }
+             }
+         }
+         else
+         {
+             NSLog(@"error looking up user in userData");
+         }
+     }];
+
 }
 
 - (void)awakeFromNib

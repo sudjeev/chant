@@ -21,12 +21,14 @@
 #import "RKClient+Users.h"
 #import "RKClient+Comments.h"
 #import "RKClient+Messages.h"
+#import "Flairs.h"
 
 
 @interface ScheduleTableViewController ()
 @property (nonatomic, strong) NSMutableArray* schedule;
 @property (nonatomic, assign) int liveGames;
 @property (nonatomic, assign) int isLoading;
+@property (nonatomic, strong) NSNumber* uVotes;
 @end
 
 @implementation ScheduleTableViewController
@@ -45,15 +47,37 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"EmptyScheduleCell" bundle:nil] forCellReuseIdentifier:@"EmptyScheduleCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"UpcomingGameCell" bundle:nil] forCellReuseIdentifier:@"UpcomingGameCell"];
     
+
     
-    self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     
     //rgb(52, 152, 219)
     if([PFUser currentUser] != nil)
     {
+        //Trying to add users total upvotes to the navigation bar
+        /*PFQuery* query = [PFQuery queryWithClassName:@"userData"];
+        [query whereKey:@"username" equalTo:[PFUser currentUser].username];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError* error)
+         {
+             if(!error)
+             {
+                 for (PFObject* object in objects)
+                 {
+                     self.uVotes = object[@"totalUpvotes"];
+                 }
+             }
+             else
+             {
+                 NSLog(@"error looking up user in userData");
+             }
+         }];*/
+        
         UIBarButtonItem* profile = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Final_userProfile" ] style:UIBarButtonItemStylePlain target:self action:@selector(toProfile)];
         self.navigationItem.rightBarButtonItem = profile;
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        
+        self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+
     }
     else
     {
@@ -61,48 +85,55 @@
         self.navigationItem.rightBarButtonItem = signUp;
         
         UIBarButtonItem* logIn = [[UIBarButtonItem alloc] initWithTitle:@"Log In" style:UIBarButtonItemStyleBordered target:self action:@selector(toLogIn)];
+        
+        
+        UIView *tempView=[[UIView alloc]initWithFrame:CGRectMake(0,0,30,30)];
+        tempView.backgroundColor=[UIColor clearColor];
+        UILabel *tempLabel=[[UILabel alloc]initWithFrame:CGRectMake(15,0,300,44)];
+        tempLabel.backgroundColor=[UIColor redColor];
+        tempLabel.shadowColor = [UIColor clearColor];
+        tempLabel.shadowOffset = CGSizeMake(0,2);
+        tempLabel.textColor = [UIColor redColor]; //here you can change the text color of header.
+        tempLabel.text = @"AYYYY";
+        [tempView addSubview:tempLabel];
+        [logIn.customView addSubview: tempView];
+        logIn.target = self;
+        logIn.action = @selector(toLogIn);
+        
         self.navigationItem.leftBarButtonItem = logIn;
+
         
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+
     }
     self.schedule = [[NSMutableArray alloc] init];
     self.liveGames = 0;
     
-    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                          dateStyle:NSDateFormatterMediumStyle
-                                                          timeStyle:nil];
     self.navigationItem.title = @"Chant";
-
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont
-                                                                           fontWithName:@"Helvetica Neue" size:21], NSFontAttributeName,
-                                [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1], NSForegroundColorAttributeName, nil];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:100/255.0 blue:0/255.0 alpha:1.0];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc]init];
     
-    [[UINavigationBar appearance]setShadowImage:[[UIImage alloc] init]];
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarPositionAny];
     
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:230/255.0 green:126/255.0 blue:34/255.0 alpha:1.0];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc]init];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor colorWithRed:255/255.0 green:100/255.0 blue:0/255.0 alpha:1.0],
+      NSForegroundColorAttributeName,
+      [UIColor colorWithRed:255/255.0 green:100/255.0 blue:0/255.0 alpha:1.0],
+      NSForegroundColorAttributeName,
+      [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
+      NSForegroundColorAttributeName,
+      [UIFont fontWithName:@"Arial-Bold" size:5.0],
+      NSFontAttributeName,
+      nil]];
+    
     self.isLoading = 1;
     PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
     [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
-
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    //testing if redditKit is working
-   /* [[RKClient sharedClient] signInWithUsername:@"gswhoops22" password:@"waheguru" completion:^(NSError *error) {
-        if (!error)
-        {
-            NSLog(@"YAAAAAAAAAAA BOYYYYYYYYYYYYY");
-        }
-    }];*/
-    
-    
-    
     
 }
 
@@ -114,24 +145,6 @@
 
 - (void)toSignUp
 {
-    /*SignUpViewController* newView = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle:nil];
-    UINavigationController* navController = [[UINavigationController alloc]initWithRootViewController:newView];
-    [self presentViewController:navController animated:YES completion:nil];*/
-    
-    
-    //for testing reddit, remove later
-   /* [[RKClient sharedClient] sendMessage:@"Hello!" subject:@"test" recipient:@"gswhoops" completion:^(NSError *error){
-        if(!error)
-        {
-            NSLog(@"Should've sent a message");
-        }
-        else
-        {
-            NSLog(@"well fuck");
-        }
-    }];*/
-    
-    
     [self.navigationController pushViewController:[[SignUpViewController alloc] init] animated:YES];
 }
 
@@ -144,6 +157,19 @@
 {
     ProfileViewController* profile = [[ProfileViewController alloc]initWithNibName:@"ProfileViewController" bundle:nil];
     UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:profile];
+    
+    [navController.navigationBar setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor colorWithRed:255/255.0 green:100/255.0 blue:0/255.0 alpha:1.0],
+      NSForegroundColorAttributeName,
+      [UIColor colorWithRed:255/255.0 green:100/255.0 blue:0/255.0 alpha:1.0],
+      NSForegroundColorAttributeName,
+      [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
+      NSForegroundColorAttributeName,
+      [UIFont fontWithName:@"Arial-Bold" size:0.0],
+      NSFontAttributeName,
+      nil]];
+    
     [self presentViewController:navController animated:YES completion:nil];
 }
 
@@ -186,31 +212,26 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.schedule count];
+    if(section == 0)
+    {return 0;}
+    else
+    {return [self.schedule count];}
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
-    /*if (section == 0)
-    {
-     NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                              dateStyle:NSDateFormatterMediumStyle
-                                                              timeStyle:nil];
-     return dateString;
-    }*/
     return @"";
 }
 
 //need to find an effective way to call tableview reload data on a loop cycle
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%i", indexPath.section);
+    NSLog(@"%li", (long)indexPath.section);
 
     //need to check isLoading
     if([self.schedule count] == 0)
@@ -250,15 +271,34 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 40; //play around with this value
+    return 0; //play around with this value
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if(section == 0)
+    {return 40;}
+    else{return 0;}
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *tempView=[[UIView alloc]initWithFrame:CGRectMake(0,200,300,244)];
+    UIView *tempView=[[UIView alloc]initWithFrame:CGRectMake(0,200,300,40)];
     tempView.backgroundColor=[UIColor clearColor];
     
-    UILabel *tempLabel=[[UILabel alloc]initWithFrame:CGRectMake(15,0,300,44)];
+    UILabel *tempLabel=[[UILabel alloc]initWithFrame:CGRectMake(15,0,300,40)];
+    
+    [tempView addSubview:tempLabel];
+    
+    return tempView;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *tempView=[[UIView alloc]initWithFrame:CGRectMake(0,200,300,40)];
+    tempView.backgroundColor=[UIColor clearColor];
+    
+    UILabel *tempLabel=[[UILabel alloc]initWithFrame:CGRectMake(15,0,300,40)];
     tempLabel.backgroundColor=[UIColor clearColor];
     tempLabel.shadowColor = [UIColor clearColor];
     tempLabel.shadowOffset = CGSizeMake(0,2);
@@ -270,7 +310,7 @@
     }
     else
     {
-        tempLabel.text=@"Scheduled Games";
+        tempLabel.text=@"";
     }
     
     [tempView addSubview:tempLabel];

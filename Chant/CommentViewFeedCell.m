@@ -36,14 +36,15 @@ static int isLoading;
 {
     self.view.layer.cornerRadius = 5;
     self.view.layer.masksToBounds = YES;
-    self.post.tintColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
-    self.segmentedControl.tintColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
+    self.post.tintColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
+    self.segmentedControl.tintColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     
     offset = 10;
     self.data = data;
     self.feed.dataSource = self;
     self.feed.delegate = self;
     self.tableData = [[NSMutableArray alloc] init];
+    
     
 
     //Query to get all the comments for this chatroom
@@ -52,6 +53,8 @@ static int isLoading;
     //need to add the filter for gameid
     getComments.limit = 10;
     isLoading = 1;
+    
+    //I should check segmented control before deciding how to sort initially
     [getComments orderByDescending:@"createdAt"];
     [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
 
