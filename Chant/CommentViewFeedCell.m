@@ -47,10 +47,9 @@ static int isLoading;
     
     
 
-    //Query to get all the comments for this chatroom
-    PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
-    [getComments whereKey:@"GameID" equalTo:self.data.gameId];
-    //need to add the filter for gameid
+    
+    //Query to get all the comments for this chatroom, by querying the gameId database
+    PFQuery *getComments = [PFQuery queryWithClassName:data.gameId];
     getComments.limit = 10;
     isLoading = 1;
     
@@ -162,7 +161,7 @@ static int isLoading;
         [textField resignFirstResponder];
         
         //make a PFObject for the new comment and save it in parse
-        PFObject *newComment = [PFObject objectWithClassName:@"Comments"];
+        PFObject *newComment = [PFObject objectWithClassName:self.data.gameId];
         newComment[@"Content"] = self.commentBox.text;
         newComment[@"GameID"] = self.data.gameId;
         newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
@@ -237,8 +236,7 @@ static int isLoading;
         case 0:
             {
                 self.tableData = [[NSMutableArray alloc] init];
-                PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
-                [getComments whereKey:@"GameID" equalTo:self.data.gameId];
+                PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
                 //need to add the filter for gameid
                 getComments.limit = 10;
                 isLoading = 1;
@@ -249,8 +247,7 @@ static int isLoading;
         case 1:
             {
                 self.tableData = [[NSMutableArray alloc] init];
-                PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
-                [getComments whereKey:@"GameID" equalTo:self.data.gameId];
+                PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
                 //need to add the filter for gameid
                 getComments.limit = 10;
                 isLoading = 1;
@@ -270,8 +267,7 @@ static int isLoading;
             }
             
             self.tableData = [[NSMutableArray alloc] init];
-            PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
-            [getComments whereKey:@"GameID" equalTo:self.data.gameId];
+            PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
             [getComments whereKey:@"User" equalTo:[PFUser currentUser].username];
             isLoading = 1;
             [getComments orderByDescending:@"createdAt"];
@@ -301,7 +297,7 @@ static int isLoading;
     else
     {
         //enter this comment data to parse
-        PFObject *newComment = [PFObject objectWithClassName:@"Comments"];
+        PFObject *newComment = [PFObject objectWithClassName:self.data.gameId];
         newComment[@"Content"] = self.commentBox.text;
         newComment[@"GameID"] = self.data.gameId;
         newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
@@ -382,8 +378,7 @@ static int isLoading;
         //if indexPath has reached the point right before the end of tableData
         if(indexPath.row + 1  >= [self.tableData count])
         {
-            PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
-            [getComments whereKey:@"GameID" equalTo:self.data.gameId];
+            PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
             getComments.limit = 10;
             getComments.skip = offset;
             [getComments orderByDescending:@"createdAt"];

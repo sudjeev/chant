@@ -18,7 +18,7 @@
 @property (assign, nonatomic) NSTimeInterval* timeRemaining;
 @property (strong, nonatomic) NSNumber* homeScore;
 @property (strong, nonatomic) NSNumber* awayScore;
-@property (strong, nonatomic) NSString* gameId;
+@property (strong, nonatomic) NSString* gameId;//this is just the objectId
 @property (strong, nonatomic) NSString* started;
 @property (strong, nonatomic) NSString* status;
 @property (strong, nonatomic) NSString* redditFullName;

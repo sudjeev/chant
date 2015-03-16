@@ -164,7 +164,7 @@ static int isLoading;
     isLoading = 1;
     getReplies.limit = 10;
     [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
-    
+    self.replyBox.text = @"";
     //reload the data so the comment shows up
     [self.tableView reloadData];
     
@@ -212,6 +212,7 @@ static int isLoading;
         isLoading = 1;
         getReplies.limit = 10;
         [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
+        self.replyBox.text = @"";
         [self.replyBox resignFirstResponder];
         
         

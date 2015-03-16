@@ -187,7 +187,7 @@
              nextGame.away = [object objectForKey:@"away"];
              nextGame.homeFull = [object objectForKey:@"homeFull"];
              nextGame.awayFull = [object objectForKey:@"awayFull"];
-             nextGame.gameId = [object objectForKey:@"gameId"];
+             nextGame.gameId = object.objectId;
              nextGame.status = [object objectForKey:@"status"];
              nextGame.redditFullName = [object objectForKey:@"redditFullName"];
              [self.schedule addObject:nextGame];
