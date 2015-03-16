@@ -64,17 +64,34 @@
     //also need to change the image of the button so it looks upvoted
     //or change the color of the cell
     //we dont need to worry about the case of not have objectID for your own comment because you can upvote your own comment
+   
     
-    if([self.commentData.username isEqualToString:[PFUser currentUser].username] || self.commentData.upvoted)
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    //generate a key unique to this comment to use for NSUserDefaults
+    NSString* key = [NSString stringWithFormat:@"%@%@", self.commentData.gameId, self.commentData.objectId];
+    NSLog(@"entered this bithc");
+    NSLog(@"fuck this %@",key);
+    
+
+    if([self.commentData.username isEqualToString:[PFUser currentUser].username] || [defaults objectForKey:key] != nil)
     {
         //cant upvote your own comment
+        NSLog(@"already upvoted this");
         return;
     }
     
+    //if it doesnt already exist in our defaults then we can add it and upvote the comment
+    NSLog(@"first time upvoting");
+    [defaults setBool:YES forKey:key];
+    
+    NSLog(@"got past saving in defaults");
+    
     self.commentData.upvotes = [[NSNumber alloc] initWithInt:[self.commentData.upvotes intValue] + 1];
     self.upvotes.text =  [self.commentData.upvotes stringValue];
+
     
-    PFQuery* query = [PFQuery queryWithClassName:@"Comments"];
+    PFQuery* query = [PFQuery queryWithClassName:self.commentData.gameId];
     [query getObjectInBackgroundWithId:self.commentData.objectId block:^(PFObject *thisComment, NSError *error) {
         // Do something with the returned PFObject in the gameScore variable.
         if(!error)
@@ -105,7 +122,7 @@
             NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
-    
+
 }
 
 - (IBAction)onReply:(id)sender

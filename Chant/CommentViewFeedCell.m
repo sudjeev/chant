@@ -122,8 +122,10 @@ static int isLoading;
             data.text = comment[@"Content"];
             data.upvotes =  comment[@"Upvotes"];
             data.username = comment[@"User"];
-            data.gameId = comment[@"GameID"];
             data.objectId = comment.objectId;
+            
+            //make the comments gameId be the name of the class
+            data.gameId = self.data.gameId;
             [self.tableData addObject:data];
         }
         isLoading = 0;
