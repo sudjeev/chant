@@ -49,6 +49,7 @@
 		B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5C219947BE000934A61 /* SignUpViewController.xib */; };
 		B751BF6719CB6AD700C81F38 /* TeamData.m in Sources */ = {isa = PBXBuildFile; fileRef = B751BF6619CB6AD700C81F38 /* TeamData.m */; };
 		B755A57F1AA1614E00785D5E /* Flairs.m in Sources */ = {isa = PBXBuildFile; fileRef = B755A57E1AA1614E00785D5E /* Flairs.m */; };
+		B75BD68A1AB7C47D000FFCDE /* upvoted.png in Resources */ = {isa = PBXBuildFile; fileRef = B75BD6891AB7C47D000FFCDE /* upvoted.png */; };
 		B76B73D61A12ECB000C557E4 /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B76B73D41A12ECB000C557E4 /* ReplyViewController.m */; };
 		B76B73D71A12ECB000C557E4 /* ReplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B76B73D51A12ECB000C557E4 /* ReplyViewController.xib */; };
 		B77E3C0719D48D0B00522B7B /* Chant_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B77E3C0619D48D0B00522B7B /* Chant_Logo.png */; };
@@ -658,6 +659,7 @@
 		B751BF6619CB6AD700C81F38 /* TeamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamData.m; sourceTree = "<group>"; };
 		B755A57D1AA1614E00785D5E /* Flairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flairs.h; sourceTree = "<group>"; };
 		B755A57E1AA1614E00785D5E /* Flairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flairs.m; sourceTree = "<group>"; };
+		B75BD6891AB7C47D000FFCDE /* upvoted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upvoted.png; sourceTree = "<group>"; };
 		B76B73D31A12ECB000C557E4 /* ReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyViewController.h; sourceTree = "<group>"; };
 		B76B73D41A12ECB000C557E4 /* ReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
 		B76B73D51A12ECB000C557E4 /* ReplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyViewController.xib; sourceTree = "<group>"; };
@@ -1947,6 +1949,7 @@
 				B7B0DB3619CB95B9007FD5F4 /* glyphicons_467_server_flag.png */,
 				B7B0DB3719CB95B9007FD5F4 /* glyphicons_468_server_lock.png */,
 				B7B0DB3819CB95B9007FD5F4 /* glyphicons_469_server_new.png */,
+				B75BD6891AB7C47D000FFCDE /* upvoted.png */,
 			);
 			path = png;
 			sourceTree = "<group>";
@@ -2200,6 +2203,7 @@
 				B7B0DCBB19CB95B9007FD5F4 /* glyphicons_386_log_in.png in Resources */,
 				B7B0DD0019CB95B9007FD5F4 /* glyphicons_455_kiosk_light.png in Resources */,
 				B7B0DC6A19CB95B9007FD5F4 /* glyphicons_305_temple_buddhist.png in Resources */,
+				B75BD68A1AB7C47D000FFCDE /* upvoted.png in Resources */,
 				B7B0DCD419CB95B9007FD5F4 /* glyphicons_411_package.png in Resources */,
 				B7B0DC0519CB95B9007FD5F4 /* glyphicons_204_unlock.png in Resources */,
 				B7B0DBFE19CB95B9007FD5F4 /* glyphicons_197_remove.png in Resources */,

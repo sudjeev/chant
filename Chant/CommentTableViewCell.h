@@ -16,6 +16,7 @@
 @property (nonatomic, strong) IBOutlet UILabel* username;
 @property (nonatomic, strong) IBOutlet UILabel* upvotes;
 @property (nonatomic, strong) IBOutlet UIImageView* logo;
+@property (nonatomic, strong) IBOutlet UIButton* upvoted;
 @property (nonatomic, strong) IBOutlet UIView* view;
 @property (strong, nonatomic) NSDictionary* dictionary;
 - (void) updateViewWithItem: (NSString*) comment;

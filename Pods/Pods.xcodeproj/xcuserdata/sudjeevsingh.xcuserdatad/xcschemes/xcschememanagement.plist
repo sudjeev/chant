@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Chant-SSKeychain.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Chant.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>122C6CC111E381109869366B</key>
+		<key>258CFC15A1DA7DBF085B2978</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3C2E24C26E6AB1F28A2B5B8A</key>
+		<key>8AEC5624B0270E3C85FA982C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B0FA2A8AC800C6758426BC6</key>
+		<key>A5FF325BCAD9995F477B1B8E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FF720B4E2CD8732BE75230EA</key>
+		<key>AFFD8F79CC6CBB64C88FDBE2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E62FAE7D63E6BEC312CE3339</key>
 		<dict>
 			<key>primary</key>
 			<true/>

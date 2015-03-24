@@ -162,6 +162,8 @@ static int isLoading;
         //drop the keyboard
         [textField resignFirstResponder];
         
+        //need to save this comment id in NSUserDefaults
+        
         //make a PFObject for the new comment and save it in parse
         PFObject *newComment = [PFObject objectWithClassName:self.data.gameId];
         newComment[@"Content"] = self.commentBox.text;

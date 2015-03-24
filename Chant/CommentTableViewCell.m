@@ -18,6 +18,8 @@
 
 -(void) updateViewWithItem: (CommentData*) comment
 {
+    self.commentData = comment;
+
     self.view.layer.cornerRadius = 5;
     self.view.layer.masksToBounds = YES;
     
@@ -27,8 +29,25 @@
         return;
     }
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* game = [NSString stringWithFormat:@"%@", self.commentData.gameId];
     
-    self.commentData = comment;
+    if([defaults objectForKey:game] == nil)
+    {
+        NSMutableDictionary* dict = [[NSMutableDictionary alloc]init];
+        [defaults setObject:dict forKey:game];
+        [defaults synchronize];
+    }
+    
+    NSString* key = [NSString stringWithFormat:@"%@", self.commentData.objectId];
+    NSMutableDictionary* upvotedComments = [defaults objectForKey:game];
+    
+    //Checking if this has been upvoted by the user
+    if([upvotedComments objectForKey:key] != nil)
+    {
+     [self.upvoted setBackgroundImage:[UIImage imageNamed:@"upvoted.png"] forState:UIControlStateNormal];
+    }
+    
     self.text.text = comment.text;
     self.upvotes.text = [comment.upvotes stringValue];
     self.username.text = comment.username;
@@ -61,20 +80,17 @@
 
 -(IBAction)onUpvote:(id)sender
 {
-    //also need to change the image of the button so it looks upvoted
-    //or change the color of the cell
-    //we dont need to worry about the case of not have objectID for your own comment because you can upvote your own comment
-   
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* game = [NSString stringWithFormat:@"%@", self.commentData.gameId];
     
-    //generate a key unique to this comment to use for NSUserDefaults
-    NSString* key = [NSString stringWithFormat:@"%@%@", self.commentData.gameId, self.commentData.objectId];
-    NSLog(@"entered this bithc");
-    NSLog(@"fuck this %@",key);
+    //use the comment objectid to be the unique ID
+    NSString* key = [NSString stringWithFormat:@"%@", self.commentData.objectId];
+    NSMutableDictionary* upvotedComments = [defaults objectForKey:game];
+    
     
 
-    if([self.commentData.username isEqualToString:[PFUser currentUser].username] || [defaults objectForKey:key] != nil)
+    if([self.commentData.username isEqualToString:[PFUser currentUser].username] || [upvotedComments objectForKey:key] != nil)
     {
         //cant upvote your own comment
         NSLog(@"already upvoted this");
@@ -83,9 +99,13 @@
     
     //if it doesnt already exist in our defaults then we can add it and upvote the comment
     NSLog(@"first time upvoting");
-    [defaults setBool:YES forKey:key];
+    [upvotedComments setObject:[[NSString alloc]init] forKey:key];
+    
+    [defaults setObject:upvotedComments forKey:game];
     
     NSLog(@"got past saving in defaults");
+    [self.upvoted setBackgroundImage:[UIImage imageNamed:@"upvoted.png"] forState:UIControlStateNormal];
+
     
     self.commentData.upvotes = [[NSNumber alloc] initWithInt:[self.commentData.upvotes intValue] + 1];
     self.upvotes.text =  [self.commentData.upvotes stringValue];
