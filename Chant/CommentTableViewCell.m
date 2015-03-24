@@ -86,7 +86,7 @@
     
     //use the comment objectid to be the unique ID
     NSString* key = [NSString stringWithFormat:@"%@", self.commentData.objectId];
-    NSMutableDictionary* upvotedComments = [defaults objectForKey:game];
+    NSMutableDictionary* upvotedComments = [[defaults objectForKey:game] mutableCopy];
     
     
 
@@ -101,8 +101,8 @@
     NSLog(@"first time upvoting");
     [upvotedComments setObject:[[NSString alloc]init] forKey:key];
     
-    //[defaults setObject:upvotedComments forKey:game];
-    [defaults synchronize];
+    [defaults setObject:upvotedComments forKey:game];
+    //[defaults synchronize];
     
     NSLog(@"got past saving in defaults");
     [self.upvoted setBackgroundImage:[UIImage imageNamed:@"upvoted.png"] forState:UIControlStateNormal];
