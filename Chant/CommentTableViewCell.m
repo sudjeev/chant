@@ -43,7 +43,7 @@
     NSMutableDictionary* upvotedComments = [defaults objectForKey:game];
     
     //Checking if this has been upvoted by the user
-    if([upvotedComments objectForKey:key] != nil)
+    if([upvotedComments objectForKey:key] != nil || [self.commentData.username isEqual:[PFUser currentUser].username])
     {
      [self.upvoted setBackgroundImage:[UIImage imageNamed:@"upvoted.png"] forState:UIControlStateNormal];
     }
@@ -101,7 +101,8 @@
     NSLog(@"first time upvoting");
     [upvotedComments setObject:[[NSString alloc]init] forKey:key];
     
-    [defaults setObject:upvotedComments forKey:game];
+    //[defaults setObject:upvotedComments forKey:game];
+    [defaults synchronize];
     
     NSLog(@"got past saving in defaults");
     [self.upvoted setBackgroundImage:[UIImage imageNamed:@"upvoted.png"] forState:UIControlStateNormal];
