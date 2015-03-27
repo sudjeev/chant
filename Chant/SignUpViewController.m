@@ -14,7 +14,8 @@
 #import "RKClient+Users.h"
 #import "RKClient+Comments.h"
 #import "RKClient+Messages.h"
-
+#import "SSKeychain.h"
+#import "SSKeychainQuery.h"
 
 
 @interface SignUpViewController ()
@@ -36,7 +37,6 @@
         self.password.enabled = NO;
         self.password.secureTextEntry = YES;
         self.password.enabled = YES;
-        
         self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
     }
     return self;
@@ -78,11 +78,12 @@
             if (!error)
             {
                 NSLog(@"New user successfully connected to reddit");
+                //save the password in the sskeychain
+                [SSKeychain setPassword:self.password.text forService:@"RedditService" account:@"com.chant.keychain"];
             }
             else
             {
                 NSLog(@"the error is: %@", error);
-                
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not connect with reddit, please make sure you are entering your reddit username and password into the correct fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [alert show];
                 return;
@@ -110,11 +111,9 @@
           if([self.redditSwitch isOn])
           {
               user[@"reddit"] = @"true";
-              user[@"redditPassword"] = self.password.text;
-              //need to store the value in self.password.text in a different Parse table because
-              //parse doesnt allow getters of the password field
-              //need to find a way to hash the password before storing it again
-              //I also need to check and make sure that the reddit connection is successful here and let the user know
+              //save the reddit password in the keychain
+              //using the username as the service so its unique by username not by phone
+              [SSKeychain setPassword:self.password.text forService:self.username.text account:@"com.chant.keychain"];
               
           }
           else
@@ -123,9 +122,6 @@
           }
             
           [user saveInBackground];
-            
-            
-            
             
           UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc]init]];
             navController.navigationBar.translucent = NO;

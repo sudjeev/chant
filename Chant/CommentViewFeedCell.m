@@ -12,6 +12,8 @@
 #import "RKClient+Users.h"
 #import "RKClient+Comments.h"
 #import "RKClient+Messages.h"
+#import "SSKeychain.h"
+#import "SSKeychainQuery.h"
 
 
 @implementation CommentViewFeedCell
@@ -27,7 +29,6 @@ static int isLoading;
         // Initialization code
         //need to pass the game object here as well
         [self.feed registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"CommentTableViewCell"];
-        
     }
     return self;
 }
@@ -45,8 +46,8 @@ static int isLoading;
     self.feed.delegate = self;
     self.tableData = [[NSMutableArray alloc] init];
     
-    
-
+    NSLog(@"This is the DEVICE TOKEN:");
+    NSLog([PFInstallation currentInstallation].deviceToken);
     
     //Query to get all the comments for this chatroom, by querying the gameId database
     PFQuery *getComments = [PFQuery queryWithClassName:data.gameId];
@@ -79,7 +80,11 @@ static int isLoading;
                      if([flag isEqualToString:@"true"])
                      {
                              //sign the user in with his username and the password stored on parse
-                             [[RKClient sharedClient] signInWithUsername:[PFUser currentUser].username  password:object[@"redditPassword"] completion:^(NSError *error) {
+                            if([SSKeychain passwordForService:@"RedditService" account:@"com.chant.keychain"] != nil)
+                            {
+                             NSString* redditPassword = [SSKeychain passwordForService:[PFUser currentUser].username account:@"com.chant.keychain"];
+
+                             [[RKClient sharedClient] signInWithUsername:[PFUser currentUser].username  password:redditPassword completion:^(NSError *error) {
                                  if (!error)
                                  {
                                      NSLog(@"User successfully connected to reddit in comment view");
@@ -89,6 +94,20 @@ static int isLoading;
                                      NSLog(@"Error logging user into reddit from the comments screen");
                                  }
                              }];
+                            }
+                            else if (object[@"redditPassword"] != nil)
+                            {
+                                [[RKClient sharedClient] signInWithUsername:[PFUser currentUser].username  password:object[@"redditPassword"] completion:^(NSError *error) {
+                                    if (!error)
+                                    {
+                                        NSLog(@"User successfully connected to reddit in comment view");
+                                    }
+                                    else
+                                    {
+                                        NSLog(@"Error logging user into reddit from the comments screen");
+                                    }
+                                }];
+                            }
                      }
                  }
              }

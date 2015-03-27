@@ -12,6 +12,8 @@
 #import <Parse/Parse.h>
 #import "ScheduleTableViewController.h"
 #import "ChatRoomHome.h"
+#import "SSKeychain.h"
+#import "SSKeychainQuery.h"
 
 
 @implementation AppDelegate
@@ -35,6 +37,18 @@
     [self.window makeKeyAndVisible];
     
 
+    //Add SSKeyChain
+    [SSKeychain setAccessibilityType:kSecAttrAccessibleWhenUnlocked];
+    
+    //Add Parse Push
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
+
     
     //NEED an if statement to check if user is already logged in here
     if ([PFUser currentUser] == nil)
@@ -45,8 +59,6 @@
         
      //need to add two buttons to the navController navigation bar, one for going to the sign up screen and the
      //other one for login
-
-
         
      self.window.rootViewController = navController;
     }
@@ -68,6 +80,20 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+}
+
+//For Parse Push
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    currentInstallation.channels = @[ @"global" ];
+    [currentInstallation saveInBackground];
+}
+
+//For Parse Push
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
