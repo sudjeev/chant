@@ -77,7 +77,6 @@
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         
         self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
-
     }
     else
     {
@@ -114,9 +113,7 @@
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:100/255.0 blue:0/255.0 alpha:1.0];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc]init];
-    
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarPositionAny];
-    
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc]init];
     
     [self.navigationController.navigationBar setTitleTextAttributes:

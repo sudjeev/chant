@@ -11,6 +11,8 @@
 #import <Parse/Parse.h>
 #import "SignUpViewController.h"
 #import "ScheduleTableViewController.h"
+#import "SSKeychain.h"
+#import "SSKeychainQuery.h"
 
 @interface LoginViewController ()
 @property (nonatomic) NSInteger valid;
@@ -85,9 +87,6 @@
     
     
     }];
-    
-
-    
     
     //push the mainviewcontroller on
     //call a method to push this onto a main controller
