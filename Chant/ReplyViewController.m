@@ -203,6 +203,15 @@ static int isLoading;
         newComment[@"Username"] = [PFUser currentUser].username;
         [newComment saveInBackground];
         
+        //send a push the the user
+        PFQuery* pushQuery = [PFInstallation query];
+        [pushQuery whereKey:@"username" equalTo: self.myCommentData.username];
+        PFPush* push = [[PFPush alloc] init];
+        [push setQuery:pushQuery];
+        NSString* pushMessage = [NSString stringWithFormat:@"%@ replied to your comment: %@", [PFUser currentUser].username, self.replyBox.text];
+        [push setMessage:pushMessage];
+        [push sendPushInBackground];
+        
         //reset the array of replies
         self.replies = [[NSMutableArray alloc] init];
         

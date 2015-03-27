@@ -74,6 +74,13 @@
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc] init]];
             navController.navigationBar.tintColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];;
             navController.navigationBar.translucent = NO;
+            
+            //update the installation object
+            PFInstallation* curr = [PFInstallation currentInstallation];
+            [curr setObject:self.username.text forKey:@"username"];
+            [curr saveInBackground];
+
+            
             [self presentViewController:navController animated:YES completion:nil];
         }
         else

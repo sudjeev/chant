@@ -67,6 +67,11 @@
              {
                  object[@"Team"] = self.selection;
                  [object saveInBackground];
+                 
+                 //update the installation object
+                 PFInstallation* curr = [PFInstallation currentInstallation];
+                 [curr setObject:self.selection forKey:@"team"];
+                 [curr saveInBackground];
              }
          }
          else
