@@ -30,7 +30,6 @@
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Sign Up";
-        
         //this line aint working, supposed to remove text on back buttons
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         
@@ -125,6 +124,12 @@
             
           UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc]init]];
             navController.navigationBar.translucent = NO;
+            
+            //update the installation object
+            PFInstallation* curr = [PFInstallation currentInstallation];
+            [curr setObject:self.username.text forKey:@"username"];
+            [curr saveInBackground];
+            
           [self presentViewController:navController animated:YES completion:nil];
         }
         else

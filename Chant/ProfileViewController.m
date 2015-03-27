@@ -95,7 +95,10 @@
     }];
     
     
-    
+    //update the installation object
+    PFInstallation* curr = [PFInstallation currentInstallation];
+    [curr setObject:self.selection forKey:@"team"];
+    [curr saveInBackground];
     // Do any additional setup after loading the view from its nib.
 }
 
