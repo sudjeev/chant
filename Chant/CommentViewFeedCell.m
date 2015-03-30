@@ -20,6 +20,7 @@
 
 static int offset;
 static int isLoading;
+static int atTop;//the flag I use to reset the most recent comment object
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -45,14 +46,16 @@ static int isLoading;
     self.feed.dataSource = self;
     self.feed.delegate = self;
     self.tableData = [[NSMutableArray alloc] init];
-    
-    NSLog(@"This is the DEVICE TOKEN:");
-    NSLog([PFInstallation currentInstallation].deviceToken);
+    //initialize mostrecent comment
+    self.mostRecentComment = [PFObject objectWithClassName:self.data.gameId];
     
     //Query to get all the comments for this chatroom, by querying the gameId database
     PFQuery *getComments = [PFQuery queryWithClassName:data.gameId];
-    getComments.limit = 10;
+    getComments.limit = 50;
     isLoading = 1;
+    
+    //set atTop to 1 as we are at top of tableView
+    atTop = 1;
     
     //I should check segmented control before deciding how to sort initially
     [getComments orderByDescending:@"createdAt"];
@@ -135,6 +138,15 @@ static int isLoading;
         
         for(PFObject* comment in array)
         {
+            if(atTop == 1)
+            {
+             //save the most recent comment
+                self.mostRecentComment = comment;
+                NSLog(@"MOST RECENT COMMENT IS: %@", self.mostRecentComment.createdAt);
+                //set at top back to zero so it doesn't get called every time in the loop
+                atTop = 0;
+            }
+            
             //for every element in the array put it in the table data
             //make a comment data type and populate it here
             CommentData* data = [[CommentData alloc] init];
@@ -261,9 +273,11 @@ static int isLoading;
                 self.tableData = [[NSMutableArray alloc] init];
                 PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
                 //need to add the filter for gameid
-                getComments.limit = 10;
+                getComments.limit = 50;
                 isLoading = 1;
                 [getComments orderByDescending:@"createdAt"];
+                //set at top to 1 so we can reset the most recent comment
+                atTop = 1;
                 [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
             }
             break;
@@ -272,7 +286,7 @@ static int isLoading;
                 self.tableData = [[NSMutableArray alloc] init];
                 PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
                 //need to add the filter for gameid
-                getComments.limit = 10;
+                getComments.limit = 50;
                 isLoading = 1;
                 [getComments orderByDescending:@"Upvotes"];
                 [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
@@ -282,7 +296,7 @@ static int isLoading;
         {
             if([PFUser currentUser] == nil)
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Before you can post.." message:@"Log In or Sign Up for an account, it only takes 30 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You are not logged in" message:@"Log In or Sign Up for an account, it only takes 30 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
                 [alert show];
                 self.segmentedControl.selectedSegmentIndex = 0;
                 [self valueChanged:self.segmentedControl];
@@ -402,7 +416,17 @@ static int isLoading;
         if(indexPath.row + 1  >= [self.tableData count])
         {
             PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
-            getComments.limit = 10;
+            getComments.limit = 50;
+            //along with using the offset we need to store the first PFObject and use that objects created at field
+            if(self.mostRecentComment.createdAt != nil)
+            {
+                [getComments whereKey:@"createdAt" greaterThan:self.mostRecentComment.createdAt];
+            }
+            else
+            {
+                NSLog(@"most recent comment created at is null for some reason.......");
+            }
+            
             getComments.skip = offset;
             [getComments orderByDescending:@"createdAt"];
             [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback:error:)];
@@ -410,6 +434,7 @@ static int isLoading;
         
         if(indexPath.row < [self.tableData count])
         {
+            NSLog(@"We are at the end of the table view so no more calls");
             CommentTableViewCell* cell = [self.feed dequeueReusableCellWithIdentifier:@"CommentTableViewCell"];
             [cell updateViewWithItem: [self.tableData objectAtIndex: indexPath.row]];
             return cell;
