@@ -28,6 +28,7 @@
 
 - (void)setupWithGameData:(GameData*) data;
 
+- (IBAction)onLoadNew:(id)sender;
 -(IBAction)onComment:(id)sender;
 - (IBAction)onRefresh:(id)sender;
 - (IBAction)valueChanged:(id)sender;

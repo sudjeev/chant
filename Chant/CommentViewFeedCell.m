@@ -20,6 +20,7 @@
 
 static int offset;
 static int isLoading;
+static UIRefreshControl* refresher;
 static int newComments;//a count of the new comments waiting to be loaded
 static int atTop;//the flag I use to reset the most recent comment object
 
@@ -41,6 +42,9 @@ static int atTop;//the flag I use to reset the most recent comment object
     self.view.layer.masksToBounds = YES;
     self.post.tintColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     self.segmentedControl.tintColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
+    self.loadNew.hidden = YES;
+    
+    self.feed.allowsSelection = NO;
     
     newComments = 0;
     offset = 50;
@@ -50,6 +54,7 @@ static int atTop;//the flag I use to reset the most recent comment object
     self.tableData = [[NSMutableArray alloc] init];
     //initialize mostrecent comment
     self.mostRecentComment = [PFObject objectWithClassName:self.data.gameId];
+    self.loadNew.titleLabel.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     
     //Query to get all the comments for this chatroom, by querying the gameId database
     PFQuery *getComments = [PFQuery queryWithClassName:data.gameId];
@@ -124,27 +129,80 @@ static int atTop;//the flag I use to reset the most recent comment object
     NSString *notificationName = @"BackNotification";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName object:nil];
     
+    
+    //implementing the pull to refresh of the table view
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    //refreshControl.backgroundColor = [UIColor colorWithRed:255.0 green:100.0 blue:0.0 alpha:1.0];
+    refreshControl.tintColor = [UIColor colorWithRed:243.0/255 green:156.0/255.0 blue:18.0/255.0 alpha:1];
+    [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    refresher = refreshControl;
+    [self.feed addSubview:refreshControl];
+    
     [self.feed registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"CommentTableViewCell"];
     [self.feed registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
 
 }
 
+//method that handles pull to refresh
+- (void) handleRefresh: (id) sender
+{
+    //just call the segmented control method
+    [self valueChanged:self.segmentedControl];
+    self.loadNew.hidden = YES;
+    //need to end the refreshing once its done as well
+}
+
 - (void) useNotification: (NSNotification*) notification
 {
+    //when the back button is hit it posts a notfication that calls this method
     [self.myTimer invalidate];
     NSLog(@"invalidated this timer object");
 }
 
+- (IBAction)onLoadNew:(id)sender
+{
+    [refresher beginRefreshing];
+    [refresher sendActionsForControlEvents:UIControlEventValueChanged];
+    self.loadNew.hidden = YES;
+    [self.feed scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    
+    //scroll to the top of the table view
+    /*[self.feed scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    
+    //make the button invisible again
+    self.loadNew.hidden = YES;
+
+    //load new comments
+    //Query to get all the comments for this chatroom, by querying the gameId database
+    PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
+    getComments.limit = 50;
+    isLoading = 1;
+    //set atTop to 1 as we are at top of tableView
+    atTop = 1;
+    //I should check segmented control before deciding how to sort initially
+    [getComments orderByDescending:@"createdAt"];
+    [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];*/
+    
+}
+
 - (void) poll:(NSTimer *)timer
 {
+    //make this change depending on the segmented control value, should only show up for new
+    
     PFQuery *countComments = [PFQuery queryWithClassName:self.data.gameId];
     [countComments whereKey:@"createdAt" greaterThan:self.mostRecentComment.createdAt];
+    [countComments whereKey:@"User" notEqualTo:[PFUser currentUser].username];//count all the new comments not made by me
     [countComments countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if(!error)
         {
+            NSLog(@"The count I got was %i", count);
             //increment newComments by count
             newComments += count;
-            self.loadNew.titleLabel.text = [NSString stringWithFormat:@"%i new comments", newComments];
+            if(newComments > 0)
+            {
+             self.loadNew.hidden = NO;
+             self.loadNew.titleLabel.text = [NSString stringWithFormat:@"%i new comments", newComments];
+            }
         }
         else
         {
@@ -198,7 +256,6 @@ static int atTop;//the flag I use to reset the most recent comment object
         offset = [self.tableData count];
         
         //should check if anything is even returned, otherwise there is no need to reload again cus no new data has been added
-
         [self.feed reloadData];
         
     }
@@ -207,6 +264,9 @@ static int atTop;//the flag I use to reset the most recent comment object
         NSLog(@"There was a problem %@", error);
         isLoading = 0;
     }
+    
+    [refresher endRefreshing];
+
 }
 
 
