@@ -73,11 +73,11 @@
     }
     
     self.data = data;
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ at %@", self.data.away, self.data.home];
     return YES;
 }
+
 
 - (void) onRefresh
 {
@@ -88,6 +88,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    //code to call the notification that will be used to invalidate the timer object
+    NSLog(@"in view will dissapear");
+    NSString *notificationName = @"BackNotification";
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
