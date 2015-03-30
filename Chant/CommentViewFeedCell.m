@@ -20,6 +20,9 @@
 
 static int offset;
 static int isLoading;
+static UIRefreshControl* refresher;
+static int newComments;//a count of the new comments waiting to be loaded
+static int atTop;//the flag I use to reset the most recent comment object
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -39,21 +42,26 @@ static int isLoading;
     self.view.layer.masksToBounds = YES;
     self.post.tintColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     self.segmentedControl.tintColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
+    self.loadNew.hidden = YES;
     
-    offset = 10;
+    self.feed.allowsSelection = NO;
+    
+    newComments = 0;
+    offset = 50;
     self.data = data;
     self.feed.dataSource = self;
     self.feed.delegate = self;
     self.tableData = [[NSMutableArray alloc] init];
-    
-    NSLog(@"This is the DEVICE TOKEN:");
-    NSLog([PFInstallation currentInstallation].deviceToken);
+    //initialize mostrecent comment
+    self.mostRecentComment = [PFObject objectWithClassName:self.data.gameId];
+    self.loadNew.titleLabel.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     
     //Query to get all the comments for this chatroom, by querying the gameId database
     PFQuery *getComments = [PFQuery queryWithClassName:data.gameId];
-    getComments.limit = 10;
+    getComments.limit = 50;
     isLoading = 1;
-    
+    //set atTop to 1 as we are at top of tableView
+    atTop = 1;
     //I should check segmented control before deciding how to sort initially
     [getComments orderByDescending:@"createdAt"];
     [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
@@ -61,7 +69,6 @@ static int isLoading;
     
     //check if the user is signed into reddit, if not then check with parse to see if he has an account connected with reddit and
     //if he does then log him in
-    
     //is user aint signed into reddit but is signed into chant
     if(![[RKClient sharedClient] isSignedIn] && [PFUser currentUser] != nil)
     {
@@ -114,10 +121,96 @@ static int isLoading;
          }];
     }
 
+    //setup the nstimer that will be calling the poller
+    self.myTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(poll:) userInfo:nil repeats:YES];
+    
+    //setup the notification that gets called when the back button is hit so we can invalidate the timer
+    //register for the notifcation that specifies a reply
+    NSString *notificationName = @"BackNotification";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName object:nil];
+    
+    
+    //implementing the pull to refresh of the table view
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    //refreshControl.backgroundColor = [UIColor colorWithRed:255.0 green:100.0 blue:0.0 alpha:1.0];
+    refreshControl.tintColor = [UIColor colorWithRed:243.0/255 green:156.0/255.0 blue:18.0/255.0 alpha:1];
+    [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    refresher = refreshControl;
+    [self.feed addSubview:refreshControl];
     
     [self.feed registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"CommentTableViewCell"];
     [self.feed registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
 
+}
+
+//method that handles pull to refresh
+- (void) handleRefresh: (id) sender
+{
+    //just call the segmented control method
+    [self valueChanged:self.segmentedControl];
+    self.loadNew.hidden = YES;
+    //need to end the refreshing once its done as well
+}
+
+- (void) useNotification: (NSNotification*) notification
+{
+    //when the back button is hit it posts a notfication that calls this method
+    [self.myTimer invalidate];
+    NSLog(@"invalidated this timer object");
+}
+
+- (IBAction)onLoadNew:(id)sender
+{
+    [refresher beginRefreshing];
+    [refresher sendActionsForControlEvents:UIControlEventValueChanged];
+    self.loadNew.hidden = YES;
+    [self.feed scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    
+    //scroll to the top of the table view
+    /*[self.feed scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    
+    //make the button invisible again
+    self.loadNew.hidden = YES;
+
+    //load new comments
+    //Query to get all the comments for this chatroom, by querying the gameId database
+    PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
+    getComments.limit = 50;
+    isLoading = 1;
+    //set atTop to 1 as we are at top of tableView
+    atTop = 1;
+    //I should check segmented control before deciding how to sort initially
+    [getComments orderByDescending:@"createdAt"];
+    [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];*/
+    
+}
+
+- (void) poll:(NSTimer *)timer
+{
+    //make this change depending on the segmented control value, should only show up for new
+    
+    PFQuery *countComments = [PFQuery queryWithClassName:self.data.gameId];
+    [countComments whereKey:@"createdAt" greaterThan:self.mostRecentComment.createdAt];
+    [countComments whereKey:@"User" notEqualTo:[PFUser currentUser].username];//count all the new comments not made by me
+    [countComments countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+        if(!error)
+        {
+            NSLog(@"The count I got was %i", count);
+            //increment newComments by count
+            newComments += count;
+            if(newComments > 0)
+            {
+             self.loadNew.hidden = NO;
+             self.loadNew.titleLabel.text = [NSString stringWithFormat:@"%i new comments", newComments];
+            }
+        }
+        else
+        {
+            NSLog(@"error trying to count comments %@", error);
+        }
+    }];
+    
+    NSLog(@"The Poller method has been called");
 }
 
 
@@ -135,6 +228,17 @@ static int isLoading;
         
         for(PFObject* comment in array)
         {
+            if(atTop == 1)
+            {
+             //save the most recent comment
+                self.mostRecentComment = comment;
+                NSLog(@"MOST RECENT COMMENT IS: %@", self.mostRecentComment.createdAt);
+                //set at top back to zero so it doesn't get called every time in the loop
+                atTop = 0;
+                //reset the number of new comments to be loaded to zero
+                newComments = 0;
+            }
+            
             //for every element in the array put it in the table data
             //make a comment data type and populate it here
             CommentData* data = [[CommentData alloc] init];
@@ -152,7 +256,6 @@ static int isLoading;
         offset = [self.tableData count];
         
         //should check if anything is even returned, otherwise there is no need to reload again cus no new data has been added
-
         [self.feed reloadData];
         
     }
@@ -161,6 +264,9 @@ static int isLoading;
         NSLog(@"There was a problem %@", error);
         isLoading = 0;
     }
+    
+    [refresher endRefreshing];
+
 }
 
 
@@ -261,9 +367,11 @@ static int isLoading;
                 self.tableData = [[NSMutableArray alloc] init];
                 PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
                 //need to add the filter for gameid
-                getComments.limit = 10;
+                getComments.limit = 50;
                 isLoading = 1;
                 [getComments orderByDescending:@"createdAt"];
+                //set at top to 1 so we can reset the most recent comment
+                atTop = 1;
                 [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
             }
             break;
@@ -272,7 +380,7 @@ static int isLoading;
                 self.tableData = [[NSMutableArray alloc] init];
                 PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
                 //need to add the filter for gameid
-                getComments.limit = 10;
+                getComments.limit = 50;
                 isLoading = 1;
                 [getComments orderByDescending:@"Upvotes"];
                 [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
@@ -282,7 +390,7 @@ static int isLoading;
         {
             if([PFUser currentUser] == nil)
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Before you can post.." message:@"Log In or Sign Up for an account, it only takes 30 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You are not logged in" message:@"Log In or Sign Up for an account, it only takes 30 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
                 [alert show];
                 self.segmentedControl.selectedSegmentIndex = 0;
                 [self valueChanged:self.segmentedControl];
@@ -402,7 +510,17 @@ static int isLoading;
         if(indexPath.row + 1  >= [self.tableData count])
         {
             PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
-            getComments.limit = 10;
+            getComments.limit = 50;
+            //along with using the offset we need to store the first PFObject and use that objects created at field
+            if(self.mostRecentComment.createdAt != nil)
+            {
+                [getComments whereKey:@"createdAt" greaterThan:self.mostRecentComment.createdAt];
+            }
+            else
+            {
+                NSLog(@"most recent comment created at is null for some reason.......");
+            }
+            
             getComments.skip = offset;
             [getComments orderByDescending:@"createdAt"];
             [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback:error:)];
@@ -410,6 +528,7 @@ static int isLoading;
         
         if(indexPath.row < [self.tableData count])
         {
+            NSLog(@"We are at the end of the table view so no more calls");
             CommentTableViewCell* cell = [self.feed dequeueReusableCellWithIdentifier:@"CommentTableViewCell"];
             [cell updateViewWithItem: [self.tableData objectAtIndex: indexPath.row]];
             return cell;
