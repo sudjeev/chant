@@ -78,6 +78,11 @@
                 if (object[@"Team"] != nil) {
                     self.logo.image = [[Flairs allFlairs].dict objectForKey:object[@"Team"]];
                     self.selection = object[@"Team"];
+                    
+                    //update the installation object to hold the team of the current user
+                    PFInstallation* curr = [PFInstallation currentInstallation];
+                    [curr setObject:self.selection forKey:@"team"];
+                    [curr saveInBackground];
                 }
                 else
                 {
@@ -95,10 +100,7 @@
     }];
     
     
-    //update the installation object
-    PFInstallation* curr = [PFInstallation currentInstallation];
-    [curr setObject:self.selection forKey:@"team"];
-    [curr saveInBackground];
+
     // Do any additional setup after loading the view from its nib.
 }
 

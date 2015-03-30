@@ -146,6 +146,12 @@ static int isLoading;
 {
     [textField resignFirstResponder];
     
+    if([self.replyBox.text isEqualToString:@""])
+    {
+        return YES;
+    }
+    
+    
     //handle all the logic for storing the comment here
     PFObject *newComment = [PFObject objectWithClassName:@"Replies"];
     newComment[@"Reply"] = self.replyBox.text;
@@ -153,6 +159,15 @@ static int isLoading;
     newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
     newComment[@"Username"] = [PFUser currentUser].username;
     [newComment saveInBackground];
+    
+    //send a push the the user
+    PFQuery* pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"username" equalTo: self.myCommentData.username];
+    PFPush* push = [[PFPush alloc] init];
+    [push setQuery:pushQuery];
+    NSString* pushMessage = [NSString stringWithFormat:@"%@ replied to your comment: %@", [PFUser currentUser].username, self.replyBox.text];
+    [push setMessage:pushMessage];
+    [push sendPushInBackground];
     
     //reset the replies array
     self.replies = [[NSMutableArray alloc] init];
@@ -167,6 +182,7 @@ static int isLoading;
     self.replyBox.text = @"";
     //reload the data so the comment shows up
     [self.tableView reloadData];
+    
     
     return YES;
     
