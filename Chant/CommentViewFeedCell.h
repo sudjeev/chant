@@ -21,6 +21,7 @@
 @property (nonatomic, strong) IBOutlet  UIView* view;
 @property (nonatomic, strong) IBOutlet UISegmentedControl* segmentedControl;
 @property (nonatomic, strong) IBOutlet UIButton* post;
+@property (nonatomic, strong) IBOutlet UIButton* loadNew;
 @property (nonatomic, strong) PFObject* mostRecentComment;
 @property (nonatomic, strong) NSTimer* myTimer;
 

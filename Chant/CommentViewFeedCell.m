@@ -20,6 +20,7 @@
 
 static int offset;
 static int isLoading;
+static int newComments;//a count of the new comments waiting to be loaded
 static int atTop;//the flag I use to reset the most recent comment object
 
 
@@ -41,7 +42,8 @@ static int atTop;//the flag I use to reset the most recent comment object
     self.post.tintColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     self.segmentedControl.tintColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     
-    offset = 10;
+    newComments = 0;
+    offset = 50;
     self.data = data;
     self.feed.dataSource = self;
     self.feed.delegate = self;
@@ -53,10 +55,8 @@ static int atTop;//the flag I use to reset the most recent comment object
     PFQuery *getComments = [PFQuery queryWithClassName:data.gameId];
     getComments.limit = 50;
     isLoading = 1;
-    
     //set atTop to 1 as we are at top of tableView
     atTop = 1;
-    
     //I should check segmented control before deciding how to sort initially
     [getComments orderByDescending:@"createdAt"];
     [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
@@ -64,7 +64,6 @@ static int atTop;//the flag I use to reset the most recent comment object
     
     //check if the user is signed into reddit, if not then check with parse to see if he has an account connected with reddit and
     //if he does then log him in
-    
     //is user aint signed into reddit but is signed into chant
     if(![[RKClient sharedClient] isSignedIn] && [PFUser currentUser] != nil)
     {
@@ -117,10 +116,43 @@ static int atTop;//the flag I use to reset the most recent comment object
          }];
     }
 
+    //setup the nstimer that will be calling the poller
+    self.myTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(poll:) userInfo:nil repeats:YES];
+    
+    //setup the notification that gets called when the back button is hit so we can invalidate the timer
+    //register for the notifcation that specifies a reply
+    NSString *notificationName = @"BackNotification";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName object:nil];
     
     [self.feed registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"CommentTableViewCell"];
     [self.feed registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
 
+}
+
+- (void) useNotification: (NSNotification*) notification
+{
+    [self.myTimer invalidate];
+    NSLog(@"invalidated this timer object");
+}
+
+- (void) poll:(NSTimer *)timer
+{
+    PFQuery *countComments = [PFQuery queryWithClassName:self.data.gameId];
+    [countComments whereKey:@"createdAt" greaterThan:self.mostRecentComment.createdAt];
+    [countComments countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+        if(!error)
+        {
+            //increment newComments by count
+            newComments += count;
+            self.loadNew.titleLabel.text = [NSString stringWithFormat:@"%i new comments", newComments];
+        }
+        else
+        {
+            NSLog(@"error trying to count comments %@", error);
+        }
+    }];
+    
+    NSLog(@"The Poller method has been called");
 }
 
 
@@ -145,6 +177,8 @@ static int atTop;//the flag I use to reset the most recent comment object
                 NSLog(@"MOST RECENT COMMENT IS: %@", self.mostRecentComment.createdAt);
                 //set at top back to zero so it doesn't get called every time in the loop
                 atTop = 0;
+                //reset the number of new comments to be loaded to zero
+                newComments = 0;
             }
             
             //for every element in the array put it in the table data
