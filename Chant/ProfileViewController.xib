@@ -11,7 +11,6 @@
                 <outlet property="change" destination="4CA-ob-hc8" id="qZt-TY-GM5"/>
                 <outlet property="email" destination="B9a-ec-IJj" id="iCz-QV-vLe"/>
                 <outlet property="logo" destination="XBe-wu-oXn" id="GC9-Pq-TcV"/>
-                <outlet property="logoutView" destination="tU0-G4-yX5" id="E5j-la-Or7"/>
                 <outlet property="upvoteView" destination="rSs-Wy-fKi" id="qje-8x-rFZ"/>
                 <outlet property="upvotes" destination="Iek-Kw-sQf" id="0kX-iq-EQC"/>
                 <outlet property="username" destination="yyt-bl-ot4" id="l9H-Mf-hc7"/>
@@ -76,23 +75,17 @@
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tU0-G4-yX5">
-                            <rect key="frame" x="17" y="405" width="256" height="38"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gns-f4-f8Z">
-                                    <rect key="frame" x="-20" y="-6" width="301" height="50"/>
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <state key="normal" title="Log Out">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="onLogOut:" destination="-1" eventType="touchUpInside" id="6fr-Rm-eRa"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gns-f4-f8Z">
+                            <rect key="frame" x="16" y="397" width="261" height="33"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" backgroundImage="logoutbutton.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onLogOut:" destination="-1" eventType="touchUpInside" id="6fr-Rm-eRa"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -101,6 +94,9 @@
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
         </view>
     </objects>
+    <resources>
+        <image name="logoutbutton.png" width="280" height="30"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

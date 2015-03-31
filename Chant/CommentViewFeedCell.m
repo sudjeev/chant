@@ -191,7 +191,11 @@ static int atTop;//the flag I use to reset the most recent comment object
     
     PFQuery *countComments = [PFQuery queryWithClassName:self.data.gameId];
     [countComments whereKey:@"createdAt" greaterThan:self.mostRecentComment.createdAt];
-    [countComments whereKey:@"User" notEqualTo:[PFUser currentUser].username];//count all the new comments not made by me
+    
+    if([PFUser currentUser].username != nil)
+    {
+        [countComments whereKey:@"User" notEqualTo:[PFUser currentUser].username];//count all the new comments not made by me
+    }
     [countComments countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if(!error)
         {

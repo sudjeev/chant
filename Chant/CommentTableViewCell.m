@@ -23,6 +23,10 @@
     self.view.layer.cornerRadius = 5;
     self.view.layer.masksToBounds = YES;
     
+    
+    
+    
+    
     if([comment isEqual:nil])
     {
         NSLog(@"dis bitch is empty");
@@ -76,10 +80,21 @@
              NSLog(@"error looking up user in userData");
          }
      }];
+    
+    
+    UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300, 110)];
+    av.backgroundColor = [UIColor clearColor];
+    av.opaque = NO;
+    av.image = [UIImage imageNamed:@"cell.png"];
+    self.backgroundView = av;
 }
 
 -(IBAction)onUpvote:(id)sender
 {
+    if([PFUser currentUser] == nil)
+    {
+        return;
+    }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString* game = [NSString stringWithFormat:@"%@", self.commentData.gameId];

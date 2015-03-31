@@ -579,6 +579,10 @@
 		B7B9A0A11A1B394F00C494F1 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7B9A09F1A1B394F00C494F1 /* ReplyCell.xib */; };
 		B7C06EF719AC042A00A4D9C5 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */; };
 		B7C06EFA19AF028000A4D9C5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C06EF919AF028000A4D9C5 /* User.m */; };
+		B7D8F7C11ACA111C006715D2 /* logoutbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7D8F7C01ACA111C006715D2 /* logoutbutton.png */; };
+		B7D8F7C31ACA1289006715D2 /* loginbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7D8F7C21ACA1289006715D2 /* loginbutton.png */; };
+		B7D8F7C51ACA1335006715D2 /* signupbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7D8F7C41ACA1335006715D2 /* signupbutton.png */; };
+		B7D8F7C71ACA1C87006715D2 /* cell.png in Resources */ = {isa = PBXBuildFile; fileRef = B7D8F7C61ACA1C87006715D2 /* cell.png */; };
 		B7E2580119C25760009064C3 /* EmptyScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2580019C25760009064C3 /* EmptyScheduleCell.xib */; };
 		B7E2580519C259D8009064C3 /* UpcomingGameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E2580319C259D8009064C3 /* UpcomingGameCell.m */; };
 		B7E2580619C259D8009064C3 /* UpcomingGameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E2580419C259D8009064C3 /* UpcomingGameCell.xib */; };
@@ -1204,6 +1208,10 @@
 		B7C06EF619AC042A00A4D9C5 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		B7C06EF819AF028000A4D9C5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B7C06EF919AF028000A4D9C5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		B7D8F7C01ACA111C006715D2 /* logoutbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoutbutton.png; sourceTree = "<group>"; };
+		B7D8F7C21ACA1289006715D2 /* loginbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginbutton.png; sourceTree = "<group>"; };
+		B7D8F7C41ACA1335006715D2 /* signupbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signupbutton.png; sourceTree = "<group>"; };
+		B7D8F7C61ACA1C87006715D2 /* cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell.png; sourceTree = "<group>"; };
 		B7E2580019C25760009064C3 /* EmptyScheduleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyScheduleCell.xib; sourceTree = "<group>"; };
 		B7E2580219C259D8009064C3 /* UpcomingGameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingGameCell.h; sourceTree = "<group>"; };
 		B7E2580319C259D8009064C3 /* UpcomingGameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingGameCell.m; sourceTree = "<group>"; };
@@ -1479,6 +1487,9 @@
 		B7B0D96219CB95B5007FD5F4 /* png */ = {
 			isa = PBXGroup;
 			children = (
+				B7D8F7C61ACA1C87006715D2 /* cell.png */,
+				B7D8F7C21ACA1289006715D2 /* loginbutton.png */,
+				B7D8F7C01ACA111C006715D2 /* logoutbutton.png */,
 				B7B0D96319CB95B5007FD5F4 /* glyphicons_000_glass.png */,
 				B7B0D96419CB95B5007FD5F4 /* glyphicons_001_leaf.png */,
 				B7B0D96519CB95B5007FD5F4 /* glyphicons_002_dog.png */,
@@ -1935,6 +1946,7 @@
 				B7B0DB2819CB95B9007FD5F4 /* glyphicons_453_kiosk.png */,
 				B7B0DB2919CB95B9007FD5F4 /* glyphicons_454_kiosk_wheels.png */,
 				B7B0DB2A19CB95B9007FD5F4 /* glyphicons_455_kiosk_light.png */,
+				B7D8F7C41ACA1335006715D2 /* signupbutton.png */,
 				B7B0DB2B19CB95B9007FD5F4 /* glyphicons_456_kiosk_food.png */,
 				B7B0DB2C19CB95B9007FD5F4 /* glyphicons_457_transfer.png */,
 				B7B0DB2D19CB95B9007FD5F4 /* glyphicons_458_money.png */,
@@ -2172,6 +2184,7 @@
 				B7B0DC6419CB95B9007FD5F4 /* glyphicons_299_hospital_h.png in Resources */,
 				B7B0DBA119CB95B9007FD5F4 /* glyphicons_104_text_strike.png in Resources */,
 				B7B0DC7019CB95B9007FD5F4 /* glyphicons_311_baseball.png in Resources */,
+				B7D8F7C51ACA1335006715D2 /* signupbutton.png in Resources */,
 				B7B0DB9519CB95B9007FD5F4 /* glyphicons_092_tint.png in Resources */,
 				B7B0DB4919CB95B9007FD5F4 /* glyphicons_016_bin.png in Resources */,
 				B7B0DC7A19CB95B9007FD5F4 /* glyphicons_321_gamepad.png in Resources */,
@@ -2286,6 +2299,7 @@
 				B7B0DBA219CB95B9007FD5F4 /* glyphicons_105_text_height.png in Resources */,
 				B7B0DC9919CB95B9007FD5F4 /* glyphicons_352_nameplate.png in Resources */,
 				B7B0DCFC19CB95B9007FD5F4 /* glyphicons_451_shop_window.png in Resources */,
+				B7D8F7C11ACA111C006715D2 /* logoutbutton.png in Resources */,
 				B7B0DC5919CB95B9007FD5F4 /* glyphicons_288_scissors.png in Resources */,
 				B7B0DBCB19CB95B9007FD5F4 /* glyphicons_146_folder_minus.png in Resources */,
 				B7B0DBEE19CB95B9007FD5F4 /* glyphicons_181_download_alt.png in Resources */,
@@ -2311,6 +2325,7 @@
 				B7B0DCC819CB95B9007FD5F4 /* glyphicons_399_registration_mark.png in Resources */,
 				B7B0DCB119CB95B9007FD5F4 /* glyphicons_376_hand_saw.png in Resources */,
 				B7B0DC5A19CB95B9007FD5F4 /* glyphicons_289_bomb.png in Resources */,
+				B7D8F7C71ACA1C87006715D2 /* cell.png in Resources */,
 				B7B0DB8919CB95B9007FD5F4 /* glyphicons_080_retweet.png in Resources */,
 				B7B2D3BE19D1F431007EC9A7 /* Timberwolves.png in Resources */,
 				B7B0DBFC19CB95B9007FD5F4 /* glyphicons_195_circle_info.png in Resources */,
@@ -2416,6 +2431,7 @@
 				B7B2D3A919D1F431007EC9A7 /* Clippers.png in Resources */,
 				B7B0DC7719CB95B9007FD5F4 /* glyphicons_318_more_items.png in Resources */,
 				B7B0DBB119CB95B9007FD5F4 /* glyphicons_120_message_full.png in Resources */,
+				B7D8F7C31ACA1289006715D2 /* loginbutton.png in Resources */,
 				B7B0DCA619CB95B9007FD5F4 /* glyphicons_365_restart.png in Resources */,
 				B7B0DCA019CB95B9007FD5F4 /* glyphicons_359_file_export.png in Resources */,
 				B7E2580119C25760009064C3 /* EmptyScheduleCell.xib in Resources */,
