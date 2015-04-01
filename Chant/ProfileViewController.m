@@ -63,7 +63,27 @@
     self.username.text = [PFUser currentUser].username;
     self.username.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
 
-    
+    PFInstallation* currentInstallation = [PFInstallation currentInstallation];
+    if(currentInstallation != nil)
+    {
+        if([currentInstallation[@"replies"] isEqualToString:@"Yes"])
+        {
+            [self.pushReplies setOn:YES];
+        }
+        else
+        {
+            [self.pushReplies setOn:NO];
+        }
+        
+        if([currentInstallation[@"upvotes"] isEqualToString:@"Yes"])
+        {
+            [self.pushUpvotes setOn:YES];
+        }
+        else
+        {
+            [self.pushUpvotes setOn:NO];
+        }
+    }
     
     //need to check if the current userData has a team set, if not then use jordan as the default
     
@@ -132,6 +152,45 @@
     [self.navigationController pushViewController:[[ChangeFlairController alloc] init] animated:YES];
 }
 
+- (IBAction)pushUpvotes:(id)sender
+{
+    NSLog(@"pushUpvotes");
+    
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if(currentInstallation != nil)
+    {
+     if([sender isOn])
+     {
+         currentInstallation[@"upvotes"] = @"Yes";
+     }
+     else
+     {
+         currentInstallation[@"upvotes"] = @"No";
+     }
+    
+        [currentInstallation saveEventually];
+
+    }
+}
+- (IBAction)pushReplies:(id)sender
+{
+    NSLog(@"pushReplies");
+    
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if(currentInstallation != nil)
+    {
+        if([sender isOn])
+        {
+            currentInstallation[@"replies"] = @"Yes";
+        }
+        else
+        {
+            currentInstallation[@"replies"] = @"No";
+        }
+        
+        [currentInstallation saveEventually];
+    }
+}
 
 
 - (void)didReceiveMemoryWarning

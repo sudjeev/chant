@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/CommentViewFeedCell.m"
-            timestampString = "449528533.775368"
+            timestampString = "449619970.962172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "-setupWithGameData:"
             landmarkType = "5">
             <Locations>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/CommentViewFeedCell.m"
-            timestampString = "449528533.775368"
+            timestampString = "449619970.962172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "-setupWithGameData:"
             landmarkType = "5">
             <Locations>
@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/CommentViewFeedCell.m"
-            timestampString = "449528533.775368"
+            timestampString = "449619970.962172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "-setupWithGameData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -246,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/CommentViewFeedCell.m"
-            timestampString = "449528533.775368"
+            timestampString = "449619970.962172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "-setupWithGameData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -342,11 +342,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/AppDelegate.m"
-            timestampString = "448924952.375206"
+            timestampString = "449618718.480245"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-application:didReceiveRemoteNotification:"
             landmarkType = "5">
          </BreakpointContent>
@@ -534,11 +534,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/ProfileViewController.m"
-            timestampString = "449384132.992012"
+            timestampString = "449619278.240938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -550,11 +550,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/CommentViewFeedCell.m"
-            timestampString = "449528533.775368"
+            timestampString = "449619970.962172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-setupWithGameData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -566,11 +566,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/CommentViewFeedCell.m"
-            timestampString = "449528533.775368"
+            timestampString = "449619970.962172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "-handleRefresh:"
             landmarkType = "5">
          </BreakpointContent>
@@ -582,11 +582,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/CommentViewFeedCell.m"
-            timestampString = "449528533.775368"
+            timestampString = "449619970.962172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "-poll:"
             landmarkType = "5">
          </BreakpointContent>
@@ -598,11 +598,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/CommentViewFeedCell.m"
-            timestampString = "449528533.775368"
+            timestampString = "449619970.962172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "-commentCallback:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -614,11 +614,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/CommentViewFeedCell.m"
-            timestampString = "449528533.775368"
+            timestampString = "449619970.962172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "-commentCallback:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -630,11 +630,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/CommentViewFeedCell.m"
-            timestampString = "449528533.775368"
+            timestampString = "449619970.962172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
             landmarkName = "-commentCallback:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -646,11 +646,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chant/CommentViewFeedCell.m"
-            timestampString = "449528533.775368"
+            timestampString = "449619970.962172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "-poll:"
             landmarkType = "5">
          </BreakpointContent>

@@ -242,6 +242,7 @@ static UIRefreshControl* refresher;
         //send a push the the user
         PFQuery* pushQuery = [PFInstallation query];
         [pushQuery whereKey:@"username" equalTo: self.myCommentData.username];
+        [pushQuery whereKey:@"replies" equalTo:@"Yes"];
         PFPush* push = [[PFPush alloc] init];
         [push setQuery:pushQuery];
         NSString* pushAlert = [NSString stringWithFormat:@"%@ replied to your comment: %@", [PFUser currentUser].username, self.replyBox.text];

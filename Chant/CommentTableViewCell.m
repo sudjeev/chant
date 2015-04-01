@@ -157,6 +157,7 @@
     //send a badge push to the user
     PFQuery *pushQuery = [PFInstallation query];
     [pushQuery whereKey:@"username" equalTo:self.commentData.username];
+    [pushQuery whereKey:@"upvotes" equalTo:@"Yes"];//if the user wants these notificaitons
     NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
                           @"Increment", @"badge",
                           nil];

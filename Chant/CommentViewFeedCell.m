@@ -72,9 +72,10 @@ static int atTop;//the flag I use to reset the most recent comment object
     atTop = 1;
     //I should check segmented control before deciding how to sort initially
     [getComments orderByDescending:@"createdAt"];
+    [refresher beginRefreshing];
     [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
     //show the loading sign
-    [refresher beginRefreshing];
+
 
     
     //check if the user is signed into reddit, if not then check with parse to see if he has an account connected with reddit and
@@ -153,6 +154,7 @@ static int atTop;//the flag I use to reset the most recent comment object
     //just call the segmented control method
     [self valueChanged:self.segmentedControl];
     self.loadNew.hidden = YES;
+    [refresher endRefreshing];
     //need to end the refreshing once its done as well
 }
 

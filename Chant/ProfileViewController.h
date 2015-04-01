@@ -20,10 +20,15 @@
 @property (nonatomic, strong) IBOutlet UILabel* upvotes;
 @property (nonatomic, strong) IBOutlet UIView* upvoteView;
 @property (nonatomic, strong) IBOutlet UIView* cellView;
+@property (nonatomic, strong) IBOutlet UISwitch* pushUpvotes;
+@property (nonatomic, strong) IBOutlet UISwitch* pushReplies;
+
 
 @property (nonatomic, strong) IBOutlet UIView*  logoutView;
 
 - (IBAction)onPasswordReset:(id)sender;
 - (IBAction)onChangeTeam:(id)sender;
+- (IBAction)pushUpvotes:(id)sender;
+- (IBAction)pushReplies:(id)sender;
 
 @end

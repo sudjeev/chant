@@ -88,6 +88,9 @@
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     currentInstallation.channels = @[ @"global" ];
+    //set user to accept both replies and upvotes
+    currentInstallation[@"upvotes"] = @"Yes";
+    currentInstallation[@"replies"] = @"Yes";
     [currentInstallation saveInBackground];
 }
 
@@ -110,6 +113,13 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    //make the badge come back to 0
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        [currentInstallation saveEventually];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
