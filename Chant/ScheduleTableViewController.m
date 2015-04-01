@@ -33,7 +33,7 @@
 
 @implementation ScheduleTableViewController
 
-
+static UIActivityIndicatorView *loadingActivity;
 
 
 - (void)viewDidLoad
@@ -132,6 +132,13 @@
     PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
     [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
     
+    loadingActivity = [[UIActivityIndicatorView alloc]
+                                             initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    loadingActivity.center=self.view.center;
+    [loadingActivity startAnimating];
+    [self.view addSubview:loadingActivity];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -201,6 +208,7 @@
     
     self.isLoading = 0;
     [self.tableView reloadData];
+    [loadingActivity stopAnimating];
     return;
 }
 

@@ -54,6 +54,13 @@
              NSLog(@"error looking up user in userData");
          }
      }];
+    
+    //set image background of the reply view
+    UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 171)];
+    av.backgroundColor = [UIColor clearColor];
+    av.opaque = NO;
+    av.image = [UIImage imageNamed:@"cell.png"];
+    self.backgroundView = av;
 
 }
 

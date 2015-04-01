@@ -23,10 +23,6 @@
     self.view.layer.cornerRadius = 5;
     self.view.layer.masksToBounds = YES;
     
-    
-    
-    
-    
     if([comment isEqual:nil])
     {
         NSLog(@"dis bitch is empty");
@@ -96,13 +92,12 @@
         return;
     }
     
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString* game = [NSString stringWithFormat:@"%@", self.commentData.gameId];
-    
     //use the comment objectid to be the unique ID
     NSString* key = [NSString stringWithFormat:@"%@", self.commentData.objectId];
     NSMutableDictionary* upvotedComments = [[defaults objectForKey:game] mutableCopy];
-    
     
 
     if([self.commentData.username isEqualToString:[PFUser currentUser].username] || [upvotedComments objectForKey:key] != nil)
@@ -121,12 +116,11 @@
     
     NSLog(@"got past saving in defaults");
     [self.upvoted setBackgroundImage:[UIImage imageNamed:@"upvoted.png"] forState:UIControlStateNormal];
-
-    
     self.commentData.upvotes = [[NSNumber alloc] initWithInt:[self.commentData.upvotes intValue] + 1];
     self.upvotes.text =  [self.commentData.upvotes stringValue];
 
     
+    //incrementing the comments upvotes in the table
     PFQuery* query = [PFQuery queryWithClassName:self.commentData.gameId];
     [query getObjectInBackgroundWithId:self.commentData.objectId block:^(PFObject *thisComment, NSError *error) {
         // Do something with the returned PFObject in the gameScore variable.
@@ -141,6 +135,7 @@
         }
     }];
     
+    //upvoting the users total karma
     PFQuery* upvoteUser = [PFQuery queryWithClassName:@"userData"];
     [upvoteUser whereKey:@"username" equalTo:self.commentData.username];
     [upvoteUser findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
@@ -158,6 +153,18 @@
             NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
+    
+    //send a badge push to the user
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"username" equalTo:self.commentData.username];
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          @"Increment", @"badge",
+                          nil];
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:pushQuery]; // Set our Installation query
+    [push setData:data];
+    [push sendPushInBackground];
+    NSLog(@"the badge update got sent");
 
 }
 

@@ -56,6 +56,14 @@ static int atTop;//the flag I use to reset the most recent comment object
     self.mostRecentComment = [PFObject objectWithClassName:self.data.gameId];
     self.loadNew.titleLabel.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     
+    //implementing the pull to refresh of the table view
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    //refreshControl.backgroundColor = [UIColor colorWithRed:255.0 green:100.0 blue:0.0 alpha:1.0];
+    refreshControl.tintColor = [UIColor colorWithRed:243.0/255 green:156.0/255.0 blue:18.0/255.0 alpha:1];
+    [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    refresher = refreshControl;
+    [self.feed addSubview:refreshControl];
+    
     //Query to get all the comments for this chatroom, by querying the gameId database
     PFQuery *getComments = [PFQuery queryWithClassName:data.gameId];
     getComments.limit = 50;
@@ -65,6 +73,8 @@ static int atTop;//the flag I use to reset the most recent comment object
     //I should check segmented control before deciding how to sort initially
     [getComments orderByDescending:@"createdAt"];
     [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
+    //show the loading sign
+    [refresher beginRefreshing];
 
     
     //check if the user is signed into reddit, if not then check with parse to see if he has an account connected with reddit and
@@ -121,8 +131,9 @@ static int atTop;//the flag I use to reset the most recent comment object
          }];
     }
 
+    //WE ARE NOW DOING THIS IN COMMENT CALLBACK
     //setup the nstimer that will be calling the poller
-    self.myTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(poll:) userInfo:nil repeats:YES];
+    //self.myTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(poll:) userInfo:nil repeats:YES];
     
     //setup the notification that gets called when the back button is hit so we can invalidate the timer
     //register for the notifcation that specifies a reply
@@ -130,13 +141,6 @@ static int atTop;//the flag I use to reset the most recent comment object
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName object:nil];
     
     
-    //implementing the pull to refresh of the table view
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    //refreshControl.backgroundColor = [UIColor colorWithRed:255.0 green:100.0 blue:0.0 alpha:1.0];
-    refreshControl.tintColor = [UIColor colorWithRed:243.0/255 green:156.0/255.0 blue:18.0/255.0 alpha:1];
-    [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-    refresher = refreshControl;
-    [self.feed addSubview:refreshControl];
     
     [self.feed registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"CommentTableViewCell"];
     [self.feed registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
@@ -190,6 +194,7 @@ static int atTop;//the flag I use to reset the most recent comment object
     //make this change depending on the segmented control value, should only show up for new
     
     PFQuery *countComments = [PFQuery queryWithClassName:self.data.gameId];
+    //crashing when commentCallback takes more than 15 seconds to respond because most recent comment does not get set and we do nil comparison
     [countComments whereKey:@"createdAt" greaterThan:self.mostRecentComment.createdAt];
     
     if([PFUser currentUser].username != nil)
@@ -261,6 +266,11 @@ static int atTop;//the flag I use to reset the most recent comment object
         
         //should check if anything is even returned, otherwise there is no need to reload again cus no new data has been added
         [self.feed reloadData];
+        [refresher endRefreshing];
+        
+        //start polling because now we have something set as the most recent comment, dont do this outside of commentcallback1
+        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(poll:) userInfo:nil repeats:YES];
+
         
     }
     else

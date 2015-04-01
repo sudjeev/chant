@@ -18,6 +18,7 @@
 
 static int offset;
 static int isLoading;
+static UIRefreshControl* refresher;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,7 +43,7 @@ static int isLoading;
     self.replyView.layer.masksToBounds = YES;
     self.commentView.layer.cornerRadius = 5;
     self.commentView.layer.masksToBounds = YES;
-    self.navigationItem.title = @"Reply";
+    self.navigationItem.title = @"Replies";
     
     self.replies = [[NSMutableArray alloc] init];
     
@@ -60,14 +61,13 @@ static int isLoading;
     [self.tableView registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"EmptyCell" bundle:nil] forCellReuseIdentifier:@"EmptyCell"];
     
-    /*
-    NSArray* keys = [[NSArray alloc] initWithObjects: @"Philadelphia 76ers",@"Milwaukee Bucks",@"Chicago Bulls", @"Cleveland Cavaliers", @"Boston Celtics", @"Los Angeles Clippers", @"Memphis Grizzlies",@"Atlanta Hawks", @"Miami Heat", @"Charlotte Hornets", @"Utah Jazz", @"Sacramento Kings", @"New York Knicks", @"Los Angeles Lakers", @"Orlando Magic", @"Dallas Mavericks", @"Brooklyn Nets", @"Denver Nuggets", @"Indiana Pacers", @"New Orleans Pelicans", @"Detroit Pistons", @"Toronto Raptors", @"Houston Rockets", @"San Antonio Spurs", @"Phoenix Suns", @"Oklahoma City Thunder", @"Minnesota Timberwolves", @"Portland Trail Blazers", @"Golden State Warriors", @"Washington Wizards", nil];
-    
-    NSArray* images = @[[UIImage imageNamed:@"76ers"], [UIImage imageNamed:@"Bucks"],[UIImage imageNamed:@"Bulls"],[UIImage imageNamed:@"Cavaliers"],[UIImage imageNamed:@"Celtics"],[UIImage imageNamed:@"Clippers"],[UIImage imageNamed:@"Grizzlies"],[UIImage imageNamed:@"Hawks"],[UIImage imageNamed:@"Heat"],[UIImage imageNamed:@"Hornets"],[UIImage imageNamed:@"Jazz"],[UIImage imageNamed:@"Kings"],[UIImage imageNamed:@"Knicks"],[UIImage imageNamed:@"Lakers"],[UIImage imageNamed:@"Magic"],[UIImage imageNamed:@"Mavericks"],[UIImage imageNamed:@"Nets"],[UIImage imageNamed:@"Nuggets"],[UIImage imageNamed:@"Pacers"],[UIImage imageNamed:@"Pelicans"],[UIImage imageNamed:@"Pistons"],[UIImage imageNamed:@"Raptors"],[UIImage imageNamed:@"Rockets"],[UIImage imageNamed:@"Spurs"],[UIImage imageNamed:@"Suns"],[UIImage imageNamed:@"Thunder"],[UIImage imageNamed:@"Timberwolves"],[UIImage imageNamed:@"TrailBlazers"],[UIImage imageNamed:@"Warriors"],[UIImage imageNamed:@"Wizards"]];
-    // Do any additional setup after loading the view from its nib.
-    self.dictionary = [NSDictionary dictionaryWithObjects:images forKeys:keys];*/
-    
-    //I should now be able to just use [[Flairs allFlairs].dict objectForKey:object[@"Team"]];
+    //implementing the pull to refresh of the table view
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    //refreshControl.backgroundColor = [UIColor colorWithRed:255.0 green:100.0 blue:0.0 alpha:1.0];
+    refreshControl.tintColor = [UIColor colorWithRed:243.0/255 green:156.0/255.0 blue:18.0/255.0 alpha:1];
+    [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    refresher = refreshControl;
+    [self.tableView addSubview:refreshControl];
     
     //get this users favorite team
     PFQuery* query = [PFQuery queryWithClassName:@"userData"];
@@ -97,9 +97,29 @@ static int isLoading;
     PFQuery* getReplies = [PFQuery queryWithClassName:@"Replies"];
     [getReplies whereKey:@"CommentID" equalTo:self.myCommentData.objectId];
     isLoading = 1;
-    getReplies.limit = 10;
+    getReplies.limit = 50;
     [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
+    
+    
+    //set image background of the reply view
+    UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 171)];
+    av.backgroundColor = [UIColor clearColor];
+    av.opaque = NO;
+    av.image = [UIImage imageNamed:@"cell.png"];
+    [self.replyView addSubview:av];
+    [self.replyView sendSubviewToBack:av];
 
+}
+
+- (void)handleRefresh: (id) sender
+{
+    //need to get the replies to this comment
+    PFQuery* getReplies = [PFQuery queryWithClassName:@"Replies"];
+    [getReplies whereKey:@"CommentID" equalTo:self.myCommentData.objectId];
+    isLoading = 1;
+    getReplies.limit = 50;
+    [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
+    [refresher endRefreshing];
 }
 
 -(void)replyCallback: (NSArray*) array error:(NSError*) error
@@ -224,8 +244,12 @@ static int isLoading;
         [pushQuery whereKey:@"username" equalTo: self.myCommentData.username];
         PFPush* push = [[PFPush alloc] init];
         [push setQuery:pushQuery];
-        NSString* pushMessage = [NSString stringWithFormat:@"%@ replied to your comment: %@", [PFUser currentUser].username, self.replyBox.text];
-        [push setMessage:pushMessage];
+        NSString* pushAlert = [NSString stringWithFormat:@"%@ replied to your comment: %@", [PFUser currentUser].username, self.replyBox.text];
+        NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                              pushAlert, @"alert",
+                              @"Increment", @"badge",
+                              nil];
+        [push setData:data];
         [push sendPushInBackground];
         
         //reset the array of replies
