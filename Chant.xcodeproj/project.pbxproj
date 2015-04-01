@@ -67,6 +67,9 @@
 		B790A3F319EBA7AE00856412 /* LiveChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B790A3F119EBA7AE00856412 /* LiveChatCell.xib */; };
 		B790A3F919EC976C00856412 /* ChatRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = B790A3F719EC976C00856412 /* ChatRoomController.m */; };
 		B790A3FA19EC976C00856412 /* ChatRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B790A3F819EC976C00856412 /* ChatRoomController.xib */; };
+		B7970BED1ACC9297001D2A94 /* handupvote.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BEC1ACC9297001D2A94 /* handupvote.png */; };
+		B7970BEF1ACC9450001D2A94 /* blackhand.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BEE1ACC9450001D2A94 /* blackhand.png */; };
+		B7970BF11ACC94F1001D2A94 /* orangehand.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BF01ACC94F1001D2A94 /* orangehand.png */; };
 		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
 		B7A39B8B1A8CADF500A7393D /* ChangeFlairController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A39B891A8CADF500A7393D /* ChangeFlairController.m */; };
@@ -690,6 +693,9 @@
 		B790A3F619EC976C00856412 /* ChatRoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomController.h; sourceTree = "<group>"; };
 		B790A3F719EC976C00856412 /* ChatRoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomController.m; sourceTree = "<group>"; };
 		B790A3F819EC976C00856412 /* ChatRoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomController.xib; sourceTree = "<group>"; };
+		B7970BEC1ACC9297001D2A94 /* handupvote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handupvote.png; sourceTree = "<group>"; };
+		B7970BEE1ACC9450001D2A94 /* blackhand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackhand.png; sourceTree = "<group>"; };
+		B7970BF01ACC94F1001D2A94 /* orangehand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangehand.png; sourceTree = "<group>"; };
 		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		B798D1E619A5C38300550D56 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -1489,6 +1495,8 @@
 			children = (
 				B7D8F7C61ACA1C87006715D2 /* cell.png */,
 				B7D8F7C21ACA1289006715D2 /* loginbutton.png */,
+				B7970BEE1ACC9450001D2A94 /* blackhand.png */,
+				B7970BF01ACC94F1001D2A94 /* orangehand.png */,
 				B7D8F7C01ACA111C006715D2 /* logoutbutton.png */,
 				B7B0D96319CB95B5007FD5F4 /* glyphicons_000_glass.png */,
 				B7B0D96419CB95B5007FD5F4 /* glyphicons_001_leaf.png */,
@@ -1501,6 +1509,7 @@
 				B7B0D96B19CB95B5007FD5F4 /* glyphicons_008_film.png */,
 				B7B0D96C19CB95B5007FD5F4 /* glyphicons_009_magic.png */,
 				B7B0D96D19CB95B5007FD5F4 /* glyphicons_010_envelope.png */,
+				B7970BEC1ACC9297001D2A94 /* handupvote.png */,
 				B7B0D96E19CB95B5007FD5F4 /* glyphicons_011_camera.png */,
 				B7B0D96F19CB95B5007FD5F4 /* glyphicons_012_heart.png */,
 				B7B0D97019CB95B5007FD5F4 /* glyphicons_013_beach_umbrella.png */,
@@ -2270,6 +2279,7 @@
 				B7B0DC9719CB95B9007FD5F4 /* glyphicons_350_shopping_bag.png in Resources */,
 				B7B0DBE119CB95B9007FD5F4 /* glyphicons_168_ear_plugs.png in Resources */,
 				B7B0DBC519CB95B9007FD5F4 /* glyphicons_140_database_lock.png in Resources */,
+				B7970BF11ACC94F1001D2A94 /* orangehand.png in Resources */,
 				B7B2D3B019D1F431007EC9A7 /* Knicks.png in Resources */,
 				B7B0DBB519CB95B9007FD5F4 /* glyphicons_124_message_plus.png in Resources */,
 				B7B0DB4519CB95B9007FD5F4 /* glyphicons_012_heart.png in Resources */,
@@ -2581,6 +2591,7 @@
 				B7B0DC5119CB95B9007FD5F4 /* glyphicons_280_settings.png in Resources */,
 				B7B0DC3B19CB95B9007FD5F4 /* glyphicons_258_qrcode.png in Resources */,
 				B7B0DBAC19CB95B9007FD5F4 /* glyphicons_115_text_smaller.png in Resources */,
+				B7970BED1ACC9297001D2A94 /* handupvote.png in Resources */,
 				B7B0DC0419CB95B9007FD5F4 /* glyphicons_203_lock.png in Resources */,
 				B7B0DBAF19CB95B9007FD5F4 /* glyphicons_118_embed_close.png in Resources */,
 				B7B0DB4719CB95B9007FD5F4 /* glyphicons_014_train.png in Resources */,
@@ -2625,6 +2636,7 @@
 				B7B0DCB419CB95B9007FD5F4 /* glyphicons_379_electrical_socket_us.png in Resources */,
 				B7B0DCFD19CB95B9007FD5F4 /* glyphicons_452_shop.png in Resources */,
 				B7B0DC3919CB95B9007FD5F4 /* glyphicons_256_delete.png in Resources */,
+				B7970BEF1ACC9450001D2A94 /* blackhand.png in Resources */,
 				B7B0DBF819CB95B9007FD5F4 /* glyphicons_191_circle_minus.png in Resources */,
 				B7B0DC5419CB95B9007FD5F4 /* glyphicons_283_t-shirt.png in Resources */,
 				B7B0DC2C19CB95B9007FD5F4 /* glyphicons_243_anchor.png in Resources */,

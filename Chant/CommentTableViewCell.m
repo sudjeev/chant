@@ -45,7 +45,7 @@
     //Checking if this has been upvoted by the user
     if([upvotedComments objectForKey:key] != nil || [self.commentData.username isEqual:[PFUser currentUser].username])
     {
-     [self.upvoted setBackgroundImage:[UIImage imageNamed:@"upvoted.png"] forState:UIControlStateNormal];
+     [self.upvoted setBackgroundImage:[UIImage imageNamed:@"orangehand.png"] forState:UIControlStateNormal];
     }
     
     self.text.text = comment.text;
@@ -115,7 +115,7 @@
     //[defaults synchronize];
     
     NSLog(@"got past saving in defaults");
-    [self.upvoted setBackgroundImage:[UIImage imageNamed:@"upvoted.png"] forState:UIControlStateNormal];
+    [self.upvoted setBackgroundImage:[UIImage imageNamed:@"orangehand.png"] forState:UIControlStateNormal];
     self.commentData.upvotes = [[NSNumber alloc] initWithInt:[self.commentData.upvotes intValue] + 1];
     self.upvotes.text =  [self.commentData.upvotes stringValue];
 
