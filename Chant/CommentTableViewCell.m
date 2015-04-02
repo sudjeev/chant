@@ -52,31 +52,14 @@
     self.upvotes.text = [comment.upvotes stringValue];
     self.username.text = comment.username;
     
-    
-    PFQuery* query = [PFQuery queryWithClassName:@"userData"];
-    [query whereKey:@"username" equalTo:self.commentData.username];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError* error)
-     {
-         if(!error)
-         {
-             for (PFObject* object in objects)
-             {
-                 if (object[@"Team"] != nil) {
-                     //self.logo.image = [self.dictionary objectForKey:object[@"Team"]];
-                     self.logo.image = [[Flairs allFlairs].dict objectForKey:object[@"Team"]];
-                 }
-                 else
-                 {
-                     self.logo.image = [UIImage imageNamed:@"jordan.jpg"];
-                 }
-             }
-         }
-         else
-         {
-             NSLog(@"error looking up user in userData");
-         }
-     }];
-    
+    if(comment.userTeam != nil)
+    {
+        self.logo.image = [[Flairs allFlairs].dict objectForKey:comment.userTeam];
+    }
+    else
+    {
+        self.logo.image = [UIImage imageNamed:@"jordan.jpg"];
+    }
     
     UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300, 110)];
     av.backgroundColor = [UIColor clearColor];
@@ -136,7 +119,7 @@
     }];
     
     //upvoting the users total karma
-    PFQuery* upvoteUser = [PFQuery queryWithClassName:@"userData"];
+    PFQuery* upvoteUser = [PFUser query];
     [upvoteUser whereKey:@"username" equalTo:self.commentData.username];
     [upvoteUser findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
     {

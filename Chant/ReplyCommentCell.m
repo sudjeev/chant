@@ -31,7 +31,7 @@
     self.username.text = data.username;
     self.comment.text = data.reply;
     
-    PFQuery* query = [PFQuery queryWithClassName:@"userData"];
+    PFQuery* query = [PFUser query];
     [query whereKey:@"username" equalTo:data.username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError* error)
      {
@@ -51,7 +51,7 @@
          }
          else
          {
-             NSLog(@"error looking up user in userData");
+             NSLog(@"error looking up user in user");
          }
      }];
     

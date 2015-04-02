@@ -70,6 +70,9 @@
 		B7970BED1ACC9297001D2A94 /* handupvote.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BEC1ACC9297001D2A94 /* handupvote.png */; };
 		B7970BEF1ACC9450001D2A94 /* blackhand.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BEE1ACC9450001D2A94 /* blackhand.png */; };
 		B7970BF11ACC94F1001D2A94 /* orangehand.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BF01ACC94F1001D2A94 /* orangehand.png */; };
+		B7970BF31ACCC7C6001D2A94 /* orangebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BF21ACCC7C6001D2A94 /* orangebutton.png */; };
+		B7970BF51ACCC7CE001D2A94 /* thinorangebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BF41ACCC7CE001D2A94 /* thinorangebutton.png */; };
+		B7970BF71ACCC7DF001D2A94 /* thingraybutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BF61ACCC7DF001D2A94 /* thingraybutton.png */; };
 		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
 		B7A39B8B1A8CADF500A7393D /* ChangeFlairController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A39B891A8CADF500A7393D /* ChangeFlairController.m */; };
@@ -696,6 +699,9 @@
 		B7970BEC1ACC9297001D2A94 /* handupvote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handupvote.png; sourceTree = "<group>"; };
 		B7970BEE1ACC9450001D2A94 /* blackhand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackhand.png; sourceTree = "<group>"; };
 		B7970BF01ACC94F1001D2A94 /* orangehand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangehand.png; sourceTree = "<group>"; };
+		B7970BF21ACCC7C6001D2A94 /* orangebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangebutton.png; sourceTree = "<group>"; };
+		B7970BF41ACCC7CE001D2A94 /* thinorangebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thinorangebutton.png; sourceTree = "<group>"; };
+		B7970BF61ACCC7DF001D2A94 /* thingraybutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thingraybutton.png; sourceTree = "<group>"; };
 		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		B798D1E619A5C38300550D56 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -1493,6 +1499,9 @@
 		B7B0D96219CB95B5007FD5F4 /* png */ = {
 			isa = PBXGroup;
 			children = (
+				B7970BF61ACCC7DF001D2A94 /* thingraybutton.png */,
+				B7970BF21ACCC7C6001D2A94 /* orangebutton.png */,
+				B7970BF41ACCC7CE001D2A94 /* thinorangebutton.png */,
 				B7D8F7C61ACA1C87006715D2 /* cell.png */,
 				B7D8F7C21ACA1289006715D2 /* loginbutton.png */,
 				B7970BEE1ACC9450001D2A94 /* blackhand.png */,
@@ -2510,6 +2519,7 @@
 				B7B0DB4119CB95B9007FD5F4 /* glyphicons_008_film.png in Resources */,
 				B7B0DCCF19CB95B9007FD5F4 /* glyphicons_406_sort-by-order.png in Resources */,
 				B7B0DCEA19CB95B9007FD5F4 /* glyphicons_433_minus.png in Resources */,
+				B7970BF71ACCC7DF001D2A94 /* thingraybutton.png in Resources */,
 				B7B0DC1719CB95B9007FD5F4 /* glyphicons_222_share.png in Resources */,
 				B7B0DBD719CB95B9007FD5F4 /* glyphicons_158_show_lines.png in Resources */,
 				B7B0DC2819CB95B9007FD5F4 /* glyphicons_239_albums.png in Resources */,
@@ -2637,6 +2647,7 @@
 				B7B0DCFD19CB95B9007FD5F4 /* glyphicons_452_shop.png in Resources */,
 				B7B0DC3919CB95B9007FD5F4 /* glyphicons_256_delete.png in Resources */,
 				B7970BEF1ACC9450001D2A94 /* blackhand.png in Resources */,
+				B7970BF51ACCC7CE001D2A94 /* thinorangebutton.png in Resources */,
 				B7B0DBF819CB95B9007FD5F4 /* glyphicons_191_circle_minus.png in Resources */,
 				B7B0DC5419CB95B9007FD5F4 /* glyphicons_283_t-shirt.png in Resources */,
 				B7B0DC2C19CB95B9007FD5F4 /* glyphicons_243_anchor.png in Resources */,
@@ -2646,6 +2657,7 @@
 				B7B0DCAC19CB95B9007FD5F4 /* glyphicons_371_global.png in Resources */,
 				B7B0DC8119CB95B9007FD5F4 /* glyphicons_328_podium.png in Resources */,
 				B7B0DBEB19CB95B9007FD5F4 /* glyphicons_178_step_forward.png in Resources */,
+				B7970BF31ACCC7C6001D2A94 /* orangebutton.png in Resources */,
 				B7B0DC4F19CB95B9007FD5F4 /* glyphicons_278_birthday_cake.png in Resources */,
 				B7B0DC9C19CB95B9007FD5F4 /* glyphicons_355_bullhorn.png in Resources */,
 				B7B0DCBF19CB95B9007FD5F4 /* glyphicons_390_video_sd.png in Resources */,

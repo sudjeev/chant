@@ -70,7 +70,7 @@ static UIRefreshControl* refresher;
     [self.tableView addSubview:refreshControl];
     
     //get this users favorite team
-    PFQuery* query = [PFQuery queryWithClassName:@"userData"];
+    PFQuery* query = [PFUser query];
     [query whereKey:@"username" equalTo:self.myCommentData.username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError* error)
      {
@@ -78,7 +78,7 @@ static UIRefreshControl* refresher;
          {
              for (PFObject* object in objects)
              {
-                 if (object[@"Team"] != nil) {
+                 if (object[@"team"] != nil) {
                      self.userFlair.image = [[Flairs allFlairs].dict objectForKey:object[@"Team"]];
                  }
                  else
@@ -89,7 +89,7 @@ static UIRefreshControl* refresher;
          }
          else
          {
-             NSLog(@"error looking up user in userData");
+             NSLog(@"error looking up user in Users");
          }
      }];
 

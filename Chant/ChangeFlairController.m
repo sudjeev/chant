@@ -57,29 +57,15 @@
         NSLog(@"Yea this is the problem");
     }
     
-    PFQuery* query = [PFQuery queryWithClassName:@"userData"];
-    [query whereKey:@"username" equalTo:[PFUser currentUser].username];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError* error)
-     {
-         if(!error)
-         {
-             for (PFObject* object in objects)
-             {
-                 object[@"Team"] = self.selection;
-                 [object saveInBackground];
-                 
-                 //update the installation object
-                 PFInstallation* curr = [PFInstallation currentInstallation];
-                 [curr setObject:self.selection forKey:@"team"];
-                 [curr saveInBackground];
-             }
-         }
-         else
-         {
-             NSLog(@"error looking up user in userData");
-         }
-     }];
-
+    PFUser* currentUser = [PFUser currentUser];
+    currentUser[@"team"] = self.selection;
+    [currentUser saveInBackground];
+    
+    //update the installation object
+    PFInstallation* curr = [PFInstallation currentInstallation];
+    [curr setObject:self.selection forKey:@"team"];
+    [curr saveInBackground];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }

@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSNumber* upvotes;
 @property (nonatomic, strong) NSString* gameId;
 @property (nonatomic, strong) NSString* objectId;
+@property (nonatomic, strong) NSString* userTeam;
 @property (nonatomic, assign) BOOL upvoted;
 @end

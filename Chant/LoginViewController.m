@@ -29,7 +29,7 @@
     if (self) {
         self.navigationItem.title = @"Log In";
         self.password.secureTextEntry = YES;
-        self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
+        //self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
         self.thisUser = [[User alloc] init];
         self.valid = 0;
         self.complete = 0;

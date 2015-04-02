@@ -85,43 +85,29 @@
         }
     }
     
-    //need to check if the current userData has a team set, if not then use jordan as the default
     
-    PFQuery* query = [PFQuery queryWithClassName:@"userData"];
-    [query whereKey:@"username" equalTo:[PFUser currentUser].username];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError* error)
+    PFUser* currentUser = [PFUser currentUser];
+    
+    if(currentUser[@"team"] != nil)
     {
-        if(!error)
-        {
-            for (PFObject* object in objects)
-            {
-                if (object[@"Team"] != nil) {
-                    self.logo.image = [[Flairs allFlairs].dict objectForKey:object[@"Team"]];
-                    self.selection = object[@"Team"];
-                    
-                    //update the installation object to hold the team of the current user
-                    PFInstallation* curr = [PFInstallation currentInstallation];
-                    [curr setObject:self.selection forKey:@"team"];
-                    [curr saveInBackground];
-                }
-                else
-                {
-                    self.logo.image = [UIImage imageNamed:@"jordan.jpg"];
-                }
-                
-                self.totalUpvotes = object[@"totalUpvotes"];
-                self.upvotes.text = [self.totalUpvotes stringValue];
-            }
-        }
-        else
-        {
-            NSLog(@"error looking up user in userData");
-        }
-    }];
+        self.logo.image = [[Flairs allFlairs].dict objectForKey:currentUser[@"team"]];
+        self.selection = currentUser[@"team"];
+        
+        //update the installation object to hold the team of the current user
+        PFInstallation* curr = [PFInstallation currentInstallation];
+        [curr setObject:self.selection forKey:@"team"];
+        [curr saveInBackground];
+        
+    }
+    else
+    {
+        self.logo.image = [UIImage imageNamed:@"jordan.jpg"];
+    }
     
+    self.totalUpvotes = currentUser[@"totalUpvotes"];
+    self.upvotes.text = [self.totalUpvotes stringValue];
     
-
-    // Do any additional setup after loading the view from its nib.
+    [currentUser saveEventually];
 }
 
 - (void) onDone

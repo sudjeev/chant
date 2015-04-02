@@ -83,7 +83,7 @@ static int atTop;//the flag I use to reset the most recent comment object
     //is user aint signed into reddit but is signed into chant
     if(![[RKClient sharedClient] isSignedIn] && [PFUser currentUser] != nil)
     {
-        PFQuery* query = [PFQuery queryWithClassName:@"userData"];
+        PFQuery* query = [PFUser query];
         [query whereKey:@"username" equalTo:[PFUser currentUser].username];
         [query findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
          {
@@ -98,7 +98,7 @@ static int atTop;//the flag I use to reset the most recent comment object
                      if([flag isEqualToString:@"true"])
                      {
                              //sign the user in with his username and the password stored on parse
-                            if([SSKeychain passwordForService:@"RedditService" account:@"com.chant.keychain"] != nil)
+                            if([SSKeychain passwordForService:[PFUser currentUser].username account:@"com.chant.keychain"] != nil)
                             {
                              NSString* redditPassword = [SSKeychain passwordForService:[PFUser currentUser].username account:@"com.chant.keychain"];
 
@@ -112,19 +112,6 @@ static int atTop;//the flag I use to reset the most recent comment object
                                      NSLog(@"Error logging user into reddit from the comments screen");
                                  }
                              }];
-                            }
-                            else if (object[@"redditPassword"] != nil)
-                            {
-                                [[RKClient sharedClient] signInWithUsername:[PFUser currentUser].username  password:object[@"redditPassword"] completion:^(NSError *error) {
-                                    if (!error)
-                                    {
-                                        NSLog(@"User successfully connected to reddit in comment view");
-                                    }
-                                    else
-                                    {
-                                        NSLog(@"Error logging user into reddit from the comments screen");
-                                    }
-                                }];
                             }
                      }
                  }
@@ -257,7 +244,7 @@ static int atTop;//the flag I use to reset the most recent comment object
             data.upvotes =  comment[@"Upvotes"];
             data.username = comment[@"User"];
             data.objectId = comment.objectId;
-            
+            data.userTeam = comment[@"Team"];//used for flair
             //make the comments gameId be the name of the class
             data.gameId = self.data.gameId;
             [self.tableData addObject:data];
@@ -306,44 +293,19 @@ static int atTop;//the flag I use to reset the most recent comment object
         //need to save this comment id in NSUserDefaults
         
         //make a PFObject for the new comment and save it in parse
+        PFUser* currentUser = [PFUser currentUser];
+        
         PFObject *newComment = [PFObject objectWithClassName:self.data.gameId];
         newComment[@"Content"] = self.commentBox.text;
         newComment[@"GameID"] = self.data.gameId;
         newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
-        newComment[@"User"] = [PFUser currentUser].username;
+        newComment[@"User"] = currentUser.username;
+        newComment[@"Team"] = currentUser[@"team"];
         [newComment saveInBackground];
         
-        
         //increment my total upvotes by 1 after I post a new comment
-        PFQuery* query = [PFQuery queryWithClassName:@"userData"];
-        [query whereKey:@"username" equalTo:[PFUser currentUser].username];
-        [query findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
-         {
-             if(!error)
-             {
-                 for(PFObject* object in objects)
-                 {
-                     [object incrementKey:@"totalUpvotes"];
-                     [object saveInBackground];
-                 }
-             }
-         }];
-        
-        
-        /*
-         //Code for crossposting comment to reddit
-         //have an if statement checking if the user is connected to reddit, then confirm that he is logged in, if not then
-         //log the user in using their credentials which we will have stored on parse
-         //
-         //Following this I should make a call to get the redditFullName from parse in case it wasnt there when the chat room was
-         //initially made
-         //then simply post the comment to reddit from this users account
-         
-         [[RKClient sharedClient] submitComment:@"testing" onThingWithFullName:@"t3_2ufbks" completion:^(NSError *error){
-         if(!error)
-         {NSLog(@"It shouldve posted to comments");}
-         }];
-         */
+        [currentUser incrementKey:@"totalUpvotes"];
+        [currentUser saveEventually];
         
         
         //if there is a gamethread to post to and the user is signed into reddit
@@ -444,29 +406,18 @@ static int atTop;//the flag I use to reset the most recent comment object
     else
     {
         //enter this comment data to parse
+        PFUser* currentUser = [PFUser currentUser];
+        
         PFObject *newComment = [PFObject objectWithClassName:self.data.gameId];
         newComment[@"Content"] = self.commentBox.text;
         newComment[@"GameID"] = self.data.gameId;
         newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
-        newComment[@"User"] = [PFUser currentUser].username;
+        newComment[@"User"] = currentUser.username;
+        newComment[@"Team"] = currentUser[@"team"];
         [newComment saveInBackground];
         
-        
-        //upvote the users totalupvotes by 1
-        PFQuery* query = [PFQuery queryWithClassName:@"userData"];
-        [query whereKey:@"username" equalTo:[PFUser currentUser].username];
-        [query findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
-         {
-             if(!error)
-             {
-                 for(PFObject* object in objects)
-                 {
-                     [object incrementKey:@"totalUpvotes"];
-                     [object saveInBackground];
-                 }
-             }
-         }];
-        
+        [currentUser incrementKey:@"totalUpvotes"];
+        [currentUser saveEventually];
         
         //if there is a gamethread for this game and if the user is signed in then crosspost this too reddit
         if(self.data.redditFullName != nil && [[RKClient sharedClient]isSignedIn])
@@ -495,26 +446,11 @@ static int atTop;//the flag I use to reset the most recent comment object
 {
     //Just call the segmented control method
     [self valueChanged:self.segmentedControl];
-    /*
-    self.tableData = [[NSMutableArray alloc] init];
-    [self.feed reloadData];
-    //call the query again
-    PFQuery *getComments = [PFQuery queryWithClassName:@"Comments"];
-    [getComments whereKey:@"GameID" equalTo:self.data.gameId];
-    //need to add the filter for gameid
-    getComments.limit = 10;
-    isLoading = 1;
-    [getComments orderByDescending:@"createdAt"];
-    [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
-     */
     
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //need to check if loading is true then we can show the loading cell
-    
-    //do i need to use a semaphore??
     if([self.tableData count] == 0 && isLoading == 1)
     {
         UITableViewCell* cell = [self.feed dequeueReusableCellWithIdentifier:@"LoadingCell"];
@@ -544,7 +480,6 @@ static int atTop;//the flag I use to reset the most recent comment object
         
         if(indexPath.row < [self.tableData count])
         {
-            NSLog(@"We are at the end of the table view so no more calls");
             CommentTableViewCell* cell = [self.feed dequeueReusableCellWithIdentifier:@"CommentTableViewCell"];
             [cell updateViewWithItem: [self.tableData objectAtIndex: indexPath.row]];
             return cell;

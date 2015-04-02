@@ -36,7 +36,7 @@
         self.password.enabled = NO;
         self.password.secureTextEntry = YES;
         self.password.enabled = YES;
-        self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
+        //self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
     }
     return self;
 }
@@ -71,7 +71,6 @@
     //if the user is saying they are using reddit creds then log them in to check
     if([self.redditSwitch isOn])
     {
-        //[[RKClient sharedClient] signInWithUsername:self.username.text password:self.password.text completion:^(NSError *error) {
         
         [[RKClient sharedClient] signInWithUsername:self.username.text password:self.password.text completion:^(NSError *error) {
             if (!error)
@@ -97,31 +96,22 @@
     newUser.username = self.username.text;
     newUser.password = self.password.text;
     newUser.email = self.email.text;
+    newUser[@"totalUpvotes"] = [NSNumber numberWithInt:1];
     
+    if([self.redditSwitch isOn])
+    {
+        newUser[@"reddit"] = @"true";
+        [SSKeychain setPassword:self.password.text forService:self.username.text account:@"com.chant.keychain"];
+    }
+    else
+    {
+        newUser[@"reddit"] = @"false";
+    }
+    
+    //sign up the user
     [newUser signUpInBackgroundWithBlock:^(BOOL complete, NSError* error){
         if(!error)
         {
-          //go to the schdeule controller
-            
-          //add the user to the other table too
-          PFObject *user = [PFObject objectWithClassName:@"userData"];
-          user[@"username"] = self.username.text;
-            
-          if([self.redditSwitch isOn])
-          {
-              user[@"reddit"] = @"true";
-              //save the reddit password in the keychain
-              //using the username as the service so its unique by username not by phone
-              [SSKeychain setPassword:self.password.text forService:self.username.text account:@"com.chant.keychain"];
-              
-          }
-          else
-          {
-              user[@"reddit"] = @"false";
-          }
-            
-          [user saveInBackground];
-            
           UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc]init]];
             navController.navigationBar.translucent = NO;
             

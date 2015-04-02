@@ -39,8 +39,6 @@ static UIActivityIndicatorView *loadingActivity;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"ScheduleCell" bundle:nil] forCellReuseIdentifier:@"ScheduleCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"NewChatCell" bundle:nil] forCellReuseIdentifier:@"NewChatCell"];
@@ -54,23 +52,6 @@ static UIActivityIndicatorView *loadingActivity;
     //rgb(52, 152, 219)
     if([PFUser currentUser] != nil)
     {
-        //Trying to add users total upvotes to the navigation bar
-        /*PFQuery* query = [PFQuery queryWithClassName:@"userData"];
-        [query whereKey:@"username" equalTo:[PFUser currentUser].username];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError* error)
-         {
-             if(!error)
-             {
-                 for (PFObject* object in objects)
-                 {
-                     self.uVotes = object[@"totalUpvotes"];
-                 }
-             }
-             else
-             {
-                 NSLog(@"error looking up user in userData");
-             }
-         }];*/
         
         UIBarButtonItem* profile = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Final_userProfile" ] style:UIBarButtonItemStylePlain target:self action:@selector(toProfile)];
         self.navigationItem.rightBarButtonItem = profile;
