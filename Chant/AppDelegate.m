@@ -14,6 +14,7 @@
 #import "ChatRoomHome.h"
 #import "SSKeychain.h"
 #import "SSKeychainQuery.h"
+#import "Reachability.h"
 
 
 @implementation AppDelegate
@@ -37,6 +38,10 @@
     [self.window makeKeyAndVisible];
     
 
+    //Add reachability notifications
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+    [reachability startNotifier];
+    
     //Add SSKeyChain
     [SSKeychain setAccessibilityType:kSecAttrAccessibleWhenUnlocked];
     

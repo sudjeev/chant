@@ -44,6 +44,7 @@ static UIRefreshControl* refresher;
     self.commentView.layer.cornerRadius = 5;
     self.commentView.layer.masksToBounds = YES;
     self.navigationItem.title = @"Replies";
+    offset = 0;
     
     self.replies = [[NSMutableArray alloc] init];
     
@@ -69,35 +70,24 @@ static UIRefreshControl* refresher;
     refresher = refreshControl;
     [self.tableView addSubview:refreshControl];
     
-    //get this users favorite team
-    PFQuery* query = [PFUser query];
-    [query whereKey:@"username" equalTo:self.myCommentData.username];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError* error)
-     {
-         if(!error)
-         {
-             for (PFObject* object in objects)
-             {
-                 if (object[@"team"] != nil) {
-                     self.userFlair.image = [[Flairs allFlairs].dict objectForKey:object[@"Team"]];
-                 }
-                 else
-                 {
-                     self.userFlair.image = [UIImage imageNamed:@"jordan.jpg"];
-                 }
-             }
-         }
-         else
-         {
-             NSLog(@"error looking up user in Users");
-         }
-     }];
+    if(self.myCommentData.userTeam != nil)
+    {
+        self.userFlair.image = [[Flairs allFlairs].dict objectForKey:self.myCommentData.userTeam];
+    }
+    else
+    {
+        self.userFlair.image = [UIImage imageNamed:@"jordan.jpg"];
+    }
 
+
+    
+    NSString* tableName = [NSString stringWithFormat:@"%@_replies", self.myCommentData.gameId];
     //need to get the replies to this comment
-    PFQuery* getReplies = [PFQuery queryWithClassName:@"Replies"];
+    PFQuery* getReplies = [PFQuery queryWithClassName:tableName];
     [getReplies whereKey:@"CommentID" equalTo:self.myCommentData.objectId];
     isLoading = 1;
     getReplies.limit = 50;
+    [getReplies orderByDescending:@"createdAt"];
     [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
     
     
@@ -113,8 +103,9 @@ static UIRefreshControl* refresher;
 
 - (void)handleRefresh: (id) sender
 {
+    NSString* tableName = [NSString stringWithFormat:@"%@_replies", self.myCommentData.gameId];
     //need to get the replies to this comment
-    PFQuery* getReplies = [PFQuery queryWithClassName:@"Replies"];
+    PFQuery* getReplies = [PFQuery queryWithClassName:tableName];
     [getReplies whereKey:@"CommentID" equalTo:self.myCommentData.objectId];
     isLoading = 1;
     getReplies.limit = 50;
@@ -124,6 +115,9 @@ static UIRefreshControl* refresher;
 
 -(void)replyCallback: (NSArray*) array error:(NSError*) error
 {
+    //reset the array every time
+    self.replies = [[NSMutableArray alloc] init];
+    
     if(!error)
     {
         
@@ -142,11 +136,13 @@ static UIRefreshControl* refresher;
             newReply.upvotes = object[@"Upvotes"];
             newReply.username = object[@"Username"];
             newReply.reply = object[@"Reply"];
+            newReply.userTeam = object[@"Team"];
             
             [self.replies addObject:newReply];
         }
         
         isLoading = 0;
+        offset = [self.replies count];
         [self.tableView reloadData];
     }
     else
@@ -171,16 +167,22 @@ static UIRefreshControl* refresher;
         return YES;
     }
     
+    NSString* tableName = [NSString stringWithFormat:@"%@_replies", self.myCommentData.gameId];
+
     
     //handle all the logic for storing the comment here
-    PFObject *newComment = [PFObject objectWithClassName:@"Replies"];
+    PFUser* currentUser = [PFUser currentUser];
+
+    
+    PFObject *newComment = [PFObject objectWithClassName:tableName];
     newComment[@"Reply"] = self.replyBox.text;
     newComment[@"CommentID"] = self.myCommentData.objectId;
     newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
-    newComment[@"Username"] = [PFUser currentUser].username;
+    newComment[@"Username"] = currentUser.username;
+    newComment[@"Team"] = currentUser[@"team"];
     [newComment saveInBackground];
     
-    //send a push the the user
+    //Send a push to the guy who made the original comment
     PFQuery* pushQuery = [PFInstallation query];
     [pushQuery whereKey:@"username" equalTo: self.myCommentData.username];
     PFPush* push = [[PFPush alloc] init];
@@ -189,16 +191,29 @@ static UIRefreshControl* refresher;
     [push setMessage:pushMessage];
     [push sendPushInBackground];
     
+    //Send a message to anyone else who subscribed to this comment thread
+    PFPush* push2 = [[PFPush alloc]init];
+    [push2 setChannel:self.myCommentData.objectId];
+    NSString* pushMessage2 = [NSString stringWithFormat:@"%@ replied to a comment you also replied to: %@", [PFUser currentUser].username, self.replyBox.text];
+    [push setMessage:pushMessage2];
+    [push sendPushInBackground];
+    
+    
+    //If this is my first time responding to this then add me as a listener
+    PFInstallation* currentInstallation = [PFInstallation currentInstallation];
+    
+    //if im not subscribed to this channel then subscribe me to it
+    if([currentInstallation.channels containsObject:self.myCommentData.objectId] == NO && [PFUser currentUser].username != self.myCommentData.username)
+    {
+        [currentInstallation addUniqueObject:self.myCommentData.objectId forKey:@"channels"];
+        [currentInstallation saveEventually];
+    }
+    
     //reset the replies array
     self.replies = [[NSMutableArray alloc] init];
 
-    
-    //now recall the query to get all the comments again
-    PFQuery* getReplies = [PFQuery queryWithClassName:@"Replies"];
-    [getReplies whereKey:@"CommentID" equalTo:self.myCommentData.objectId];
-    isLoading = 1;
-    getReplies.limit = 10;
-    [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
+    [self.tableView reloadData];
+
     self.replyBox.text = @"";
     //reload the data so the comment shows up
     [self.tableView reloadData];
@@ -222,21 +237,17 @@ static UIRefreshControl* refresher;
         
         //check to see if the user is logged in or not
         
-        //find out how to launch a loading spinner
-        
-        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
-        [self.view addSubview: activityIndicator];
-        
-        activityIndicator.color = [UIColor redColor];
-        [activityIndicator startAnimating];
         
         //handle all the logic for storing the comment here
-        PFObject *newComment = [PFObject objectWithClassName:@"Replies"];
+        PFUser *currentUser = [PFUser currentUser];
+        
+        NSString* tableName = [NSString stringWithFormat:@"%@_replies", self.myCommentData.gameId];
+        PFObject *newComment = [PFObject objectWithClassName:tableName];
         newComment[@"Reply"] = self.replyBox.text;
         newComment[@"CommentID"] = self.myCommentData.objectId;
         newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
-        newComment[@"Username"] = [PFUser currentUser].username;
+        newComment[@"Username"] = currentUser.username;
+        newComment[@"Team"] = currentUser[@"team"];
         [newComment saveInBackground];
         
         //send a push the the user
@@ -253,21 +264,34 @@ static UIRefreshControl* refresher;
         [push setData:data];
         [push sendPushInBackground];
         
+        
+        //Send a message to anyone else who subscribed to this comment thread
+        PFPush* push2 = [[PFPush alloc]init];
+        [push2 setChannel:self.myCommentData.objectId];
+        NSString* pushMessage2 = [NSString stringWithFormat:@"%@ replied to a comment you also replied to: %@", [PFUser currentUser].username, self.replyBox.text];
+        [push setMessage:pushMessage2];
+        [push sendPushInBackground];
+        
+        
+        //If this is my first time responding to this then add me as a listener
+        PFInstallation* currentInstallation = [PFInstallation currentInstallation];
+        
+        //if im not subscribed to this channel then subscribe me to it
+        if([currentInstallation.channels containsObject:self.myCommentData.objectId] == NO && [PFUser currentUser].username != self.myCommentData.username)
+        {
+            [currentInstallation addUniqueObject:self.myCommentData.objectId forKey:@"channels"];
+            [currentInstallation saveEventually];
+        }
+        
         //reset the array of replies
         self.replies = [[NSMutableArray alloc] init];
         
-        //now recall the query to get all the comments again
-        PFQuery* getReplies = [PFQuery queryWithClassName:@"Replies"];
-        [getReplies whereKey:@"CommentID" equalTo:self.myCommentData.objectId];
-        isLoading = 1;
-        getReplies.limit = 10;
-        [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
-        self.replyBox.text = @"";
+        [refresher beginRefreshing];
+        [self handleRefresh:nil];
+    
+         self.replyBox.text = @"";
         [self.replyBox resignFirstResponder];
         
-        
-        [self.tableView reloadData];
-        [activityIndicator stopAnimating];
     }
 }
 
@@ -296,17 +320,19 @@ static UIRefreshControl* refresher;
     }
     else
     {
+        //Do nothing, we are only showing 50 replies per comment at the most
         //if indexPath has reached the point right before the end of tableData
+        /*
         if(indexPath.row + 1  >= [self.replies count])
         {
-            //this is being entered every time if i only have a few comments
-            PFQuery *getReplies = [PFQuery queryWithClassName:@"Repleis"];
-            [getReplies whereKey:@"GameID" equalTo:self.myCommentData.objectId];
-            getReplies.limit = 10;
+            NSString* tableName = [NSString stringWithFormat:@"%@_replies", self.myCommentData.gameId];
+            PFQuery* getReplies = [PFQuery queryWithClassName:tableName];
+            [getReplies whereKey:@"CommentID" equalTo:self.myCommentData.objectId];
+            isLoading = 1;
+            getReplies.limit = 50;
             getReplies.skip = offset;
-            [getReplies orderByDescending:@"createdAt"];
-            [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback:error:)];
-        }
+            [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
+        }*/
         
         if(indexPath.row < [self.replies count])
         {
@@ -314,12 +340,7 @@ static UIRefreshControl* refresher;
             [cell updateViewWithItem: [self.replies objectAtIndex: indexPath.row]];
             return cell;
         }
-        //show the loading cell again
-        else
-        {
-            UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
-            return cell;
-        }
+        
     }
 
     

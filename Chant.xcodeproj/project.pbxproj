@@ -73,6 +73,7 @@
 		B7970BF31ACCC7C6001D2A94 /* orangebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BF21ACCC7C6001D2A94 /* orangebutton.png */; };
 		B7970BF51ACCC7CE001D2A94 /* thinorangebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BF41ACCC7CE001D2A94 /* thinorangebutton.png */; };
 		B7970BF71ACCC7DF001D2A94 /* thingraybutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7970BF61ACCC7DF001D2A94 /* thingraybutton.png */; };
+		B7970BFA1ACDC013001D2A94 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B7970BF91ACDC013001D2A94 /* Reachability.m */; };
 		B798D1E819A5C38300550D56 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B798D1E619A5C38300550D56 /* CommentTableViewCell.m */; };
 		B798D1E919A5C38300550D56 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */; };
 		B7A39B8B1A8CADF500A7393D /* ChangeFlairController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A39B891A8CADF500A7393D /* ChangeFlairController.m */; };
@@ -702,6 +703,8 @@
 		B7970BF21ACCC7C6001D2A94 /* orangebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangebutton.png; sourceTree = "<group>"; };
 		B7970BF41ACCC7CE001D2A94 /* thinorangebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thinorangebutton.png; sourceTree = "<group>"; };
 		B7970BF61ACCC7DF001D2A94 /* thingraybutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thingraybutton.png; sourceTree = "<group>"; };
+		B7970BF81ACDC013001D2A94 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		B7970BF91ACDC013001D2A94 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		B798D1E519A5C38300550D56 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		B798D1E619A5C38300550D56 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		B798D1E719A5C38300550D56 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -1356,6 +1359,8 @@
 		B7268C3D1989C46400F7714E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B7970BF81ACDC013001D2A94 /* Reachability.h */,
+				B7970BF91ACDC013001D2A94 /* Reachability.m */,
 				B7268C3E1989C46400F7714E /* Chant-Info.plist */,
 				B7268C3F1989C46400F7714E /* InfoPlist.strings */,
 				B7268C421989C46400F7714E /* main.m */,
@@ -2781,6 +2786,7 @@
 				B7B5B07919FB1232006E9683 /* ReplyCommentCell.m in Sources */,
 				B7268C711989C76F00F7714E /* MainViewController.m in Sources */,
 				B7B0DD1119CB9EFC007FD5F4 /* CommentData.m in Sources */,
+				B7970BFA1ACDC013001D2A94 /* Reachability.m in Sources */,
 				B73EF5B41991F7C300934A61 /* LoginViewController.m in Sources */,
 				B790A3E519EB864800856412 /* StartChatController.m in Sources */,
 				B7E2580519C259D8009064C3 /* UpcomingGameCell.m in Sources */,
