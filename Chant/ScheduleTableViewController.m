@@ -241,6 +241,7 @@ static UIActivityIndicatorView *loadingActivity;
              nextGame.gameId = object.objectId;
              nextGame.status = [object objectForKey:@"status"];
              nextGame.redditFullName = [object objectForKey:@"redditFullName"];
+             nextGame.boxScoreURL = [object objectForKey:@"boxScore"];
              [self.schedule addObject:nextGame];
              self.liveGames++;
          

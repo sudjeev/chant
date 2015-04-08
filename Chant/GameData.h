@@ -22,4 +22,5 @@
 @property (strong, nonatomic) NSString* started;
 @property (strong, nonatomic) NSString* status;
 @property (strong, nonatomic) NSString* redditFullName;
+@property (strong, nonatomic) NSString* boxScoreURL;
 @end

@@ -40,12 +40,25 @@
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Box" style:UIBarButtonItemStylePlain target:self action:@selector(openBoxScore:)];
+    
     //register for the notifcation that specifies a reply
     NSString *notificationName = @"ReplyNotification";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName object:nil];
 
     self.collectionView.backgroundColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
 
+}
+
+- (void) openBoxScore: (id) sender
+{
+    if(self.data.boxScoreURL == nil)
+    {
+        return;
+    }
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.data.boxScoreURL]];
+    
 }
 
 - (void) useNotification: (NSNotification*) notification
