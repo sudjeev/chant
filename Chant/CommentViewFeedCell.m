@@ -47,7 +47,7 @@ static int atTop;//the flag I use to reset the most recent comment object
     self.feed.allowsSelection = NO;
     
     newComments = 0;
-    offset = 50;
+    offset = 0;
     self.data = data;
     self.feed.dataSource = self;
     self.feed.delegate = self;
@@ -119,16 +119,13 @@ static int atTop;//the flag I use to reset the most recent comment object
          }];
     }
 
-    //WE ARE NOW DOING THIS IN COMMENT CALLBACK
     //setup the nstimer that will be calling the poller
-    //self.myTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(poll:) userInfo:nil repeats:YES];
+    self.myTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(poll:) userInfo:nil repeats:YES];
     
     //setup the notification that gets called when the back button is hit so we can invalidate the timer
     //register for the notifcation that specifies a reply
     NSString *notificationName = @"BackNotification";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName object:nil];
-    
-    
     
     [self.feed registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"CommentTableViewCell"];
     [self.feed registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
@@ -157,24 +154,11 @@ static int atTop;//the flag I use to reset the most recent comment object
     [refresher beginRefreshing];
     [refresher sendActionsForControlEvents:UIControlEventValueChanged];
     self.loadNew.hidden = YES;
-    [self.feed scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-    
-    //scroll to the top of the table view
-    /*[self.feed scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-    
-    //make the button invisible again
-    self.loadNew.hidden = YES;
 
-    //load new comments
-    //Query to get all the comments for this chatroom, by querying the gameId database
-    PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
-    getComments.limit = 50;
-    isLoading = 1;
-    //set atTop to 1 as we are at top of tableView
-    atTop = 1;
-    //I should check segmented control before deciding how to sort initially
-    [getComments orderByDescending:@"createdAt"];
-    [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];*/
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.feed scrollToRowAtIndexPath:indexPath
+                          atScrollPosition:UITableViewScrollPositionTop
+                                  animated:YES];
     
 }
 
@@ -184,12 +168,17 @@ static int atTop;//the flag I use to reset the most recent comment object
     
     PFQuery *countComments = [PFQuery queryWithClassName:self.data.gameId];
     //crashing when commentCallback takes more than 15 seconds to respond because most recent comment does not get set and we do nil comparison
-    [countComments whereKey:@"createdAt" greaterThan:self.mostRecentComment.createdAt];
+    
+    if(self.mostRecentComment.createdAt != nil)
+    {
+     [countComments whereKey:@"createdAt" greaterThan:self.mostRecentComment.createdAt];
+    }
     
     if([PFUser currentUser].username != nil)
     {
         [countComments whereKey:@"User" notEqualTo:[PFUser currentUser].username];//count all the new comments not made by me
     }
+    
     [countComments countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if(!error)
         {
@@ -215,13 +204,14 @@ static int atTop;//the flag I use to reset the most recent comment object
 - (void) commentCallback: (NSArray*) array error: (NSError*) error
 {
 
+    [refresher endRefreshing];
+    
     if(!error)
     {
         //no error was reported
         if([array count] == 0)
         {
             NSLog(@"The query didnt return shit !!!!!!!!!!!!!!!!");
-            return;
         }
         
         for(PFObject* comment in array)
@@ -255,11 +245,6 @@ static int atTop;//the flag I use to reset the most recent comment object
         
         //should check if anything is even returned, otherwise there is no need to reload again cus no new data has been added
         [self.feed reloadData];
-        [refresher endRefreshing];
-        
-        //start polling because now we have something set as the most recent comment, dont do this outside of commentcallback1
-        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(poll:) userInfo:nil repeats:YES];
-
         
     }
     else
@@ -267,9 +252,6 @@ static int atTop;//the flag I use to reset the most recent comment object
         NSLog(@"There was a problem %@", error);
         isLoading = 0;
     }
-    
-    [refresher endRefreshing];
-
 }
 
 

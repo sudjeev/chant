@@ -20,6 +20,9 @@
 {
     self.commentData = comment;
 
+    //make links clickable in the uitextviews
+    self.text.dataDetectorTypes = UIDataDetectorTypeLink;
+    
     self.view.layer.cornerRadius = 5;
     self.view.layer.masksToBounds = YES;
     
@@ -31,7 +34,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString* game = [NSString stringWithFormat:@"%@", self.commentData.gameId];
-    
+    //if I dont have a dictionary for this game then make one and save it with the gameId key
     if([defaults objectForKey:game] == nil)
     {
         NSMutableDictionary* dict = [[NSMutableDictionary alloc]init];
@@ -42,7 +45,7 @@
     NSString* key = [NSString stringWithFormat:@"%@", self.commentData.objectId];
     NSMutableDictionary* upvotedComments = [defaults objectForKey:game];
     
-    //Checking if this has been upvoted by the user
+    //if the dictionary contains an object for this commentId or if I wrote this comment then show orange
     if([upvotedComments objectForKey:key] != nil || [self.commentData.username isEqual:[PFUser currentUser].username])
     {
      [self.upvoted setBackgroundImage:[UIImage imageNamed:@"orangehand.png"] forState:UIControlStateNormal];

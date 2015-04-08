@@ -31,29 +31,15 @@
     self.username.text = data.username;
     self.comment.text = data.reply;
     
-    PFQuery* query = [PFUser query];
-    [query whereKey:@"username" equalTo:data.username];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError* error)
-     {
-         if(!error)
-         {
-             for (PFObject* object in objects)
-             {
-                 if (object[@"Team"] != nil) {
-                     //self.logo.image = [self.dictionary objectForKey:object[@"Team"]];
-                     self.flair.image = [[Flairs allFlairs].dict objectForKey:object[@"Team"]];
-                 }
-                 else
-                 {
-                     self.flair.image = [UIImage imageNamed:@"jordan.jpg"];
-                 }
-             }
-         }
-         else
-         {
-             NSLog(@"error looking up user in user");
-         }
-     }];
+    if(self.data.userTeam != nil)
+    {
+        self.flair.image = [[Flairs allFlairs].dict objectForKey:self.data.userTeam];
+    }
+    else
+    {
+        self.flair.image = [UIImage imageNamed:@"jordan.jpg"];
+    }
+    
     
     //set image background of the reply view
     UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 171)];

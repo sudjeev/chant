@@ -22,6 +22,7 @@
 #import "RKClient+Comments.h"
 #import "RKClient+Messages.h"
 #import "Flairs.h"
+#import "Reachability.h"
 
 
 @interface ScheduleTableViewController ()
@@ -46,6 +47,8 @@ static UIActivityIndicatorView *loadingActivity;
     [self.tableView registerNib:[UINib nibWithNibName:@"UpcomingGameCell" bundle:nil] forCellReuseIdentifier:@"UpcomingGameCell"];
     
 
+    //reachability
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:kReachabilityChangedNotification object:nil];
     
     self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     
@@ -121,6 +124,69 @@ static UIActivityIndicatorView *loadingActivity;
     [self.view addSubview:loadingActivity];
     
 }
+
+
+
+- (void) reachabilityDidChange:(NSNotification *)notification
+{
+    Reachability *reachability = (Reachability *)[notification object];
+
+    if([reachability isReachable])
+    {
+        NSLog(@"Gained internet connection");
+    }
+    else
+    {
+        //show an alert that says its unreachable
+        UIAlertView* reachabilityAlert = [[UIAlertView alloc]initWithTitle:@"Connection Issue" message:@"Please check your internet connection and retry." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Retry",nil];
+        reachabilityAlert.tag = 1;
+        [reachabilityAlert show];
+    }
+}
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    
+    // Is this my Alert View?
+    if (alertView.tag == 1)
+    {
+        //Yes
+
+        // Then u can check which button was pressed.
+        if (buttonIndex == 0) {// 1st Other Button
+            NSLog(@"button index at 0 got clicked");
+            [alertView setHidden:YES];
+            
+            loadingActivity = [[UIActivityIndicatorView alloc]
+                               initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            
+            loadingActivity.center=self.view.center;
+            [loadingActivity startAnimating];
+            [self.view addSubview:loadingActivity];
+            
+            PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
+            [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
+
+        }
+        else if (buttonIndex == 1)
+        {//Retry button
+            NSLog(@"button index at 1 got clicked");
+            [alertView setHidden:YES];
+
+            loadingActivity = [[UIActivityIndicatorView alloc]
+                               initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            
+            loadingActivity.center=self.view.center;
+            [loadingActivity startAnimating];
+            [self.view addSubview:loadingActivity];
+            
+            PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
+            [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
+        }
+        
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -359,5 +425,19 @@ static UIActivityIndicatorView *loadingActivity;
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+//Methods to make sure the view cant turn sideways
+- (NSUInteger) supportedInterfaceOrientations {
+    // Return a bitmask of supported orientations. If you need more,
+    // use bitwise or (see the commented return).
+    return UIInterfaceOrientationMaskPortrait;
+    // return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
+}
+
+- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation {
+    // Return the orientation you'd prefer - this is what it launches to. The
+    // user can still rotate. You don't have to implement this method, in which
+    // case it launches in the current orientation
+    return UIInterfaceOrientationPortrait;
+}
 
 @end

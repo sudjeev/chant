@@ -14,5 +14,7 @@
 @property (nonatomic, strong) NSString* reply;
 @property (nonatomic, strong) NSNumber* upvotes;
 @property (nonatomic, strong) NSString* username;
+@property (nonatomic, strong) NSString* userTeam;
+
 
 @end

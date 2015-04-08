@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScheduleTableViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ScheduleTableViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 @end
