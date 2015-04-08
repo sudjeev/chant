@@ -48,7 +48,7 @@
     //if the dictionary contains an object for this commentId or if I wrote this comment then show orange
     if([upvotedComments objectForKey:key] != nil || [self.commentData.username isEqual:[PFUser currentUser].username])
     {
-     [self.upvoted setBackgroundImage:[UIImage imageNamed:@"orangehand.png"] forState:UIControlStateNormal];
+     //[self.upvoted setBackgroundImage:[UIImage imageNamed:@"orangehand.png"] forState:UIControlStateNormal];
     }
     
     self.text.text = comment.text;
@@ -101,7 +101,7 @@
     //[defaults synchronize];
     
     NSLog(@"got past saving in defaults");
-    [self.upvoted setBackgroundImage:[UIImage imageNamed:@"orangehand.png"] forState:UIControlStateNormal];
+    //[self.upvoted setBackgroundImage:[UIImage imageNamed:@"orangehand.png"] forState:UIControlStateNormal];
     self.commentData.upvotes = [[NSNumber alloc] initWithInt:[self.commentData.upvotes intValue] + 1];
     self.upvotes.text =  [self.commentData.upvotes stringValue];
 
