@@ -11,6 +11,7 @@
 #import "CommentViewFeedCell.h"
 #import "GameData.h"
 #import "ReplyViewController.h"
+#import "BoxScoreController.h"
 
 @interface CommentViewController ()
 @property(nonatomic, strong) GameData* data;
@@ -56,8 +57,12 @@
     {
         return;
     }
+    BoxScoreController* boxScoreController = [[BoxScoreController alloc] init];
+    [boxScoreController updateWithGameData:self.data];
+    [self.navigationController pushViewController:boxScoreController animated:YES];
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.data.boxScoreURL]];
+    return;
+   // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.data.boxScoreURL]];
     
 }
 
@@ -108,6 +113,13 @@
     //code to call the notification that will be used to invalidate the timer object
     NSLog(@"in view will dissapear");
     NSString *notificationName = @"BackNotification";
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSLog(@"in view will dissapear");
+    NSString *notificationName = @"ValidateTimer";
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
 }
 

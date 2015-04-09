@@ -30,6 +30,8 @@
 		B7268C601989C46400F7714E /* ChantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7268C5F1989C46400F7714E /* ChantTests.m */; };
 		B7268C711989C76F00F7714E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7268C6F1989C76F00F7714E /* MainViewController.m */; };
 		B7268C721989C76F00F7714E /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7268C701989C76F00F7714E /* MainViewController.xib */; };
+		B72E1B411AD53203003CD9F2 /* BoxScoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = B72E1B401AD53203003CD9F2 /* BoxScoreController.m */; };
+		B72E1B451AD539A7003CD9F2 /* BoxScoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B72E1B441AD539A7003CD9F2 /* BoxScoreController.xib */; };
 		B73BC2D819B7FFB8008C2911 /* ScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73BC2D619B7FFB8008C2911 /* ScheduleTableViewController.m */; };
 		B73BC2D919B7FFB8008C2911 /* ScheduleTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73BC2D719B7FFB8008C2911 /* ScheduleTableViewController.xib */; };
 		B73BC2DB19B8079B008C2911 /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73BC2DA19B8079B008C2911 /* ScheduleCell.xib */; };
@@ -646,6 +648,9 @@
 		B7268C6E1989C76F00F7714E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		B7268C6F1989C76F00F7714E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		B7268C701989C76F00F7714E /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		B72E1B3F1AD53203003CD9F2 /* BoxScoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxScoreController.h; sourceTree = "<group>"; };
+		B72E1B401AD53203003CD9F2 /* BoxScoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxScoreController.m; sourceTree = "<group>"; };
+		B72E1B441AD539A7003CD9F2 /* BoxScoreController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoxScoreController.xib; sourceTree = "<group>"; };
 		B73BC2D519B7FFB8008C2911 /* ScheduleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleTableViewController.h; sourceTree = "<group>"; };
 		B73BC2D619B7FFB8008C2911 /* ScheduleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleTableViewController.m; sourceTree = "<group>"; };
 		B73BC2D719B7FFB8008C2911 /* ScheduleTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleTableViewController.xib; sourceTree = "<group>"; };
@@ -1387,6 +1392,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B72E1B3E1AD531CE003CD9F2 /* BoxScore */ = {
+			isa = PBXGroup;
+			children = (
+				B72E1B3F1AD53203003CD9F2 /* BoxScoreController.h */,
+				B72E1B401AD53203003CD9F2 /* BoxScoreController.m */,
+				B72E1B441AD539A7003CD9F2 /* BoxScoreController.xib */,
+			);
+			name = BoxScore;
+			sourceTree = "<group>";
+		};
 		B73BC2CF19B7FF3F008C2911 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -2030,6 +2045,7 @@
 		B7C06EFB19AF028A00A4D9C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B72E1B3E1AD531CE003CD9F2 /* BoxScore */,
 				B795BFDA19F31B7500C8FC86 /* Reply */,
 				B790A3F519EC96BE00856412 /* ChatRoom */,
 				B790A3F419EBAE7800856412 /* StartChat */,
@@ -2439,6 +2455,7 @@
 				B7B0DC7F19CB95B9007FD5F4 /* glyphicons_326_piano.png in Resources */,
 				B7B0DCC119CB95B9007FD5F4 /* glyphicons_392_subtitles.png in Resources */,
 				B7B2D3B419D1F431007EC9A7 /* Nets.png in Resources */,
+				B72E1B451AD539A7003CD9F2 /* BoxScoreController.xib in Resources */,
 				B7B0DCE819CB95B9007FD5F4 /* glyphicons_431_shoe_steps.png in Resources */,
 				B7B0DC3E19CB95B9007FD5F4 /* glyphicons_261_buoy.png in Resources */,
 				B7E2582419C75412009064C3 /* CommentViewFeedCell.xib in Resources */,
@@ -2772,6 +2789,7 @@
 				B790A3E019EB808200856412 /* StartChatCell.m in Sources */,
 				B7E2581E19C7514A009064C3 /* CommentViewController.m in Sources */,
 				B7268C431989C46400F7714E /* main.m in Sources */,
+				B72E1B411AD53203003CD9F2 /* BoxScoreController.m in Sources */,
 				B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */,
 				B790A3F219EBA7AE00856412 /* LiveChatCell.m in Sources */,
 				B751BF6719CB6AD700C81F38 /* TeamData.m in Sources */,

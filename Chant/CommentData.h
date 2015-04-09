@@ -16,4 +16,6 @@
 @property (nonatomic, strong) NSString* objectId;
 @property (nonatomic, strong) NSString* userTeam;
 @property (nonatomic, assign) BOOL upvoted;
+@property (nonatomic, assign) NSNumber* reddit;
+@property (nonatomic, assign) NSNumber* numReplies;
 @end

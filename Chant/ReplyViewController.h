@@ -26,6 +26,8 @@
 @property (strong, nonatomic) NSDictionary* dictionary;
 @property (strong, nonatomic) CommentData* myCommentData;
 
+- (IBAction)upvote:(id)sender;
+
 
 - (IBAction)onReply:(id) sender;
 

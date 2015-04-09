@@ -30,6 +30,7 @@
     self.data = data;
     self.username.text = data.username;
     self.comment.text = data.reply;
+    self.upvotes.text = [data.upvotes stringValue];
     
     if(self.data.userTeam != nil)
     {
@@ -48,6 +49,40 @@
     av.image = [UIImage imageNamed:@"cell.png"];
     self.backgroundView = av;
 
+}
+
+-(IBAction)upvote:(id)sender
+{
+
+    
+    if([PFUser currentUser] == nil)
+    {
+        return;
+    }
+    
+    if([[PFUser currentUser].username isEqualToString: self.data.username])
+    {
+        NSLog(@"same user");
+        return;
+    }
+    
+    
+    self.data.upvotes = [[NSNumber alloc] initWithInt:[self.data.upvotes intValue] + 1];
+    
+    //increment the number in parse
+    PFQuery* query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"%@_replies", self.data.gameID ]];
+    [query getObjectInBackgroundWithId:self.data.objectID block:^(PFObject *thisComment, NSError *error) {
+        // Do something with the returned PFObject in the gameScore variable.
+        if(!error)
+        {
+            [thisComment incrementKey:@"Upvotes"];
+            [thisComment saveInBackground];
+        }
+        else
+        {
+            NSLog(@"%@",[error userInfo][@"error"]);
+        }
+    }];
 }
 
 - (void)awakeFromNib

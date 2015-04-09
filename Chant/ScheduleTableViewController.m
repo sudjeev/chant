@@ -35,7 +35,7 @@
 @implementation ScheduleTableViewController
 
 static UIActivityIndicatorView *loadingActivity;
-
+static UIRefreshControl* refresher;
 
 - (void)viewDidLoad
 {
@@ -114,6 +114,7 @@ static UIActivityIndicatorView *loadingActivity;
     
     self.isLoading = 1;
     PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
+    [getSchedule orderByAscending:@"status"];
     [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
     
     loadingActivity = [[UIActivityIndicatorView alloc]
@@ -123,8 +124,26 @@ static UIActivityIndicatorView *loadingActivity;
     [loadingActivity startAnimating];
     [self.view addSubview:loadingActivity];
     
+    
+    //Add pull to refresh
+    //implementing the pull to refresh of the table view
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.tintColor = [UIColor whiteColor];
+    [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    refresher = refreshControl;
+    [self.tableView addSubview:refreshControl];
+    
 }
 
+- (void)handleRefresh: (id) sender
+{
+    self.schedule = [[NSMutableArray alloc] init];
+    self.isLoading = 1;
+    PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
+    [getSchedule orderByAscending:@"status"];
+    [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
+    [refresher endRefreshing];
+}
 
 
 - (void) reachabilityDidChange:(NSNotification *)notification
@@ -146,6 +165,7 @@ static UIActivityIndicatorView *loadingActivity;
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
+    //Reachability
     
     // Is this my Alert View?
     if (alertView.tag == 1)

@@ -120,12 +120,17 @@ static int atTop;//the flag I use to reset the most recent comment object
     }
 
     //setup the nstimer that will be calling the poller
+    NSLog(@"Making the timer object in setupWithGameData");
     self.myTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(poll:) userInfo:nil repeats:YES];
     
     //setup the notification that gets called when the back button is hit so we can invalidate the timer
     //register for the notifcation that specifies a reply
     NSString *notificationName = @"BackNotification";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName object:nil];
+    
+    
+    NSString *notificationName2 = @"ValidateTimer";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName2 object:nil];
     
     [self.feed registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"CommentTableViewCell"];
     [self.feed registerNib:[UINib nibWithNibName:@"LoadingCell" bundle:nil] forCellReuseIdentifier:@"LoadingCell"];
@@ -145,8 +150,13 @@ static int atTop;//the flag I use to reset the most recent comment object
 - (void) useNotification: (NSNotification*) notification
 {
     //when the back button is hit it posts a notfication that calls this method
-    [self.myTimer invalidate];
-    NSLog(@"invalidated this timer object");
+    if ([notification.name isEqualToString:@"BackNotification"])
+    {
+        [self.myTimer invalidate];
+        self.myTimer = nil;
+        NSLog(@"invalidated this timer object");
+    }
+
 }
 
 - (IBAction)onLoadNew:(id)sender
@@ -235,6 +245,8 @@ static int atTop;//the flag I use to reset the most recent comment object
             data.username = comment[@"User"];
             data.objectId = comment.objectId;
             data.userTeam = comment[@"Team"];//used for flair
+            data.reddit = comment[@"reddit"];//if this comment is from reddit or not
+            data.numReplies = comment[@"numReplies"];//get the number of replies this comment has
             //make the comments gameId be the name of the class
             data.gameId = self.data.gameId;
             [self.tableData addObject:data];
@@ -257,6 +269,12 @@ static int atTop;//the flag I use to reset the most recent comment object
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [textField resignFirstResponder];
+    
+    return YES;
+    //should do nothing but remove the keyboard
+    
+    /*
     //if the user isnt logged into his account he shouldnt be allowed to post any content
     if([PFUser currentUser] == nil)
     {
@@ -315,7 +333,7 @@ static int atTop;//the flag I use to reset the most recent comment object
     
     [textField resignFirstResponder];
     
-    return YES;
+    return YES;*/
 }
 
 - (IBAction)valueChanged:(id)sender
@@ -327,7 +345,7 @@ static int atTop;//the flag I use to reset the most recent comment object
                 self.tableData = [[NSMutableArray alloc] init];
                 PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
                 //need to add the filter for gameid
-                getComments.limit = 50;
+                getComments.limit = 100;
                 isLoading = 1;
                 [getComments orderByDescending:@"createdAt"];
                 //set at top to 1 so we can reset the most recent comment
@@ -338,9 +356,10 @@ static int atTop;//the flag I use to reset the most recent comment object
         case 1:
             {
                 self.tableData = [[NSMutableArray alloc] init];
-                PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
+                NSString* topTable = [NSString stringWithFormat:@"%@_top", self.data.gameId];
+                PFQuery *getComments = [PFQuery queryWithClassName:topTable];
                 //need to add the filter for gameid
-                getComments.limit = 50;
+                getComments.limit = 100;
                 isLoading = 1;
                 [getComments orderByDescending:@"Upvotes"];
                 [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
@@ -396,6 +415,7 @@ static int atTop;//the flag I use to reset the most recent comment object
         newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
         newComment[@"User"] = currentUser.username;
         newComment[@"Team"] = currentUser[@"team"];
+        newComment[@"numReplies"] = [NSNumber numberWithInt:0];
         [newComment saveInBackground];
         
         [currentUser incrementKey:@"totalUpvotes"];
@@ -443,6 +463,9 @@ static int atTop;//the flag I use to reset the most recent comment object
         //if indexPath has reached the point right before the end of tableData
         if(indexPath.row + 1  >= [self.tableData count])
         {
+            //Get rid of infinite scroll, just show the 100 most recent comments
+            
+            /*
             PFQuery *getComments = [PFQuery queryWithClassName:self.data.gameId];
             getComments.limit = 50;
             //along with using the offset we need to store the first PFObject and use that objects created at field
@@ -457,7 +480,7 @@ static int atTop;//the flag I use to reset the most recent comment object
             
             getComments.skip = offset;
             [getComments orderByDescending:@"createdAt"];
-            [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback:error:)];
+            [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback:error:)];*/
         }
         
         if(indexPath.row < [self.tableData count])

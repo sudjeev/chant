@@ -23,6 +23,12 @@
     //make links clickable in the uitextviews
     self.text.dataDetectorTypes = UIDataDetectorTypeLink;
     
+    //set text of the replies button
+    if([self.commentData.numReplies intValue] > 0)
+    {
+        self.replies.titleLabel.text = [NSString stringWithFormat:@"(%@)", self.commentData.numReplies];
+    }
+    
     self.view.layer.cornerRadius = 5;
     self.view.layer.masksToBounds = YES;
     
@@ -63,6 +69,7 @@
     {
         self.logo.image = [UIImage imageNamed:@"jordan.jpg"];
     }
+    
     
     UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300, 110)];
     av.backgroundColor = [UIColor clearColor];
@@ -120,6 +127,14 @@
             NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
+    
+    
+    //cut off the flow here or we will crash the app
+    if([self.commentData.reddit intValue] == 1)
+    {
+        NSLog(@"THIS IS A REDDIT COMMENT");
+        return;
+    }
     
     //upvoting the users total karma
     PFQuery* upvoteUser = [PFUser query];

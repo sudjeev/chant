@@ -18,4 +18,6 @@
 @property (strong, nonatomic) IBOutlet UILabel* upvotes;
 @property (strong, nonatomic) IBOutlet UIImageView* flair;
 -(void) updateViewWithItem:(ReplyData*) data;
+
+-(IBAction)upvote:(id)sender;
 @end

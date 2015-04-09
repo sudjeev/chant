@@ -18,6 +18,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView* logo;
 @property (nonatomic, strong) IBOutlet UIButton* upvoted;
 @property (nonatomic, strong) IBOutlet UIView* view;
+@property (nonatomic, strong) IBOutlet UIButton* replies;
 @property (strong, nonatomic) NSDictionary* dictionary;
 - (void) updateViewWithItem: (NSString*) comment;
 - (IBAction)onUpvote:(id)sender;

@@ -113,6 +113,54 @@ static UIRefreshControl* refresher;
     [refresher endRefreshing];
 }
 
+- (IBAction)upvote:(id)sender
+{
+    if([PFUser currentUser] == nil)
+    {
+        return;
+    }
+    
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* game = [NSString stringWithFormat:@"%@", self.myCommentData.gameId];
+    //use the comment objectid to be the unique ID
+    NSString* key = [NSString stringWithFormat:@"%@", self.myCommentData.objectId];
+    NSMutableDictionary* upvotedComments = [[defaults objectForKey:game] mutableCopy];
+    
+    
+    if([self.myCommentData.username isEqualToString:[PFUser currentUser].username] || [upvotedComments objectForKey:key] != nil)
+    {
+        //cant upvote your own comment
+        NSLog(@"already upvoted this");
+        return;
+    }
+    
+    //if it doesnt already exist in our defaults then we can add it and upvote the comment
+    NSLog(@"first time upvoting");
+    [upvotedComments setObject:[[NSString alloc]init] forKey:key];
+    
+    [defaults setObject:upvotedComments forKey:game];
+    
+    self.myCommentData.upvotes = [[NSNumber alloc] initWithInt:[self.myCommentData.upvotes intValue] + 1];
+
+    //increment the number in parse
+    PFQuery* query = [PFQuery queryWithClassName:self.myCommentData.gameId];
+    [query getObjectInBackgroundWithId:self.myCommentData.objectId block:^(PFObject *thisComment, NSError *error) {
+        // Do something with the returned PFObject in the gameScore variable.
+        if(!error)
+        {
+            [thisComment incrementKey:@"Upvotes"];
+            [thisComment saveInBackground];
+        }
+        else
+        {
+            NSLog(@"%@",[error userInfo][@"error"]);
+        }
+    }];
+    
+    //[defaults synchronize];
+}
+
 -(void)replyCallback: (NSArray*) array error:(NSError*) error
 {
     //reset the array every time
@@ -137,6 +185,7 @@ static UIRefreshControl* refresher;
             newReply.username = object[@"Username"];
             newReply.reply = object[@"Reply"];
             newReply.userTeam = object[@"Team"];
+            newReply.gameID = object[@"GameID"];
             
             [self.replies addObject:newReply];
         }
@@ -161,6 +210,11 @@ static UIRefreshControl* refresher;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    return YES;
+    
+    //Do nothing but remove the keyboard
+    
+    /*
     
     if([self.replyBox.text isEqualToString:@""])
     {
@@ -181,6 +235,21 @@ static UIRefreshControl* refresher;
     newComment[@"Username"] = currentUser.username;
     newComment[@"Team"] = currentUser[@"team"];
     [newComment saveInBackground];
+    
+    //cut off the logic here
+    if([self.myCommentData.reddit intValue] == 1)
+    {
+        //reset the array of replies
+        self.replies = [[NSMutableArray alloc] init];
+        
+        [refresher beginRefreshing];
+        [self handleRefresh:nil];
+        
+        self.replyBox.text = @"";
+        [self.replyBox resignFirstResponder];
+        
+        return YES;
+    }
     
     //Send a push to the guy who made the original comment
     PFQuery* pushQuery = [PFInstallation query];
@@ -220,6 +289,7 @@ static UIRefreshControl* refresher;
     
     
     return YES;
+     */
     
 }
 
@@ -248,7 +318,62 @@ static UIRefreshControl* refresher;
         newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
         newComment[@"Username"] = currentUser.username;
         newComment[@"Team"] = currentUser[@"team"];
+        newComment[@"GameID"] = self.myCommentData.gameId;
         [newComment saveInBackground];
+        
+        //increment the numReplies of the comment
+        PFQuery* numRepliesQuery = [[PFQuery alloc] initWithClassName:self.myCommentData.gameId];
+        [numRepliesQuery getObjectInBackgroundWithId:self.myCommentData.objectId block:^(PFObject *object, NSError *error) {
+            if(!error)
+            {
+                [object incrementKey:@"numReplies"];
+                [object saveEventually];
+            }
+            else
+            {
+                NSLog(@"error trying to increment numreplies");
+            }
+        }];
+        
+        
+        //cut off the logic here
+        if([self.myCommentData.reddit intValue] == 1)
+        {
+            //reset the array of replies
+            self.replies = [[NSMutableArray alloc] init];
+            
+            [refresher beginRefreshing];
+            [self handleRefresh:nil];
+            
+            self.replyBox.text = @"";
+            [self.replyBox resignFirstResponder];
+            
+            return ;
+        }
+    
+        //Send a message to anyone else who subscribed to this comment thread
+        PFPush* push2 = [[PFPush alloc]init];
+        [push2 setChannel:self.myCommentData.objectId];
+        NSString* pushMessage2 = [NSString stringWithFormat:@"%@ replied to a comment you also replied to: %@", [PFUser currentUser].username, self.replyBox.text];
+        [push2 setMessage:pushMessage2];
+        [push2 sendPushInBackground];
+        
+        
+        //if im responding to my own comment dont send me a push
+        if([self.myCommentData.username isEqualToString:[PFUser currentUser].username])
+        {
+            NSLog(@"here");
+            //reset the array of replies
+            self.replies = [[NSMutableArray alloc] init];
+            
+            [refresher beginRefreshing];
+            [self handleRefresh:nil];
+            
+            self.replyBox.text = @"";
+            [self.replyBox resignFirstResponder];
+            return;
+        }
+        
         
         //send a push the the user
         PFQuery* pushQuery = [PFInstallation query];
@@ -265,12 +390,6 @@ static UIRefreshControl* refresher;
         [push sendPushInBackground];
         
         
-        //Send a message to anyone else who subscribed to this comment thread
-        PFPush* push2 = [[PFPush alloc]init];
-        [push2 setChannel:self.myCommentData.objectId];
-        NSString* pushMessage2 = [NSString stringWithFormat:@"%@ replied to a comment you also replied to: %@", [PFUser currentUser].username, self.replyBox.text];
-        [push setMessage:pushMessage2];
-        [push sendPushInBackground];
         
         
         //If this is my first time responding to this then add me as a listener

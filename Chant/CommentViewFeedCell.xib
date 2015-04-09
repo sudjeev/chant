@@ -58,7 +58,8 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDK-OC-4yF">
                                 <rect key="frame" x="115" y="80" width="80" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                <state key="normal" title="new comments" backgroundImage="thingraybutton.png">
+                                <state key="normal" title="new comments" backgroundImage="thinorangebutton.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -83,7 +84,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="thingraybutton.png" width="280" height="30"/>
+        <image name="thinorangebutton.png" width="280" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
