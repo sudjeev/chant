@@ -67,7 +67,7 @@
     }
     else
     {
-        self.logo.image = [UIImage imageNamed:@"jordan.jpg"];
+        self.logo.image = [UIImage imageNamed:@"nbalogo.png"];
     }
     
     
@@ -159,7 +159,9 @@
     PFQuery *pushQuery = [PFInstallation query];
     [pushQuery whereKey:@"username" equalTo:self.commentData.username];
     [pushQuery whereKey:@"upvotes" equalTo:@"Yes"];//if the user wants these notificaitons
+    NSString* pushAlert = [NSString stringWithFormat:@"%@ upvoted your comment", [PFUser currentUser].username] ;
     NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          pushAlert, @"alert",
                           @"Increment", @"badge",
                           nil];
     PFPush *push = [[PFPush alloc] init];

@@ -101,7 +101,7 @@
     }
     else
     {
-        self.logo.image = [UIImage imageNamed:@"jordan.jpg"];
+        self.logo.image = [UIImage imageNamed:@"nbalogo.png"];
     }
     
     self.totalUpvotes = currentUser[@"totalUpvotes"];

@@ -76,7 +76,7 @@ static UIRefreshControl* refresher;
     }
     else
     {
-        self.userFlair.image = [UIImage imageNamed:@"jordan.jpg"];
+        self.userFlair.image = [UIImage imageNamed:@"nbalogo.png"];
     }
 
 
@@ -157,6 +157,21 @@ static UIRefreshControl* refresher;
             NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
+    
+    //send a badge push to the user
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"username" equalTo:self.myCommentData.username];
+    [pushQuery whereKey:@"upvotes" equalTo:@"Yes"];//if the user wants these notificaitons
+    NSString* pushAlert = [NSString stringWithFormat:@"%@ upvoted your comment", [PFUser currentUser].username] ;
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          pushAlert, @"alert",
+                          @"Increment", @"badge",
+                          nil];
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:pushQuery]; // Set our Installation query
+    [push setData:data];
+    [push sendPushInBackground];
+    NSLog(@"the badge update got sent");
     
     //[defaults synchronize];
 }

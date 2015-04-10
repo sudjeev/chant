@@ -38,7 +38,7 @@
     }
     else
     {
-        self.flair.image = [UIImage imageNamed:@"jordan.jpg"];
+        self.flair.image = [UIImage imageNamed:@"nbalogo.png"];
     }
     
     
@@ -66,6 +66,19 @@
         return;
     }
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* game = [NSString stringWithFormat:@"%@", self.data.gameID];
+    //use the comment objectid to be the unique ID
+    NSString* key = [NSString stringWithFormat:@"%@", self.data.objectID];
+    NSMutableDictionary* upvotedComments = [[defaults objectForKey:game] mutableCopy];
+    
+    
+    if([self.data.username isEqualToString:[PFUser currentUser].username] || [upvotedComments objectForKey:key] != nil)
+    {
+        //cant upvote your own comment
+        NSLog(@"already upvoted this");
+        return;
+    }
     
     self.data.upvotes = [[NSNumber alloc] initWithInt:[self.data.upvotes intValue] + 1];
     
@@ -83,6 +96,21 @@
             NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
+    
+    //send a badge push to the user
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"username" equalTo:self.data.username];
+    [pushQuery whereKey:@"upvotes" equalTo:@"Yes"];//if the user wants these notificaitons
+    NSString* pushAlert = [NSString stringWithFormat:@"%@ upvoted your reply", [PFUser currentUser].username] ;
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          pushAlert, @"alert",
+                          @"Increment", @"badge",
+                          nil];
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:pushQuery]; // Set our Installation query
+    [push setData:data];
+    [push sendPushInBackground];
+    NSLog(@"the badge update got sent");
 }
 
 - (void)awakeFromNib

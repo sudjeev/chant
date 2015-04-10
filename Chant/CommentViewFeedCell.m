@@ -197,8 +197,12 @@ static int atTop;//the flag I use to reset the most recent comment object
             newComments += count;
             if(newComments > 0)
             {
-             self.loadNew.hidden = NO;
-             self.loadNew.titleLabel.text = [NSString stringWithFormat:@"%i new comments", newComments];
+             //we should only see this if the user is on new
+             if (self.segmentedControl.selectedSegmentIndex == 0)
+             {
+                 self.loadNew.hidden = NO;
+                 self.loadNew.titleLabel.text = [NSString stringWithFormat:@"%i new comments", newComments];
+             }
             }
         }
         else
@@ -274,66 +278,6 @@ static int atTop;//the flag I use to reset the most recent comment object
     return YES;
     //should do nothing but remove the keyboard
     
-    /*
-    //if the user isnt logged into his account he shouldnt be allowed to post any content
-    if([PFUser currentUser] == nil)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Before you can post.." message:@"Log In or Sign Up for an account, it only takes 30 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-        [alert show];
-        [textField resignFirstResponder];
-        return YES;
-    }
-    
-    //if the comment box is not empty
-    if([self.commentBox.text isEqualToString: @""] == NO)
-    {
-        //drop the keyboard
-        [textField resignFirstResponder];
-        
-        //need to save this comment id in NSUserDefaults
-        
-        //make a PFObject for the new comment and save it in parse
-        PFUser* currentUser = [PFUser currentUser];
-        
-        PFObject *newComment = [PFObject objectWithClassName:self.data.gameId];
-        newComment[@"Content"] = self.commentBox.text;
-        newComment[@"GameID"] = self.data.gameId;
-        newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
-        newComment[@"User"] = currentUser.username;
-        newComment[@"Team"] = currentUser[@"team"];
-        [newComment saveInBackground];
-        
-        //increment my total upvotes by 1 after I post a new comment
-        [currentUser incrementKey:@"totalUpvotes"];
-        [currentUser saveEventually];
-        
-        
-        //if there is a gamethread to post to and the user is signed into reddit
-        if(self.data.redditFullName != nil && [[RKClient sharedClient]isSignedIn])
-        {
-            [[RKClient sharedClient] submitComment:self.commentBox.text onThingWithFullName:self.data.redditFullName completion:^(NSError *error){
-                if(!error)
-                    {
-                        NSLog(@"It shouldve posted to comments of %@", self.data.redditFullName);
-                    }
-                else
-                {
-                    NSLog(@"Couldnt crosspost the comment to reddit game threads");
-                }
-            }];
-        }
-        
-        self.commentBox.text = @"";
-        
-        //throw up a loading spinner
-        
-        //reload the whole tableview based on segmented control value
-        [self valueChanged:self.segmentedControl];
-    }
-    
-    [textField resignFirstResponder];
-    
-    return YES;*/
 }
 
 - (IBAction)valueChanged:(id)sender
@@ -351,6 +295,11 @@ static int atTop;//the flag I use to reset the most recent comment object
                 //set at top to 1 so we can reset the most recent comment
                 atTop = 1;
                 [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
+                
+                /*NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                 [self.feed scrollToRowAtIndexPath:indexPath
+                 atScrollPosition:UITableViewScrollPositionTop
+                 animated:YES];*/
             }
             break;
         case 1:
@@ -363,6 +312,11 @@ static int atTop;//the flag I use to reset the most recent comment object
                 isLoading = 1;
                 [getComments orderByDescending:@"Upvotes"];
                 [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
+                
+                /*NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                 [self.feed scrollToRowAtIndexPath:indexPath
+                 atScrollPosition:UITableViewScrollPositionTop
+                 animated:YES];*/
             }
             break;
         case 2:
@@ -382,6 +336,11 @@ static int atTop;//the flag I use to reset the most recent comment object
             isLoading = 1;
             [getComments orderByDescending:@"createdAt"];
             [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback:error:)];
+            
+            /*NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            [self.feed scrollToRowAtIndexPath:indexPath
+                             atScrollPosition:UITableViewScrollPositionTop
+                                     animated:YES];*/
         }
         default:
             break;

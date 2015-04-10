@@ -32,6 +32,7 @@
 		B7268C721989C76F00F7714E /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7268C701989C76F00F7714E /* MainViewController.xib */; };
 		B72E1B411AD53203003CD9F2 /* BoxScoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = B72E1B401AD53203003CD9F2 /* BoxScoreController.m */; };
 		B72E1B451AD539A7003CD9F2 /* BoxScoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B72E1B441AD539A7003CD9F2 /* BoxScoreController.xib */; };
+		B72E1B471AD7B291003CD9F2 /* nbalogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B72E1B461AD7B291003CD9F2 /* nbalogo.png */; };
 		B73BC2D819B7FFB8008C2911 /* ScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73BC2D619B7FFB8008C2911 /* ScheduleTableViewController.m */; };
 		B73BC2D919B7FFB8008C2911 /* ScheduleTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73BC2D719B7FFB8008C2911 /* ScheduleTableViewController.xib */; };
 		B73BC2DB19B8079B008C2911 /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73BC2DA19B8079B008C2911 /* ScheduleCell.xib */; };
@@ -651,6 +652,7 @@
 		B72E1B3F1AD53203003CD9F2 /* BoxScoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxScoreController.h; sourceTree = "<group>"; };
 		B72E1B401AD53203003CD9F2 /* BoxScoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxScoreController.m; sourceTree = "<group>"; };
 		B72E1B441AD539A7003CD9F2 /* BoxScoreController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoxScoreController.xib; sourceTree = "<group>"; };
+		B72E1B461AD7B291003CD9F2 /* nbalogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nbalogo.png; path = ../png/nbalogo.png; sourceTree = "<group>"; };
 		B73BC2D519B7FFB8008C2911 /* ScheduleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleTableViewController.h; sourceTree = "<group>"; };
 		B73BC2D619B7FFB8008C2911 /* ScheduleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleTableViewController.m; sourceTree = "<group>"; };
 		B73BC2D719B7FFB8008C2911 /* ScheduleTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleTableViewController.xib; sourceTree = "<group>"; };
@@ -2007,6 +2009,7 @@
 		B7B2D38519D1F431007EC9A7 /* NBA_Logos */ = {
 			isa = PBXGroup;
 			children = (
+				B72E1B461AD7B291003CD9F2 /* nbalogo.png */,
 				B7B2D3C219D22116007EC9A7 /* jordan.jpg */,
 				B7B2D38619D1F431007EC9A7 /* 76ers.png */,
 				B7B2D38719D1F431007EC9A7 /* Bucks.png */,
@@ -2311,6 +2314,7 @@
 				B7B0DBC519CB95B9007FD5F4 /* glyphicons_140_database_lock.png in Resources */,
 				B7970BF11ACC94F1001D2A94 /* orangehand.png in Resources */,
 				B7B2D3B019D1F431007EC9A7 /* Knicks.png in Resources */,
+				B72E1B471AD7B291003CD9F2 /* nbalogo.png in Resources */,
 				B7B0DBB519CB95B9007FD5F4 /* glyphicons_124_message_plus.png in Resources */,
 				B7B0DB4519CB95B9007FD5F4 /* glyphicons_012_heart.png in Resources */,
 				B7B0DC2E19CB95B9007FD5F4 /* glyphicons_245_chat.png in Resources */,
