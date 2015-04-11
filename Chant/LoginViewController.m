@@ -13,6 +13,8 @@
 #import "ScheduleTableViewController.h"
 #import "SSKeychain.h"
 #import "SSKeychainQuery.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAITracker.h"
 
 @interface LoginViewController ()
 @property (nonatomic) NSInteger valid;
@@ -47,6 +49,14 @@
                                      style:UIBarButtonItemStyleBordered
                                     target:nil
                                     action:nil] ;
+    self.usernameLabel.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
+    self.passwordLabel.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
+    
+    
+    //connect with Google Analytics
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"LogInScreen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (IBAction)onSave:(id)sender

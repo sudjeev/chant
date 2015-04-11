@@ -39,6 +39,7 @@ static UIActivityIndicatorView *loadingActivity;
     //Load the request in the UIWebView.
     [self.boxScore loadRequest:requestObj];
     [loadingActivity stopAnimating];
+    NSLog(@"are we done yet");
     
 }
 
@@ -56,6 +57,7 @@ static UIActivityIndicatorView *loadingActivity;
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request   navigationType:(UIWebViewNavigationType)navigationType {
+    NSLog(@"The box score has loaded");
     return YES;
 }
 
@@ -67,6 +69,11 @@ static UIActivityIndicatorView *loadingActivity;
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     NSLog(@"view did start load");
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    [loadingActivity stopAnimating];
 }
 
 @end

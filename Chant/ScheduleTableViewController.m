@@ -23,7 +23,8 @@
 #import "RKClient+Messages.h"
 #import "Flairs.h"
 #import "Reachability.h"
-
+#import "GAIDictionaryBuilder.h"
+#import "GAITracker.h"
 
 @interface ScheduleTableViewController ()
 @property (nonatomic, strong) NSMutableArray* schedule;
@@ -47,6 +48,13 @@ static UIRefreshControl* refresher;
     [self.tableView registerNib:[UINib nibWithNibName:@"UpcomingGameCell" bundle:nil] forCellReuseIdentifier:@"UpcomingGameCell"];
     
 
+    
+    //connect with Google Analytics
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"ScheduleScreen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
+    
     //reachability
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:kReachabilityChangedNotification object:nil];
     
@@ -184,6 +192,7 @@ static UIRefreshControl* refresher;
             [loadingActivity startAnimating];
             [self.view addSubview:loadingActivity];
             
+            self.schedule = [[NSMutableArray alloc]init];
             PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
             [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
 
@@ -200,6 +209,7 @@ static UIRefreshControl* refresher;
             [loadingActivity startAnimating];
             [self.view addSubview:loadingActivity];
             
+            self.schedule = [[NSMutableArray alloc]init];
             PFQuery *getSchedule = [PFQuery queryWithClassName:@"GameData"];
             [getSchedule findObjectsInBackgroundWithTarget:self selector:@selector(gameDataCallback: error:)];
         }

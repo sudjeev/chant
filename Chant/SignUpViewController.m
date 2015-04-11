@@ -16,7 +16,8 @@
 #import "RKClient+Messages.h"
 #import "SSKeychain.h"
 #import "SSKeychainQuery.h"
-
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
 
 @interface SignUpViewController ()
 
@@ -37,6 +38,9 @@
         self.password.secureTextEntry = YES;
         self.password.enabled = YES;
         //self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:126.0/255.0 blue:34.0/255.0 alpha:1];
+        
+        self.redditInstructions.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
+        self.redditSwitchLabel.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     }
     return self;
 }
@@ -44,7 +48,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.redditInstructions.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
+    self.redditSwitchLabel.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     // Do any additional setup after loading the view from its nib.
+
+    //connect with Google Analytics
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"SignUpScreen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+
 }
 
 -(IBAction)toggleSwitch:(id)sender
@@ -97,6 +109,7 @@
     newUser.password = self.password.text;
     newUser.email = self.email.text;
     newUser[@"totalUpvotes"] = [NSNumber numberWithInt:1];
+    newUser[@"team"] = [[NSString alloc] initWithFormat:@"NBA"];
     
     if([self.redditSwitch isOn])
     {

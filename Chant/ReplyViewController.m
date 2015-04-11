@@ -10,6 +10,7 @@
 #import "ReplyViewController.h"
 #import "Flairs.h"
 
+
 @interface ReplyViewController ()
 
 @end
@@ -33,6 +34,7 @@ static UIRefreshControl* refresher;
 {
     //set up all the shit right here
     self.myCommentData = comment;
+    
         
 }
 
@@ -70,13 +72,14 @@ static UIRefreshControl* refresher;
     refresher = refreshControl;
     [self.tableView addSubview:refreshControl];
     
-    if(self.myCommentData.userTeam != nil)
+    if(self.myCommentData.userTeam == nil || [self.myCommentData.userTeam isEqualToString:@"nbalogo.png"])
     {
-        self.userFlair.image = [[Flairs allFlairs].dict objectForKey:self.myCommentData.userTeam];
+        self.userFlair.image = [UIImage imageNamed:@"nbalogo.png"];
     }
     else
     {
-        self.userFlair.image = [UIImage imageNamed:@"nbalogo.png"];
+        self.userFlair.image = [[Flairs allFlairs].dict objectForKey:self.myCommentData.userTeam];
+        
     }
 
 
@@ -98,6 +101,12 @@ static UIRefreshControl* refresher;
     av.image = [UIImage imageNamed:@"cell.png"];
     [self.replyView addSubview:av];
     [self.replyView sendSubviewToBack:av];
+    
+    
+    //set the screenname
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"ReplyScreen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 
 }
 

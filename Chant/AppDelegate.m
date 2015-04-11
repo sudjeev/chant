@@ -17,6 +17,7 @@
 #import "Reachability.h"
 
 
+
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -37,6 +38,11 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    //GOOGLE ANALYTICS INITIALIZATION
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
+    [GAI sharedInstance].dispatchInterval = 20;
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-61782921-1"];
 
     //Add reachability notifications
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];

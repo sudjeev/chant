@@ -32,13 +32,14 @@
     self.comment.text = data.reply;
     self.upvotes.text = [data.upvotes stringValue];
     
-    if(self.data.userTeam != nil)
+    if(self.data.userTeam == nil || [self.data.userTeam isEqualToString:@"nbalogo.png"])
     {
-        self.flair.image = [[Flairs allFlairs].dict objectForKey:self.data.userTeam];
+        self.flair.image = [UIImage imageNamed:@"nbalogo.png"];
     }
     else
     {
-        self.flair.image = [UIImage imageNamed:@"nbalogo.png"];
+        self.flair.image = [[Flairs allFlairs].dict objectForKey:self.data.userTeam];
+
     }
     
     

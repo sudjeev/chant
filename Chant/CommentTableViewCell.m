@@ -19,7 +19,7 @@
 -(void) updateViewWithItem: (CommentData*) comment
 {
     self.commentData = comment;
-
+    self.text.text = nil;
     //make links clickable in the uitextviews
     self.text.dataDetectorTypes = UIDataDetectorTypeLink;
     
@@ -57,17 +57,18 @@
      //[self.upvoted setBackgroundImage:[UIImage imageNamed:@"orangehand.png"] forState:UIControlStateNormal];
     }
     
+    self.text.text = nil;
     self.text.text = comment.text;
     self.upvotes.text = [comment.upvotes stringValue];
     self.username.text = comment.username;
     
-    if(comment.userTeam != nil)
+    if(comment.userTeam == nil || [comment.userTeam isEqualToString:@"NBA"] )
     {
-        self.logo.image = [[Flairs allFlairs].dict objectForKey:comment.userTeam];
+        self.logo.image = [UIImage imageNamed:@"nbalogo.png"];
     }
     else
     {
-        self.logo.image = [UIImage imageNamed:@"nbalogo.png"];
+        self.logo.image = [[Flairs allFlairs].dict objectForKey:comment.userTeam];
     }
     
     
@@ -185,6 +186,13 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void) prepareForReuse
+{
+    self.text.editable = YES;
+    self.text.editable = NO;
+
 }
 
 @end

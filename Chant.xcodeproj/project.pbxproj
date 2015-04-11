@@ -33,6 +33,8 @@
 		B72E1B411AD53203003CD9F2 /* BoxScoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = B72E1B401AD53203003CD9F2 /* BoxScoreController.m */; };
 		B72E1B451AD539A7003CD9F2 /* BoxScoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B72E1B441AD539A7003CD9F2 /* BoxScoreController.xib */; };
 		B72E1B471AD7B291003CD9F2 /* nbalogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B72E1B461AD7B291003CD9F2 /* nbalogo.png */; };
+		B72E1B501AD874EA003CD9F2 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B72E1B4F1AD874EA003CD9F2 /* libGoogleAnalyticsServices.a */; };
+		B72E1B561AD87BE3003CD9F2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B72E1B551AD87BE3003CD9F2 /* libsqlite3.dylib */; };
 		B73BC2D819B7FFB8008C2911 /* ScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73BC2D619B7FFB8008C2911 /* ScheduleTableViewController.m */; };
 		B73BC2D919B7FFB8008C2911 /* ScheduleTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73BC2D719B7FFB8008C2911 /* ScheduleTableViewController.xib */; };
 		B73BC2DB19B8079B008C2911 /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73BC2DA19B8079B008C2911 /* ScheduleCell.xib */; };
@@ -653,6 +655,18 @@
 		B72E1B401AD53203003CD9F2 /* BoxScoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxScoreController.m; sourceTree = "<group>"; };
 		B72E1B441AD539A7003CD9F2 /* BoxScoreController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoxScoreController.xib; sourceTree = "<group>"; };
 		B72E1B461AD7B291003CD9F2 /* nbalogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nbalogo.png; path = ../png/nbalogo.png; sourceTree = "<group>"; };
+		B72E1B491AD87426003CD9F2 /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		B72E1B4A1AD87433003CD9F2 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		B72E1B4B1AD8743F003CD9F2 /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		B72E1B4C1AD8744C003CD9F2 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		B72E1B4D1AD87456003CD9F2 /* GAIFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		B72E1B4E1AD87460003CD9F2 /* GAILogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		B72E1B4F1AD874EA003CD9F2 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		B72E1B511AD879C2003CD9F2 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
+		B72E1B521AD879C2003CD9F2 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		B72E1B531AD879C2003CD9F2 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		B72E1B541AD879C2003CD9F2 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		B72E1B551AD87BE3003CD9F2 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B73BC2D519B7FFB8008C2911 /* ScheduleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleTableViewController.h; sourceTree = "<group>"; };
 		B73BC2D619B7FFB8008C2911 /* ScheduleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleTableViewController.m; sourceTree = "<group>"; };
 		B73BC2D719B7FFB8008C2911 /* ScheduleTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleTableViewController.xib; sourceTree = "<group>"; };
@@ -1260,6 +1274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B72E1B561AD87BE3003CD9F2 /* libsqlite3.dylib in Frameworks */,
 				B70484C81A7E0390003686C7 /* Social.framework in Frameworks */,
 				B70484C61A7E0383003686C7 /* Accounts.framework in Frameworks */,
 				B73EF5B01991F21B00934A61 /* SystemConfiguration.framework in Frameworks */,
@@ -1274,6 +1289,7 @@
 				B73EF5A01991F19D00934A61 /* AudioToolbox.framework in Frameworks */,
 				B7268C371989C46400F7714E /* CoreGraphics.framework in Frameworks */,
 				B7268C3B1989C46400F7714E /* CoreData.framework in Frameworks */,
+				B72E1B501AD874EA003CD9F2 /* libGoogleAnalyticsServices.a in Frameworks */,
 				B7268C391989C46400F7714E /* UIKit.framework in Frameworks */,
 				B7268C351989C46400F7714E /* Foundation.framework in Frameworks */,
 				B73EF59E1991EE0000934A61 /* Parse.framework in Frameworks */,
@@ -1327,6 +1343,8 @@
 		B7268C331989C46400F7714E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B72E1B551AD87BE3003CD9F2 /* libsqlite3.dylib */,
+				B72E1B4F1AD874EA003CD9F2 /* libGoogleAnalyticsServices.a */,
 				B70484C91A7E049D003686C7 /* FacebookSDK.framework */,
 				B70484C71A7E0390003686C7 /* Social.framework */,
 				B70484C51A7E0383003686C7 /* Accounts.framework */,
@@ -1366,6 +1384,7 @@
 		B7268C3D1989C46400F7714E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B72E1B481AD873FB003CD9F2 /* GoogleAnalytics */,
 				B7970BF81ACDC013001D2A94 /* Reachability.h */,
 				B7970BF91ACDC013001D2A94 /* Reachability.m */,
 				B7268C3E1989C46400F7714E /* Chant-Info.plist */,
@@ -1402,6 +1421,23 @@
 				B72E1B441AD539A7003CD9F2 /* BoxScoreController.xib */,
 			);
 			name = BoxScore;
+			sourceTree = "<group>";
+		};
+		B72E1B481AD873FB003CD9F2 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				B72E1B4E1AD87460003CD9F2 /* GAILogger.h */,
+				B72E1B4D1AD87456003CD9F2 /* GAIFields.h */,
+				B72E1B4C1AD8744C003CD9F2 /* GAIDictionaryBuilder.h */,
+				B72E1B511AD879C2003CD9F2 /* GAIEcommerceFields.h */,
+				B72E1B521AD879C2003CD9F2 /* GAIEcommerceProduct.h */,
+				B72E1B531AD879C2003CD9F2 /* GAIEcommerceProductAction.h */,
+				B72E1B541AD879C2003CD9F2 /* GAIEcommercePromotion.h */,
+				B72E1B4B1AD8743F003CD9F2 /* GAITrackedViewController.h */,
+				B72E1B4A1AD87433003CD9F2 /* GAITracker.h */,
+				B72E1B491AD87426003CD9F2 /* GAI.h */,
+			);
+			name = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
 		B73BC2CF19B7FF3F008C2911 /* Schedule */ = {
@@ -2160,6 +2196,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = SudjeevSingh;
 				TargetAttributes = {
+					B7268C301989C46400F7714E = {
+						DevelopmentTeam = ML8ME3GAGR;
+					};
 					B7268C501989C46400F7714E = {
 						TestTargetID = B7268C301989C46400F7714E;
 					};
@@ -2891,6 +2930,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -2924,6 +2964,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -2933,7 +2974,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sudjeev Singh (EK2GLJTLL6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2942,7 +2984,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chant/Chant-Prefix.pch";
 				INFOPLIST_FILE = "Chant/Chant-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2953,7 +3000,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sudjeev Singh (EK2GLJTLL6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2962,7 +3010,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chant/Chant-Prefix.pch";
 				INFOPLIST_FILE = "Chant/Chant-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

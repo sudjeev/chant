@@ -15,6 +15,9 @@
 @property (strong, nonatomic) IBOutlet UITextField* password;
 @property (strong, nonatomic) IBOutlet UIButton* save;
 @property (strong, nonatomic) IBOutlet UIButton* signUp;
+@property (strong, nonatomic) IBOutlet UILabel* usernameLabel;
+@property (strong, nonatomic) IBOutlet UILabel* passwordLabel;
+
 
 @property (strong, nonatomic) User* thisUser;
 

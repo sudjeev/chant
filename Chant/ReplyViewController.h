@@ -11,6 +11,9 @@
 #import "CommentData.h"
 #import "ReplyData.h"
 #import "ReplyCommentCell.h"
+#import "GAITrackedViewController.h"
+#import "GAIDictionaryBuilder.h"
+
 
 @interface ReplyViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 - (void) updateViewWithCommentData: (CommentData*) comment;

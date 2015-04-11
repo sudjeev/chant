@@ -12,6 +12,9 @@
 #import "GameData.h"
 #import "ReplyViewController.h"
 #import "BoxScoreController.h"
+#import "Reachability.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
 
 @interface CommentViewController ()
 @property(nonatomic, strong) GameData* data;
@@ -34,6 +37,10 @@
     [super viewDidLoad];
     //need to register the collectionview cell
     
+    //connect with Google Analytics
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"CommentScreen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewScoreCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewScoreCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentViewFeedCell" bundle:nil] forCellWithReuseIdentifier:@"CommentViewFeedCell"];
@@ -48,7 +55,28 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useNotification:) name:notificationName object:nil];
 
     self.collectionView.backgroundColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
+    
+    //reachability
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:kReachabilityChangedNotification object:nil];
 
+}
+
+
+- (void) reachabilityDidChange:(NSNotification *)notification
+{
+    Reachability *reachability = (Reachability *)[notification object];
+    
+    if([reachability isReachable])
+    {
+        NSLog(@"Gained internet connection");
+    }
+    else
+    {
+        //show an alert that says its unreachable
+        UIAlertView* reachabilityAlert = [[UIAlertView alloc]initWithTitle:@"Connection Issue" message:@"Please check your internet connection and retry." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        reachabilityAlert.tag = 1;
+        [reachabilityAlert show];
+    }
 }
 
 - (void) openBoxScore: (id) sender

@@ -9,7 +9,9 @@
             <connections>
                 <outlet property="email" destination="S5U-ch-1fE" id="Q8c-vn-e1p"/>
                 <outlet property="password" destination="xDf-iU-qHs" id="VkQ-eB-gCs"/>
+                <outlet property="redditInstructions" destination="Iqu-6E-Xs6" id="DSi-E0-3gW"/>
                 <outlet property="redditSwitch" destination="C06-qc-1zK" id="byK-oQ-SHx"/>
+                <outlet property="redditSwitchLabel" destination="NyT-4M-Fn4" id="a4c-R6-lBy"/>
                 <outlet property="username" destination="5rs-y4-cjQ" id="6NR-Yq-9TY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,25 +21,8 @@
             <rect key="frame" x="0.0" y="64" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rs-y4-cjQ">
-                    <rect key="frame" x="20" y="100" width="266" height="30"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="KH7-K9-O04"/>
-                    </connections>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xDf-iU-qHs">
-                    <rect key="frame" x="20" y="138" width="266" height="30"/>
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="DXm-ku-R5b"/>
-                    </connections>
-                </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S5U-ch-1fE">
-                    <rect key="frame" x="20" y="178" width="266" height="30"/>
+                    <rect key="frame" x="20" y="191" width="266" height="30"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
@@ -45,7 +30,7 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vnp-dw-opW">
-                    <rect key="frame" x="20" y="315" width="266" height="34"/>
+                    <rect key="frame" x="20" y="340" width="266" height="34"/>
                     <state key="normal" title="Sign Up" backgroundImage="thinorangebutton.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,23 +40,41 @@
                     </connections>
                 </button>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="C06-qc-1zK">
-                    <rect key="frame" x="237" y="218" width="51" height="31"/>
+                    <rect key="frame" x="237" y="231" width="51" height="31"/>
                     <connections>
                         <action selector="toggleSwitch:" destination="-1" eventType="touchUpInside" id="L0t-Z9-g67"/>
                     </connections>
                 </switch>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connect me with reddit!!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyT-4M-Fn4">
-                    <rect key="frame" x="20" y="223" width="185" height="21"/>
+                    <rect key="frame" x="20" y="236" width="185" height="21"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <color key="textColor" red="1" green="0.62636514310000002" blue="0.1502822274" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="*Enter your reddit credentials if you want your comments to be cross-posted to corresponding reddit game-threads" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqu-6E-Xs6">
-                    <rect key="frame" x="20" y="8" width="266" height="74"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqu-6E-Xs6">
+                    <rect key="frame" x="20" y="8" width="266" height="100"/>
+                    <string key="text">*Use your reddit credentials(username and password) if you want your comments to be cross-posted to corresponding reddit /r/nba game-threads</string>
                     <color key="textColor" red="1" green="0.62636514310000002" blue="0.1502822274" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rs-y4-cjQ">
+                    <rect key="frame" x="20" y="115" width="266" height="30"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="KH7-K9-O04"/>
+                    </connections>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xDf-iU-qHs">
+                    <rect key="frame" x="20" y="153" width="266" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="DXm-ku-R5b"/>
+                    </connections>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>

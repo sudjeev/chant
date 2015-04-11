@@ -201,7 +201,7 @@ static int atTop;//the flag I use to reset the most recent comment object
              if (self.segmentedControl.selectedSegmentIndex == 0)
              {
                  self.loadNew.hidden = NO;
-                 self.loadNew.titleLabel.text = [NSString stringWithFormat:@"%i new comments", newComments];
+                 self.loadNew.titleLabel.text = [NSString stringWithFormat:@"%i comments", newComments];
              }
             }
         }
@@ -323,7 +323,7 @@ static int atTop;//the flag I use to reset the most recent comment object
         {
             if([PFUser currentUser] == nil)
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You are not logged in" message:@"Log In or Sign Up for an account, it only takes 30 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You are not logged in" message:@"Log In or Sign Up for an account, it only takes 10 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
                 [alert show];
                 self.segmentedControl.selectedSegmentIndex = 0;
                 [self valueChanged:self.segmentedControl];
@@ -352,7 +352,7 @@ static int atTop;//the flag I use to reset the most recent comment object
     //if not logged in
     if([PFUser currentUser] == nil)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Before you can post.." message:@"Log In or Sign Up for an account, it only takes 30 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Before you can post.." message:@"Log In or Sign Up for an account, it only takes 10 seconds" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alert show];
         return;
     }

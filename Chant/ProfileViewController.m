@@ -12,6 +12,8 @@
 #import <Parse/Parse.h>
 #import "ChangeFlairController.h"
 #import "Flairs.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAITracker.h"
 
 @interface ProfileViewController ()
 
@@ -36,6 +38,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //connect with Google Analytics
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"ProfileScreen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
     self.upvoteView.layer.cornerRadius = 20;
     self.upvoteView.layer.masksToBounds = YES;
