@@ -28,18 +28,21 @@
     self.view.layer.masksToBounds = YES;
     
     self.data = data;
-    self.username.text = data.username;
     self.comment.text = data.reply;
     self.upvotes.text = [data.upvotes stringValue];
     
-    if(self.data.userTeam == nil || [self.data.userTeam isEqualToString:@"nbalogo.png"])
+    if(self.data.userTeam == nil || [self.data.userTeam isEqualToString:@"NBA.png"])
     {
-        self.flair.image = [UIImage imageNamed:@"nbalogo.png"];
+        self.flair.image = [UIImage imageNamed:@"NBA.png"];
+        self.username.text = data.username;
+
     }
     else
     {
         self.flair.image = [[Flairs allFlairs].dict objectForKey:self.data.userTeam];
-
+        NSString* team = [[Flairs allFlairs].teams objectForKey:data.userTeam];
+        NSString* usernameText = [NSString stringWithFormat:@"%@(%@)", data.username, team];
+        self.username.text = usernameText;
     }
     
     
@@ -69,7 +72,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString* game = [NSString stringWithFormat:@"%@", self.data.gameID];
-    //use the comment objectid to be the unique ID
+    //use the reply objectid to be the unique ID
     NSString* key = [NSString stringWithFormat:@"%@", self.data.objectID];
     NSMutableDictionary* upvotedComments = [[defaults objectForKey:game] mutableCopy];
     
@@ -81,8 +84,15 @@
         return;
     }
     
-    self.data.upvotes = [[NSNumber alloc] initWithInt:[self.data.upvotes intValue] + 1];
+    //add the reply id to the defualts   
+    [upvotedComments setObject:[[NSString alloc]init] forKey:key];
+    [defaults setObject:upvotedComments forKey:game];
     
+    self.data.upvotes = [[NSNumber alloc] initWithInt:[self.data.upvotes intValue] + 1];
+    self.upvotes.text =  [self.data.upvotes stringValue];
+    
+    //add it to the defaults
+
     //increment the number in parse
     PFQuery* query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"%@_replies", self.data.gameID ]];
     [query getObjectInBackgroundWithId:self.data.objectID block:^(PFObject *thisComment, NSError *error) {
@@ -97,6 +107,24 @@
             //NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
+    
+    PFQuery* upvoteUser = [PFQuery queryWithClassName:@"userData"];
+    [upvoteUser whereKey:@"username" equalTo:self.data.username];
+    [upvoteUser findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
+     {
+         if(!error)
+         {
+             for (PFObject* object in objects)
+             {
+                 [object incrementKey:@"totalUpvotes"];
+                 [object saveInBackground];
+             }
+         }
+         else
+         {
+             //NSLog(@"%@",[error userInfo][@"error"]);
+         }
+     }];
     
     //send a badge push to the user
     PFQuery *pushQuery = [PFInstallation query];

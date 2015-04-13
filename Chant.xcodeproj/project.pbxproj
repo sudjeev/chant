@@ -53,6 +53,7 @@
 		B73EF5C319947BE000934A61 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73EF5C119947BE000934A61 /* SignUpViewController.m */; };
 		B73EF5C419947BE000934A61 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73EF5C219947BE000934A61 /* SignUpViewController.xib */; };
 		B751BF6719CB6AD700C81F38 /* TeamData.m in Sources */ = {isa = PBXBuildFile; fileRef = B751BF6619CB6AD700C81F38 /* TeamData.m */; };
+		B75266101ADB9B9D00E423AB /* NBA.png in Resources */ = {isa = PBXBuildFile; fileRef = B752660F1ADB9B9D00E423AB /* NBA.png */; };
 		B755A57F1AA1614E00785D5E /* Flairs.m in Sources */ = {isa = PBXBuildFile; fileRef = B755A57E1AA1614E00785D5E /* Flairs.m */; };
 		B75BD68A1AB7C47D000FFCDE /* upvoted.png in Resources */ = {isa = PBXBuildFile; fileRef = B75BD6891AB7C47D000FFCDE /* upvoted.png */; };
 		B76B73D61A12ECB000C557E4 /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B76B73D41A12ECB000C557E4 /* ReplyViewController.m */; };
@@ -689,6 +690,7 @@
 		B73EF5C219947BE000934A61 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		B751BF6519CB6AD700C81F38 /* TeamData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamData.h; sourceTree = "<group>"; };
 		B751BF6619CB6AD700C81F38 /* TeamData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamData.m; sourceTree = "<group>"; };
+		B752660F1ADB9B9D00E423AB /* NBA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NBA.png; sourceTree = "<group>"; };
 		B755A57D1AA1614E00785D5E /* Flairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flairs.h; sourceTree = "<group>"; };
 		B755A57E1AA1614E00785D5E /* Flairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flairs.m; sourceTree = "<group>"; };
 		B75BD6891AB7C47D000FFCDE /* upvoted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upvoted.png; sourceTree = "<group>"; };
@@ -2056,6 +2058,7 @@
 				B7B2D38C19D1F431007EC9A7 /* Grizzlies.png */,
 				B7B2D38D19D1F431007EC9A7 /* Hawks.png */,
 				B7B2D38E19D1F431007EC9A7 /* Heat.png */,
+				B752660F1ADB9B9D00E423AB /* NBA.png */,
 				B7B2D38F19D1F431007EC9A7 /* Hornets.png */,
 				B7B2D39019D1F431007EC9A7 /* Jazz.png */,
 				B7B2D39119D1F431007EC9A7 /* Kings.png */,
@@ -2257,6 +2260,7 @@
 				B7B0DBF319CB95B9007FD5F4 /* glyphicons_186_move.png in Resources */,
 				B7B0DBF019CB95B9007FD5F4 /* glyphicons_183_volume_down.png in Resources */,
 				B7B0DBEA19CB95B9007FD5F4 /* glyphicons_177_fast_forward.png in Resources */,
+				B75266101ADB9B9D00E423AB /* NBA.png in Resources */,
 				B7B0DCAE19CB95B9007FD5F4 /* glyphicons_373_nails.png in Resources */,
 				B7B0DB6B19CB95B9007FD5F4 /* glyphicons_050_link.png in Resources */,
 				B7B0DC2919CB95B9007FD5F4 /* glyphicons_240_rotation_lock.png in Resources */,

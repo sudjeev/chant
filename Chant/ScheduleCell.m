@@ -35,8 +35,8 @@
 - (void) updateCellWithGameData:(GameData *)data
 {
     self.data = data;
-    self.homeLabel.text = data.homeFull;
-    self.awayLabel.text = data.awayFull;
+    self.homeLabel.text = [[Flairs allFlairs].teams objectForKey:data.homeFull];
+    self.awayLabel.text = [[Flairs allFlairs].teams objectForKey:data.awayFull];
 
     
     //update the status of the game and set text color accordingly

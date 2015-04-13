@@ -41,7 +41,7 @@
     //GOOGLE ANALYTICS INITIALIZATION
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
-    [GAI sharedInstance].dispatchInterval = 20;
+    [GAI sharedInstance].dispatchInterval = 120;
     id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-61782921-1"];
 
     //Add reachability notifications

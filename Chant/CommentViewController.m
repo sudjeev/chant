@@ -85,6 +85,14 @@
     {
         return;
     }
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:@"boxScore"          // Event label
+                                                           value:nil] build]];
+    
+    
     BoxScoreController* boxScoreController = [[BoxScoreController alloc] init];
     [boxScoreController updateWithGameData:self.data];
     [self.navigationController pushViewController:boxScoreController animated:YES];

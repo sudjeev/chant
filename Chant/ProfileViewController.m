@@ -50,6 +50,7 @@
    // self.logo.layer.cornerRadius = 50;
    // self.logo.clipsToBounds = YES;
     
+    
     self.cellView.layer.borderColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1].CGColor;
     self.cellView.layer.borderWidth = 2.0f;
     self.cellView.layer.cornerRadius = 30;
@@ -97,13 +98,15 @@
     
     if(currentUser[@"team"] == nil || [currentUser[@"team"] isEqualToString:@"NBA"])
     {
-        self.logo.image = [UIImage imageNamed:@"nbalogo.png"];
+        self.logo.image = [UIImage imageNamed:@"NBA.png"];
+        self.team.text = @"NBA";
+
     }
     else
     {
         self.logo.image = [[Flairs allFlairs].dict objectForKey:currentUser[@"team"]];
         self.selection = currentUser[@"team"];
-        
+        self.team.text = [[Flairs allFlairs].teams objectForKey:self.selection];
         //update the installation object to hold the team of the current user
         PFInstallation* curr = [PFInstallation currentInstallation];
         [curr setObject:self.selection forKey:@"team"];
@@ -111,9 +114,28 @@
         
     }
 
+    self.upvotes.text = [NSString stringWithFormat:@"0"];
+
+    PFQuery* getTotalUpvotes = [PFQuery queryWithClassName:@"userData"];
+    [getTotalUpvotes whereKey:@"username" equalTo:[PFUser currentUser].username];
+    [getTotalUpvotes findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
+     {
+         if(!error)
+         {
+             for (PFObject* object in objects)
+             {
+                 self.totalUpvotes = object[@"totalUpvotes"];
+                 self.upvotes.text = [self.totalUpvotes stringValue];
+
+
+             }
+         }
+         else
+         {
+             //NSLog(@"%@",[error userInfo][@"error"]);
+         }
+     }];
     
-    self.totalUpvotes = currentUser[@"totalUpvotes"];
-    self.upvotes.text = [self.totalUpvotes stringValue];
     
     [currentUser saveInBackground];
 }
@@ -144,6 +166,12 @@
     //present the change team controller
     //do a parse query and update the team image so it updates faster
     [self.navigationController pushViewController:[[ChangeFlairController alloc] init] animated:YES];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:@"changeFlair"          // Event label
+                                                           value:nil] build]];
 }
 
 - (IBAction)pushUpvotes:(id)sender
@@ -156,10 +184,24 @@
      if([sender isOn])
      {
          currentInstallation[@"upvotes"] = @"Yes";
+         
+         //log the reply action in google
+         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+         [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                               action:@"button_press"  // Event action (required)
+                                                                label:@"upvotesPushOn"          // Event label
+                                                                value:nil] build]];
      }
      else
      {
          currentInstallation[@"upvotes"] = @"No";
+         
+         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+         [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                               action:@"button_press"  // Event action (required)
+                                                                label:@"upvotesPushOff"          // Event label
+                                                                value:nil] build]];
+         
      }
     
         [currentInstallation saveEventually];
@@ -176,10 +218,22 @@
         if([sender isOn])
         {
             currentInstallation[@"replies"] = @"Yes";
+            
+            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                                  action:@"button_press"  // Event action (required)
+                                                                   label:@"repliesPushOn"          // Event label
+                                                                   value:nil] build]];
         }
         else
         {
             currentInstallation[@"replies"] = @"No";
+            
+            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                                  action:@"button_press"  // Event action (required)
+                                                                   label:@"repliesPushOff"          // Event label
+                                                                   value:nil] build]];
         }
         
         [currentInstallation saveEventually];

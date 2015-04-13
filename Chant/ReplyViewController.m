@@ -52,7 +52,6 @@ static UIRefreshControl* refresher;
     
     //Set all original comment elements of the replyView
     self.comment.text = self.myCommentData.text;
-    self.username.text = self.myCommentData.username;
     self.upvotes.text = [self.myCommentData.upvotes stringValue];
     
     
@@ -72,14 +71,17 @@ static UIRefreshControl* refresher;
     refresher = refreshControl;
     [self.tableView addSubview:refreshControl];
     
-    if(self.myCommentData.userTeam == nil || [self.myCommentData.userTeam isEqualToString:@"nbalogo.png"])
+    if(self.myCommentData.userTeam == nil || [self.myCommentData.userTeam isEqualToString:@"NBA.png"])
     {
-        self.userFlair.image = [UIImage imageNamed:@"nbalogo.png"];
+        self.userFlair.image = [UIImage imageNamed:@"NBA.png"];
+        self.username.text = self.myCommentData.username;
     }
     else
     {
         self.userFlair.image = [[Flairs allFlairs].dict objectForKey:self.myCommentData.userTeam];
-        
+        NSString* team = [[Flairs allFlairs].teams objectForKey:self.myCommentData.userTeam];
+        NSString* usernameText = [NSString stringWithFormat:@"%@(%@)", self.myCommentData.username, team];
+        self.username.text = usernameText;
     }
 
 
@@ -116,6 +118,7 @@ static UIRefreshControl* refresher;
     //need to get the replies to this comment
     PFQuery* getReplies = [PFQuery queryWithClassName:tableName];
     [getReplies whereKey:@"CommentID" equalTo:self.myCommentData.objectId];
+    [getReplies orderByDescending:@"createdAt"];
     isLoading = 1;
     getReplies.limit = 50;
     [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
@@ -151,6 +154,7 @@ static UIRefreshControl* refresher;
     [defaults setObject:upvotedComments forKey:game];
     
     self.myCommentData.upvotes = [[NSNumber alloc] initWithInt:[self.myCommentData.upvotes intValue] + 1];
+    self.upvotes.text =  [self.myCommentData.upvotes stringValue];
 
     //increment the number in parse
     PFQuery* query = [PFQuery queryWithClassName:self.myCommentData.gameId];
@@ -166,6 +170,25 @@ static UIRefreshControl* refresher;
            // NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
+    
+    //increment the users number
+    PFQuery* upvoteUser = [PFQuery queryWithClassName:@"userData"];
+    [upvoteUser whereKey:@"username" equalTo:self.myCommentData.username];
+    [upvoteUser findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
+     {
+         if(!error)
+         {
+             for (PFObject* object in objects)
+             {
+                 [object incrementKey:@"totalUpvotes"];
+                 [object saveInBackground];
+             }
+         }
+         else
+         {
+             //NSLog(@"%@",[error userInfo][@"error"]);
+         }
+     }];
     
     //send a badge push to the user
     PFQuery *pushQuery = [PFInstallation query];
@@ -243,6 +266,13 @@ static UIRefreshControl* refresher;
 
 -(IBAction)onReply:(id)sender
 {
+    //log the reply action in google
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:@"replyPost"          // Event label
+                                                           value:nil] build]];
+    
     if([self.replyBox.text isEqualToString:@""])
     {
         return;
@@ -272,6 +302,7 @@ static UIRefreshControl* refresher;
         newComment[@"GameID"] = self.myCommentData.gameId;
         [newComment saveInBackground];
         
+        /*
         //increment the numReplies of the comment
         PFQuery* numRepliesQuery = [[PFQuery alloc] initWithClassName:self.myCommentData.gameId];
         [numRepliesQuery getObjectInBackgroundWithId:self.myCommentData.objectId block:^(PFObject *object, NSError *error) {
@@ -284,8 +315,9 @@ static UIRefreshControl* refresher;
             {
                // NSLog(@"error trying to increment numreplies");
             }
-        }];
+        }];*/
         
+
         
         //cut off the logic here
         if([self.myCommentData.reddit intValue] == 1)
@@ -302,6 +334,12 @@ static UIRefreshControl* refresher;
             return ;
         }
     
+        //reset the array of replies
+        self.replies = [[NSMutableArray alloc] init];
+        
+        [refresher beginRefreshing];
+        [self handleRefresh:nil];
+        
         //Send a message to anyone else who subscribed to this comment thread
         PFPush* push2 = [[PFPush alloc]init];
         [push2 setChannel:self.myCommentData.objectId];
@@ -353,11 +391,6 @@ static UIRefreshControl* refresher;
             [currentInstallation saveInBackground];
         }
         
-        //reset the array of replies
-        self.replies = [[NSMutableArray alloc] init];
-        
-        [refresher beginRefreshing];
-        [self handleRefresh:nil];
     
          self.replyBox.text = @"";
         [self.replyBox resignFirstResponder];
@@ -390,19 +423,6 @@ static UIRefreshControl* refresher;
     }
     else
     {
-        //Do nothing, we are only showing 50 replies per comment at the most
-        //if indexPath has reached the point right before the end of tableData
-        /*
-        if(indexPath.row + 1  >= [self.replies count])
-        {
-            NSString* tableName = [NSString stringWithFormat:@"%@_replies", self.myCommentData.gameId];
-            PFQuery* getReplies = [PFQuery queryWithClassName:tableName];
-            [getReplies whereKey:@"CommentID" equalTo:self.myCommentData.objectId];
-            isLoading = 1;
-            getReplies.limit = 50;
-            getReplies.skip = offset;
-            [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
-        }*/
         
         if(indexPath.row < [self.replies count])
         {

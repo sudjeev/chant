@@ -117,6 +117,12 @@
                         [curr setObject:self.username.text forKey:@"username"];
                         [curr saveInBackground];
                         
+                        //make a userdata object as well
+                        PFObject* userData = [PFObject objectWithClassName:@"userData"];
+                        userData[@"totalUpvotes"] = [NSNumber numberWithInt:1];
+                        userData[@"username"] = self.username.text;
+                        [userData saveInBackground];
+                        
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connected with Reddit!" message:@"Your account has successfully been connected with Reddit!!!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
                         [alert show];
                         
@@ -163,6 +169,12 @@
                 PFInstallation* curr = [PFInstallation currentInstallation];
                 [curr setObject:self.username.text forKey:@"username"];
                 [curr saveInBackground];
+                
+                //make a userdata object as well
+                PFObject* userData = [PFObject objectWithClassName:@"userData"];
+                userData[@"totalUpvotes"] = [NSNumber numberWithInt:1];
+                userData[@"username"] = self.username.text;
+                [userData saveInBackground];
                 
                 [self presentViewController:navController animated:YES completion:nil];
             }

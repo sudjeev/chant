@@ -7,6 +7,9 @@
 //
 
 #import "BoxScoreController.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAI.h"
+#import "GAITracker.h"
 
 @implementation BoxScoreController
 
@@ -25,6 +28,11 @@ static UIActivityIndicatorView *loadingActivity;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"ScheduleScreen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
     self.navigationItem.title = @"Box Score";
     self.boxScore.delegate = self;
     

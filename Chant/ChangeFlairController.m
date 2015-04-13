@@ -8,6 +8,7 @@
 
 #import "ChangeFlairController.h"
 #import <Parse/Parse.h>
+#import "Flairs.h"
 
 
 @interface ChangeFlairController ()
@@ -35,7 +36,7 @@
     self.teamPicker.delegate = self;
     
     // Do any additional setup after loading the view from its nib.
-    self.pickerData =  [[NSArray alloc] initWithObjects: @"Philadelphia 76ers",@"Milwaukee Bucks",@"Chicago Bulls", @"Cleveland Cavaliers", @"Boston Celtics", @"Los Angeles Clippers", @"Memphis Grizzlies",@"Atlanta Hawks", @"Miami Heat", @"Charlotte Hornets", @"Utah Jazz", @"Sacramento Kings", @"New York Knicks", @"Los Angeles Lakers", @"Orlando Magic", @"Dallas Mavericks", @"Brooklyn Nets", @"Denver Nuggets", @"Indiana Pacers", @"New Orleans Pelicans", @"Detroit Pistons", @"Toronto Raptors", @"Houston Rockets", @"San Antonio Spurs", @"Phoenix Suns", @"Oklahoma City Thunder", @"Minnesota Timberwolves", @"Portland Trail Blazers", @"Golden State Warriors", @"Washington Wizards", nil];
+    self.pickerData =  [[NSArray alloc] initWithObjects: @"76ers",@"Bucks",@"Bulls", @"Cavaliers", @"Celtics", @"Clippers", @"Grizzlies",@"Hawks", @"Heat", @"Hornets", @"Jazz", @"Kings", @"Knicks", @"Lakers", @"Magic", @"Mavericks", @"Nets", @"Nuggets", @"Pacers", @"Pelicans", @"Pistons", @"Raptors", @"Rockets", @"Spurs", @"Suns", @"Thunder", @"Timberwolves", @"Trailblazers", @"Warriors", @"Wizards", nil];
     
 }
 
@@ -49,7 +50,7 @@
 {
     if(self.selection == nil)
     {
-        self.selection = [self.pickerData objectAtIndex:0];
+        self.selection =  [[Flairs allFlairs].fullTeam objectForKey:self.pickerData[0]];
     }
     
     if([self.teamPicker selectedRowInComponent:0] == -1)
@@ -94,8 +95,7 @@
 {
     // This method is triggered whenever the user makes a change to the picker selection.
     // The parameter named row and component represents what was selected.
-    
-    self.selection =  self.pickerData[row];
+    self.selection =  [[Flairs allFlairs].fullTeam objectForKey:self.pickerData[row]];
     
     //need to update it in parse
     //add it to

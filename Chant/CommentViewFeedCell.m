@@ -14,6 +14,7 @@
 #import "RKClient+Messages.h"
 #import "SSKeychain.h"
 #import "SSKeychainQuery.h"
+#import "GAIDictionaryBuilder.h"
 
 
 @implementation CommentViewFeedCell
@@ -161,6 +162,13 @@ static int atTop;//the flag I use to reset the most recent comment object
 
 - (IBAction)onLoadNew:(id)sender
 {
+    //log the reply action in google
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:@"loadNewComments"          // Event label
+                                                           value:nil] build]];
+    
     [refresher beginRefreshing];
     [refresher sendActionsForControlEvents:UIControlEventValueChanged];
     self.loadNew.hidden = YES;
@@ -297,6 +305,13 @@ static int atTop;//the flag I use to reset the most recent comment object
                 atTop = 1;
                 [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
                 
+                //log the reply action in google
+                id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                                      action:@"button_press"  // Event action (required)
+                                                                       label:@"viewNewComments"          // Event label
+                                                                       value:nil] build]];
+                
                 /*NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
                  [self.feed scrollToRowAtIndexPath:indexPath
                  atScrollPosition:UITableViewScrollPositionTop
@@ -313,6 +328,13 @@ static int atTop;//the flag I use to reset the most recent comment object
                 isLoading = 1;
                 [getComments orderByDescending:@"Upvotes"];
                 [getComments findObjectsInBackgroundWithTarget:self selector:@selector(commentCallback: error:)];
+                
+                //log the reply action in google
+                id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                                      action:@"button_press"  // Event action (required)
+                                                                       label:@"viewTopComments"          // Event label
+                                                                       value:nil] build]];
                 
                 /*NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
                  [self.feed scrollToRowAtIndexPath:indexPath
@@ -342,6 +364,13 @@ static int atTop;//the flag I use to reset the most recent comment object
             [self.feed scrollToRowAtIndexPath:indexPath
                              atScrollPosition:UITableViewScrollPositionTop
                                      animated:YES];*/
+            
+            //log the reply action in google
+            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                                  action:@"button_press"  // Event action (required)
+                                                                   label:@"viewMyComments"          // Event label
+                                                                   value:nil] build]];
         }
         default:
             break;
@@ -350,6 +379,13 @@ static int atTop;//the flag I use to reset the most recent comment object
 
 - (IBAction)onComment:(id)sender
 {
+    //log the reply action in google
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:@"postingComment"          // Event label
+                                                           value:nil] build]];
+    
     //if not logged in
     if([PFUser currentUser] == nil)
     {
@@ -479,6 +515,9 @@ static int atTop;//the flag I use to reset the most recent comment object
 {
 
 }
+
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -13,4 +13,6 @@
 @interface Flairs : NSObject
 + (instancetype) allFlairs;
 @property (nonatomic, strong) NSDictionary* dict;
+@property (nonatomic, strong) NSDictionary* teams;
+@property (nonatomic, strong) NSDictionary* fullTeam;
 @end

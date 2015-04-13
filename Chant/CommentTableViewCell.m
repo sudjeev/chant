@@ -8,8 +8,11 @@
 
 #import "CommentTableViewCell.h"
 #import "Flairs.h"
+#import "GAIDictionaryBuilder.h"
 
 @implementation CommentTableViewCell
+
+static int upvoteFlag;
 
 - (void)awakeFromNib
 {
@@ -23,7 +26,7 @@
     //make links clickable in the uitextviews
     self.text.dataDetectorTypes = UIDataDetectorTypeLink;
 
-    
+    upvoteFlag = 0;
     self.view.layer.cornerRadius = 5;
     self.view.layer.masksToBounds = YES;
     
@@ -58,11 +61,17 @@
     
     if(comment.userTeam == nil || [comment.userTeam isEqualToString:@"NBA"] )
     {
-        self.logo.image = [UIImage imageNamed:@"nbalogo.png"];
+        //this is either a user who has not set his team or a reddit comment
+        self.logo.image = [UIImage imageNamed:@"NBA.png"];
+        self.username.text = comment.username;
     }
     else
     {
         self.logo.image = [[Flairs allFlairs].dict objectForKey:comment.userTeam];
+        NSString* team = [[Flairs allFlairs].teams objectForKey:comment.userTeam];
+        NSString* usernameText = [NSString stringWithFormat:@"%@(%@)", comment.username, team];
+        self.username.text = usernameText;
+
     }
     
     
@@ -75,8 +84,17 @@
 
 -(IBAction)onUpvote:(id)sender
 {
+    upvoteFlag = 1;
+    //log the reply action in google
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:@"postingComment"          // Event label
+                                                           value:nil] build]];
+    
     if([PFUser currentUser] == nil)
     {
+        upvoteFlag = 0;
         return;
     }
     
@@ -132,7 +150,8 @@
     }
     
     //upvoting the users total karma
-    PFQuery* upvoteUser = [PFUser query];
+    
+    PFQuery* upvoteUser = [PFQuery queryWithClassName:@"userData"];
     [upvoteUser whereKey:@"username" equalTo:self.commentData.username];
     [upvoteUser findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error)
     {
@@ -149,6 +168,7 @@
             //NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
+    
     
     //send a badge push to the user
     PFQuery *pushQuery = [PFInstallation query];
@@ -169,10 +189,18 @@
 
 - (IBAction)onReply:(id)sender
 {
+
     NSString *notification = @"ReplyNotification";
     NSString *key = @"CommentValue";
     NSDictionary *info = [NSDictionary dictionaryWithObject:self.commentData forKey:key];
     [[NSNotificationCenter defaultCenter] postNotificationName:notification object:nil userInfo:info];
+    
+    //log the reply action in google
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:@"replyButton"          // Event label
+                                                           value:nil] build]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -188,5 +216,7 @@
     self.text.editable = NO;
 
 }
+
+
 
 @end
