@@ -15,7 +15,7 @@
 #import "GAIDictionaryBuilder.h"
 
 
-@interface ReplyViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface ReplyViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,UIAlertViewDelegate>
 - (void) updateViewWithCommentData: (CommentData*) comment;
 @property (nonatomic, weak) IBOutlet UIView* replyView;
 @property (nonatomic, weak) IBOutlet UIView* commentView;

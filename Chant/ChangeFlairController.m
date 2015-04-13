@@ -54,7 +54,7 @@
     
     if([self.teamPicker selectedRowInComponent:0] == -1)
     {
-        NSLog(@"Yea this is the problem");
+        //NSLog(@"Yea this is the problem");
     }
     
     PFUser* currentUser = [PFUser currentUser];

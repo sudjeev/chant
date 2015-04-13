@@ -105,11 +105,11 @@ static int atTop;//the flag I use to reset the most recent comment object
                              [[RKClient sharedClient] signInWithUsername:[PFUser currentUser].username  password:redditPassword completion:^(NSError *error) {
                                  if (!error)
                                  {
-                                     NSLog(@"User successfully connected to reddit in comment view");
+                                     //NSLog(@"User successfully connected to reddit in comment view");
                                  }
                                  else
                                  {
-                                     NSLog(@"Error logging user into reddit from the comments screen");
+                                     //NSLog(@"Error logging user into reddit from the comments screen");
                                  }
                              }];
                             }
@@ -120,7 +120,7 @@ static int atTop;//the flag I use to reset the most recent comment object
     }
 
     //setup the nstimer that will be calling the poller
-    NSLog(@"Making the timer object in setupWithGameData");
+    //NSLog(@"Making the timer object in setupWithGameData");
     self.myTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(poll:) userInfo:nil repeats:YES];
     
     //setup the notification that gets called when the back button is hit so we can invalidate the timer
@@ -154,7 +154,7 @@ static int atTop;//the flag I use to reset the most recent comment object
     {
         [self.myTimer invalidate];
         self.myTimer = nil;
-        NSLog(@"invalidated this timer object");
+       // NSLog(@"invalidated this timer object");
     }
 
 }
@@ -192,7 +192,7 @@ static int atTop;//the flag I use to reset the most recent comment object
     [countComments countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if(!error)
         {
-            NSLog(@"The count I got was %i", count);
+            //NSLog(@"The count I got was %i", count);
             //increment newComments by count
             newComments += count;
             if(newComments > 0)
@@ -201,17 +201,18 @@ static int atTop;//the flag I use to reset the most recent comment object
              if (self.segmentedControl.selectedSegmentIndex == 0)
              {
                  self.loadNew.hidden = NO;
-                 self.loadNew.titleLabel.text = [NSString stringWithFormat:@"%i comments", newComments];
+                 [self.loadNew setTitle:[NSString stringWithFormat:@"%i comments", newComments] forState:UIControlStateNormal];
+                 //self.loadNew.titleLabel.text = [NSString stringWithFormat:@"%i comments", newComments];
              }
             }
         }
         else
         {
-            NSLog(@"error trying to count comments %@", error);
+            //NSLog(@"error trying to count comments %@", error);
         }
     }];
     
-    NSLog(@"The Poller method has been called");
+   // NSLog(@"The Poller method has been called");
 }
 
 
@@ -225,7 +226,7 @@ static int atTop;//the flag I use to reset the most recent comment object
         //no error was reported
         if([array count] == 0)
         {
-            NSLog(@"The query didnt return shit !!!!!!!!!!!!!!!!");
+           // NSLog(@"The query didnt return shit !!!!!!!!!!!!!!!!");
         }
         
         for(PFObject* comment in array)
@@ -234,7 +235,7 @@ static int atTop;//the flag I use to reset the most recent comment object
             {
              //save the most recent comment
                 self.mostRecentComment = comment;
-                NSLog(@"MOST RECENT COMMENT IS: %@", self.mostRecentComment.createdAt);
+                //NSLog(@"MOST RECENT COMMENT IS: %@", self.mostRecentComment.createdAt);
                 //set at top back to zero so it doesn't get called every time in the loop
                 atTop = 0;
                 //reset the number of new comments to be loaded to zero
@@ -265,7 +266,7 @@ static int atTop;//the flag I use to reset the most recent comment object
     }
     else
     {
-        NSLog(@"There was a problem %@", error);
+        //NSLog(@"There was a problem %@", error);
         isLoading = 0;
     }
 }
@@ -378,17 +379,19 @@ static int atTop;//the flag I use to reset the most recent comment object
         [newComment saveInBackground];
         
         [currentUser incrementKey:@"totalUpvotes"];
-        [currentUser saveEventually];
+        [currentUser saveInBackground];
         
         //if there is a gamethread for this game and if the user is signed in then crosspost this too reddit
         if(self.data.redditFullName != nil && [[RKClient sharedClient]isSignedIn])
         {
             [[RKClient sharedClient] submitComment:self.commentBox.text onThingWithFullName:self.data.redditFullName completion:^(NSError *error){
                 if(!error)
-                {NSLog(@"It shouldve posted to comments of %@", self.data.redditFullName);}
+                {
+                    //NSLog(@"It shouldve posted to comments of %@", self.data.redditFullName);
+                }
                 else
                 {
-                    NSLog(@"Couldnt crosspost the comment to reddit game threads");
+                   // NSLog(@"Couldnt crosspost the comment to reddit game threads");
                 }
             }];
         }

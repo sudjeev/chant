@@ -68,7 +68,7 @@
     
     if([reachability isReachable])
     {
-        NSLog(@"Gained internet connection");
+        //NSLog(@"Gained internet connection");
     }
     else
     {
@@ -139,14 +139,14 @@
 -(void) viewWillDisappear:(BOOL)animated
 {
     //code to call the notification that will be used to invalidate the timer object
-    NSLog(@"in view will dissapear");
+    //NSLog(@"in view will dissapear");
     NSString *notificationName = @"BackNotification";
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    NSLog(@"in view will dissapear");
+    //NSLog(@"in view will dissapear");
     NSString *notificationName = @"ValidateTimer";
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
 }
@@ -156,7 +156,7 @@
 
         CommentViewFeedCell* cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"CommentViewFeedCell" forIndexPath:indexPath];
         [cell setupWithGameData:self.data];
-        NSLog(@"CommentViewController loaded!!!!!!!!!!!!");
+       // NSLog(@"CommentViewController loaded!!!!!!!!!!!!");
         return cell;
 }
 

@@ -74,7 +74,7 @@ static bool isLoading;
     }
     else
     {
-        NSLog(@"There was a problem %@", error);
+        //NSLog(@"There was a problem %@", error);
         isLoading = NO;
     }
 }

@@ -69,7 +69,7 @@
     }
     else
     {
-        NSLog(@"Comment Callback error");
+       // NSLog(@"Comment Callback error");
     }
 }
 

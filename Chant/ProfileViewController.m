@@ -95,7 +95,11 @@
     
     PFUser* currentUser = [PFUser currentUser];
     
-    if(currentUser[@"team"] != nil)
+    if(currentUser[@"team"] == nil || [currentUser[@"team"] isEqualToString:@"NBA"])
+    {
+        self.logo.image = [UIImage imageNamed:@"nbalogo.png"];
+    }
+    else
     {
         self.logo.image = [[Flairs allFlairs].dict objectForKey:currentUser[@"team"]];
         self.selection = currentUser[@"team"];
@@ -106,15 +110,12 @@
         [curr saveInBackground];
         
     }
-    else
-    {
-        self.logo.image = [UIImage imageNamed:@"nbalogo.png"];
-    }
+
     
     self.totalUpvotes = currentUser[@"totalUpvotes"];
     self.upvotes.text = [self.totalUpvotes stringValue];
     
-    [currentUser saveEventually];
+    [currentUser saveInBackground];
 }
 
 - (void) onDone
@@ -147,7 +148,7 @@
 
 - (IBAction)pushUpvotes:(id)sender
 {
-    NSLog(@"pushUpvotes");
+    //NSLog(@"pushUpvotes");
     
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     if(currentInstallation != nil)
@@ -167,7 +168,7 @@
 }
 - (IBAction)pushReplies:(id)sender
 {
-    NSLog(@"pushReplies");
+   // NSLog(@"pushReplies");
     
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     if(currentInstallation != nil)

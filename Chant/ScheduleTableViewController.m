@@ -160,7 +160,7 @@ static UIRefreshControl* refresher;
 
     if([reachability isReachable])
     {
-        NSLog(@"Gained internet connection");
+        //NSLog(@"Gained internet connection");
     }
     else
     {
@@ -182,7 +182,7 @@ static UIRefreshControl* refresher;
 
         // Then u can check which button was pressed.
         if (buttonIndex == 0) {// 1st Other Button
-            NSLog(@"button index at 0 got clicked");
+           // NSLog(@"button index at 0 got clicked");
             [alertView setHidden:YES];
             
             loadingActivity = [[UIActivityIndicatorView alloc]
@@ -199,7 +199,7 @@ static UIRefreshControl* refresher;
         }
         else if (buttonIndex == 1)
         {//Retry button
-            NSLog(@"button index at 1 got clicked");
+            //NSLog(@"button index at 1 got clicked");
             [alertView setHidden:YES];
 
             loadingActivity = [[UIActivityIndicatorView alloc]
@@ -256,7 +256,7 @@ static UIRefreshControl* refresher;
 
 - (void)gameDataCallback:(NSArray*) response error: (NSError*) error
 {
-    NSLog(@"gamedatacallback");
+    //NSLog(@"gamedatacallback");
     if(!error)
     {
      //add all the games that are currently going on
@@ -281,7 +281,7 @@ static UIRefreshControl* refresher;
     
     else
     {
-     NSLog(@"Game data callback problem %@", error);
+     //NSLog(@"Game data callback problem %@", error);
     }
     
     self.isLoading = 0;
@@ -314,7 +314,7 @@ static UIRefreshControl* refresher;
 //need to find an effective way to call tableview reload data on a loop cycle
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%li", (long)indexPath.section);
+    //NSLog(@"%li", (long)indexPath.section);
 
     //need to check isLoading
     if([self.schedule count] == 0)
@@ -447,6 +447,12 @@ static UIRefreshControl* refresher;
 {
     // Navigation logic may go here, for example:
     // Create the next view controller.
+    if(indexPath.item >= [self.schedule count])
+    {
+        //NSLog(@"Caught this error");
+        return;
+    }
+    
     CommentViewController *detailViewController = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil];
     
     [detailViewController updateControllerWithGameData:[self.schedule objectAtIndex:indexPath.row]];

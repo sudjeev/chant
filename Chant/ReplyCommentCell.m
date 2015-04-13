@@ -63,7 +63,7 @@
     
     if([[PFUser currentUser].username isEqualToString: self.data.username])
     {
-        NSLog(@"same user");
+        //NSLog(@"same user");
         return;
     }
     
@@ -77,7 +77,7 @@
     if([self.data.username isEqualToString:[PFUser currentUser].username] || [upvotedComments objectForKey:key] != nil)
     {
         //cant upvote your own comment
-        NSLog(@"already upvoted this");
+       // NSLog(@"already upvoted this");
         return;
     }
     
@@ -94,7 +94,7 @@
         }
         else
         {
-            NSLog(@"%@",[error userInfo][@"error"]);
+            //NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
     
@@ -111,7 +111,7 @@
     [push setQuery:pushQuery]; // Set our Installation query
     [push setData:data];
     [push sendPushInBackground];
-    NSLog(@"the badge update got sent");
+    //NSLog(@"the badge update got sent");
 }
 
 - (void)awakeFromNib

@@ -22,19 +22,13 @@
     self.text.text = nil;
     //make links clickable in the uitextviews
     self.text.dataDetectorTypes = UIDataDetectorTypeLink;
-    
-    //set text of the replies button
-    if([self.commentData.numReplies intValue] > 0)
-    {
-        self.replies.titleLabel.text = [NSString stringWithFormat:@"(%@)", self.commentData.numReplies];
-    }
+
     
     self.view.layer.cornerRadius = 5;
     self.view.layer.masksToBounds = YES;
     
     if([comment isEqual:nil])
     {
-        NSLog(@"dis bitch is empty");
         return;
     }
     
@@ -97,18 +91,18 @@
     if([self.commentData.username isEqualToString:[PFUser currentUser].username] || [upvotedComments objectForKey:key] != nil)
     {
         //cant upvote your own comment
-        NSLog(@"already upvoted this");
+        //NSLog(@"already upvoted this");
         return;
     }
     
     //if it doesnt already exist in our defaults then we can add it and upvote the comment
-    NSLog(@"first time upvoting");
+    //NSLog(@"first time upvoting");
     [upvotedComments setObject:[[NSString alloc]init] forKey:key];
     
     [defaults setObject:upvotedComments forKey:game];
     //[defaults synchronize];
     
-    NSLog(@"got past saving in defaults");
+    //NSLog(@"got past saving in defaults");
     //[self.upvoted setBackgroundImage:[UIImage imageNamed:@"orangehand.png"] forState:UIControlStateNormal];
     self.commentData.upvotes = [[NSNumber alloc] initWithInt:[self.commentData.upvotes intValue] + 1];
     self.upvotes.text =  [self.commentData.upvotes stringValue];
@@ -125,7 +119,7 @@
         }
         else
         {
-            NSLog(@"%@",[error userInfo][@"error"]);
+            //NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
     
@@ -133,7 +127,7 @@
     //cut off the flow here or we will crash the app
     if([self.commentData.reddit intValue] == 1)
     {
-        NSLog(@"THIS IS A REDDIT COMMENT");
+        //NSLog(@"THIS IS A REDDIT COMMENT");
         return;
     }
     
@@ -152,7 +146,7 @@
         }
         else
         {
-            NSLog(@"%@",[error userInfo][@"error"]);
+            //NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
     
@@ -169,7 +163,7 @@
     [push setQuery:pushQuery]; // Set our Installation query
     [push setData:data];
     [push sendPushInBackground];
-    NSLog(@"the badge update got sent");
+    //NSLog(@"the badge update got sent");
 
 }
 

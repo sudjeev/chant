@@ -63,11 +63,11 @@
 {
     if([self.redditSwitch isOn])
     {
-        NSLog(@"Switch is on");
+        //NSLog(@"Switch is on");
     }
     else
     {
-        NSLog(@"Switch is off");
+       // NSLog(@"Switch is off");
     }
 }
 
@@ -80,6 +80,9 @@
         return;
     }
     
+    PFUser *newUser = [PFUser user];
+
+    
     //if the user is saying they are using reddit creds then log them in to check
     if([self.redditSwitch isOn])
     {
@@ -87,13 +90,51 @@
         [[RKClient sharedClient] signInWithUsername:self.username.text password:self.password.text completion:^(NSError *error) {
             if (!error)
             {
-                NSLog(@"New user successfully connected to reddit");
-                //save the password in the sskeychain
+                //NSLog(@"New user successfully connected to reddit");
                 [SSKeychain setPassword:self.password.text forService:@"RedditService" account:@"com.chant.keychain"];
+                
+                //create a new parse user here
+                //add functionality to check if the username has already been taken
+                
+                newUser.username = self.username.text;
+                newUser.password = self.password.text;
+                newUser.email = self.email.text;
+                newUser[@"totalUpvotes"] = [NSNumber numberWithInt:1];
+                newUser[@"team"] = [[NSString alloc] initWithFormat:@"NBA"];
+                newUser[@"reddit"] = @"true";
+                [SSKeychain setPassword:self.password.text forService:self.username.text account:@"com.chant.keychain"];
+                
+                
+                //sign up the user
+                [newUser signUpInBackgroundWithBlock:^(BOOL complete, NSError* error){
+                    if(!error)
+                    {
+                        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc]init]];
+                        navController.navigationBar.translucent = NO;
+                        
+                        //update the installation object
+                        PFInstallation* curr = [PFInstallation currentInstallation];
+                        [curr setObject:self.username.text forKey:@"username"];
+                        [curr saveInBackground];
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connected with Reddit!" message:@"Your account has successfully been connected with Reddit!!!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                        [alert show];
+                        
+                        [self presentViewController:navController animated:YES completion:nil];
+                    }
+                    else
+                    {
+                        NSString* errorString = [error userInfo][@"error"];
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alert show];
+                        return;
+                    }
+                    
+                }];
             }
             else
             {
-                NSLog(@"the error is: %@", error);
+                //NSLog(@"the error is: %@", error);
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not connect with reddit, please make sure you are entering your reddit username and password into the correct fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [alert show];
                 return;
@@ -101,50 +142,41 @@
         }];
    
     }
-    
-    //add functionality to check if the username has already been taken
-    
-    PFUser *newUser = [PFUser user];
-    newUser.username = self.username.text;
-    newUser.password = self.password.text;
-    newUser.email = self.email.text;
-    newUser[@"totalUpvotes"] = [NSNumber numberWithInt:1];
-    newUser[@"team"] = [[NSString alloc] initWithFormat:@"NBA"];
-    
-    if([self.redditSwitch isOn])
-    {
-        newUser[@"reddit"] = @"true";
-        [SSKeychain setPassword:self.password.text forService:self.username.text account:@"com.chant.keychain"];
-    }
     else
     {
+        //add functionality to check if the username has already been taken
+        newUser.username = self.username.text;
+        newUser.password = self.password.text;
+        newUser.email = self.email.text;
+        newUser[@"totalUpvotes"] = [NSNumber numberWithInt:1];
+        newUser[@"team"] = [[NSString alloc] initWithFormat:@"NBA"];
         newUser[@"reddit"] = @"false";
-    }
-    
-    //sign up the user
-    [newUser signUpInBackgroundWithBlock:^(BOOL complete, NSError* error){
-        if(!error)
-        {
-          UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc]init]];
-            navController.navigationBar.translucent = NO;
-            
-            //update the installation object
-            PFInstallation* curr = [PFInstallation currentInstallation];
-            [curr setObject:self.username.text forKey:@"username"];
-            [curr saveInBackground];
-            
-          [self presentViewController:navController animated:YES completion:nil];
-        }
-        else
-        {
-            NSString* errorString = [error userInfo][@"error"];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-            return;
-        }
         
-    }];
-    
+        //sign up the user
+        [newUser signUpInBackgroundWithBlock:^(BOOL complete, NSError* error){
+            if(!error)
+            {
+                UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[ScheduleTableViewController alloc]init]];
+                navController.navigationBar.translucent = NO;
+                
+                //update the installation object
+                PFInstallation* curr = [PFInstallation currentInstallation];
+                [curr setObject:self.username.text forKey:@"username"];
+                [curr saveInBackground];
+                
+                [self presentViewController:navController animated:YES completion:nil];
+            }
+            else
+            {
+                NSString* errorString = [error userInfo][@"error"];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                return;
+            }
+            
+        }];
+    }
+
     
 }
 

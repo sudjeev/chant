@@ -90,7 +90,7 @@
     
     else
     {
-        NSLog(@"error on parse callback!!!!!");
+       // NSLog(@"error on parse callback!!!!!");
     }
     
     self.isLoading = 0;

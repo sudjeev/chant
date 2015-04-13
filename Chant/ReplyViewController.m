@@ -140,12 +140,12 @@ static UIRefreshControl* refresher;
     if([self.myCommentData.username isEqualToString:[PFUser currentUser].username] || [upvotedComments objectForKey:key] != nil)
     {
         //cant upvote your own comment
-        NSLog(@"already upvoted this");
+        //NSLog(@"already upvoted this");
         return;
     }
     
     //if it doesnt already exist in our defaults then we can add it and upvote the comment
-    NSLog(@"first time upvoting");
+    //NSLog(@"first time upvoting");
     [upvotedComments setObject:[[NSString alloc]init] forKey:key];
     
     [defaults setObject:upvotedComments forKey:game];
@@ -163,7 +163,7 @@ static UIRefreshControl* refresher;
         }
         else
         {
-            NSLog(@"%@",[error userInfo][@"error"]);
+           // NSLog(@"%@",[error userInfo][@"error"]);
         }
     }];
     
@@ -180,7 +180,7 @@ static UIRefreshControl* refresher;
     [push setQuery:pushQuery]; // Set our Installation query
     [push setData:data];
     [push sendPushInBackground];
-    NSLog(@"the badge update got sent");
+    //NSLog(@"the badge update got sent");
     
     //[defaults synchronize];
 }
@@ -220,7 +220,7 @@ static UIRefreshControl* refresher;
     }
     else
     {
-        NSLog(@"error on reply");
+        //NSLog(@"error on reply");
     }
 }
 
@@ -236,84 +236,6 @@ static UIRefreshControl* refresher;
     [textField resignFirstResponder];
     return YES;
     
-    //Do nothing but remove the keyboard
-    
-    /*
-    
-    if([self.replyBox.text isEqualToString:@""])
-    {
-        return YES;
-    }
-    
-    NSString* tableName = [NSString stringWithFormat:@"%@_replies", self.myCommentData.gameId];
-
-    
-    //handle all the logic for storing the comment here
-    PFUser* currentUser = [PFUser currentUser];
-
-    
-    PFObject *newComment = [PFObject objectWithClassName:tableName];
-    newComment[@"Reply"] = self.replyBox.text;
-    newComment[@"CommentID"] = self.myCommentData.objectId;
-    newComment[@"Upvotes"] = [[NSNumber alloc] initWithInt:1];
-    newComment[@"Username"] = currentUser.username;
-    newComment[@"Team"] = currentUser[@"team"];
-    [newComment saveInBackground];
-    
-    //cut off the logic here
-    if([self.myCommentData.reddit intValue] == 1)
-    {
-        //reset the array of replies
-        self.replies = [[NSMutableArray alloc] init];
-        
-        [refresher beginRefreshing];
-        [self handleRefresh:nil];
-        
-        self.replyBox.text = @"";
-        [self.replyBox resignFirstResponder];
-        
-        return YES;
-    }
-    
-    //Send a push to the guy who made the original comment
-    PFQuery* pushQuery = [PFInstallation query];
-    [pushQuery whereKey:@"username" equalTo: self.myCommentData.username];
-    PFPush* push = [[PFPush alloc] init];
-    [push setQuery:pushQuery];
-    NSString* pushMessage = [NSString stringWithFormat:@"%@ replied to your comment: %@", [PFUser currentUser].username, self.replyBox.text];
-    [push setMessage:pushMessage];
-    [push sendPushInBackground];
-    
-    //Send a message to anyone else who subscribed to this comment thread
-    PFPush* push2 = [[PFPush alloc]init];
-    [push2 setChannel:self.myCommentData.objectId];
-    NSString* pushMessage2 = [NSString stringWithFormat:@"%@ replied to a comment you also replied to: %@", [PFUser currentUser].username, self.replyBox.text];
-    [push setMessage:pushMessage2];
-    [push sendPushInBackground];
-    
-    
-    //If this is my first time responding to this then add me as a listener
-    PFInstallation* currentInstallation = [PFInstallation currentInstallation];
-    
-    //if im not subscribed to this channel then subscribe me to it
-    if([currentInstallation.channels containsObject:self.myCommentData.objectId] == NO && [PFUser currentUser].username != self.myCommentData.username)
-    {
-        [currentInstallation addUniqueObject:self.myCommentData.objectId forKey:@"channels"];
-        [currentInstallation saveEventually];
-    }
-    
-    //reset the replies array
-    self.replies = [[NSMutableArray alloc] init];
-
-    [self.tableView reloadData];
-
-    self.replyBox.text = @"";
-    //reload the data so the comment shows up
-    [self.tableView reloadData];
-    
-    
-    return YES;
-     */
     
 }
 
@@ -325,6 +247,11 @@ static UIRefreshControl* refresher;
     {
         return;
         [self.replyBox resignFirstResponder];
+    }
+    else if([PFUser currentUser] == nil)
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Sign up or Log In" message:@"You must have an account to post or reply. It only takes 5 seconds to make one!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
     else
     {
@@ -351,11 +278,11 @@ static UIRefreshControl* refresher;
             if(!error)
             {
                 [object incrementKey:@"numReplies"];
-                [object saveEventually];
+                [object saveInBackground];
             }
             else
             {
-                NSLog(@"error trying to increment numreplies");
+               // NSLog(@"error trying to increment numreplies");
             }
         }];
         
@@ -386,7 +313,7 @@ static UIRefreshControl* refresher;
         //if im responding to my own comment dont send me a push
         if([self.myCommentData.username isEqualToString:[PFUser currentUser].username])
         {
-            NSLog(@"here");
+           // NSLog(@"here");
             //reset the array of replies
             self.replies = [[NSMutableArray alloc] init];
             
@@ -423,7 +350,7 @@ static UIRefreshControl* refresher;
         if([currentInstallation.channels containsObject:self.myCommentData.objectId] == NO && [PFUser currentUser].username != self.myCommentData.username)
         {
             [currentInstallation addUniqueObject:self.myCommentData.objectId forKey:@"channels"];
-            [currentInstallation saveEventually];
+            [currentInstallation saveInBackground];
         }
         
         //reset the array of replies
