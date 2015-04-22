@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "ReplyData.h"
 
-@interface ReplyCommentCell : UITableViewCell
+@interface ReplyCommentCell : UITableViewCell<UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView* view;
 @property (strong, nonatomic) ReplyData* data;
 @property (strong, nonatomic) IBOutlet UITextView* comment;
@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView* flair;
 -(void) updateViewWithItem:(ReplyData*) data;
 
+-(IBAction)onFlag:(id)sender;
 -(IBAction)upvote:(id)sender;
 @end

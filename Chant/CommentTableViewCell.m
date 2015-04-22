@@ -82,6 +82,22 @@ static int upvoteFlag;
     self.backgroundView = av;
 }
 
+-(IBAction)onFlag:(id)sender
+{
+    //save this comment data in the flag database
+    PFObject* flagged = [[PFObject alloc] initWithClassName:@"Flagged"];
+    flagged[@"username"]  = self.commentData.username;
+    flagged[@"content"] = self.commentData.text;
+    flagged[@"contentID"] = self.commentData.objectId;
+    
+    [flagged saveInBackground];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Done Flagging" message:@"This comment has been flagged and will be reviewed by our moderators within the next 24hrs" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+    [alert show];
+}
+
+
 -(IBAction)onUpvote:(id)sender
 {
     upvoteFlag = 1;

@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "CommentData.h"
 
-@interface CommentTableViewCell : UITableViewCell
+@interface CommentTableViewCell : UITableViewCell<UIAlertViewDelegate>
 @property (nonatomic, strong) CommentData* commentData;
 @property (nonatomic, strong) IBOutlet UITextView* text;
 @property (nonatomic, strong) IBOutlet UILabel* username;
@@ -23,5 +23,5 @@
 - (void) updateViewWithItem: (NSString*) comment;
 - (IBAction)onUpvote:(id)sender;
 - (IBAction)onReply:(id)sender;
-
+- (IBAction)onFlag:(id)sender;
 @end

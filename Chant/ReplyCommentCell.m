@@ -55,6 +55,20 @@
 
 }
 
+- (IBAction)onFlag:(id)sender
+{
+    PFObject* flagged = [[PFObject alloc] initWithClassName:@"Flagged"];
+    flagged[@"username"] = self.data.username;
+    flagged[@"content"] = self.data.reply;
+    flagged[@"contentID"] = self.data.objectID;
+    
+    [flagged saveInBackground];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Done Flagging" message:@"This reply has been flagged and will be reviewed by our moderators within the next 24hrs" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+    [alert show];
+}
+
 -(IBAction)upvote:(id)sender
 {
 
