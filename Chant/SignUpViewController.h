@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UITextField* password;
 @property (strong, nonatomic) IBOutlet UITextField* email;
 @property (strong, nonatomic) IBOutlet UITextView* redditInstructions;
+@property (strong, nonatomic) IBOutlet UITextView* agreement;
 @property (strong, nonatomic) IBOutlet UILabel* redditSwitchLabel;
 
 @property (strong, nonatomic) IBOutlet UISwitch* redditSwitch;

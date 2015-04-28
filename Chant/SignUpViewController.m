@@ -41,6 +41,7 @@
         
         self.redditInstructions.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
         self.redditSwitchLabel.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
+        self.agreement.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     }
     return self;
 }
@@ -50,6 +51,8 @@
     [super viewDidLoad];
     self.redditInstructions.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
     self.redditSwitchLabel.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
+    self.agreement.textColor = [UIColor colorWithRed:255.0/255 green:100.0/255.0 blue:0.0/255.0 alpha:1];
+
     // Do any additional setup after loading the view from its nib.
 
     //connect with Google Analytics

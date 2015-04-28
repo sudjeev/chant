@@ -61,6 +61,7 @@
     flagged[@"username"] = self.data.username;
     flagged[@"content"] = self.data.reply;
     flagged[@"contentID"] = self.data.objectID;
+    flagged[@"table"] = [NSString stringWithFormat:@"%@_replies", self.data.gameID];
     
     [flagged saveInBackground];
     

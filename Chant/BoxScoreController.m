@@ -30,7 +30,7 @@ static UIActivityIndicatorView *loadingActivity;
     [super viewDidLoad];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"ScheduleScreen"];
+    [tracker set:kGAIScreenName value:@"BoxScoreScreen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
     self.navigationItem.title = @"Box Score";

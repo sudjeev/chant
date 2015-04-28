@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="msp-FA-kZe">
-                        <rect key="frame" x="260" y="58" width="34" height="20"/>
+                        <rect key="frame" x="260" y="77" width="34" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                         <state key="normal" title="reply">
@@ -29,8 +29,8 @@
                         <rect key="frame" x="8" y="5" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FJe-Cx-SIZ">
-                        <rect key="frame" x="41" y="10" width="206" height="15"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" id="FJe-Cx-SIZ">
+                        <rect key="frame" x="42" y="10" width="218" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                         <nil key="highlightedColor"/>
@@ -58,17 +58,6 @@
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4cE-oR-41e">
-                        <rect key="frame" x="256" y="79" width="42" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <state key="normal" title="flag">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="onFlag:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="aQM-Hl-m5u"/>
-                        </connections>
-                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -79,7 +68,7 @@
                 <outlet property="upvotes" destination="ugb-oi-7ZR" id="SsS-P7-ZhH"/>
                 <outlet property="username" destination="FJe-Cx-SIZ" id="HWg-qL-0wY"/>
             </connections>
-            <point key="canvasLocation" x="217" y="184"/>
+            <point key="canvasLocation" x="216.5" y="184"/>
         </tableViewCell>
     </objects>
     <resources>

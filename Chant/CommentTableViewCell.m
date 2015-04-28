@@ -89,6 +89,7 @@ static int upvoteFlag;
     flagged[@"username"]  = self.commentData.username;
     flagged[@"content"] = self.commentData.text;
     flagged[@"contentID"] = self.commentData.objectId;
+    flagged[@"table"] = self.commentData.gameId;
     
     [flagged saveInBackground];
     

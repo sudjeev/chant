@@ -46,6 +46,12 @@ static UIRefreshControl* refresher;
     self.commentView.layer.cornerRadius = 5;
     self.commentView.layer.masksToBounds = YES;
     self.navigationItem.title = @"Replies";
+
+    UIBarButtonItem *flag = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"glyphicons_266_flag.png"] style:UIBarButtonItemStyleDone target:self action:@selector(onFlag)];
+
+    
+    
+    self.navigationItem.rightBarButtonItem = flag;
     offset = 0;
     
     self.replies = [[NSMutableArray alloc] init];
@@ -71,7 +77,7 @@ static UIRefreshControl* refresher;
     refresher = refreshControl;
     [self.tableView addSubview:refreshControl];
     
-    if(self.myCommentData.userTeam == nil || [self.myCommentData.userTeam isEqualToString:@"NBA.png"])
+    if(self.myCommentData.userTeam == nil || [self.myCommentData.userTeam isEqualToString:@"NBA"])
     {
         self.userFlair.image = [UIImage imageNamed:@"NBA.png"];
         self.username.text = self.myCommentData.username;
@@ -123,6 +129,23 @@ static UIRefreshControl* refresher;
     getReplies.limit = 50;
     [getReplies findObjectsInBackgroundWithTarget:self selector:@selector(replyCallback: error:)];
     [refresher endRefreshing];
+}
+
+
+-(void)onFlag
+{
+    //save this comment data in the flag database
+    PFObject* flagged = [[PFObject alloc] initWithClassName:@"Flagged"];
+    flagged[@"username"]  = self.myCommentData.username;
+    flagged[@"content"] = self.myCommentData.text;
+    flagged[@"contentID"] = self.myCommentData.objectId;
+    flagged[@"table"] = self.myCommentData.gameId;
+    
+    [flagged saveInBackground];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Flagged" message:@"This comment has been flagged and will be reviewed by our moderators within the next 24hrs" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+    [alert show];
 }
 
 - (IBAction)upvote:(id)sender

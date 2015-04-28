@@ -439,6 +439,8 @@ static int atTop;//the flag I use to reset the most recent comment object
         //reload the whole tableview based on segmented control value
         [self valueChanged:self.segmentedControl];
     }
+    
+   // RKComment* comment = RKComment
 }
 
 
