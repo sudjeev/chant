@@ -260,6 +260,9 @@ static int atTop;//the flag I use to reset the most recent comment object
             data.userTeam = comment[@"Team"];//used for flair
             data.reddit = comment[@"reddit"];//if this comment is from reddit or not
             data.numReplies = comment[@"numReplies"];//get the number of replies this comment has
+            data.createdAt = [comment createdAt];
+            data.redditCreatedAt = comment[@"reddit_date"];
+            data.redditId = comment[@"reddit_comment_id"];
             //make the comments gameId be the name of the class
             data.gameId = self.data.gameId;
             [self.tableData addObject:data];
@@ -510,7 +513,7 @@ static int atTop;//the flag I use to reset the most recent comment object
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 110;
+    return 133;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -518,7 +521,10 @@ static int atTop;//the flag I use to reset the most recent comment object
 
 }
 
-
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 /*

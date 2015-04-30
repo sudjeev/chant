@@ -80,7 +80,71 @@ static int upvoteFlag;
     av.opaque = NO;
     av.image = [UIImage imageNamed:@"cell.png"];
     self.backgroundView = av;
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"mm"];
+    
+    NSString *stringFromDate = [formatter stringFromDate:comment.redditCreatedAt];
+
+    //NSLog([NSString stringWithFormat:@"CREATED ATTTTTTT  %@", stringFromDate]);
+    NSLog([NSString stringWithFormat:@"FOOKERRRR %@", stringFromDate ]);
+    NSTimeInterval interval;
+    
+    if([comment.reddit intValue] == 1 && comment.redditCreatedAt != nil)
+    {
+         interval = fabs([comment.redditCreatedAt timeIntervalSinceNow]);
+    }
+    else
+    {
+         interval = fabs([comment.createdAt timeIntervalSinceNow]);
+    }
+    
+    NSInteger ti = (NSInteger)interval;
+    NSInteger seconds = ti % 60;
+    NSInteger minutes = (ti / 60) % 60;
+    NSInteger hours = (ti / 3600);
+    
+    if(hours > 0)
+    {
+     if(hours < 10)
+     {
+      if(hours ==  1)
+      {
+          self.timeStamp.text = [NSString stringWithFormat:@"%01ld hour ago", (long)hours];
+      }
+      else
+      {
+          self.timeStamp.text = [NSString stringWithFormat:@"%01ld hours ago", (long)hours];
+      }
+     }
+     else
+     {
+      self.timeStamp.text = [NSString stringWithFormat:@"%02ld hours ago", (long)hours];
+     }
+    }
+    else if(minutes > 0)
+    {
+        if(minutes > 10)
+        {
+         self.timeStamp.text = [NSString stringWithFormat:@"%02ld minutes ago", (long)minutes];
+        }
+        else if(minutes > 1)
+        {
+         self.timeStamp.text = [NSString stringWithFormat:@"%01ld minutes ago", (long)minutes];
+        }
+        else
+        {
+            self.timeStamp.text = [NSString stringWithFormat:@"%01ld minute ago", (long)minutes];
+        }
+    }
+    else
+    {
+        self.timeStamp.text = @"Just now";
+    }
+    //self.timeStamp.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hours, (long)minutes, (long)seconds];
+    
 }
+
 
 -(IBAction)onFlag:(id)sender
 {

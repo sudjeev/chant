@@ -179,4 +179,9 @@
     return CGSizeMake(310, 500);
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 @end

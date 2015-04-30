@@ -272,6 +272,9 @@ static UIRefreshControl* refresher;
              nextGame.status = [object objectForKey:@"status"];
              nextGame.redditFullName = [object objectForKey:@"redditFullName"];
              nextGame.boxScoreURL = [object objectForKey:@"boxScore"];
+             nextGame.homeImage = [object objectForKey:@"homeImage"];
+             nextGame.awayImage = [object objectForKey:@"awayImage"];
+             nextGame.featured = [object objectForKey:@"featured"];
              [self.schedule addObject:nextGame];
              self.liveGames++;
          
@@ -389,7 +392,7 @@ static UIRefreshControl* refresher;
     tempLabel.textAlignment = NSTextAlignmentCenter;
     if(section == 0)
     {
-        tempLabel.text=@"NBA GameThreads:";
+        tempLabel.text=@"Live GameThreads:";
     }
     else
     {

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 @interface CommentData : NSObject
 @property (nonatomic, strong) NSString* text;
@@ -16,6 +17,10 @@
 @property (nonatomic, strong) NSString* objectId;
 @property (nonatomic, strong) NSString* userTeam;
 @property (nonatomic, assign) BOOL upvoted;
-@property (nonatomic, assign) NSNumber* reddit;
-@property (nonatomic, assign) NSNumber* numReplies;
+@property (nonatomic, strong) NSNumber* reddit;
+@property (nonatomic, strong) NSNumber* numReplies;
+@property (nonatomic, strong) NSDate* createdAt;
+@property (nonatomic, strong) NSDate* redditCreatedAt;
+@property (nonatomic, strong) NSString* redditId;
+
 @end

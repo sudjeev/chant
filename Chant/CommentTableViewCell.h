@@ -20,6 +20,8 @@
 @property (nonatomic, strong) IBOutlet UIView* view;
 @property (nonatomic, strong) IBOutlet UIButton* replies;
 @property (strong, nonatomic) NSDictionary* dictionary;
+@property (strong, nonatomic) IBOutlet UILabel* timeStamp;
+
 - (void) updateViewWithItem: (NSString*) comment;
 - (IBAction)onUpvote:(id)sender;
 - (IBAction)onReply:(id)sender;

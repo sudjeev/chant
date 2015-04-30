@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 @interface GameData : NSObject
 @property (strong, nonatomic) NSString* home;
@@ -23,4 +24,7 @@
 @property (strong, nonatomic) NSString* status;
 @property (strong, nonatomic) NSString* redditFullName;
 @property (strong, nonatomic) NSString* boxScoreURL;
+@property (nonatomic, strong) NSNumber* featured;
+@property (nonatomic, strong) PFFile* homeImage;
+@property (nonatomic, strong) PFFile* awayImage;
 @end

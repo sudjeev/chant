@@ -40,7 +40,7 @@
     
     //GOOGLE ANALYTICS INITIALIZATION
     [GAI sharedInstance].trackUncaughtExceptions = YES;
-    [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
+    //[[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
     [GAI sharedInstance].dispatchInterval = 120;
     id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-61782921-1"];
 
@@ -52,6 +52,9 @@
     [SSKeychain setAccessibilityType:kSecAttrAccessibleWhenUnlocked];
     
     //Add Parse Push
+    //test if we are running ios8
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)])
+    {
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
                                                     UIUserNotificationTypeBadge |
                                                     UIUserNotificationTypeSound);
@@ -59,6 +62,11 @@
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
 
     
     //NEED an if statement to check if user is already logged in here

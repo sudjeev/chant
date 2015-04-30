@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GameData.h"
+#import <Parse/Parse.h>
 
 @interface ScheduleCell : UITableViewCell
 
@@ -18,8 +19,8 @@
 @property (nonatomic, strong) IBOutlet UILabel* quarterLabel;
 @property (nonatomic, strong) IBOutlet UILabel* homeScoreLabel;
 @property (nonatomic, strong) IBOutlet UILabel* awayScoreLabel;
-@property (nonatomic, strong) IBOutlet UIImageView* homeLogo;
-@property (nonatomic, strong) IBOutlet UIImageView* awayLogo;
+@property (nonatomic, strong) IBOutlet PFImageView* homeLogo;
+@property (nonatomic, strong) IBOutlet PFImageView* awayLogo;
 @property (nonatomic, strong) IBOutlet UIView* uView;
 @property (nonatomic, strong) IBOutlet UILabel* status;
 @property (strong, nonatomic) NSDictionary* dictionary;

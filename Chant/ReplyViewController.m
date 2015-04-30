@@ -9,8 +9,10 @@
 
 #import "ReplyViewController.h"
 #import "Flairs.h"
-
-
+#import "RKClient.h"
+#import "RKClient+Users.h"
+#import "RKClient+Comments.h"
+#import "RKClient+Messages.h"
 @interface ReplyViewController ()
 
 @end
@@ -323,6 +325,8 @@ static UIRefreshControl* refresher;
         newComment[@"Username"] = currentUser.username;
         newComment[@"Team"] = currentUser[@"team"];
         newComment[@"GameID"] = self.myCommentData.gameId;
+        //newComment[@"reddit_comment_id"] = self.myCommentData.redditId; //the id of the comment that was replied to,
+        //if the comment is a reddit comment then the python script should do the actual replying
         [newComment saveInBackground];
         
         /*
@@ -345,6 +349,21 @@ static UIRefreshControl* refresher;
         //cut off the logic here
         if([self.myCommentData.reddit intValue] == 1)
         {
+            //check if the current user is logged into reddit
+            if([[RKClient sharedClient]isSignedIn])
+            {
+                NSString* redditReply = [NSString stringWithFormat:@"t1_%@", self.myCommentData.redditId];
+                [[RKClient sharedClient] submitComment:self.replyBox.text onThingWithFullName:redditReply completion:^(NSError *error){
+                    if(!error)
+                    {
+                        NSLog(@"It shouldve replied to comments of %@", redditReply);
+                    }
+                    else
+                    {
+                         NSLog(@"Couldnt crosspost the reply to reddit game threads comment");
+                    }
+                }];
+            }
             //reset the array of replies
             self.replies = [[NSMutableArray alloc] init];
             

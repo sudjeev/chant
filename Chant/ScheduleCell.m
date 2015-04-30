@@ -8,6 +8,7 @@
 
 #import "ScheduleCell.h"
 #import "Flairs.h"
+#import <Parse/Parse.h>
 
 @interface ScheduleCell ()
 @property (nonatomic, strong) GameData* data;
@@ -35,9 +36,17 @@
 - (void) updateCellWithGameData:(GameData *)data
 {
     self.data = data;
-    self.homeLabel.text = [[Flairs allFlairs].teams objectForKey:data.homeFull];
-    self.awayLabel.text = [[Flairs allFlairs].teams objectForKey:data.awayFull];
-
+    
+    if([data.featured intValue] != 1)
+    {
+        self.homeLabel.text = [[Flairs allFlairs].teams objectForKey:data.homeFull];
+        self.awayLabel.text = [[Flairs allFlairs].teams objectForKey:data.awayFull];
+    }
+    else
+    {
+        self.homeLabel.text = data.homeFull;
+        self.awayLabel.text = data.awayFull;
+    }
     
     //update the status of the game and set text color accordingly
     self.status.text = data.status;
@@ -57,10 +66,19 @@
     self.uView.layer.cornerRadius = 5;
     self.uView.layer.masksToBounds = YES;
     
-    
-    self.homeLogo.image = [[Flairs allFlairs].dict objectForKey:data.homeFull];
-    self.awayLogo.image  =[[Flairs allFlairs].dict objectForKey:data.awayFull];
-    
+    if([self.data.featured intValue] == 1)
+    {
+        //use the actual pf images
+        [self.homeLogo setFile:data.homeImage];
+        [self.homeLogo loadInBackground];
+        [self.awayLogo setFile:data.awayImage];
+        [self.awayLogo loadInBackground];
+    }
+    else
+    {
+        self.homeLogo.image = [[Flairs allFlairs].dict objectForKey:data.homeFull];
+        self.awayLogo.image  =[[Flairs allFlairs].dict objectForKey:data.awayFull];
+    }
 
 }
 
