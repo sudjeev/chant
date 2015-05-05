@@ -356,11 +356,11 @@ static UIRefreshControl* refresher;
                 [[RKClient sharedClient] submitComment:self.replyBox.text onThingWithFullName:redditReply completion:^(NSError *error){
                     if(!error)
                     {
-                        NSLog(@"It shouldve replied to comments of %@", redditReply);
+                       // NSLog(@"It shouldve replied to comments of %@", redditReply);
                     }
                     else
                     {
-                         NSLog(@"Couldnt crosspost the reply to reddit game threads comment");
+                     //    NSLog(@"Couldnt crosspost the reply to reddit game threads comment");
                     }
                 }];
             }

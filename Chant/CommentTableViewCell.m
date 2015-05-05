@@ -87,7 +87,7 @@ static int upvoteFlag;
     NSString *stringFromDate = [formatter stringFromDate:comment.redditCreatedAt];
 
     //NSLog([NSString stringWithFormat:@"CREATED ATTTTTTT  %@", stringFromDate]);
-    NSLog([NSString stringWithFormat:@"FOOKERRRR %@", stringFromDate ]);
+    //NSLog([NSString stringWithFormat:@"FOOKERRRR %@", stringFromDate ]);
     NSTimeInterval interval;
     
     if([comment.reddit intValue] == 1 && comment.redditCreatedAt != nil)
